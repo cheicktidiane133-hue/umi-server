@@ -1,0 +1,625 @@
+* {
+  box-sizing: border-box;
+}
+
+.admin-quotes-page {
+  width: 100%;
+  min-height: 100dvh;
+  background: #f4f6f8;
+  color: #1d2730;
+}
+
+.admin-quotes-header {
+  position: sticky;
+  top: 0;
+  z-index: 5000;
+
+  min-height: 72px;
+  padding: 10px 14px;
+
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+
+  background: #087fc1;
+  color: white;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.14);
+}
+
+.admin-quotes-back {
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.admin-quotes-header h1 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.admin-quotes-header p {
+  margin: 3px 0 0;
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.admin-quotes-icon {
+  text-align: center;
+  font-size: 26px;
+}
+
+.admin-quotes-content {
+  width: 100%;
+  max-width: 850px;
+
+  margin: 0 auto;
+  padding: 15px 13px 80px;
+}
+
+
+/* ================================
+   RÉSUMÉ
+================================ */
+
+.admin-quotes-summary {
+  padding: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  border-radius: 16px;
+
+  background: white;
+
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+}
+
+.admin-quotes-summary span {
+  display: block;
+  margin-bottom: 4px;
+
+  color: #087fc1;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.admin-quotes-summary h2 {
+  margin: 0;
+
+  color: #1d2730;
+  font-size: 19px;
+}
+
+.admin-quotes-summary p {
+  margin: 5px 0 0;
+
+  color: #78828a;
+
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.admin-quotes-summary > strong {
+  min-width: 45px;
+  height: 45px;
+
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 23px;
+
+  background: #e6f4fb;
+  color: #087fc1;
+
+  font-size: 15px;
+}
+
+
+/* ================================
+   LISTE DES DEVIS
+================================ */
+
+.admin-quotes-list {
+  margin-top: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-quote-card {
+  width: 100%;
+
+  padding: 14px;
+
+  border: 1px solid #e4e9ed;
+  border-radius: 14px;
+
+  background: white;
+
+  text-align: left;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+
+  cursor: pointer;
+}
+
+.admin-quote-card:active {
+  transform: scale(0.99);
+}
+
+.admin-quote-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-quote-avatar {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e8f5fc;
+  color: #087fc1;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.admin-quote-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.admin-quote-main h3 {
+  margin: 0;
+
+  overflow: hidden;
+
+  color: #1e2932;
+
+  font-size: 13px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-quote-main p {
+  margin: 3px 0 0;
+
+  overflow: hidden;
+
+  color: #747f88;
+
+  font-size: 11px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ================================
+   STATUT
+================================ */
+
+.admin-quote-status {
+  flex-shrink: 0;
+
+  padding: 5px 8px;
+
+  border-radius: 20px;
+
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.admin-quote-status.new {
+  background: #e7f4fb;
+  color: #087fc1;
+}
+
+.admin-quote-status.processing {
+  background: #fff4dc;
+  color: #a56a00;
+}
+
+.admin-quote-status.answered {
+  background: #eee9ff;
+  color: #6848b7;
+}
+
+.admin-quote-status.accepted {
+  background: #e6f7ed;
+  color: #18834b;
+}
+
+.admin-quote-status.refused {
+  background: #ffebeb;
+  color: #c43b3b;
+}
+
+
+/* ================================
+   INFORMATIONS RAPIDES
+================================ */
+
+.admin-quote-meta {
+  margin-top: 10px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin-quote-meta span {
+  padding: 4px 7px;
+
+  border-radius: 7px;
+
+  background: #f3f5f7;
+  color: #707a83;
+
+  font-size: 9px;
+}
+
+.admin-quote-preview {
+  margin: 10px 0 0;
+
+  display: -webkit-box;
+  overflow: hidden;
+
+  color: #4e5962;
+
+  font-size: 10px;
+  line-height: 1.5;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.admin-quote-open {
+  margin-top: 10px;
+
+  color: #087fc1;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+
+/* ================================
+   AUCUN DEVIS
+================================ */
+
+.admin-quotes-empty {
+  margin-top: 15px;
+  padding: 45px 20px;
+
+  border-radius: 16px;
+
+  background: white;
+
+  text-align: center;
+  color: #747e86;
+}
+
+.admin-quotes-empty > span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 45px;
+}
+
+.admin-quotes-empty h3 {
+  margin: 5px 0;
+
+  color: #28323a;
+
+  font-size: 15px;
+}
+
+.admin-quotes-empty p {
+  margin: 0;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* ================================
+   FENÊTRE DÉTAIL
+================================ */
+
+.admin-quote-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  padding: 20px 12px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  background: rgba(10, 18, 25, 0.58);
+}
+
+.admin-quote-detail {
+  width: 100%;
+  max-width: 650px;
+  max-height: 92dvh;
+
+  overflow-y: auto;
+
+  padding: 18px;
+
+  border-radius: 20px 20px 14px 14px;
+
+  background: #f7f8fa;
+
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.18);
+}
+
+.admin-quote-detail-header {
+  margin-bottom: 15px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.admin-quote-detail-header span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #087fc1;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.admin-quote-detail-header h2 {
+  margin: 0;
+
+  color: #202b34;
+
+  font-size: 18px;
+}
+
+.admin-quote-detail-header > button {
+  width: 36px;
+  height: 36px;
+
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e7ebee;
+  color: #34404a;
+
+  font-size: 23px;
+
+  cursor: pointer;
+}
+
+
+/* ================================
+   SECTIONS DU DÉTAIL
+================================ */
+
+.admin-quote-detail-section {
+  margin-bottom: 11px;
+  padding: 14px;
+
+  border-radius: 13px;
+
+  background: white;
+
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.04);
+}
+
+.admin-quote-detail-section h3 {
+  margin: 0 0 10px;
+
+  color: #25313a;
+
+  font-size: 12px;
+}
+
+.admin-quote-information {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.admin-quote-information p {
+  min-width: 0;
+
+  margin: 0;
+  padding: 9px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  border-radius: 8px;
+
+  background: #f6f8f9;
+}
+
+.admin-quote-information strong {
+  color: #7b858d;
+
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+.admin-quote-information span {
+  overflow-wrap: anywhere;
+
+  color: #2b353d;
+
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.admin-quote-client-message {
+  padding: 12px;
+
+  border-radius: 9px;
+
+  background: #f4f7f9;
+  color: #3c4750;
+
+  font-size: 11px;
+  line-height: 1.55;
+
+  white-space: pre-wrap;
+}
+
+
+/* ================================
+   FORMULAIRE RÉPONSE
+================================ */
+
+.admin-quote-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  color: #303b44;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.admin-quote-field select,
+.admin-quote-field textarea {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  border: 1px solid #d7dde2;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: white;
+  color: #26313a;
+
+  font: inherit;
+  font-weight: 400;
+}
+
+.admin-quote-field select {
+  min-height: 44px;
+}
+
+.admin-quote-field textarea {
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+.admin-quote-field select:focus,
+.admin-quote-field textarea:focus {
+  border-color: #087fc1;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(8, 127, 193, 0.08);
+}
+
+.admin-quote-save {
+  width: 100%;
+  min-height: 50px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: #087fc1;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.admin-quote-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 430px) {
+
+  .admin-quotes-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .admin-quote-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .admin-quote-detail {
+    max-height: 94dvh;
+
+    border-radius: 20px 20px 0 0;
+  }
+
+}
+
+
+@media (max-width: 360px) {
+
+  .admin-quote-information {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-quote-status {
+    max-width: 85px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+}

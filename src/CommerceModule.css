@@ -1,0 +1,546 @@
+* {
+  box-sizing: border-box;
+}
+
+.commerce-page,
+.chat-page {
+  width: 100%;
+  min-height: 100dvh;
+  background: #f4f6f8;
+  color: #18212b;
+}
+
+.commerce-header,
+.chat-header {
+  position: sticky;
+  top: 0;
+  z-index: 5000;
+
+  min-height: 72px;
+  padding: 10px 15px;
+
+  display: grid;
+  grid-template-columns: 45px 1fr 45px;
+  align-items: center;
+  gap: 10px;
+
+  background: #087fc1;
+  color: white;
+
+  box-shadow: 0 2px 10px
+    rgba(0, 0, 0, 0.12);
+}
+
+.commerce-header button,
+.chat-header button {
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.15);
+  color: white;
+
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.commerce-header h1,
+.chat-header h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.commerce-header p,
+.chat-header p {
+  margin: 3px 0 0;
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.commerce-header > span {
+  text-align: center;
+  font-size: 27px;
+}
+
+.commerce-content,
+.commerce-detail {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px 14px 100px;
+}
+
+.commerce-intro {
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background: white;
+
+  box-shadow: 0 3px 15px
+    rgba(0, 0, 0, 0.06);
+}
+
+.commerce-intro h2 {
+  margin: 0 0 7px;
+  font-size: 20px;
+}
+
+.commerce-intro p {
+  margin: 0;
+  color: #6c7580;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.commerce-search {
+  margin: 15px 0;
+
+  min-height: 50px;
+
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: white;
+  border-radius: 13px;
+
+  box-shadow: 0 2px 10px
+    rgba(0,0,0,0.05);
+}
+
+.commerce-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+}
+
+.commerce-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.commerce-card {
+  padding: 0;
+  overflow: hidden;
+
+  border: none;
+  border-radius: 14px;
+
+  background: white;
+  text-align: left;
+
+  box-shadow: 0 3px 13px
+    rgba(0,0,0,0.07);
+
+  cursor: pointer;
+}
+
+.commerce-card-image {
+  width: 100%;
+  aspect-ratio: 1 / 0.85;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  background: #edf1f4;
+}
+
+.commerce-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.commerce-card-image span {
+  font-size: 45px;
+}
+
+.commerce-card-info {
+  padding: 11px;
+}
+
+.commerce-card-info h3 {
+  margin: 0 0 6px;
+
+  font-size: 14px;
+  color: #18212b;
+}
+
+.commerce-card-info p {
+  margin: 0 0 6px;
+
+  color: #747d87;
+  font-size: 11px;
+}
+
+.commerce-card-info strong {
+  color: #087fc1;
+  font-size: 13px;
+}
+
+.commerce-empty {
+  margin-top: 20px;
+  padding: 35px 20px;
+
+  border-radius: 15px;
+
+  background: white;
+  text-align: center;
+  color: #707983;
+}
+
+.commerce-empty > div {
+  font-size: 45px;
+}
+
+.commerce-empty h3 {
+  color: #222;
+}
+
+.commerce-detail-image {
+  width: 100%;
+  height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  border-radius: 17px;
+
+  background: white;
+}
+
+.commerce-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.commerce-detail-image span {
+  font-size: 80px;
+}
+
+.commerce-detail > h1 {
+  margin: 18px 0 7px;
+  font-size: 24px;
+}
+
+.commerce-detail-price {
+  color: #087fc1;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.commerce-description {
+  line-height: 1.6;
+  color: #626b74;
+}
+
+.commerce-characteristics {
+  margin: 18px 0;
+
+  overflow: hidden;
+  border-radius: 14px;
+
+  background: white;
+}
+
+.commerce-characteristics > div {
+  min-height: 50px;
+
+  padding: 10px 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  border-bottom:
+    1px solid #edf0f2;
+}
+
+.commerce-characteristics span {
+  color: #737b84;
+  font-size: 13px;
+}
+
+.commerce-characteristics strong {
+  text-align: right;
+  font-size: 13px;
+}
+
+.commerce-quantity {
+  margin: 15px 0;
+  padding: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: white;
+  border-radius: 13px;
+}
+
+.commerce-quantity > div {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.commerce-quantity button {
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #e8f3fa;
+  color: #087fc1;
+
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.commerce-primary-button,
+.commerce-secondary-button {
+  width: 100%;
+  min-height: 52px;
+
+  margin-top: 10px;
+
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.commerce-primary-button {
+  border: none;
+  background: #087fc1;
+  color: white;
+}
+
+.commerce-secondary-button {
+  border: 1px solid #087fc1;
+  background: white;
+  color: #087fc1;
+}
+
+
+/* =========================================
+   DEVIS
+========================================= */
+
+.quote-form {
+  margin-top: 15px;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  background: white;
+  border-radius: 16px;
+}
+
+.quote-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.quote-form input,
+.quote-form textarea {
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #d8dde2;
+  border-radius: 10px;
+
+  outline: none;
+  background: white;
+
+  font: inherit;
+  font-weight: 400;
+}
+
+.quote-form input:focus,
+.quote-form textarea:focus {
+  border-color: #087fc1;
+}
+
+
+/* =========================================
+   CHAT
+========================================= */
+
+.chat-page {
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+.chat-online {
+  text-align: center;
+  color: #5dff8c;
+  font-size: 21px;
+}
+
+.chat-messages {
+  flex: 1;
+
+  padding: 15px;
+
+  overflow-y: auto;
+}
+
+.chat-welcome {
+  max-width: 420px;
+
+  margin: 10px auto 25px;
+  padding: 20px;
+
+  background: white;
+  border-radius: 15px;
+
+  text-align: center;
+}
+
+.chat-welcome > span {
+  font-size: 35px;
+}
+
+.chat-welcome h3 {
+  margin: 9px 0;
+}
+
+.chat-welcome p {
+  margin: 0;
+
+  color: #717983;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.chat-row {
+  width: 100%;
+
+  margin: 8px 0;
+
+  display: flex;
+}
+
+.chat-row.client {
+  justify-content: flex-end;
+}
+
+.chat-row.admin {
+  justify-content: flex-start;
+}
+
+.chat-bubble {
+  max-width: 78%;
+
+  padding: 10px 13px;
+
+  border-radius: 15px;
+
+  font-size: 14px;
+}
+
+.chat-row.client .chat-bubble {
+  background: #087fc1;
+  color: white;
+
+  border-bottom-right-radius: 4px;
+}
+
+.chat-row.admin .chat-bubble {
+  background: white;
+  color: #222;
+
+  border-bottom-left-radius: 4px;
+
+  box-shadow: 0 2px 7px
+    rgba(0,0,0,0.07);
+}
+
+.chat-bubble strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #087fc1;
+  font-size: 11px;
+}
+
+.chat-bubble p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.chat-compose {
+  width: 100%;
+
+  padding:
+    10px
+    12px
+    calc(10px + env(safe-area-inset-bottom));
+
+  display: grid;
+  grid-template-columns: 1fr 48px;
+  gap: 8px;
+
+  background: white;
+
+  box-shadow: 0 -2px 12px
+    rgba(0,0,0,0.07);
+}
+
+.chat-compose input {
+  min-width: 0;
+  height: 48px;
+
+  padding: 0 15px;
+
+  border: 1px solid #dce1e5;
+  border-radius: 24px;
+
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-compose button {
+  width: 48px;
+  height: 48px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #087fc1;
+  color: white;
+
+  font-size: 20px;
+}
+
+.chat-compose button:disabled {
+  opacity: 0.5;
+}

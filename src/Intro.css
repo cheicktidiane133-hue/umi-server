@@ -1,0 +1,274 @@
+/* =========================================
+   PAGE INTRO UMI
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.intro-page {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100dvh;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   ZONE DES IMAGES
+========================================= */
+
+.intro-slides {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================
+   CHAQUE IMAGE
+========================================= */
+
+.intro-slide {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+
+  transform: scale(1.03);
+
+  transition:
+    opacity 0.8s ease,
+    transform 1.2s ease;
+
+  pointer-events: none;
+}
+
+
+.intro-slide.active {
+  opacity: 1;
+
+  transform: scale(1);
+
+  pointer-events: auto;
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.intro-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  user-select: none;
+}
+
+
+/* =========================================
+   DÉGRADÉ EN BAS
+========================================= */
+
+.intro-page::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 150px;
+
+  z-index: 5;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 35, 70, 0.55),
+      rgba(0, 35, 70, 0)
+    );
+}
+
+
+/* =========================================
+   ZONE DU BAS
+========================================= */
+
+.intro-bottom {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    18px
+    20px
+    calc(22px + env(safe-area-inset-bottom));
+}
+
+
+/* =========================================
+   POINTS DU CARROUSEL
+========================================= */
+
+.intro-dots {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+.intro-dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  cursor: pointer;
+
+  transition:
+    width 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.intro-dot.active {
+  width: 25px;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+}
+
+
+/* =========================================
+   BOUTON PASSER
+========================================= */
+
+.intro-skip {
+  min-width: 88px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  color: #0876d8;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  box-shadow:
+    0 5px 18px rgba(0, 30, 60, 0.20);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.intro-skip:active {
+  transform: scale(0.92);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 2px 8px rgba(0, 30, 60, 0.18);
+}
+
+
+/* =========================================
+   PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+  .intro-bottom {
+    padding:
+      15px
+      16px
+      calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .intro-skip {
+    min-width: 80px;
+    height: 39px;
+
+    padding: 0 15px;
+
+    font-size: 13px;
+  }
+
+  .intro-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .intro-dot.active {
+    width: 22px;
+  }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITÉ
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .intro-slide,
+  .intro-dot,
+  .intro-skip {
+    transition: none;
+  }
+
+}

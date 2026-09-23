@@ -1,0 +1,895 @@
+* {
+  box-sizing: border-box;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.create-live-page {
+  min-height: 100vh;
+  background: #f4f7fb;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 40px;
+}
+
+
+/* =========================
+   EN-TÊTE
+========================= */
+
+.create-live-header {
+  position: relative;
+  z-index: 20;
+
+  min-height: 100px;
+
+  background: #ffffff;
+
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+
+  align-items: center;
+
+  padding: 14px 12px;
+
+  border-bottom: 1px solid #e5ebf3;
+}
+
+
+/* =========================
+   BOUTON RETOUR
+========================= */
+
+.create-live-back {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #dce6ef;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #087fc1;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 10px rgba(20, 50, 80, 0.08);
+}
+
+.create-live-back:hover {
+  background: #f2f8fc;
+}
+
+
+/* =========================
+   TITRE EN-TÊTE
+========================= */
+
+.create-live-brand {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.create-live-header-title {
+  color: #087fc1;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 21px;
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  letter-spacing: 0.2px;
+
+  white-space: nowrap;
+}
+
+.create-live-header-subtitle {
+  margin-top: 5px;
+
+  color: #667085;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 10px;
+  font-weight: 400;
+
+  white-space: nowrap;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.create-live-logo {
+  width: 40px;
+  height: 40px;
+
+  justify-self: end;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: 1px solid #e1e8ef;
+}
+
+
+/* =========================
+   CONTENU
+========================= */
+
+.create-live-content {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  padding: 17px 12px 35px;
+}
+
+
+/* =========================
+   INTRODUCTION
+========================= */
+
+.create-live-intro {
+  margin-bottom: 16px;
+
+  padding: 4px 3px;
+}
+
+.create-live-intro h1 {
+  margin: 0 0 6px;
+
+  color: #123f5d;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif !important;
+
+  font-size: 20px !important;
+
+  font-weight: 600 !important;
+
+  line-height: 1.3;
+
+  letter-spacing: 0;
+}
+
+.create-live-intro p {
+  margin: 0;
+
+  color: #7b8b98;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 400;
+
+  line-height: 1.5;
+}
+
+
+/* =========================
+   CARTES
+========================= */
+
+.create-live-card {
+  width: 100%;
+
+  margin-bottom: 14px;
+
+  padding: 17px;
+
+  background: white;
+
+  border: 1px solid #e7eef3;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 3px 14px rgba(18, 63, 95, 0.07);
+}
+
+
+/* =========================
+   TITRE DES SECTIONS
+========================= */
+
+.create-live-section-title {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  margin-bottom: 17px;
+}
+
+.create-live-section-icon {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #e8f5ff;
+
+  border-radius: 11px;
+
+  font-size: 20px;
+}
+
+.create-live-section-title h2 {
+  margin: 0 0 3px;
+
+  color: #173e59;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  letter-spacing: 0;
+}
+
+.create-live-section-title p {
+  margin: 0;
+
+  color: #8997a3;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 11px;
+
+  font-weight: 400;
+
+  line-height: 1.4;
+}
+
+
+/* =========================
+   ZONE CAMÉRA
+========================= */
+
+.live-camera-preview {
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: #101820;
+
+  border: 1px solid #dfe8ee;
+}
+
+.live-camera-preview video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  background: #101820;
+}
+
+
+/* =========================
+   CAMÉRA DÉSACTIVÉE
+========================= */
+
+.camera-placeholder {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #142a39,
+      #0b1821
+    );
+
+  color: white;
+}
+
+.camera-placeholder-icon {
+  width: 55px;
+  height: 55px;
+
+  margin-bottom: 10px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.1);
+
+  font-size: 25px;
+}
+
+.camera-placeholder strong {
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.camera-placeholder span {
+  max-width: 230px;
+
+  margin-top: 6px;
+
+  color: #aebdca;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================
+   BADGE EN DIRECT
+========================= */
+
+.camera-live-badge {
+  position: absolute;
+
+  top: 10px;
+  left: 10px;
+
+  min-height: 29px;
+
+  padding: 0 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  border-radius: 7px;
+
+  background: #e32636;
+
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.live-red-dot {
+  width: 7px;
+  height: 7px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: white;
+
+  animation:
+    livePulse 1.2s infinite;
+}
+
+@keyframes livePulse {
+
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+/* =========================
+   ACTIVER CAMÉRA
+========================= */
+
+.activate-camera-button {
+  width: 100%;
+
+  min-height: 48px;
+
+  margin-top: 12px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background: #e8f5ff;
+
+  color: #087dcc;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.activate-camera-button:active {
+  transform: scale(0.99);
+}
+
+
+/* =========================
+   STATUT CAMÉRA
+========================= */
+
+.camera-status {
+  width: 100%;
+
+  margin-top: 11px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #8997a3;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.camera-status-dot {
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #a8b4bd;
+}
+
+.camera-status.ready {
+  color: #198754;
+}
+
+.camera-status.ready
+.camera-status-dot {
+  background: #25a65a;
+}
+
+.camera-status.live {
+  color: #dc2536;
+
+  font-weight: 600;
+}
+
+.camera-status.live
+.camera-status-dot {
+  background: #e32636;
+
+  box-shadow:
+    0 0 0 4px rgba(227, 38, 54, 0.1);
+}
+
+
+/* =========================
+   CHAMPS
+========================= */
+
+.create-live-field {
+  width: 100%;
+
+  margin-bottom: 17px;
+}
+
+.create-live-field:last-child {
+  margin-bottom: 0;
+}
+
+.create-live-field label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #294d64;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.live-required {
+  margin-left: 3px;
+
+  color: #e53935;
+}
+
+.create-live-field input {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 13px;
+
+  border:
+    1.5px solid #dce6ed;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #fbfdff;
+
+  color: #183e57;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+
+  transition: 0.2s;
+}
+
+.create-live-field input::placeholder {
+  color: #a6b1ba;
+}
+
+.create-live-field input:focus {
+  border-color: #0787df;
+
+  background: white;
+
+  box-shadow:
+    0 0 0 3px rgba(7, 135, 223, 0.08);
+}
+
+.create-live-field input:disabled {
+  background: #f1f4f6;
+
+  color: #77848d;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   DÉMARRER LIVE
+========================= */
+
+.start-live-button {
+  width: 100%;
+
+  min-height: 55px;
+
+  margin-top: 3px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e01e35,
+      #f04455
+    );
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 15px rgba(224, 30, 53, 0.22);
+}
+
+.start-live-button:active {
+  transform: scale(0.99);
+}
+
+.start-live-button:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+}
+
+.start-live-dot {
+  width: 10px;
+  height: 10px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: white;
+}
+
+
+/* =========================
+   ARRÊTER LIVE
+========================= */
+
+.stop-live-button {
+  width: 100%;
+
+  min-height: 55px;
+
+  margin-top: 3px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #202d36;
+
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 15px rgba(32, 45, 54, 0.18);
+}
+
+.stop-live-button:active {
+  transform: scale(0.99);
+}
+
+
+/* =========================
+   ANNULER
+========================= */
+
+.create-live-cancel {
+  width: 100%;
+
+  min-height: 48px;
+
+  margin-top: 10px;
+
+  border:
+    1px solid #dce5eb;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #667985;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   TÉLÉPHONE
+========================= */
+
+@media (max-width: 420px) {
+
+  .create-live-header {
+    min-height: 88px;
+
+    grid-template-columns:
+      42px 1fr 42px;
+
+    padding: 12px 10px;
+  }
+
+
+  .create-live-back {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
+
+    font-size: 23px;
+  }
+
+
+  .create-live-header-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+
+  .create-live-header-subtitle {
+    font-size: 9px;
+  }
+
+
+  .create-live-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+
+  .create-live-content {
+    padding:
+      15px 10px 30px;
+  }
+
+
+  .create-live-intro h1 {
+    font-family:
+      Arial,
+      Helvetica,
+      sans-serif !important;
+
+    font-size: 20px !important;
+
+    font-weight: 600 !important;
+
+    line-height: 1.3;
+
+    letter-spacing: 0;
+  }
+
+
+  .create-live-intro p {
+    font-size: 12px;
+  }
+
+
+  .create-live-card {
+    padding: 15px;
+
+    border-radius: 14px;
+
+    margin-bottom: 12px;
+  }
+
+
+  .create-live-section-title {
+    margin-bottom: 15px;
+  }
+
+
+  .create-live-section-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 19px;
+  }
+
+
+  .create-live-section-title h2 {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+
+  .create-live-section-title p {
+    font-size: 10px;
+  }
+
+
+  .live-camera-preview {
+    border-radius: 12px;
+  }
+
+
+  .camera-placeholder-icon {
+    width: 50px;
+    height: 50px;
+
+    font-size: 23px;
+  }
+
+
+  .create-live-field input {
+    height: 49px;
+
+    font-size: 14px;
+  }
+
+
+  .start-live-button,
+  .stop-live-button {
+    min-height: 53px;
+
+    font-size: 15px;
+  }
+
+}

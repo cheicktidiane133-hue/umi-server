@@ -1,0 +1,828 @@
+* {
+  box-sizing: border-box;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.admin-dashboard {
+  min-height: 100vh;
+  background: #f3f7fb;
+  padding-bottom: 35px;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+/* =========================
+   EN-TÊTE
+========================= */
+
+.dashboard-header {
+  min-height: 105px;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+
+  z-index: 5000;
+
+  background: linear-gradient(
+    135deg,
+    #064a7a,
+    #0787df
+  );
+
+  display: grid;
+
+  grid-template-columns:
+    44px 1fr 44px;
+
+  align-items: center;
+
+  padding: 14px 12px;
+
+  color: white;
+}
+
+.dashboard-header-space {
+  width: 44px;
+  height: 44px;
+}
+
+.dashboard-brand {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.dashboard-title {
+  color: white;
+
+  font-size: 23px;
+  font-weight: 900;
+
+  line-height: 1.1;
+
+  letter-spacing: 0.4px;
+
+  white-space: nowrap;
+}
+
+.dashboard-title span {
+  color: #70c8ff;
+}
+
+.dashboard-subtitle {
+  margin-top: 5px;
+
+  color: white;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.dashboard-logo {
+  width: 40px;
+  height: 40px;
+
+  justify-self: end;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  background: white;
+}
+
+
+/* =========================
+   CONTENU
+========================= */
+
+.dashboard-content {
+  width: 100%;
+
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  padding: 18px 12px 30px;
+}
+
+
+/* =========================
+   CARTE BIENVENUE
+========================= */
+
+.dashboard-welcome {
+  width: 100%;
+
+  padding: 20px;
+
+  margin-bottom: 15px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 3px 14px
+    rgba(18, 63, 95, 0.08);
+}
+
+
+/* PETIT TITRE */
+
+.dashboard-small-title {
+  margin: 0 0 7px;
+
+  color: #0787df;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================
+   GESTION DE LA PLATEFORME
+========================= */
+
+.dashboard-welcome h1 {
+  margin: 0 0 8px;
+
+  color: #173e59;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  letter-spacing: 0;
+
+  text-transform: none;
+}
+
+
+/* PETIT TEXTE SOUS LE TITRE */
+
+.dashboard-welcome-text {
+  margin: 0;
+
+  color: #758596;
+
+  font-size: 13px;
+
+  font-weight: 400;
+
+  line-height: 1.5;
+}
+
+
+/* =========================
+   ACTIONS PRINCIPALES
+========================= */
+
+.dashboard-actions {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-bottom: 25px;
+}
+
+.dashboard-action-card {
+  width: 100%;
+
+  min-height: 76px;
+
+  padding: 12px 14px;
+
+  border:
+    1px solid #e2ebf2;
+
+  border-radius: 15px;
+
+  background: white;
+
+  display: grid;
+
+  grid-template-columns:
+    48px 1fr 20px;
+
+  align-items: center;
+
+  gap: 12px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 12px
+    rgba(18, 63, 95, 0.07);
+}
+
+
+/* =========================
+   ICÔNES ACTION
+========================= */
+
+.dashboard-action-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #e3f3ff;
+
+  color: #087dcc;
+
+  font-size: 28px;
+
+  font-weight: 500;
+}
+
+.dashboard-action-icon.live {
+  background: #e8f5ff;
+
+  color: #0787df;
+
+  font-size: 20px;
+}
+
+
+/* =========================
+   TEXTE ACTION
+========================= */
+
+.dashboard-action-text {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.dashboard-action-text strong {
+  color: #153e5a;
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+.dashboard-action-text span {
+  color: #81909e;
+
+  font-size: 12px;
+
+  font-weight: 400;
+}
+
+.dashboard-action-arrow {
+  color: #8ba0ae;
+
+  font-size: 28px;
+
+  text-align: right;
+}
+
+
+/* =========================
+   SECTION MACHINES
+========================= */
+
+.dashboard-machines-section {
+  width: 100%;
+}
+
+.dashboard-section-header {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.dashboard-section-label {
+  margin: 0 0 3px;
+
+  color: #0787df;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.dashboard-section-header h2 {
+  margin: 0;
+
+  color: #123653;
+
+  font-size: 19px;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   NOMBRE MACHINES
+========================= */
+
+.dashboard-machine-count {
+  min-width: 32px;
+
+  height: 32px;
+
+  padding: 0 9px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background: #0787df;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* =========================
+   GRILLE MACHINES
+========================= */
+
+.admin-machines-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+
+/* =========================
+   CARTE MACHINE
+========================= */
+
+.admin-machine-card {
+  min-width: 0;
+
+  background: white;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  border:
+    1px solid #e9eff4;
+
+  box-shadow:
+    0 3px 12px
+    rgba(18, 63, 95, 0.08);
+}
+
+
+/* =========================
+   PHOTO MACHINE
+========================= */
+
+.admin-machine-image-box {
+  width: 100%;
+
+  height: 145px;
+
+  background: #f0f4f7;
+
+  overflow: hidden;
+}
+
+.admin-machine-image {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.admin-no-image {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #9aa9b5;
+
+  font-size: 35px;
+}
+
+
+/* =========================
+   INFORMATIONS MACHINE
+========================= */
+
+.admin-machine-info {
+  padding: 12px;
+}
+
+.admin-machine-info h3 {
+  margin: 0 0 6px;
+
+  color: #173e59;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+
+  overflow: hidden;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+}
+
+.admin-machine-price {
+  margin: 0 0 12px;
+
+  color: #0787df;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   BOUTONS MACHINE
+========================= */
+
+.admin-actions {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 6px;
+}
+
+.admin-actions button {
+  min-width: 0;
+
+  min-height: 38px;
+
+  padding: 6px 4px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.admin-edit-button {
+  background: #e8f4ff;
+
+  color: #0877c2;
+}
+
+.admin-delete-button {
+  background: #fff0f0;
+
+  color: #d82d2d;
+}
+
+
+/* =========================
+   AUCUNE MACHINE
+========================= */
+
+.dashboard-empty {
+  width: 100%;
+
+  padding: 35px 20px;
+
+  background: white;
+
+  border-radius: 15px;
+
+  text-align: center;
+
+  box-shadow:
+    0 3px 12px
+    rgba(18, 63, 95, 0.07);
+}
+
+.dashboard-empty-icon {
+  margin-bottom: 9px;
+
+  font-size: 38px;
+}
+
+.dashboard-empty h3 {
+  margin: 0 0 6px;
+
+  color: #153e5a;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+.dashboard-empty p {
+  margin: 0;
+
+  color: #81909e;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   DÉCONNEXION
+========================= */
+
+.dashboard-logout {
+  width: 100%;
+
+  min-height: 50px;
+
+  margin-top: 25px;
+
+  border:
+    1px solid #f0cccc;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #d32f2f;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   TÉLÉPHONE
+========================= */
+
+@media (max-width: 420px) {
+
+  .dashboard-header {
+    min-height: 105px;
+
+    grid-template-columns:
+      44px 1fr 44px;
+
+    padding: 14px 12px;
+  }
+
+  .dashboard-title {
+    font-size: 20px;
+  }
+
+  .dashboard-subtitle {
+    font-size: 10px;
+  }
+
+  .dashboard-logo {
+    width: 40px;
+
+    height: 40px;
+  }
+
+  .dashboard-content {
+    padding:
+      14px 10px 30px;
+  }
+
+  .dashboard-welcome {
+    padding: 17px;
+  }
+
+  /* GESTION DE LA PLATEFORME */
+
+  .dashboard-welcome h1 {
+    font-size: 19px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+  }
+
+  .dashboard-welcome-text {
+    font-size: 12px;
+  }
+
+  .dashboard-action-card {
+    min-height: 72px;
+
+    grid-template-columns:
+      44px 1fr 18px;
+
+    gap: 10px;
+  }
+
+  .dashboard-action-icon {
+    width: 43px;
+
+    height: 43px;
+  }
+
+  .dashboard-action-text strong {
+    font-size: 14px;
+  }
+
+  .dashboard-action-text span {
+    font-size: 11px;
+  }
+
+  .dashboard-section-header h2 {
+    font-size: 18px;
+  }
+
+  .admin-machines-grid {
+    gap: 9px;
+  }
+
+  .admin-machine-image-box {
+    height: 125px;
+  }
+
+  .admin-machine-info {
+    padding: 10px;
+  }
+
+  .admin-machine-info h3 {
+    font-size: 13px;
+  }
+
+  .admin-machine-price {
+    font-size: 12px;
+  }
+
+  .admin-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions button {
+    min-height: 36px;
+
+    font-size: 11px;
+  }
+
+}
+
+
+/* =========================================
+   NOUVEAUX MODULES COMMERCIAUX ADMIN
+========================================= */
+
+.admin-commerce-summary {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-top: 15px;
+}
+
+.admin-commerce-box {
+  min-width: 0;
+  min-height: 105px;
+
+  padding: 14px 10px;
+
+  border: 1px solid #e5e9ed;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  text-align: left;
+
+  box-shadow:
+    0 3px 12px
+    rgba(0, 0, 0, 0.05);
+
+  cursor: pointer;
+}
+
+.admin-commerce-box > span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 25px;
+}
+
+.admin-commerce-box div {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.admin-commerce-box strong {
+  color: #1b2630;
+
+  font-size: 13px;
+}
+
+.admin-commerce-box small {
+  color: #7b838b;
+
+  font-size: 10px;
+
+  line-height: 1.35;
+}
+
+.admin-commerce-box:active {
+  transform: scale(0.98);
+}

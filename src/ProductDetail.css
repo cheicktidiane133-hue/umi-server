@@ -1,0 +1,974 @@
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   PAGE PRODUIT
+========================================= */
+
+.product-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 12px 12px 100px;
+
+  background: #f4f8fc;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   CONTENEUR PRINCIPAL
+========================================= */
+
+.product-container {
+  width: 100%;
+  max-width: 500px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+
+/* =========================================
+   FLÈCHE RETOUR
+   DIRECTEMENT SUR LE MÉDIA
+========================================= */
+
+.product-back {
+  position: fixed;
+
+  top: 24px;
+  left: max(
+    24px,
+    calc(50% - 226px)
+  );
+
+  z-index: 1200;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.96);
+  color: #0758c7;
+
+  font-size: 24px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   GALERIE / BANNIÈRE FIXE
+========================================= */
+
+.product-gallery {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  width: 100%;
+
+  height: 400px;
+  min-height: 400px;
+  max-height: 400px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 0 8px;
+
+  overflow: hidden;
+
+  background: #f4f8fc;
+}
+
+
+/* =========================================
+   GRANDE PHOTO / VIDÉO
+========================================= */
+
+.product-image-box {
+  position: relative;
+
+  width: 100%;
+
+  height: 300px;
+  min-height: 300px;
+  max-height: 300px;
+
+  flex: 0 0 300px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 5px 18px rgba(0, 70, 150, 0.09);
+}
+
+
+/* =========================================
+   MÉDIA PRINCIPAL
+========================================= */
+
+.product-main-media {
+  width: 100%;
+  height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  margin: 0;
+
+  overflow: hidden;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   PHOTO PRINCIPALE
+========================================= */
+
+.product-main-media img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  padding: 8px;
+
+  object-fit: contain;
+}
+
+
+/* =========================================
+   VIDÉO PRINCIPALE
+========================================= */
+
+.product-video-cover {
+  position: relative;
+
+  width: 100%;
+  height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #000000;
+}
+
+.product-video-cover video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+/* =========================================
+   PLAY VIDÉO
+========================================= */
+
+.product-play-icon {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-left: 4px;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+
+  font-size: 24px;
+}
+
+
+/* =========================================
+   PARTAGER
+========================================= */
+
+.product-share-button {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  z-index: 30;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.96);
+  color: #0758c7;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.15);
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   COMPTEUR
+========================================= */
+
+.product-media-counter {
+  position: absolute;
+
+  right: 10px;
+  bottom: 10px;
+
+  z-index: 30;
+
+  padding: 6px 10px;
+
+  border-radius: 16px;
+
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: bold;
+}
+
+
+/* =========================================
+   MINIATURES
+========================================= */
+
+.product-thumbnails {
+  width: 100%;
+
+  height: 82px;
+  min-height: 82px;
+  max-height: 82px;
+
+  flex: 0 0 82px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 10px;
+
+  padding: 0 1px 4px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: thin;
+}
+
+
+/* =========================================
+   UNE MINIATURE
+========================================= */
+
+.product-thumbnail {
+  width: 70px;
+  height: 70px;
+
+  min-width: 70px;
+  min-height: 70px;
+
+  flex: 0 0 70px;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 2px solid transparent;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+}
+
+.product-thumbnail.active {
+  border-color: #0874df;
+}
+
+
+/* =========================================
+   PHOTO MINIATURE
+========================================= */
+
+.product-thumbnail img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+/* =========================================
+   VIDÉO MINIATURE
+========================================= */
+
+.product-thumbnail-video {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #000000;
+}
+
+.product-thumbnail-video video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.product-thumbnail-video span {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-left: 2px;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   INFORMATIONS PRODUIT
+========================================= */
+
+.product-details {
+  position: relative;
+
+  z-index: 1;
+
+  width: 100%;
+
+  padding: 4px 2px 30px;
+
+  background: #f4f8fc;
+}
+
+
+/* =========================================
+   CATÉGORIE
+========================================= */
+
+.product-category {
+  display: inline-block;
+
+  margin: 0 0 10px;
+
+  padding: 7px 12px;
+
+  border-radius: 18px;
+
+  background: #e5f2ff;
+  color: #0758c7;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* =========================================
+   NOM
+========================================= */
+
+.product-details h1 {
+  margin: 0 0 8px;
+
+  color: #173b5b;
+
+  font-size: 24px;
+  font-weight: 900;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================
+   PRIX
+========================================= */
+
+.product-price {
+  margin: 0 0 20px;
+
+  color: #0758c7;
+
+  font-size: 25px;
+  font-weight: 900;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   TITRES
+========================================= */
+
+.product-details h2 {
+  margin: 20px 0 9px;
+
+  color: #173b5b;
+
+  font-size: 17px;
+  font-weight: 900;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.product-description-section {
+  width: 100%;
+}
+
+.product-description {
+  margin: 0;
+
+  color: #60758a;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   CARACTÉRISTIQUES
+========================================= */
+
+.product-specifications {
+  width: 100%;
+
+  padding: 15px;
+
+  border: 1px solid #e4edf5;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 14px rgba(0, 70, 150, 0.06);
+}
+
+.product-specifications p {
+  margin: 8px 0;
+
+  color: #526b82;
+
+  font-size: 12px;
+
+  line-height: 17px;
+}
+
+.product-specifications strong {
+  color: #173b5b;
+}
+
+
+/* =========================================
+   BARRE FIXE EN BAS
+========================================= */
+
+.product-bottom-bar {
+  position: fixed;
+
+  left: 50%;
+  bottom: 0;
+
+  z-index: 5000;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 500px;
+
+  min-height: 76px;
+
+  display: grid;
+
+  grid-template-columns:
+    70px
+    1fr
+    1fr;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding:
+    8px
+    10px
+    calc(8px + env(safe-area-inset-bottom));
+
+  background: #ffffff;
+
+  border-top: 1px solid #dce7f0;
+
+  box-shadow:
+    0 -4px 18px rgba(0, 50, 100, 0.12);
+}
+
+
+/* =========================================
+   ACCUEIL
+========================================= */
+
+.product-home-button {
+  height: 56px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 2px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 12px;
+
+  background: transparent;
+  color: #0758c7;
+
+  cursor: pointer;
+}
+
+.product-home-button span {
+  font-size: 25px;
+  line-height: 25px;
+}
+
+.product-home-button small {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   AJOUTER AU PANIER
+========================================= */
+
+.product-bottom-bar .product-cart-button {
+  width: 100%;
+  height: 56px;
+
+  margin: 0;
+  padding: 4px 6px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 2px;
+
+  border: 1px solid #0874df;
+  border-radius: 12px;
+
+ background: #0874df;
+
+color: #ffffff;
+
+  cursor: pointer;
+}
+
+.product-bottom-bar .product-cart-button span {
+  font-size: 20px;
+}
+
+.product-bottom-bar .product-cart-button small {
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 12px;
+}
+
+
+/* =========================================
+   COMMANDER
+========================================= */
+
+.product-bottom-bar .product-order-button {
+  width: 100%;
+  height: 56px;
+
+  margin: 0;
+  padding: 0 8px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    90deg,
+    #0874df,
+    #0648b5
+  );
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  box-shadow:
+    0 5px 14px rgba(0, 73, 180, 0.22);
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   PLEIN ÉCRAN
+========================================= */
+
+.product-fullscreen {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  width: 100vw;
+  height: 100dvh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.96);
+}
+
+
+/* =========================================
+   RETOUR PLEIN ÉCRAN
+========================================= */
+
+.fullscreen-back {
+  position: absolute;
+
+  top: 18px;
+  left: 15px;
+
+  z-index: 100;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+
+  font-size: 25px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   PARTAGER PLEIN ÉCRAN
+========================================= */
+
+.fullscreen-share {
+  position: absolute;
+
+  top: 18px;
+  right: 15px;
+
+  z-index: 100;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   MÉDIA PLEIN ÉCRAN
+========================================= */
+
+.fullscreen-media {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 70px 45px;
+}
+
+.fullscreen-media img,
+.fullscreen-media video {
+  max-width: 100%;
+  max-height: 100%;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* =========================================
+   FLÈCHES PLEIN ÉCRAN
+========================================= */
+
+.fullscreen-previous,
+.fullscreen-next {
+  position: absolute;
+
+  top: 50%;
+
+  z-index: 100;
+
+  width: 40px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(-50%);
+
+  padding: 0;
+
+  border: none;
+  border-radius: 20px;
+
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+
+  font-size: 38px;
+
+  cursor: pointer;
+}
+
+.fullscreen-previous {
+  left: 5px;
+}
+
+.fullscreen-next {
+  right: 5px;
+}
+
+
+/* =========================================
+   COMPTEUR PLEIN ÉCRAN
+========================================= */
+
+.fullscreen-counter {
+  position: absolute;
+
+  left: 50%;
+  bottom: 22px;
+
+  z-index: 100;
+
+  transform: translateX(-50%);
+
+  padding: 6px 12px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+/* =========================================
+   PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 400px) {
+
+  .product-page {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .product-back {
+    top: 20px;
+    left: 20px;
+
+    width: 42px;
+    height: 42px;
+  }
+
+  .product-gallery {
+    height: 380px;
+    min-height: 380px;
+    max-height: 380px;
+  }
+
+  .product-image-box,
+  .product-main-media,
+  .product-video-cover {
+    height: 285px;
+    min-height: 285px;
+    max-height: 285px;
+  }
+
+  .product-image-box {
+    flex-basis: 285px;
+  }
+
+  .product-thumbnails {
+    height: 80px;
+    min-height: 80px;
+    max-height: 80px;
+
+    flex-basis: 80px;
+  }
+
+  .product-thumbnail {
+    width: 66px;
+    height: 66px;
+
+    min-width: 66px;
+    min-height: 66px;
+
+    flex-basis: 66px;
+  }
+
+  .product-bottom-bar {
+    grid-template-columns:
+      60px
+      1fr
+      1fr;
+
+    gap: 6px;
+
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .product-bottom-bar .product-order-button {
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================
+   ÉCRANS PLUS GRANDS
+========================================= */
+
+@media (min-width: 700px) {
+
+  .product-container {
+    max-width: 500px;
+  }
+
+}

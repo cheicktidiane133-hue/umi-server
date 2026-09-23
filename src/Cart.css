@@ -1,0 +1,880 @@
+/* =========================================
+   PAGE PANIER UMI
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.cart-page {
+  width: 100%;
+  min-height: 100dvh;
+
+  background: #f5faff;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: #173b5b;
+}
+
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.cart-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 62px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 14px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e2edf5;
+
+  box-shadow:
+    0 2px 10px rgba(0, 60, 110, 0.06);
+}
+
+.cart-header h1 {
+  margin: 0;
+
+  color: #123e69;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+
+/* =========================================
+   FLÈCHE RETOUR
+========================================= */
+
+.cart-back {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e8f4ff;
+  color: #0876d8;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   ICÔNE PANIER EN-TÊTE
+========================================= */
+
+.cart-header-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e8f4ff;
+
+  font-size: 18px;
+}
+
+
+/* =========================================
+   CONTENU
+========================================= */
+
+.cart-content {
+  width: 100%;
+
+  /*
+    Espace supplémentaire en bas
+    pour éviter que les produits soient
+    cachés derrière le total et la barre.
+  */
+
+  padding: 16px 12px 190px;
+}
+
+
+/* =========================================
+   PANIER VIDE
+========================================= */
+
+.cart-empty {
+  min-height: calc(100dvh - 180px);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  text-align: center;
+}
+
+.cart-empty-icon {
+  width: 90px;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  background: #e8f4ff;
+
+  font-size: 42px;
+
+  animation:
+    cartFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes cartFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.cart-empty h2 {
+  margin: 0 0 8px;
+
+  color: #123e69;
+
+  font-size: 21px;
+}
+
+.cart-empty p {
+  max-width: 300px;
+
+  margin: 0 0 22px;
+
+  color: #7b91a4;
+
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.cart-empty button {
+  min-height: 44px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1689eb,
+      #0567c1
+    );
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  box-shadow:
+    0 5px 15px rgba(8, 118, 216, 0.22);
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   LISTE DU PANIER
+========================================= */
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+/* =========================================
+   PRODUIT
+========================================= */
+
+.cart-item {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 12px 38px 12px 10px;
+
+  border: 1px solid #e0ebf3;
+  border-radius: 15px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 12px rgba(0, 55, 100, 0.06);
+
+  animation:
+    cartItemAppear 0.4s ease both;
+}
+
+@keyframes cartItemAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   IMAGE PRODUIT
+========================================= */
+
+.cart-item-image {
+  width: 88px;
+  height: 88px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 11px;
+
+  background: #f4f8fb;
+
+  cursor: pointer;
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  padding: 3px;
+}
+
+.cart-no-image {
+  font-size: 32px;
+}
+
+
+/* =========================================
+   INFORMATIONS PRODUIT
+========================================= */
+
+.cart-item-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.cart-item-info h3 {
+  margin: 0 0 6px;
+
+  overflow: hidden;
+
+  color: #173b5b;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   PRIX TOTAL DU PRODUIT
+========================================= */
+
+.cart-item-price {
+  margin: 0 0 3px;
+
+  color: #0876d8;
+
+  font-size: 16px;
+  font-weight: 900;
+}
+
+
+/* =========================================
+   PRIX UNITAIRE × QUANTITÉ
+========================================= */
+
+.cart-unit-price {
+  margin: 0 0 8px;
+
+  color: #8296a7;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   QUANTITÉ À DROITE
+========================================= */
+
+.cart-quantity {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  margin-top: 7px;
+}
+
+.cart-quantity-label {
+  color: #6c8295;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   CONTRÔLE - 1 +
+========================================= */
+
+.cart-quantity-controls {
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border: 1px solid #cfe2f3;
+  border-radius: 9px;
+
+  background: #f7fbff;
+}
+
+
+/* =========================================
+   BOUTONS - ET +
+========================================= */
+
+.cart-quantity-button {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  background: #e8f4ff;
+  color: #0876d8;
+
+  font-size: 19px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.cart-quantity-button:active:not(:disabled) {
+  transform: scale(0.88);
+
+  background: #d5ebff;
+}
+
+
+/* =========================================
+   NOMBRE DE LA QUANTITÉ
+========================================= */
+
+.cart-quantity-number {
+  min-width: 34px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 5px;
+
+  background: #ffffff;
+
+  color: #173b5b;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  border-left: 1px solid #dceaf5;
+  border-right: 1px solid #dceaf5;
+}
+
+
+/* =========================================
+   BOUTON - DÉSACTIVÉ À 1
+========================================= */
+
+.cart-quantity-button:disabled {
+  background: #f3f6f8;
+
+  color: #b6c1ca;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   SUPPRIMER PRODUIT
+========================================= */
+
+.cart-remove {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #fff0f0;
+  color: #e34b4b;
+
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+.cart-remove:active {
+  transform: scale(0.85);
+}
+
+
+/* =========================================
+   TOTAL DU PANIER
+   FIXÉ AU-DESSUS DE LA BARRE
+========================================= */
+
+.cart-total-box {
+  position: fixed;
+
+  left: 50%;
+
+  /*
+    Le total est directement au-dessus
+    de la barre des tâches.
+  */
+
+  bottom: calc(76px + env(safe-area-inset-bottom));
+
+  z-index: 4900;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 500px;
+
+  margin: 0;
+
+  padding: 14px 16px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #d7e7f4;
+  border-bottom: 1px solid #d7e7f4;
+
+  box-shadow:
+    0 -4px 14px rgba(0, 55, 100, 0.08);
+}
+
+.cart-total-row {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.cart-total-row span {
+  color: #173b5b;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.cart-total-row strong {
+  color: #0876d8;
+
+  font-size: 20px;
+  font-weight: 900;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   BARRE DES TÂCHES FIXE
+========================================= */
+
+.cart-taskbar {
+  position: fixed;
+
+  left: 50%;
+  bottom: 0;
+
+  z-index: 5000;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 500px;
+
+  min-height: 76px;
+
+  display: grid;
+
+  grid-template-columns:
+    70px
+    80px
+    1fr;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding:
+    8px
+    10px
+    calc(8px + env(safe-area-inset-bottom));
+
+  background: #ffffff;
+
+  border-top: 1px solid #dce8f2;
+
+  box-shadow:
+    0 -4px 18px rgba(0, 50, 100, 0.12);
+}
+
+
+/* =========================================
+   ACCUEIL
+========================================= */
+
+.cart-taskbar-home {
+  height: 56px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 2px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: #0758c7;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   CATÉGORIES
+========================================= */
+
+.cart-taskbar-categories {
+  height: 56px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 2px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: #0758c7;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   ICÔNES BARRE
+========================================= */
+
+.cart-taskbar-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 27px;
+
+  font-size: 24px;
+
+  line-height: 27px;
+}
+
+.cart-taskbar-home small,
+.cart-taskbar-categories small {
+  color: #0758c7;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   CONTINUER LA COMMANDE
+========================================= */
+
+.cart-taskbar-order {
+  width: 100%;
+  height: 56px;
+
+  padding: 0 10px;
+
+  border: none;
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0874df,
+      #0648b5
+    );
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  line-height: 15px;
+
+  box-shadow:
+    0 5px 14px rgba(0, 73, 180, 0.22);
+
+  cursor: pointer;
+}
+
+.cart-taskbar-order:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================================
+   BOUTON DÉSACTIVÉ
+========================================= */
+
+.cart-taskbar-order:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+
+/* =========================================
+   PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+  .cart-item {
+    gap: 8px;
+
+    padding-left: 8px;
+  }
+
+  .cart-item-image {
+    width: 78px;
+    height: 78px;
+  }
+
+  .cart-item-price {
+    font-size: 15px;
+  }
+
+  .cart-unit-price {
+    font-size: 9px;
+  }
+
+  .cart-quantity {
+    gap: 5px;
+
+    justify-content: flex-end;
+  }
+
+  .cart-quantity-label {
+    font-size: 10px;
+  }
+
+  .cart-quantity-button {
+    width: 28px;
+    height: 29px;
+
+    font-size: 17px;
+  }
+
+  .cart-quantity-number {
+    min-width: 29px;
+    height: 29px;
+
+    font-size: 12px;
+  }
+
+  .cart-quantity-controls {
+    height: 29px;
+  }
+
+  .cart-total-box {
+    padding: 13px 12px;
+  }
+
+  .cart-total-row span {
+    font-size: 13px;
+  }
+
+  .cart-total-row strong {
+    font-size: 18px;
+  }
+
+  .cart-taskbar {
+    grid-template-columns:
+      58px
+      68px
+      1fr;
+
+    gap: 4px;
+
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .cart-taskbar-icon {
+    font-size: 22px;
+  }
+
+  .cart-taskbar-home small,
+  .cart-taskbar-categories small {
+    font-size: 9px;
+  }
+
+  .cart-taskbar-order {
+    padding: 0 6px;
+
+    font-size: 11px;
+  }
+}
+
+
+/* =========================================
+   GRAND ÉCRAN
+========================================= */
+
+@media (min-width: 500px) {
+
+  .cart-page {
+    max-width: 500px;
+
+    margin: 0 auto;
+  }
+}
+
+
+/* =========================================
+   ACCESSIBILITÉ
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cart-empty-icon,
+  .cart-item {
+    animation: none;
+  }
+}

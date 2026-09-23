@@ -1,0 +1,679 @@
+* {
+  box-sizing: border-box;
+}
+
+/* =====================================
+   PAGE
+===================================== */
+
+.admin-live-page {
+  min-height: 100vh;
+  background: #f4f7fa;
+  padding-bottom: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =====================================
+   EN-TÊTE
+===================================== */
+
+.admin-live-header {
+  min-height: 96px;
+    position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 5000;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  padding: 14px 16px;
+  background: linear-gradient(
+    135deg,
+    #064a7a,
+    #0787df
+  );
+  color: #ffffff;
+}
+
+.admin-live-back {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.admin-live-brand {
+  min-width: 0;
+  text-align: center;
+}
+
+.admin-live-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.admin-live-title span {
+  color: #79ceff;
+}
+
+.admin-live-subtitle {
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+}
+
+.admin-live-logo {
+  width: 40px;
+  height: 40px;
+  justify-self: end;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+
+/* =====================================
+   FILTRES
+===================================== */
+
+.admin-live-filters {
+  width: calc(100% - 24px);
+  max-width: 626px;
+  margin: 18px auto 14px;
+  padding: 5px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+
+  background: #e5edf3;
+  border-radius: 13px;
+}
+
+.admin-live-filter {
+  min-width: 0;
+  height: 42px;
+  padding: 0 5px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: transparent;
+  color: #617483;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.1s;
+}
+
+.admin-live-filter.active {
+  background: #087fc1;
+  color: #ffffff;
+  box-shadow:
+    0 3px 9px
+    rgba(8, 127, 193, 0.22);
+}
+
+.admin-live-filter:active {
+  transform: scale(0.97);
+}
+
+
+/* =====================================
+   BOUTON CRÉER LIVE
+===================================== */
+
+.create-live-button {
+  width: 100%;
+  min-height: 52px;
+  margin: 0;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #087fc1,
+    #159fe9
+  );
+
+  color: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 12px
+    rgba(8, 127, 193, 0.2);
+}
+
+.create-live-button:active {
+  transform: scale(0.98);
+}
+
+
+/* =====================================
+   SECTION LIVE ACTIFS
+===================================== */
+
+.active-lives-section {
+  width: calc(100% - 24px);
+  max-width: 626px;
+  margin: 20px auto 0;
+}
+
+
+/* =====================================
+   TITRE SECTION
+===================================== */
+
+.active-lives-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 13px;
+}
+
+.active-lives-title h2 {
+  margin: 0;
+
+  color: #163d59;
+
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.active-live-count {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 20px;
+
+  background: #e72b2b;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+
+/* =====================================
+   LISTE
+===================================== */
+
+.admin-live-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+
+/* =====================================
+   CARTE LIVE
+===================================== */
+
+.admin-live-card {
+  width: 100%;
+  padding: 15px;
+
+  background: #ffffff;
+
+  border: 1px solid #e7edf1;
+  border-radius: 16px;
+
+  box-shadow:
+    0 3px 12px
+    rgba(18, 63, 95, 0.07);
+}
+
+.admin-live-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  margin-bottom: 10px;
+}
+
+
+/* =====================================
+   BADGES
+===================================== */
+
+.admin-live-status {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 9px;
+
+  border-radius: 7px;
+
+  background: #ef2929;
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.admin-viewer-count {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 9px;
+
+  border-radius: 7px;
+
+  background: #eef6fb;
+  color: #087fc1;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+
+/* =====================================
+   TITRE DU LIVE
+===================================== */
+
+.admin-live-card h3 {
+  margin: 14px 0 7px;
+
+  color: #163d59;
+
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+
+/* =====================================
+   INFORMATIONS
+===================================== */
+
+.admin-machine-name {
+  margin: 0 0 9px;
+
+  color: #667987;
+
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.admin-machine-name strong {
+  color: #334d5e;
+}
+
+
+/* =====================================
+   ARRÊTER / SUPPRIMER
+===================================== */
+
+.stop-live-button {
+  width: 100%;
+  min-height: 45px;
+
+  margin-top: 8px;
+  padding: 10px 12px;
+
+  border: 1px solid #ffd8d8;
+  border-radius: 10px;
+
+  background: #fff3f3;
+  color: #d82020;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.stop-live-button:hover {
+  background: #ffeaea;
+}
+
+.stop-live-button:active {
+  transform: scale(0.99);
+}
+
+.stop-live-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =====================================
+   AUCUN LIVE
+===================================== */
+
+.no-active-live {
+  padding: 35px 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e7edf1;
+  border-radius: 16px;
+
+  text-align: center;
+
+  box-shadow:
+    0 3px 12px
+    rgba(18, 63, 95, 0.06);
+}
+
+.no-active-icon {
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+
+.no-active-live h3 {
+  margin: 0 0 7px;
+
+  color: #163d59;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.no-active-live p {
+  margin: 0;
+
+  color: #7a8994;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =====================================
+   ANCIENNES OPTIONS
+===================================== */
+
+.admin-live-options {
+  width: calc(100% - 24px);
+  max-width: 626px;
+
+  margin: 20px auto 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-live-option {
+  width: 100%;
+  min-height: 52px;
+
+  padding: 10px 15px;
+
+  border: 1px solid #dbe7f0;
+  border-radius: 13px;
+
+  background: #ffffff;
+  color: #164563;
+
+  text-align: left;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+/* =====================================
+   TÉLÉPHONE
+===================================== */
+
+@media (max-width: 500px) {
+
+  .admin-live-header {
+    min-height: 92px;
+    padding: 12px;
+  }
+
+  .admin-live-title {
+    font-size: 20px;
+  }
+
+  .admin-live-subtitle {
+    font-size: 11px;
+  }
+
+  .admin-live-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .admin-live-filters {
+    width: calc(100% - 20px);
+
+    margin-top: 14px;
+    margin-bottom: 12px;
+
+    padding: 4px;
+    gap: 3px;
+  }
+
+  .admin-live-filter {
+    height: 39px;
+
+    padding: 0 2px;
+
+    font-size: 9.5px;
+  }
+
+  .active-lives-section {
+    width: calc(100% - 20px);
+    margin-top: 18px;
+  }
+
+  .active-lives-title h2 {
+    font-size: 17px;
+  }
+
+  .admin-live-card {
+    padding: 14px;
+  }
+
+  .admin-live-card h3 {
+    font-size: 17px;
+  }
+
+  .create-live-button {
+    min-height: 50px;
+    font-size: 13px;
+  }
+
+}
+
+
+/* =====================================
+   TRÈS PETITS TÉLÉPHONES
+===================================== */
+
+@media (max-width: 360px) {
+
+  .admin-live-title {
+    font-size: 18px;
+  }
+
+  .admin-live-filter {
+    font-size: 8.5px;
+  }
+
+}
+/* =========================================
+   ESPACE POUR LA BARRE DU BAS
+========================================= */
+
+.admin-live-page {
+  min-height: 100vh;
+  padding-bottom: 90px;
+}
+
+
+/* =========================================
+   BARRE DE TÂCHES ADMIN LIVE
+========================================= */
+
+.admin-live-bottom-nav {
+  position: fixed;
+
+  left: 50%;
+  bottom: 0;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 600px;
+  height: 72px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 -4px 20px rgba(0, 0, 0, 0.08);
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  z-index: 6000;
+
+  padding-bottom:
+    env(safe-area-inset-bottom);
+}
+
+
+/* =========================================
+   BOUTONS
+========================================= */
+
+.admin-live-bottom-nav button {
+  border: none;
+  background: transparent;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  cursor: pointer;
+
+  color: #444444;
+
+  font-family: inherit;
+
+  min-width: 0;
+}
+
+
+/* =========================================
+   ICÔNES
+========================================= */
+
+.admin-live-nav-icon {
+  font-size: 23px;
+  line-height: 1;
+}
+
+
+/* =========================================
+   TEXTE
+========================================= */
+
+.admin-live-bottom-nav small {
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   ACCUEIL
+========================================= */
+
+.admin-live-bottom-nav button:first-child {
+  color: #0b63ce;
+}
+
+
+/* =========================================
+   DÉCONNEXION
+========================================= */
+
+.admin-live-bottom-nav .admin-live-nav-logout {
+  color: #dc2626;
+}
+
+
+/* =========================================
+   APPUI
+========================================= */
+
+.admin-live-bottom-nav button:active {
+  transform: scale(0.94);
+}
+
+
+/* =========================================
+   TÉLÉPHONE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .admin-live-bottom-nav {
+    height: 68px;
+  }
+
+  .admin-live-nav-icon {
+    font-size: 21px;
+  }
+
+  .admin-live-bottom-nav small {
+    font-size: 10px;
+  }
+
+}

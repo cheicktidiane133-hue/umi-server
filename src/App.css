@@ -1,0 +1,1123 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* =========================
+   PAGE PRINCIPALE
+========================= */
+
+.welcome-page {
+  width: 100%;
+  min-height: 100dvh;
+
+  position: relative;
+overflow-x: hidden;
+overflow-y: auto;
+
+  background:
+    radial-gradient(
+      circle at 50% 12%,
+      #ffffff 0%,
+      #e7f6ff 15%,
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #53b8fa 0%,
+      #eaf8ff 29%,
+      #36aaf6 58%,
+      #0874d8 100%
+    );
+}
+
+/* =========================
+   EFFETS LUMINEUX
+========================= */
+
+.light {
+  position: absolute;
+  top: -100px;
+
+  width: 250px;
+  height: 800px;
+
+  opacity: 0.22;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    white,
+    transparent
+  );
+
+  z-index: 0;
+}
+
+.light-left {
+  left: -100px;
+  transform: rotate(-35deg);
+}
+
+.light-right {
+  right: -100px;
+  transform: rotate(35deg);
+}
+
+/* =========================
+   CONTENU
+========================= */
+
+.content {
+  width: 100%;
+  min-height: 100vh;
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 25px 18px 25px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.brand-section {
+  width: 100%;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+  z-index: 5;
+}
+
+.logo-image {
+  width: 125px;
+  height: 105px;
+
+  object-fit: contain;
+
+  mix-blend-mode: multiply;
+}
+
+.umi-title {
+  margin-top: 2px;
+
+  font-size: clamp(60px, 10vw, 100px);
+  line-height: 0.9;
+
+  font-weight: 900;
+  letter-spacing: 5px;
+
+  color: #0648b5;
+}
+
+.company-name {
+  margin-top: 12px;
+
+  font-size: clamp(16px, 2.5vw, 25px);
+  font-weight: 800;
+
+  color: #0748a8;
+}
+
+.slogan {
+  margin-top: 17px;
+
+  font-size: clamp(15px, 2.3vw, 22px);
+  font-weight: 700;
+
+  color: #0750b5;
+}
+
+/* =========================
+   ZONE MACHINE
+========================= */
+
+.machine-zone {
+  width: 100%;
+  max-width: 850px;
+
+  flex: 1;
+
+  min-height: 320px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 5px;
+}
+
+/* =========================
+   FAUX GLOBE
+========================= */
+
+.world {
+  position: absolute;
+
+  width: 750px;
+  height: 380px;
+
+  left: 50%;
+  top: 47%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50% 50% 10% 10%;
+
+  border-top: 2px solid rgba(255, 255, 255, 0.7);
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 136, 255, 0.42) 0%,
+      rgba(0, 136, 255, 0.20) 48%,
+      transparent 70%
+    );
+
+  opacity: 0.9;
+
+  z-index: 0;
+}
+
+/* LIGNES DU RÉSEAU */
+
+.world-line {
+  position: absolute;
+
+  left: 10%;
+
+  width: 80%;
+  height: 150px;
+
+  border-top: 1px solid rgba(255,255,255,0.65);
+
+  border-radius: 50%;
+}
+
+.line1 {
+  top: 70px;
+  transform: rotate(8deg);
+}
+
+.line2 {
+  top: 130px;
+  transform: rotate(-8deg);
+}
+
+.line3 {
+  top: 190px;
+}
+
+/* POINTS LUMINEUX */
+
+.point {
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  background: white;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 8px white,
+    0 0 18px #ffffff,
+    0 0 30px #40b8ff;
+}
+
+.p1 {
+  left: 15%;
+  top: 35%;
+}
+
+.p2 {
+  left: 35%;
+  top: 20%;
+}
+
+.p3 {
+  left: 55%;
+  top: 45%;
+}
+
+.p4 {
+  left: 75%;
+  top: 27%;
+}
+
+.p5 {
+  left: 88%;
+  top: 55%;
+}
+
+/* =========================
+   MACHINE
+========================= */
+
+.machine-image {
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+  max-width: 700px;
+
+  max-height: 480px;
+
+  object-fit: contain;
+
+  /*
+    Cette propriété aide à faire disparaître
+    le fond blanc de ton JPEG.
+  */
+
+  mix-blend-mode: multiply;
+
+  filter:
+    contrast(1.05)
+    saturate(1.05);
+}
+
+/* =========================
+   SOL TECHNOLOGIQUE
+========================= */
+
+.machine-zone::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -20px;
+
+  transform: translateX(-50%)
+             perspective(250px)
+             rotateX(60deg);
+
+  width: 120%;
+  height: 170px;
+
+  z-index: 1;
+
+  opacity: 0.35;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.5) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.5) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+}
+
+/* =========================
+   BOUTONS
+========================= */
+
+.buttons-section {
+  width: 100%;
+  max-width: 600px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  position: relative;
+  z-index: 10;
+
+  margin-top: 10px;
+}
+
+.buttons-section button {
+  width: 100%;
+
+  min-height: 58px;
+
+  border-radius: 15px;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  position: relative;
+}
+
+/* SE CONNECTER */
+
+.login {
+  border: none;
+
+  color: white;
+
+  background: linear-gradient(
+    90deg,
+    #0759d6,
+    #003fae
+  );
+
+  box-shadow: 0 8px 20px rgba(0, 65, 170, 0.25);
+}
+
+/* CRÉER COMPTE */
+
+.register {
+  border: 1px solid rgba(0, 76, 180, 0.15);
+
+  background: white;
+
+  color: #0750b8;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* FLÈCHE */
+
+.arrow {
+  position: absolute;
+
+  right: 22px;
+  top: 50%;
+
+  transform: translateY(-52%);
+
+  font-size: 38px;
+  line-height: 1;
+}
+
+/* PASSER */
+
+.skip {
+  border: none;
+
+  background: transparent;
+
+  color: white;
+
+  box-shadow: none;
+
+  min-height: 45px !important;
+}
+
+/* EFFET CLIC */
+
+.login:hover {
+  transform: translateY(-2px);
+}
+
+.register:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   TÉLÉPHONE
+========================= */
+
+@media (max-width: 600px) {
+
+ .content {
+  width: 100%;
+  min-height: 100dvh;
+  height: auto;
+  padding: 8px 10px 12px;
+}
+
+  .logo-image {
+    width: 65px;
+    height: 55px;
+  }
+
+  .umi-title {
+    font-size: 42px;
+  }
+
+  .company-name {
+    margin-top: 4px;
+    font-size: 11px;
+  }
+
+  .slogan {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .machine-zone {
+  flex: none;
+  height: 430px;
+  min-height: 0;
+  margin-top: 0;
+}
+
+  .machine-image {
+  width: 100%;
+  max-height: 400px;
+}
+
+  .world {
+    width: 450px;
+    height: 220px;
+  }
+
+  .buttons-section {
+    max-width: 430px;
+    gap: 7px;
+    margin-top: 0;
+  }
+
+  .buttons-section button {
+    min-height: 46px;
+    font-size: 14px;
+  }
+
+  .skip {
+    min-height: 32px !important;
+  }
+
+}
+/* =========================================
+   FENÊTRE COMPTE
+========================================= */
+
+.account-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 22px;
+
+  background: rgba(15, 32, 48, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+
+/* FENÊTRE */
+
+.account-popup {
+  width: 100%;
+  max-width: 390px;
+
+  padding: 30px 24px 22px;
+
+  background: #ffffff;
+
+  border-radius: 28px;
+
+  text-align: center;
+
+  box-shadow:
+    0 18px 50px
+    rgba(0, 0, 0, 0.22);
+
+  animation:
+    accountPopupOpen
+    0.22s ease-out;
+}
+
+
+/* ICÔNE CADENAS */
+
+.account-popup-icon {
+  width: 78px;
+  height: 78px;
+
+  margin:
+    0 auto
+    22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff6500,
+      #ff8a3d
+    );
+
+  font-size: 34px;
+
+  box-shadow:
+    0 8px 20px
+    rgba(255, 101, 0, 0.22);
+}
+
+
+/* TITRE */
+
+.account-popup h2 {
+  margin:
+    0 0 12px;
+
+  color: #18344f;
+
+  font-size: 28px;
+  font-weight: 800;
+}
+
+
+/* DESCRIPTION */
+
+.account-popup p {
+  margin:
+    0 auto
+    25px;
+
+  max-width: 320px;
+
+  color: #64788b;
+
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+/* BOUTON CONNEXION */
+
+.account-popup-login {
+  width: 100%;
+  height: 54px;
+
+  margin-bottom: 12px;
+
+  border: none;
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff6500,
+      #ff873b
+    );
+
+  color: white;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* BOUTON CRÉER COMPTE */
+
+.account-popup-register {
+  width: 100%;
+  height: 54px;
+
+  margin-bottom: 17px;
+
+  border:
+    2px solid
+    #ff6b00;
+
+  border-radius: 16px;
+
+  background: white;
+
+  color: #e96100;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* CONTINUER */
+
+.account-popup-continue {
+  border: none;
+
+  background: transparent;
+
+  color: #526d82;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  padding: 8px 15px;
+}
+
+
+/* PETITE ANIMATION */
+
+@keyframes accountPopupOpen {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(20px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* PETITS TÉLÉPHONES */
+
+@media (max-width: 420px) {
+
+  .account-popup-overlay {
+    padding: 18px;
+  }
+
+  .account-popup {
+    padding:
+      27px 20px
+      20px;
+
+    border-radius: 25px;
+  }
+
+  .account-popup-icon {
+    width: 70px;
+    height: 70px;
+
+    font-size: 30px;
+  }
+
+  .account-popup h2 {
+    font-size: 25px;
+  }
+
+  .account-popup p {
+    font-size: 15px;
+  }
+
+}
+/* =========================================
+   FENÊTRE COMPTE UMI
+========================================= */
+
+
+/* FOND SOMBRE DERRIÈRE LA FENÊTRE */
+
+.account-popup-overlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 22px;
+
+  background: rgba(15, 40, 62, 0.48);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+
+/* =========================================
+   PETITE FENÊTRE
+========================================= */
+
+.account-popup {
+  width: 100%;
+  max-width: 390px;
+
+  padding: 30px 24px 22px;
+
+  background: #ffffff;
+
+  border-radius: 28px;
+
+  text-align: center;
+
+  box-shadow:
+    0 20px 55px
+    rgba(0, 45, 85, 0.25);
+
+  animation:
+    accountPopupOpen
+    0.22s ease-out;
+}
+
+
+/* =========================================
+   ICÔNE CADENAS
+========================================= */
+
+.account-popup-icon {
+  width: 78px;
+  height: 78px;
+
+  margin:
+    0 auto
+    22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0876d8,
+      #174f7c
+    );
+
+  font-size: 34px;
+
+  box-shadow:
+    0 8px 22px
+    rgba(8, 118, 216, 0.25);
+}
+
+
+/* =========================================
+   TITRE
+========================================= */
+
+.account-popup h2 {
+  margin:
+    0 0
+    12px;
+
+  color: #174f7c;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 28px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================
+   PETIT TEXTE
+========================================= */
+
+.account-popup p {
+  max-width: 320px;
+
+  margin:
+    0 auto
+    25px;
+
+  color: #62798c;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 400;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================
+   BOUTON SE CONNECTER
+========================================= */
+
+.account-popup-login {
+  width: 100%;
+
+  height: 54px;
+
+  margin-bottom: 12px;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0876d8,
+      #174f7c
+    );
+
+  color: #ffffff;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 18px
+    rgba(8, 118, 216, 0.20);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+/* EFFET APPUI */
+
+.account-popup-login:active {
+  transform: scale(0.98);
+
+  box-shadow:
+    0 4px 10px
+    rgba(8, 118, 216, 0.18);
+}
+
+
+/* =========================================
+   BOUTON CRÉER UN COMPTE
+========================================= */
+
+.account-popup-register {
+  width: 100%;
+
+  height: 54px;
+
+  margin-bottom: 16px;
+
+  border:
+    2px solid
+    #0876d8;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  color: #0876d8;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+/* EFFET APPUI */
+
+.account-popup-register:active {
+  background: #eef7ff;
+
+  transform: scale(0.98);
+}
+
+
+/* =========================================
+   CONTINUER À EXPLORER
+========================================= */
+
+.account-popup-continue {
+  border: none;
+
+  background: transparent;
+
+  color: #526d82;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  padding:
+    9px
+    15px;
+
+  border-radius: 10px;
+}
+
+
+/* EFFET APPUI */
+
+.account-popup-continue:active {
+  background: #f1f6fa;
+}
+
+
+/* =========================================
+   ANIMATION D'OUVERTURE
+========================================= */
+
+@keyframes accountPopupOpen {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(20px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================
+   ADAPTATION PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 420px) {
+
+  .account-popup-overlay {
+    padding: 18px;
+  }
+
+
+  .account-popup {
+    max-width: 360px;
+
+    padding:
+      27px
+      20px
+      20px;
+
+    border-radius: 25px;
+  }
+
+
+  .account-popup-icon {
+    width: 70px;
+    height: 70px;
+
+    margin-bottom: 19px;
+
+    font-size: 30px;
+  }
+
+
+  .account-popup h2 {
+    font-size: 25px;
+  }
+
+
+  .account-popup p {
+    margin-bottom: 22px;
+
+    font-size: 14px;
+  }
+
+
+  .account-popup-login,
+  .account-popup-register {
+    height: 52px;
+
+    font-size: 16px;
+  }
+
+
+  .account-popup-continue {
+    font-size: 14px;
+  }
+
+}
+/* =========================================
+   AFFICHAGE UMI SUR ORDINATEUR
+========================================= */
+
+@media (min-width: 700px) {
+
+  #root {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    box-shadow:
+      0 0 30px
+      rgba(0, 60, 110, 0.12);
+  }
+
+  body {
+    margin: 0;
+
+    background: #eef4f8;
+  }
+
+}

@@ -1,0 +1,569 @@
+* {
+  box-sizing: border-box;
+}
+
+.my-live-page {
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #10213d;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.my-live-header {
+  min-height: 92px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5ebf3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: sticky;
+top: 0;
+z-index: 5000;
+
+  padding: 16px 70px;
+}
+
+.my-live-header h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: #10213d;
+}
+
+.my-live-header p {
+  margin: 4px 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: #667085;
+}
+
+.my-live-back {
+  position: absolute;
+  left: 18px;
+
+  width: 45px;
+  height: 45px;
+
+  border: 1px solid #e0e8f2;
+  border-radius: 14px;
+
+  background: #ffffff;
+  color: #087fc1;
+
+  font-size: 34px;
+  line-height: 34px;
+
+  cursor: pointer;
+}
+
+.my-live-content {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 20px 16px 50px;
+}
+
+
+/* PROFIL */
+
+.my-live-profile {
+  background: #ffffff;
+  border: 1px solid #e8edf4;
+  border-radius: 18px;
+
+  padding: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  box-shadow: 0 4px 18px rgba(23, 54, 93, 0.06);
+
+  margin-bottom: 18px;
+}
+
+.my-live-avatar {
+  width: 64px;
+  height: 64px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e7f3ff;
+
+  font-size: 30px;
+}
+
+.my-live-profile-info h2 {
+  margin: 0 0 4px;
+  font-size: 19px;
+  color: #10213d;
+}
+
+.my-live-profile-info p {
+  margin: 0 0 3px;
+  color: #53647d;
+  font-size: 14px;
+}
+
+.my-live-profile-info span {
+  color: #8a96a8;
+  font-size: 12px;
+}
+
+
+/* FILTRES */
+
+.my-live-filters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+
+  margin-bottom: 20px;
+}
+
+.my-live-filters button {
+  min-height: 44px;
+
+  border: 1px solid #e3e9f1;
+  border-radius: 13px;
+
+  background: #ffffff;
+  color: #53647d;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.my-live-filters button.active {
+  background: #087fc1;
+  border-color: #087fc1;
+  color: #ffffff;
+
+  box-shadow: 0 5px 14px rgba(8, 127, 193, 0.2);
+}
+
+
+/* CARTES */
+
+.my-live-list {
+  display: grid;
+  gap: 18px;
+}
+
+.my-live-card {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e4eaf2;
+  border-radius: 18px;
+
+  box-shadow: 0 5px 20px rgba(25, 53, 88, 0.07);
+}
+
+.my-live-video-box {
+  position: relative;
+  width: 100%;
+  background: #000000;
+}
+
+.my-live-video-box video {
+  display: block;
+  width: 100%;
+  max-height: 440px;
+  object-fit: contain;
+  background: #000000;
+}
+
+.status-live,
+.status-finished {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  padding: 7px 10px;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.status-live {
+  background: #ed1735;
+  color: #ffffff;
+}
+
+.status-finished {
+  background: #fff0df;
+  color: #ef6c00;
+}
+
+.my-live-no-video {
+  height: 160px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  background: #eef3f8;
+
+  font-size: 35px;
+}
+
+.my-live-no-video span {
+  font-size: 13px;
+  color: #77869a;
+}
+
+.my-live-card-body {
+  padding: 16px;
+}
+
+.my-live-date {
+  color: #8a96a8;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.my-live-card-body h2 {
+  margin: 0 0 7px;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  color: #10213d;
+}
+
+.my-live-price {
+  margin-bottom: 7px;
+
+  color: #087fc1;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.my-live-seller {
+  margin: 0;
+
+  color: #66758b;
+  font-size: 14px;
+}
+
+.my-live-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  margin-top: 12px;
+}
+
+.my-live-tags span {
+  padding: 6px 10px;
+
+  border-radius: 20px;
+
+  background: #e5f2ff;
+  color: #087fc1;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* BOUTONS SUPPRESSION */
+
+.my-live-delete-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  margin-top: 16px;
+  padding-top: 15px;
+
+  border-top: 1px solid #edf0f4;
+}
+
+.my-live-delete-actions button {
+  flex: 1;
+  min-width: 190px;
+
+  min-height: 44px;
+
+  border: 1px solid #ef334e;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #e51f3e;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.my-live-delete-actions button:hover {
+  background: #fff2f4;
+}
+
+.my-live-delete-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.my-live-unavailable {
+  width: 100%;
+  margin: 0;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  background: #f5f7fa;
+
+  color: #7a8798;
+
+  text-align: center;
+  font-size: 13px;
+}
+
+
+/* MESSAGES */
+
+.my-live-message,
+.my-live-empty {
+  background: #ffffff;
+
+  border: 1px solid #e5ebf2;
+  border-radius: 16px;
+
+  padding: 30px 20px;
+
+  text-align: center;
+}
+
+.my-live-message.error {
+  color: #d32f2f;
+}
+
+.my-live-empty div {
+  font-size: 42px;
+}
+
+.my-live-empty h2 {
+  margin-bottom: 5px;
+}
+
+.my-live-empty p {
+  color: #7a8798;
+}
+
+
+/* TÉLÉPHONE */
+
+@media (max-width: 600px) {
+
+  .my-live-header {
+    min-height: 82px;
+  }
+
+  .my-live-header h1 {
+    font-size: 22px;
+  }
+
+  .my-live-header p {
+    font-size: 12px;
+  }
+
+  .my-live-content {
+    padding: 14px 12px 40px;
+  }
+
+  .my-live-filters {
+    overflow-x: auto;
+
+    display: flex;
+
+    padding-bottom: 4px;
+  }
+
+  .my-live-filters button {
+    min-width: 95px;
+    padding: 0 13px;
+  }
+
+  .my-live-video-box video {
+    max-height: 300px;
+  }
+
+  .my-live-delete-actions {
+    flex-direction: column;
+  }
+
+  .my-live-delete-actions button {
+    width: 100%;
+    min-width: 0;
+  }
+
+}
+/* =========================================
+   ESPACE POUR LA BARRE DU BAS
+========================================= */
+
+.my-live-page {
+  min-height: 100vh;
+  padding-bottom: 85px;
+}
+
+
+/* =========================================
+   BARRE DE TÂCHES
+========================================= */
+
+.my-live-bottom-nav {
+  position: fixed;
+
+  left: 50%;
+  bottom: 0;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 650px;
+
+  min-height: 70px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e3e8ec;
+
+  box-shadow:
+    0 -4px 18px rgba(0, 0, 0, 0.08);
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  align-items: center;
+
+  z-index: 1000;
+
+  padding-bottom:
+    env(safe-area-inset-bottom);
+}
+
+
+/* =========================================
+   BOUTONS
+========================================= */
+
+.my-live-bottom-nav button {
+  min-width: 0;
+  min-height: 65px;
+
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  font-family:
+    Arial, Helvetica, sans-serif;
+
+  color: #3f4d57;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   ICÔNES
+========================================= */
+
+.my-live-nav-icon {
+  font-size: 23px;
+  line-height: 1;
+}
+
+
+/* =========================================
+   TEXTE
+========================================= */
+
+.my-live-bottom-nav small {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* =========================================
+   ACCUEIL
+========================================= */
+
+.my-live-bottom-nav button:first-child {
+  color: #087fc1;
+}
+
+
+/* =========================================
+   DÉCONNEXION
+========================================= */
+
+.my-live-bottom-nav .my-live-nav-logout {
+  color: #d92d20;
+}
+
+
+/* =========================================
+   APPUI
+========================================= */
+
+.my-live-bottom-nav button:active {
+  transform: scale(0.94);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .my-live-bottom-nav {
+    min-height: 68px;
+  }
+
+  .my-live-bottom-nav button {
+    min-height: 63px;
+  }
+
+  .my-live-nav-icon {
+    font-size: 21px;
+  }
+
+  .my-live-bottom-nav small {
+    font-size: 10px;
+  }
+
+}

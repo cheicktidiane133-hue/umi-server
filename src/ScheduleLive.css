@@ -1,0 +1,59 @@
+.schedule-live-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+
+  color: #263238;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.schedule-live-input {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 13px 14px;
+
+  border: 1px solid #dce3e8;
+  border-radius: 11px;
+
+  background: #ffffff;
+  color: #263238;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.schedule-live-input:focus {
+  border-color: #087fc1;
+  box-shadow: 0 0 0 3px rgba(8, 127, 193, 0.1);
+}
+
+.schedule-live-input::placeholder {
+  color: #a2adb4;
+}
+
+.schedule-live-date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.schedule-live-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+@media (max-width: 500px) {
+  .schedule-live-date-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

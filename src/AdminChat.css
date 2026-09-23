@@ -1,0 +1,1169 @@
+/* =========================================================
+   UMI - ADMIN CHAT
+   VERSION COMPLÈTE
+   PC + TÉLÉPHONE
+========================================================= */
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+.admin-chat-page,
+.admin-chat-page * {
+  box-sizing: border-box;
+}
+
+.admin-chat-page {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: 380px minmax(0, 1fr);
+
+  background: #f3f7fa;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   COLONNE GAUCHE
+========================================================= */
+
+.admin-chat-sidebar {
+  width: 100%;
+  min-width: 0;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border-right: 1px solid #e1e7ec;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   BANNIÈRE GAUCHE
+========================================================= */
+
+.admin-chat-header {
+  flex: 0 0 auto;
+
+  width: 100%;
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 14px 18px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e8edf1;
+
+  z-index: 10;
+}
+
+.admin-chat-back {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 13px;
+
+  background: #f0f3f5;
+  color: #111827;
+
+  font-size: 21px;
+
+  cursor: pointer;
+}
+
+.admin-chat-back:hover {
+  background: #e4e9ed;
+}
+
+.admin-chat-header > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-chat-header h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.admin-chat-header p {
+  margin: 4px 0 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+.admin-chat-header-icon {
+  font-size: 22px;
+}
+
+
+/* =========================================================
+   CONTENU GAUCHE
+   SEULE CETTE PARTIE DÉFILE
+========================================================= */
+
+.admin-chat-sidebar-content {
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #ffffff;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================================
+   TITRE BOÎTE DE RÉCEPTION
+========================================================= */
+
+.admin-chat-intro {
+  width: 100%;
+
+  padding: 24px 18px 16px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.admin-chat-intro span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #0c8dcc;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.admin-chat-intro h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  line-height: 1.1;
+}
+
+.admin-chat-intro > strong {
+  min-width: 36px;
+  height: 36px;
+
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: #0c8dcc;
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   LISTE DES CONVERSATIONS
+========================================================= */
+
+.admin-chat-conversations {
+  width: 100%;
+
+  padding: 5px 12px 25px;
+}
+
+.admin-chat-conversation {
+  width: 100%;
+  min-height: 82px;
+
+  margin: 0 0 5px;
+  padding: 12px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: transparent;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.admin-chat-conversation:hover {
+  background: #f3f8fb;
+}
+
+.admin-chat-conversation.active {
+  background: #e5f4fb;
+}
+
+.admin-chat-conversation.unread {
+  background: #eaf7fd;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.admin-chat-avatar {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #25a6dc;
+  color: #ffffff;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   INFORMATIONS CONVERSATION
+========================================================= */
+
+.admin-chat-conversation-info {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.admin-chat-conversation-top {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin-bottom: 6px;
+}
+
+.admin-chat-conversation-top strong {
+  min-width: 0;
+
+  color: #111827;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.admin-chat-conversation-top span {
+  color: #8b95a1;
+
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+.admin-chat-conversation-bottom {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.admin-chat-conversation-bottom p {
+  flex: 1;
+
+  min-width: 0;
+
+  margin: 0;
+
+  color: #68717c;
+
+  font-size: 13px;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.admin-chat-conversation-bottom p span {
+  color: #111827;
+
+  font-weight: 700;
+}
+
+.admin-chat-conversation-bottom i {
+  width: 9px;
+  height: 9px;
+  min-width: 9px;
+
+  border-radius: 50%;
+
+  background: #0c8dcc;
+}
+
+
+/* =========================================================
+   AUCUNE CONVERSATION
+========================================================= */
+
+.admin-chat-empty {
+  min-height: 280px;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #78828d;
+}
+
+.admin-chat-empty > span {
+  margin-bottom: 12px;
+
+  font-size: 42px;
+}
+
+.admin-chat-empty h3 {
+  margin: 0 0 7px;
+
+  color: #111827;
+
+  font-size: 19px;
+}
+
+.admin-chat-empty p {
+  max-width: 250px;
+
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   PANNEAU DROIT
+========================================================= */
+
+.admin-chat-conversation-panel {
+  width: 100%;
+  min-width: 0;
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #f3f7fa;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   AUCUNE CONVERSATION SÉLECTIONNÉE
+========================================================= */
+
+.admin-chat-no-selection {
+  flex: 1;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #78828d;
+}
+
+.admin-chat-no-selection > span {
+  width: 82px;
+  height: 82px;
+
+  margin-bottom: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e1f2fa;
+
+  font-size: 38px;
+}
+
+.admin-chat-no-selection h2 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 25px;
+}
+
+.admin-chat-no-selection p {
+  margin: 0;
+
+  color: #78828d;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   BANNIÈRE CONVERSATION
+========================================================= */
+
+.admin-chat-conversation-header {
+  flex: 0 0 auto;
+
+  width: 100%;
+  min-height: 82px;
+
+  padding: 13px 22px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e4e9ed;
+
+  z-index: 10;
+}
+
+.admin-chat-mobile-back {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: #f0f3f5;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.admin-chat-small-avatar {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #25a6dc;
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.admin-chat-client-title {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.admin-chat-client-title h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.admin-chat-client-title p {
+  margin: 4px 0 0;
+
+  color: #78828d;
+
+  font-size: 12px;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.admin-chat-online {
+  color: #38d66b;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   MESSAGES
+   SEULE CETTE ZONE DÉFILE
+========================================================= */
+
+.admin-chat-messages {
+  flex: 1 1 auto;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  padding: 22px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #f3f7fa;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================================
+   MESSAGE D'ACCUEIL
+========================================================= */
+
+.admin-chat-welcome {
+  width: fit-content;
+
+  max-width: 430px;
+
+  margin: 0 auto 26px;
+
+  padding: 15px 22px;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  text-align: center;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.admin-chat-welcome > span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #0c8dcc;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.admin-chat-welcome strong {
+  display: block;
+
+  color: #111827;
+
+  font-size: 14px;
+}
+
+.admin-chat-welcome p {
+  margin: 5px 0 0;
+
+  color: #78828d;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   BULLES DE MESSAGES
+========================================================= */
+
+.admin-chat-message-row {
+  width: 100%;
+
+  display: flex;
+
+  margin-bottom: 11px;
+}
+
+.admin-chat-message-row.client {
+  justify-content: flex-start;
+}
+
+.admin-chat-message-row.admin {
+  justify-content: flex-end;
+}
+
+.admin-chat-message {
+  width: fit-content;
+
+  min-width: 0;
+
+  max-width: 68%;
+
+  padding: 10px 13px 7px;
+
+  border-radius: 17px;
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
+
+  white-space: normal;
+
+  overflow-wrap: break-word;
+}
+
+.admin-chat-message.client {
+  background: #ffffff;
+
+  color: #111827;
+
+  border-bottom-left-radius: 5px;
+}
+
+.admin-chat-message.admin {
+  background: #0c8dcc;
+
+  color: #ffffff;
+
+  border-bottom-right-radius: 5px;
+}
+
+.admin-chat-message p {
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.45;
+
+  white-space: normal;
+
+  overflow-wrap: break-word;
+}
+
+.admin-chat-message > span {
+  display: block;
+
+  margin-top: 4px;
+
+  text-align: right;
+
+  font-size: 10px;
+
+  opacity: 0.7;
+}
+
+.admin-chat-loading {
+  padding: 25px;
+
+  text-align: center;
+
+  color: #78828d;
+}
+
+
+/* =========================================================
+   CHAMP DE RÉPONSE
+========================================================= */
+
+.admin-chat-compose {
+  flex: 0 0 auto;
+
+  width: 100%;
+  min-height: 78px;
+
+  padding: 13px 18px;
+
+  display: flex;
+  align-items: flex-end;
+
+  gap: 10px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e4e9ed;
+
+  z-index: 10;
+}
+
+.admin-chat-compose textarea {
+  flex: 1;
+
+  min-width: 0;
+
+  min-height: 48px;
+  max-height: 110px;
+
+  padding: 13px 17px;
+
+  border: 1px solid #d9e0e5;
+  border-radius: 25px;
+
+  outline: none;
+
+  background: #f8fafb;
+
+  color: #111827;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  resize: none;
+}
+
+.admin-chat-compose textarea:focus {
+  border-color: #0c8dcc;
+
+  background: #ffffff;
+}
+
+.admin-chat-compose button {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #0c8dcc;
+
+  color: #ffffff;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.admin-chat-compose button:hover {
+  background: #087caf;
+}
+
+.admin-chat-compose button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   TABLETTE
+========================================================= */
+
+@media (max-width: 900px) and (min-width: 701px) {
+
+  .admin-chat-page {
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+
+  .admin-chat-message {
+    max-width: 78%;
+  }
+
+}
+
+
+/* =========================================================
+   TÉLÉPHONE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  /*
+    IMPORTANT :
+    ON NE MET PAS overflow:hidden SUR body OU #root.
+    Ainsi les autres pages de l'administration
+    peuvent continuer à défiler normalement.
+  */
+
+
+  /* PAGE CHAT */
+
+  .admin-chat-page {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    display: block;
+
+    overflow: hidden;
+
+    background: #f3f7fa;
+  }
+
+
+  /* =====================================================
+     LISTE DES CONVERSATIONS
+  ===================================================== */
+
+  .admin-chat-sidebar {
+    width: 100%;
+    min-width: 100%;
+
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    border-right: none;
+
+    overflow: hidden;
+  }
+
+
+  /*
+    La bannière reste en haut.
+    Elle ne fait pas partie de la zone qui défile.
+  */
+
+  .admin-chat-header {
+    position: relative;
+
+    top: 0;
+
+    flex: 0 0 auto;
+
+    width: 100%;
+    min-height: 74px;
+
+    padding: 11px 13px;
+
+    background: #ffffff;
+
+    z-index: 100;
+  }
+
+  .admin-chat-header h1 {
+    font-size: 19px;
+  }
+
+  .admin-chat-header p {
+    font-size: 12px;
+  }
+
+
+  /*
+    Seule la partie sous la bannière défile.
+  */
+
+  .admin-chat-sidebar-content {
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+
+  /* =====================================================
+     QUAND UNE CONVERSATION EST OUVERTE
+  ===================================================== */
+
+  .admin-chat-sidebar.conversation-open {
+    display: none;
+  }
+
+  .admin-chat-conversation-panel {
+    display: none;
+  }
+
+  .admin-chat-conversation-panel.open {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #f3f7fa;
+
+    overflow: hidden;
+  }
+
+
+  /* =====================================================
+     BANNIÈRE DU CHAT FIXE EN HAUT
+  ===================================================== */
+
+  .admin-chat-conversation-header {
+    position: relative;
+
+    top: 0;
+
+    flex: 0 0 auto;
+
+    width: 100%;
+    min-height: 74px;
+
+    padding: 10px 11px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e4e9ed;
+
+    z-index: 100;
+  }
+
+  .admin-chat-mobile-back {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  .admin-chat-small-avatar {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .admin-chat-client-title h2 {
+    font-size: 16px;
+  }
+
+
+  /* =====================================================
+     MESSAGES
+     C'EST LA SEULE ZONE QUI DÉFILE
+  ===================================================== */
+
+  .admin-chat-messages {
+    flex: 1 1 0;
+
+    width: 100%;
+
+    min-height: 0;
+
+    padding: 14px 11px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overscroll-behavior: contain;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-chat-message {
+    max-width: 85%;
+  }
+
+  .admin-chat-welcome {
+    max-width: 92%;
+  }
+
+
+  /* =====================================================
+     CHAMP ÉCRITURE TOUJOURS EN BAS
+  ===================================================== */
+
+  .admin-chat-compose {
+    position: relative;
+
+    flex: 0 0 auto;
+
+    width: 100%;
+
+    min-height: 68px;
+
+    margin: 0;
+
+    padding:
+      9px
+      10px
+      calc(9px + env(safe-area-inset-bottom))
+      10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e1e7ec;
+
+    z-index: 100;
+  }
+
+  .admin-chat-compose textarea {
+    display: block;
+
+    flex: 1 1 auto;
+
+    width: auto;
+
+    min-width: 0;
+
+    height: 46px;
+    min-height: 46px;
+    max-height: 90px;
+
+    margin: 0;
+
+    padding: 12px 15px;
+
+    border: 1px solid #d7dfe5;
+
+    border-radius: 24px;
+
+    background: #f8fafb;
+
+    font-size: 16px;
+
+    resize: none;
+  }
+
+  .admin-chat-compose button {
+    flex: 0 0 46px;
+
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #0c8dcc;
+
+    color: #ffffff;
+
+    font-size: 19px;
+  }
+
+}
+
+
+/* =========================================================
+   PETITS TÉLÉPHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .admin-chat-intro {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .admin-chat-intro h2 {
+    font-size: 21px;
+  }
+
+  .admin-chat-conversations {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .admin-chat-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .admin-chat-message {
+    max-width: 88%;
+  }
+
+}

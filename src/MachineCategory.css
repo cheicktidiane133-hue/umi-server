@@ -1,0 +1,606 @@
+* {
+  box-sizing: border-box;
+}
+
+
+/* ================================
+   PAGE
+================================ */
+
+.machine-category-page {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #f4f8fc;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ================================
+   BARRE DU HAUT
+================================ */
+
+.machine-category-header {
+  width: 100%;
+  height: 65px;
+
+  padding: 8px 15px;
+
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+
+  background: white;
+
+  box-shadow:
+    0 3px 15px rgba(0, 70, 150, 0.12);
+}
+
+
+.machine-category-header h1 {
+  margin: 0;
+
+  padding: 0 6px;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  color: #123f5d;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ================================
+   BOUTON RETOUR
+================================ */
+
+.machine-category-back {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e9f4ff;
+
+  color: #0758c7;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+
+.machine-category-back:active {
+  transform: scale(0.94);
+
+  background: #dceeff;
+}
+
+
+/* ================================
+   LOGO
+================================ */
+
+.machine-category-logo {
+  width: 45px;
+  height: 45px;
+
+  object-fit: contain;
+
+  border-radius: 10px;
+}
+
+
+/* ================================
+   CONTENU
+================================ */
+
+.machine-category-content {
+  width: 100%;
+
+  padding: 18px 12px 100px;
+}
+
+
+/* ================================
+   TEXTE INTRODUCTION
+================================ */
+
+.machine-category-intro {
+  margin: 0 0 14px;
+
+  color: #74899b;
+
+  font-size: 12px;
+  line-height: 17px;
+}
+
+
+/* ================================
+   BARRE DE RECHERCHE
+================================ */
+
+.machine-category-search {
+  width: 100%;
+  height: 50px;
+
+  margin-bottom: 8px;
+
+  padding: 0 12px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  position: relative;
+
+  border: 1px solid #dce8f2;
+  border-radius: 15px;
+
+  background: white;
+
+  box-shadow:
+    0 4px 14px rgba(0, 70, 150, 0.07);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* ================================
+   RECHERCHE ACTIVE
+================================ */
+
+.machine-category-search:focus-within {
+  border-color: #2b7bd8;
+
+  box-shadow:
+    0 4px 16px rgba(7, 88, 199, 0.13);
+}
+
+
+/* ================================
+   ICÔNE RECHERCHE
+================================ */
+
+.machine-category-search-icon {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+
+  pointer-events: none;
+}
+
+
+/* ================================
+   CHAMP RECHERCHE
+================================ */
+
+.machine-category-search input {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #173b5b;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.machine-category-search input::placeholder {
+  color: #9aabb9;
+
+  font-weight: 400;
+}
+
+
+/* Retire certaines décorations du
+   champ search du navigateur */
+
+.machine-category-search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+
+/* ================================
+   BOUTON X
+================================ */
+
+.machine-category-search-clear {
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #edf4fa;
+
+  color: #5f7487;
+
+  font-size: 20px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+
+.machine-category-search-clear:active {
+  transform: scale(0.92);
+}
+
+
+/* ================================
+   NOMBRE DE RÉSULTATS
+================================ */
+
+.machine-category-search-count {
+  margin: 7px 2px 12px !important;
+
+  color: #71879a !important;
+
+  font-size: 11px !important;
+  font-weight: 600;
+}
+
+
+/* ================================
+   LISTE DES MACHINES
+================================ */
+
+.category-machines-list {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 14px;
+}
+
+
+/* Si une recherche est active,
+   le compteur prend déjà de la place */
+
+.machine-category-search-count
+  + .category-machines-list {
+  margin-top: 4px;
+}
+
+
+/* ================================
+   CARTE MACHINE
+================================ */
+
+.category-machine-item {
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  border: 1px solid #e3edf5;
+  border-radius: 16px;
+
+  background: white;
+
+  box-shadow:
+    0 4px 14px rgba(0, 70, 150, 0.08);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+/* ================================
+   IMAGE
+================================ */
+
+.category-machine-image {
+  width: 100%;
+  height: 145px;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 0;
+}
+
+
+.category-machine-no-image {
+  width: 100%;
+  height: 145px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  background: #eef5fa;
+
+  color: #8296a8;
+
+  font-size: 25px;
+}
+
+
+.category-machine-no-image span {
+  padding: 0 8px;
+
+  font-size: 10px;
+
+  text-align: center;
+}
+
+
+/* ================================
+   INFORMATIONS MACHINE
+================================ */
+
+.category-machine-info {
+  width: 100%;
+
+  padding: 10px 10px 12px;
+}
+
+
+.category-machine-info h3 {
+  margin: 0 0 6px;
+
+  overflow: hidden;
+
+  color: #173b5b;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.category-machine-info p {
+  margin: 4px 0;
+
+  color: #758a9b;
+
+  font-size: 11px;
+  line-height: 15px;
+}
+
+
+/* ================================
+   DESCRIPTION LIMITÉE
+================================ */
+
+.category-machine-info p:nth-of-type(2) {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  line-clamp: 2;
+
+  min-height: 30px;
+}
+
+
+/* ================================
+   PRIX
+================================ */
+
+.category-machine-info strong {
+  display: block;
+
+  margin-top: 8px;
+
+  color: #0758c7;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+/* ================================
+   EFFET AU CLIC
+================================ */
+
+.category-machine-item:active {
+  transform: scale(0.98);
+}
+
+
+/* ================================
+   AUCUN RÉSULTAT
+================================ */
+
+.machine-category-empty {
+  grid-column: 1 / -1;
+
+  width: 100%;
+
+  padding: 35px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: 1px solid #e3edf5;
+  border-radius: 16px;
+
+  background: white;
+
+  text-align: center;
+
+  box-shadow:
+    0 4px 14px rgba(0, 70, 150, 0.06);
+}
+
+
+.machine-category-empty > span {
+  font-size: 34px;
+}
+
+
+.machine-category-empty p {
+  margin: 0;
+
+  color: #758a9b;
+
+  font-size: 13px;
+  line-height: 19px;
+}
+
+
+.machine-category-empty button {
+  margin-top: 5px;
+
+  padding: 9px 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #0758c7;
+
+  color: white;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* ================================
+   SURVOL PC
+================================ */
+
+@media (hover: hover) {
+
+  .category-machine-item:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 7px 20px rgba(0, 70, 150, 0.12);
+  }
+
+}
+
+
+/* ================================
+   PETITS TÉLÉPHONES
+================================ */
+
+@media (max-width: 360px) {
+
+  .machine-category-header {
+    grid-template-columns:
+      44px 1fr 44px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .machine-category-header h1 {
+    font-size: 16px;
+  }
+
+
+  .machine-category-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+
+  .machine-category-content {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+
+  .category-machines-list {
+    gap: 8px;
+  }
+
+
+  .category-machine-image,
+  .category-machine-no-image {
+    height: 130px;
+  }
+
+}
+
+
+/* ================================
+   ÉCRAN PLUS GRAND
+================================ */
+
+@media (min-width: 500px) {
+
+  .machine-category-page {
+    max-width: 500px;
+
+    margin: 0 auto;
+  }
+
+}

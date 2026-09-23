@@ -1,0 +1,411 @@
+/* =========================================
+   FACTURE UMI
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.invoice-page {
+  width: 100%;
+  max-width: 800px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+  padding: 28px 22px;
+
+  background: #ffffff;
+  color: #173b5b;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.invoice-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-bottom: 20px;
+
+  border-bottom: 3px solid #0876d8;
+}
+
+.invoice-header h1 {
+  margin: 0;
+
+  color: #0876d8;
+
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.invoice-header p {
+  margin: 4px 0 0;
+
+  color: #6f8799;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.invoice-title {
+  padding: 9px 14px;
+
+  border-radius: 10px;
+
+  background: #e8f4ff;
+  color: #0876d8;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+/* =========================================
+   INFORMATIONS FACTURE
+========================================= */
+
+.invoice-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.invoice-info > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  background: #f5faff;
+}
+
+.invoice-info span {
+  color: #8497a6;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.invoice-info strong {
+  color: #173b5b;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  word-break: break-word;
+}
+
+
+/* =========================================
+   CLIENT
+========================================= */
+
+.invoice-client {
+  margin-top: 25px;
+  padding: 15px;
+
+  border-left: 4px solid #0876d8;
+
+  background: #f7fbff;
+}
+
+.invoice-client h2 {
+  margin: 0 0 9px;
+
+  color: #7b91a4;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+.invoice-client strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #173b5b;
+
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.invoice-client p {
+  margin: 3px 0;
+
+  color: #607b91;
+
+  font-size: 11px;
+}
+
+
+/* =========================================
+   PRODUITS
+========================================= */
+
+.invoice-products {
+  width: 100%;
+
+  margin-top: 25px;
+
+  border: 1px solid #e0eaf2;
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   EN-TÊTE TABLEAU
+========================================= */
+
+.invoice-table-header {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 1fr 1fr;
+
+  gap: 8px;
+
+  padding: 12px;
+
+  background: #0876d8;
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.invoice-table-header span:not(:first-child) {
+  text-align: right;
+}
+
+
+/* =========================================
+   LIGNE PRODUIT
+========================================= */
+
+.invoice-product-row {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 1fr 1fr;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 13px 12px;
+
+  border-bottom: 1px solid #edf2f6;
+
+  font-size: 10px;
+}
+
+.invoice-product-row:last-child {
+  border-bottom: none;
+}
+
+.invoice-product-row > span:not(:first-child),
+.invoice-product-row > strong {
+  text-align: right;
+}
+
+.invoice-product-name {
+  color: #173b5b;
+
+  font-weight: 800;
+
+  word-break: break-word;
+}
+
+.invoice-product-row span {
+  color: #617b90;
+}
+
+.invoice-product-row strong {
+  color: #173b5b;
+
+  font-weight: 900;
+}
+
+
+/* =========================================
+   TOTAL
+========================================= */
+
+.invoice-total {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 18px;
+
+  padding: 17px;
+
+  border-radius: 12px;
+
+  background: #eaf6ff;
+}
+
+.invoice-total span {
+  color: #52738e;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.invoice-total strong {
+  color: #0876d8;
+
+  font-size: 22px;
+  font-weight: 900;
+
+  text-align: right;
+}
+
+
+/* =========================================
+   STATUT PAYÉ
+========================================= */
+
+.invoice-paid {
+  width: fit-content;
+
+  margin: 20px auto 0;
+
+  padding: 9px 22px;
+
+  border: 2px solid #18a957;
+  border-radius: 30px;
+
+  color: #18a957;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+/* =========================================
+   PIED DE FACTURE
+========================================= */
+
+.invoice-footer {
+  margin-top: 30px;
+  padding-top: 20px;
+
+  border-top: 1px solid #dce7ef;
+
+  text-align: center;
+}
+
+.invoice-footer strong {
+  color: #173b5b;
+
+  font-size: 12px;
+}
+
+.invoice-footer p {
+  margin: 7px 0 4px;
+
+  color: #607b91;
+
+  font-size: 10px;
+}
+
+.invoice-footer small {
+  color: #91a1ae;
+
+  font-size: 9px;
+}
+
+
+/* =========================================
+   PETITS ÉCRANS
+========================================= */
+
+@media (max-width: 500px) {
+
+  .invoice-page {
+    padding: 20px 12px;
+  }
+
+  .invoice-header h1 {
+    font-size: 27px;
+  }
+
+  .invoice-title {
+    padding: 8px 10px;
+
+    font-size: 15px;
+  }
+
+  .invoice-info {
+    grid-template-columns: 1fr;
+  }
+
+  .invoice-table-header,
+  .invoice-product-row {
+    grid-template-columns: 1.5fr 0.4fr 0.9fr 0.9fr;
+
+    gap: 5px;
+  }
+
+  .invoice-table-header {
+    padding: 10px 7px;
+
+    font-size: 8px;
+  }
+
+  .invoice-product-row {
+    padding: 12px 7px;
+
+    font-size: 9px;
+  }
+
+  .invoice-total strong {
+    font-size: 19px;
+  }
+}
+
+
+/* =========================================
+   IMPRESSION / PDF
+========================================= */
+
+@media print {
+
+  body {
+    margin: 0;
+
+    background: #ffffff;
+  }
+
+  .invoice-page {
+    max-width: none;
+    min-height: auto;
+
+    margin: 0;
+    padding: 20px;
+
+    box-shadow: none;
+  }
+}

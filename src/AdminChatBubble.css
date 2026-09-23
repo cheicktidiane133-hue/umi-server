@@ -1,0 +1,683 @@
+/* =========================================
+   BULLE CHAT ADMIN
+========================================= */
+
+.admin-floating-chat-button {
+  position: fixed;
+  right: 18px;
+  bottom: 90px;
+
+  width: 58px;
+  height: 58px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #0b63ce;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.22);
+
+  z-index: 99999;
+}
+
+
+.admin-floating-chat-button:active {
+  transform: scale(0.94);
+}
+
+
+/* =========================================
+   BADGE NON LU
+========================================= */
+
+.admin-floating-badge {
+  position: absolute;
+
+  top: -5px;
+  right: -5px;
+
+  min-width: 22px;
+  height: 22px;
+
+  padding: 0 5px;
+
+  border-radius: 20px;
+
+  background: #dc2626;
+  color: white;
+
+  border: 2px solid white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* =========================================
+   FENÊTRE
+========================================= */
+
+.admin-floating-chat-window {
+  position: fixed;
+
+  right: 18px;
+  bottom: 160px;
+
+  width: 370px;
+  height: 520px;
+
+  max-width:
+    calc(100vw - 30px);
+
+  max-height:
+    calc(100vh - 190px);
+
+  background: white;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.25);
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 99998;
+}
+
+
+/* =========================================
+   HEADER LISTE
+========================================= */
+
+.admin-floating-header {
+  min-height: 70px;
+
+  padding: 14px 16px;
+
+  background: #0b63ce;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.admin-floating-header div {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.admin-floating-header strong {
+  font-size: 17px;
+}
+
+
+.admin-floating-header span {
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  opacity: 0.85;
+}
+
+
+.admin-floating-header button {
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  color: white;
+
+  font-size: 25px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   TITRE CONVERSATIONS
+========================================= */
+
+.admin-floating-conversation-title {
+  padding: 12px 15px;
+
+  border-bottom:
+    1px solid #eeeeee;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.admin-floating-conversation-title span {
+  font-size: 12px;
+  font-weight: 800;
+
+  color: #6b7280;
+
+  text-transform: uppercase;
+}
+
+
+.admin-floating-conversation-title strong {
+  min-width: 24px;
+  height: 24px;
+
+  padding: 0 6px;
+
+  border-radius: 20px;
+
+  background: #dc2626;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+}
+
+
+/* =========================================
+   LISTE CONVERSATIONS
+========================================= */
+
+.admin-floating-conversations {
+  flex: 1;
+
+  overflow-y: auto;
+
+  background: white;
+}
+
+
+.admin-floating-conversation {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: none;
+  border-bottom:
+    1px solid #f0f0f0;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.admin-floating-conversation:hover {
+  background: #f7faff;
+}
+
+
+.admin-floating-conversation.unread {
+  background: #eef6ff;
+}
+
+
+/* =========================================
+   AVATAR
+========================================= */
+
+.admin-floating-avatar,
+.admin-floating-small-avatar {
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: #e6f0ff;
+  color: #0b63ce;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+}
+
+
+.admin-floating-conversation-info {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.admin-floating-conversation-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+.admin-floating-conversation-name strong {
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 14px;
+
+  color: #111827;
+}
+
+
+.admin-floating-conversation-name small {
+  flex-shrink: 0;
+
+  font-size: 10px;
+
+  color: #9ca3af;
+}
+
+
+/* =========================================
+   DERNIER MESSAGE
+========================================= */
+
+.admin-floating-last-message {
+  margin-top: 4px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+.admin-floating-last-message p {
+  flex: 1;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 12px;
+
+  color: #6b7280;
+}
+
+
+.admin-floating-last-message i {
+  flex-shrink: 0;
+
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: #0b63ce;
+}
+
+
+/* =========================================
+   HEADER CONVERSATION
+========================================= */
+
+.admin-floating-chat-header {
+  min-height: 70px;
+
+  padding: 10px 12px;
+
+  background: #0b63ce;
+  color: white;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+.admin-floating-back,
+.admin-floating-close {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.15);
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 20px;
+}
+
+
+.admin-floating-small-avatar {
+  width: 38px;
+  height: 38px;
+
+  background: white;
+  color: #0b63ce;
+}
+
+
+.admin-floating-client {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+.admin-floating-client strong {
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 14px;
+}
+
+
+.admin-floating-client span {
+  margin-top: 2px;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 10px;
+
+  opacity: 0.85;
+}
+
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.admin-floating-messages {
+  flex: 1;
+
+  padding: 13px;
+
+  overflow-y: auto;
+
+  background: #f5f7fb;
+}
+
+
+.admin-floating-message-row {
+  width: 100%;
+
+  margin-bottom: 8px;
+
+  display: flex;
+}
+
+
+.admin-floating-message-row.client {
+  justify-content: flex-start;
+}
+
+
+.admin-floating-message-row.admin {
+  justify-content: flex-end;
+}
+
+
+.admin-floating-message {
+  max-width: 78%;
+
+  padding: 9px 11px;
+
+  border-radius: 15px;
+}
+
+
+.admin-floating-message p {
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  word-break: break-word;
+}
+
+
+.admin-floating-message small {
+  display: block;
+
+  margin-top: 4px;
+
+  text-align: right;
+
+  font-size: 9px;
+
+  opacity: 0.65;
+}
+
+
+.admin-floating-message.client {
+  background: white;
+
+  color: #1f2937;
+
+  border-bottom-left-radius: 4px;
+
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.07);
+}
+
+
+.admin-floating-message.admin {
+  background: #0b63ce;
+
+  color: white;
+
+  border-bottom-right-radius: 4px;
+}
+
+
+/* =========================================
+   ÉCRITURE
+========================================= */
+
+.admin-floating-compose {
+  padding: 10px;
+
+  border-top:
+    1px solid #e5e7eb;
+
+  background: white;
+
+  display: flex;
+  align-items: flex-end;
+
+  gap: 8px;
+}
+
+
+.admin-floating-compose textarea {
+  flex: 1;
+
+  min-height: 40px;
+  max-height: 90px;
+
+  padding: 10px 12px;
+
+  border:
+    1px solid #d1d5db;
+
+  border-radius: 20px;
+
+  resize: none;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 13px;
+}
+
+
+.admin-floating-compose textarea:focus {
+  border-color: #0b63ce;
+}
+
+
+.admin-floating-compose button {
+  flex-shrink: 0;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #0b63ce;
+  color: white;
+
+  font-size: 17px;
+
+  cursor: pointer;
+}
+
+
+.admin-floating-compose button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   VIDE / CHARGEMENT
+========================================= */
+
+.admin-floating-empty,
+.admin-floating-loading {
+  flex: 1;
+
+  min-height: 180px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #6b7280;
+}
+
+
+.admin-floating-empty span {
+  font-size: 35px;
+}
+
+
+.admin-floating-empty p {
+  margin-top: 10px;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  /*
+     BULLE AU MILIEU DE LA BORDURE DROITE
+  */
+
+  .admin-floating-chat-button {
+    position: fixed;
+
+    right: 15px;
+
+    top: 50%;
+    bottom: auto;
+
+    width: 56px;
+    height: 56px;
+
+    transform: translateY(-50%);
+  }
+
+
+  /*
+     ÉVITE QUE LE CLIC CHANGE LA POSITION
+     DE LA BULLE
+  */
+
+  .admin-floating-chat-button:active {
+    transform:
+      translateY(-50%)
+      scale(0.94);
+  }
+
+
+  .admin-floating-chat-window {
+    left: 10px;
+    right: 10px;
+
+    bottom: 155px;
+
+    width: auto;
+
+    height: 500px;
+
+    max-width: none;
+
+    max-height:
+      calc(100vh - 175px);
+  }
+
+}

@@ -1,0 +1,409 @@
+/* =========================================
+   PAGE MES COMMANDES UMI
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.my-orders-page {
+  width: 100%;
+  min-height: 100dvh;
+  background: #f5faff;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #173b5b;
+}
+
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.my-orders-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 62px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 14px;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e2edf5;
+
+  box-shadow:
+    0 2px 10px rgba(0, 60, 110, 0.06);
+}
+
+.my-orders-header h1 {
+  margin: 0;
+
+  color: #123e69;
+
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.my-orders-header-space {
+  width: 38px;
+}
+
+
+/* =========================================
+   RETOUR
+========================================= */
+
+.my-orders-back {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e8f4ff;
+  color: #0876d8;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   CONTENU
+========================================= */
+
+.my-orders-content {
+  width: 100%;
+
+  padding: 16px 12px 30px;
+}
+
+
+/* =========================================
+   AUCUNE COMMANDE
+========================================= */
+
+.my-orders-empty {
+  width: 100%;
+  min-height: 420px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 20px;
+
+  text-align: center;
+}
+
+.my-orders-empty-icon {
+  width: 86px;
+  height: 86px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  background: #e8f4ff;
+
+  font-size: 40px;
+}
+
+.my-orders-empty h2 {
+  margin: 0 0 8px;
+
+  color: #173b5b;
+
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.my-orders-empty p {
+  max-width: 280px;
+
+  margin: 0;
+
+  color: #7d91a2;
+
+  font-size: 12px;
+  line-height: 18px;
+}
+
+
+/* =========================================
+   LISTE DES COMMANDES
+========================================= */
+
+.my-orders-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+
+/* =========================================
+   CARTE COMMANDE
+========================================= */
+
+.my-order-card {
+  width: 100%;
+
+  display: block;
+
+  padding: 15px;
+
+  border: 1px solid #e0ebf3;
+  border-radius: 17px;
+
+  background: #ffffff;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 14px rgba(0, 60, 110, 0.06);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.my-order-card:active {
+  transform: scale(0.985);
+}
+
+
+/* =========================================
+   HAUT DE LA COMMANDE
+========================================= */
+
+.my-order-top {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding-bottom: 13px;
+
+  border-bottom: 1px solid #edf2f6;
+}
+
+.my-order-top > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.my-order-label {
+  color: #8a9ba9;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.my-order-number {
+  overflow: hidden;
+
+  color: #173b5b;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   STATUT
+========================================= */
+
+.my-order-status {
+  flex-shrink: 0;
+
+  padding: 6px 9px;
+
+  border-radius: 20px;
+
+  background: #edf3f7;
+  color: #617b90;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.my-order-status.paid {
+  background: #e6f8ed;
+  color: #16964e;
+}
+
+.my-order-status.pending {
+  background: #fff5dc;
+  color: #c48600;
+}
+
+.my-order-status.cancelled {
+  background: #ffeaea;
+  color: #d64242;
+}
+
+
+/* =========================================
+   DÉTAILS
+========================================= */
+
+.my-order-details {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  padding: 14px 0;
+}
+
+.my-order-details > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.my-order-details span {
+  color: #8a9ba9;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.my-order-details strong {
+  color: #526f86;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* =========================================
+   BAS DE LA COMMANDE
+========================================= */
+
+.my-order-bottom {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding-top: 13px;
+
+  border-top: 1px solid #edf2f6;
+}
+
+.my-order-bottom > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.my-order-bottom span {
+  color: #8a9ba9;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.my-order-bottom strong {
+  color: #0876d8;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+/* =========================================
+   FLÈCHE
+========================================= */
+
+.my-order-arrow {
+  color: #0876d8 !important;
+
+  font-size: 27px !important;
+  font-weight: 700 !important;
+}
+
+
+/* =========================================
+   PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 380px) {
+  .my-orders-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .my-order-card {
+    padding: 13px;
+  }
+
+  .my-order-bottom strong {
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================
+   GRAND ÉCRAN
+========================================= */
+
+@media (min-width: 500px) {
+  .my-orders-page {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+
+/* =========================================
+   ACCESSIBILITÉ
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .my-order-card {
+    transition: none;
+  }
+}

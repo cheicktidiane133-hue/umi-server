@@ -1,0 +1,917 @@
+/* =========================================
+   PAGE CRÉER LIVE CLIENT
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.create-client-page {
+  min-height: 100vh;
+  padding-bottom: 45px;
+
+  background: #f4f7fb;
+  color: #10213d;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.create-client-header {
+  position: sticky;
+  top: 0;
+  z-index: 5000;
+
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px 65px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5ebf3;
+
+  text-align: center;
+}
+
+.create-client-header > div {
+  width: 100%;
+}
+
+
+/* TITRE */
+
+.create-client-header h1 {
+  margin: 0;
+
+  color: #087fc1;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 22px;
+  font-weight: 600;
+
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+}
+
+.create-client-header p {
+  margin: 6px 0 0;
+
+  color: #667085;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   BOUTON RETOUR
+========================================= */
+
+.create-client-back {
+  position: absolute;
+
+  left: 15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 100;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #dce6ef;
+  border-radius: 13px;
+
+  background: #ffffff;
+
+  color: #087fc1;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 25px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 10px rgba(20, 50, 80, 0.08);
+}
+
+.create-client-back:hover {
+  background: #f2f8fc;
+}
+
+
+/* =========================================
+   CONTENU
+========================================= */
+
+.create-client-content {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  padding: 16px 12px 40px;
+}
+
+
+/* =========================================
+   CAMÉRA
+========================================= */
+
+.client-camera-section {
+  width: 100%;
+
+  padding: 12px;
+
+  background: #ffffff;
+
+  border: 1px solid #e4eaf2;
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 20px rgba(25, 53, 88, 0.07);
+}
+
+.client-camera-preview {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #111820;
+
+  border-radius: 14px;
+}
+
+.client-camera-preview video {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  background: #111820;
+}
+
+
+/* =========================================
+   CAMÉRA VIDE
+========================================= */
+
+.client-camera-empty {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+.client-camera-empty div {
+  margin-bottom: 8px;
+
+  font-size: 40px;
+}
+
+.client-camera-empty p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 12px;
+  font-weight: 400;
+}
+
+
+/* =========================================
+   CAMÉRA PRÊTE
+========================================= */
+
+.client-camera-ready {
+  position: absolute;
+
+  top: 10px;
+  left: 10px;
+
+  z-index: 10;
+
+  padding: 7px 10px;
+
+  border-radius: 8px;
+
+  background: #ed1735;
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  box-shadow:
+    0 3px 9px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================
+   ACTIVER CAMÉRA
+========================================= */
+
+.client-camera-button {
+  width: 100%;
+  min-height: 48px;
+
+  margin-top: 11px;
+
+  padding: 11px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: #087fc1;
+
+  color: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 12px rgba(8, 127, 193, 0.16);
+}
+
+
+/* =========================================
+   BOUTON ARRÊT CAMÉRA
+========================================= */
+
+.client-camera-stop {
+  width: 100%;
+  min-height: 52px;
+
+  margin-top: 15px;
+
+  padding: 11px;
+
+  border: 1px solid #ef334e;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #e32636;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   FORMULAIRE PRODUIT
+========================================= */
+
+.client-product-form {
+  margin-top: 15px;
+
+  padding: 17px;
+
+  background: #ffffff;
+
+  border: 1px solid #e4eaf2;
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 20px rgba(25, 53, 88, 0.06);
+}
+
+
+/* =========================================
+   TITRE FORMULAIRE
+========================================= */
+
+.client-form-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.client-form-icon {
+  flex: 0 0 auto;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #e8f4fc;
+
+  font-size: 22px;
+}
+
+.client-form-heading h2 {
+  margin: 0 0 4px;
+
+  color: #10213d;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.client-form-heading p {
+  margin: 0;
+
+  color: #7a8798;
+
+  font-size: 11px;
+  font-weight: 400;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   CHAMPS
+========================================= */
+
+.client-form-group {
+  margin-bottom: 15px;
+}
+
+.client-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.client-form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #334553;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.client-form-group input,
+.client-form-group textarea {
+  width: 100%;
+
+  padding: 12px;
+
+  border: 1px solid #d8e1e9;
+  border-radius: 11px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #17212b;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.client-form-group input {
+  min-height: 48px;
+}
+
+.client-form-group textarea {
+  min-height: 105px;
+
+  resize: vertical;
+}
+
+.client-form-group input:focus,
+.client-form-group textarea:focus {
+  border-color: #087fc1;
+
+  box-shadow:
+    0 0 0 3px rgba(8, 127, 193, 0.08);
+}
+
+.client-form-group input:disabled,
+.client-form-group textarea:disabled {
+  background: #f4f6f8;
+
+  color: #7b8794;
+}
+
+.client-form-group input::placeholder,
+.client-form-group textarea::placeholder {
+  color: #a1acb5;
+}
+
+
+/* =========================================
+   MESSAGE ERREUR
+========================================= */
+
+.client-live-error {
+  margin-top: 14px;
+
+  padding: 12px 13px;
+
+  border: 1px solid #f2c8cc;
+  border-radius: 11px;
+
+  background: #fff3f4;
+
+  color: #c92838;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   DÉMARRER LE LIVE
+========================================= */
+
+.start-client-live-button {
+  width: 100%;
+  min-height: 56px;
+
+  margin-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: #e32636;
+
+  color: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 15px rgba(227, 38, 54, 0.22);
+}
+
+.start-client-live-button span {
+  color: #ffffff;
+
+  font-size: 12px;
+}
+
+.start-client-live-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   PETITE INFORMATION
+========================================= */
+
+.client-live-help {
+  margin: 11px 10px 0;
+
+  color: #7c8994;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 11px;
+  font-weight: 400;
+
+  line-height: 1.45;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   HAUT DROIT DU LIVE
+   COMPTEUR + BOUTON POWER
+========================================= */
+
+.umi-live-top-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   COMPTEUR SPECTATEURS
+========================================= */
+
+.umi-live-viewers {
+  height: 36px;
+  min-width: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 10px;
+
+  border-radius: 18px;
+
+  background: rgba(0, 0, 0, 0.48);
+
+  color: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+
+/* =========================================
+   PETIT BOUTON ROUGE POWER
+========================================= */
+
+.umi-live-power-button {
+  width: 36px;
+  height: 36px;
+
+  min-width: 36px;
+  min-height: 36px;
+
+  flex: 0 0 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  outline: none;
+
+  background: #e32636;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.28);
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease;
+}
+
+.umi-live-power-button:hover {
+  background: #c91f30;
+}
+
+.umi-live-power-button:active {
+  transform: scale(0.9);
+}
+
+
+/* =========================================
+   SYMBOLE POWER
+   DESSINÉ EN CSS
+========================================= */
+
+.umi-power-symbol {
+  position: relative;
+
+  display: block;
+
+  width: 17px;
+  height: 17px;
+
+  border: 2.4px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+
+
+/* TRAIT VERTICAL DU POWER */
+
+.umi-power-symbol::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: -5px;
+
+  width: 2.4px;
+  height: 10px;
+
+  border-radius: 3px;
+
+  background: #ffffff;
+
+  transform: translateX(-50%);
+}
+
+
+/* =========================================
+   TÉLÉPHONE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .create-client-page {
+    padding-bottom: 30px;
+  }
+
+
+  .create-client-header {
+    min-height: 88px;
+
+    padding:
+      14px
+      55px;
+  }
+
+
+  .create-client-header h1 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+
+  .create-client-header p {
+    margin-top: 4px;
+
+    font-size: 10px;
+  }
+
+
+  .create-client-back {
+    left: 12px;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
+
+    font-size: 23px;
+  }
+
+
+  .create-client-content {
+    padding:
+      12px
+      10px
+      35px;
+  }
+
+
+  .client-camera-section {
+    padding: 10px;
+
+    border-radius: 16px;
+  }
+
+
+  .client-camera-preview {
+    border-radius: 12px;
+  }
+
+
+  .client-product-form {
+    margin-top: 12px;
+
+    padding: 14px;
+
+    border-radius: 16px;
+  }
+
+
+  .client-form-heading {
+    margin-bottom: 17px;
+  }
+
+
+  .client-form-icon {
+    width: 42px;
+    height: 42px;
+
+    font-size: 20px;
+  }
+
+
+  .client-form-heading h2 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+
+  .client-form-group input {
+    min-height: 46px;
+  }
+
+
+  .start-client-live-button {
+    min-height: 54px;
+
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+
+  /* COMPTEUR + BOUTON POWER */
+
+  .umi-live-top-right {
+    gap: 6px;
+  }
+
+
+  .umi-live-viewers {
+    height: 34px;
+    min-width: 48px;
+
+    padding: 0 8px;
+
+    border-radius: 17px;
+
+    font-size: 12px;
+  }
+
+
+  .umi-live-power-button {
+    width: 34px;
+    height: 34px;
+
+    min-width: 34px;
+    min-height: 34px;
+
+    flex: 0 0 34px;
+  }
+
+
+  .umi-power-symbol {
+    width: 16px;
+    height: 16px;
+
+    border-width: 2.2px;
+  }
+
+
+  .umi-power-symbol::before {
+    top: -5px;
+
+    width: 2.2px;
+    height: 9px;
+  }
+
+}
+
+
+/* =========================================
+   PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 390px) {
+
+  .create-client-header h1 {
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+
+  .create-client-header p {
+    font-size: 9px;
+  }
+
+
+  .create-client-content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+
+  .client-product-form {
+    padding: 13px;
+  }
+
+
+  .umi-live-top-right {
+    gap: 5px;
+  }
+
+
+  .umi-live-viewers {
+    height: 32px;
+    min-width: 44px;
+
+    padding: 0 7px;
+
+    font-size: 11px;
+  }
+
+
+  .umi-live-power-button {
+    width: 32px;
+    height: 32px;
+
+    min-width: 32px;
+    min-height: 32px;
+
+    flex: 0 0 32px;
+  }
+
+
+  .umi-power-symbol {
+    width: 15px;
+    height: 15px;
+
+    border-width: 2px;
+  }
+
+
+  .umi-power-symbol::before {
+    top: -4px;
+
+    width: 2px;
+    height: 8px;
+  }
+
+}
