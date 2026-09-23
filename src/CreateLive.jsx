@@ -23,7 +23,7 @@ import logoUmi from "./assets/logo-umi.jpeg";
 ===================================================== */
 
 const API_URL =
-  "https://anniversary-tub-command-squad.trycloudflare.com";
+  "https://umi-server.onrender.com";
 
 function CreateLive({ onBack }) {
 

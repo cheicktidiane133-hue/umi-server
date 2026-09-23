@@ -17,7 +17,7 @@ import "./UmiLive.css";
 ======================================== */
 
 const API_URL =
-  "https://soc-essentials-trail-storage.trycloudflare.com";
+  "https://umi-server.onrender.com";
 
 
 /* ========================================

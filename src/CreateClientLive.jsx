@@ -16,8 +16,7 @@ import "./CreateClientLive.css";
 import "./UmiLive.css";
 
 
-const API_URL =
-  "https://anniversary-tub-command-squad.trycloudflare.com";
+const API_URL = "https://umi-server.onrender.com";
 
 
 function CreateClientLive({ onBack }) {
