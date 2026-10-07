@@ -109,11 +109,13 @@ console.log(
 // =========================================================
 
 const serviceAccountPath =
-  path.join(
-    process.cwd(),
-    "secrets",
-    "firebase-service-account.json"
-  );
+  fs.existsSync("/etc/secrets/firebase-service-account.json")
+    ? "/etc/secrets/firebase-service-account.json"
+    : path.join(
+        process.cwd(),
+        "secrets",
+        "firebase-service-account.json"
+      );
 
 const serviceAccount =
   JSON.parse(
