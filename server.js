@@ -1473,32 +1473,27 @@ async function createHighlight(
     // =========================
 
     await execFileAsync(
-      "ffmpeg",
-      [
-        "-y",
-
-        "-i",
-        inputPath,
-
-        "-t",
-        "60",
-
-        "-c:v",
-        "libx264",
-
-        "-preset",
-        "veryfast",
-
-        "-c:a",
-        "aac",
-
-        "-movflags",
-        "+faststart",
-
-        outputPath,
-      ]
-    );
-
+  "ffmpeg",
+  [
+    "-nostdin",
+    "-y",
+    "-i", inputPath,
+    "-t", "60",
+    "-vf", "scale=480:-2",
+    "-c:v", "libx264",
+    "-preset", "ultrafast",
+    "-crf", "28",
+    "-threads", "1",
+    "-c:a", "aac",
+    "-b:a", "96k",
+    "-movflags", "+faststart",
+    outputPath,
+  ],
+  {
+    timeout: 120000,
+    maxBuffer: 10 * 1024 * 1024,
+  }
+);
 
     console.log(
       "✅ Temps fort créé"
