@@ -84,12 +84,17 @@ console.log(
 // =========================================================
 // FIREBASE ADMIN
 // =========================================================
+const renderServiceAccountPath =
+  "/etc/secrets/firebase-service-account.json";
+
 const serviceAccountPath =
-  path.join(
-    process.cwd(),
-    "secrets",
-    "firebase-service-account.json"
-  );
+  fs.existsSync(renderServiceAccountPath)
+    ? renderServiceAccountPath
+    : path.join(
+        process.cwd(),
+        "secrets",
+        "firebase-service-account.json"
+      );
 const serviceAccount =
   JSON.parse(
     fs.readFileSync(
