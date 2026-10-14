@@ -47,3 +47,41 @@ workflows:
         auth: integration
         submit_to_testflight: false
         submit_to_app_store: false
+          umi-captures:
+    name: UMI - Captures iPhone et iPad
+    instance_type: mac_mini_m2
+    max_build_duration: 30
+
+    environment:
+      node: 24
+      xcode: latest
+
+    scripts:
+      - name: Installer les dependances
+        script: npm ci
+
+      - name: Compiler React
+        script: npm run build
+
+      - name: Synchroniser iOS
+        script: npx cap sync ios
+
+      - name: Compiler pour le simulateur
+        script: |
+          xcodebuild \
+            -project ios/App/App.xcodeproj \
+            -scheme App \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/simulator \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Preparer le fichier du simulateur
+        script: |
+          cd build/simulator/Build/Products/Debug-iphonesimulator
+          zip -r "$CM_BUILD_DIR/UMI-simulateur.zip" App.app
+
+    artifacts:
+      - UMI-simulateur.zip
