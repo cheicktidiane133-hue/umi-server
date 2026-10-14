@@ -1,0 +1,35 @@
+workflows:
+  umi-ios-test:
+    name: UMI - Verification iOS
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+
+    environment:
+      node: 24
+      xcode: latest
+
+    scripts:
+      - name: Installer les dependances
+        script: npm ci
+
+      - name: Compiler React
+        script: npm run build
+
+      - name: Synchroniser iOS
+        script: npx cap sync ios
+
+      - name: Compiler pour le simulateur iPhone
+        script: |
+          set -o pipefail
+          xcodebuild \
+            -project ios/App/App.xcodeproj \
+            -scheme App \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/ios \
+            CODE_SIGNING_ALLOWED=NO \
+            build 2>&1 | tee /tmp/umi-ios-build.log
+
+    artifacts:
+      - /tmp/umi-ios-build.log
