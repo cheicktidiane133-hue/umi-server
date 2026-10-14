@@ -1,12 +1,18 @@
 workflows:
-  umi-ios-test:
-    name: UMI - Verification iOS
+  umi-ios:
+    name: UMI - App Store
     instance_type: mac_mini_m2
     max_build_duration: 60
+
+    integrations:
+      app_store_connect: UMI Codemagic
 
     environment:
       node: 24
       xcode: latest
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.askiasalembere.umi
 
     scripts:
       - name: Installer les dependances
@@ -18,18 +24,26 @@ workflows:
       - name: Synchroniser iOS
         script: npx cap sync ios
 
-      - name: Compiler pour le simulateur iPhone
+      - name: Configurer la signature
+        script: xcode-project use-profiles
+
+      - name: Definir le numero de build
         script: |
-          set -o pipefail
-          xcodebuild \
-            -project ios/App/App.xcodeproj \
-            -scheme App \
-            -configuration Debug \
-            -sdk iphonesimulator \
-            -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath build/ios \
-            CODE_SIGNING_ALLOWED=NO \
-            build 2>&1 | tee /tmp/umi-ios-build.log
+          cd ios/App
+          agvtool new-version -all "$BUILD_NUMBER"
+
+      - name: Compiler UMI pour Apple
+        script: |
+          xcode-project build-ipa \
+            --project ios/App/App.xcodeproj \
+            --scheme App
 
     artifacts:
-      - /tmp/umi-ios-build.log
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: false
+        submit_to_app_store: false
