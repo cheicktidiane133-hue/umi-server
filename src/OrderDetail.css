@@ -1,0 +1,481 @@
+/* =========================================
+   PAGE
+========================================= */
+
+.order-detail-page {
+  min-height: 100vh;
+  background: #f7f9fc;
+  padding-bottom: 35px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.order-detail-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  display: grid;
+  grid-template-columns: 45px 1fr 45px;
+  align-items: center;
+
+  min-height: 62px;
+  padding: 8px 14px;
+
+  background: #ffffff;
+  border-bottom: 1px solid #edf0f4;
+
+  box-sizing: border-box;
+}
+
+.order-detail-header h1 {
+  margin: 0;
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #152238;
+}
+
+.order-detail-back {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #152238;
+
+  font-size: 25px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.order-detail-back:active {
+  background: #eef2f7;
+}
+
+.order-detail-header-space {
+  width: 40px;
+}
+
+
+/* =========================================
+   CONTENU
+========================================= */
+
+.order-detail-content {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  padding: 15px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   RÉSUMÉ COMMANDE
+========================================= */
+
+.order-detail-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 17px;
+
+  margin-bottom: 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #edf0f4;
+  border-radius: 14px;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.order-detail-summary > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.order-detail-summary small {
+  color: #7c8798;
+
+  font-size: 12px;
+}
+
+.order-detail-summary strong {
+  color: #17243a;
+
+  font-size: 16px;
+}
+
+.order-detail-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+
+  padding: 5px 11px;
+
+  border-radius: 20px;
+
+  background: #eef5ff;
+
+  color: #1769aa;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   CARTES
+========================================= */
+
+.order-detail-card {
+  margin-bottom: 14px;
+
+  padding: 17px;
+
+  background: #ffffff;
+
+  border: 1px solid #edf0f4;
+  border-radius: 14px;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.order-detail-card h2 {
+  margin: 0 0 15px;
+
+  color: #17243a;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   LIGNES INFORMATIONS
+========================================= */
+
+.order-detail-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 11px 0;
+
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.order-detail-row:last-child {
+  border-bottom: none;
+}
+
+.order-detail-row span {
+  flex-shrink: 0;
+
+  color: #7a8494;
+
+  font-size: 13px;
+}
+
+.order-detail-row strong {
+  color: #1c293c;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-align: right;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   LISTE PRODUITS
+========================================= */
+
+.order-detail-products {
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+.order-detail-product {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #edf0f4;
+  border-radius: 12px;
+}
+
+
+/* =========================================
+   IMAGE PRODUIT
+========================================= */
+
+.order-detail-product-image {
+  width: 78px;
+  height: 78px;
+
+  flex: 0 0 78px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e8edf3;
+  border-radius: 10px;
+}
+
+.order-detail-product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.order-detail-product-image span {
+  font-size: 29px;
+}
+
+
+/* =========================================
+   INFORMATIONS PRODUIT
+========================================= */
+
+.order-detail-product-info {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.order-detail-product-info h3 {
+  margin: 0 0 4px;
+
+  color: #17243a;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.35;
+}
+
+.order-detail-product-info small {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #7a8494;
+
+  font-size: 11px;
+}
+
+.order-detail-product-info p {
+  margin: 4px 0;
+
+  color: #5c6878;
+
+  font-size: 12px;
+}
+
+.order-detail-product-info p strong {
+  color: #28374b;
+}
+
+.order-detail-product-price {
+  display: block;
+
+  margin-top: 7px;
+
+  color: #0876d8;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+
+/* =========================================
+   AUCUN PRODUIT
+========================================= */
+
+.order-detail-no-product {
+  margin: 0;
+
+  padding: 15px 0;
+
+  color: #7a8494;
+
+  font-size: 13px;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   TOTAL
+========================================= */
+
+.order-detail-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 5px;
+
+  padding: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid #dfe8f2;
+  border-radius: 14px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.order-detail-total span {
+  color: #4e5b6c;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-detail-total strong {
+  color: #0876d8;
+
+  font-size: 19px;
+  font-weight: 800;
+
+  text-align: right;
+}
+
+
+/* =========================================
+   COMMANDE INTROUVABLE
+========================================= */
+
+.order-detail-empty {
+  min-height: 65vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  text-align: center;
+}
+
+.order-detail-empty > span {
+  margin-bottom: 12px;
+
+  font-size: 50px;
+}
+
+.order-detail-empty h2 {
+  margin: 0 0 18px;
+
+  color: #17243a;
+
+  font-size: 19px;
+}
+
+.order-detail-empty button {
+  min-width: 120px;
+
+  padding: 11px 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #0876d8;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   PETITS ÉCRANS
+========================================= */
+
+@media (max-width: 420px) {
+
+  .order-detail-content {
+    padding: 12px;
+  }
+
+  .order-detail-header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .order-detail-header h1 {
+    font-size: 16px;
+  }
+
+  .order-detail-card,
+  .order-detail-summary,
+  .order-detail-total {
+    border-radius: 12px;
+  }
+
+  .order-detail-product-image {
+    width: 70px;
+    height: 70px;
+
+    flex-basis: 70px;
+  }
+
+  .order-detail-row {
+    gap: 12px;
+  }
+}

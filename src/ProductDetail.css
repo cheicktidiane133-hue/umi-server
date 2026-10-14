@@ -231,6 +231,63 @@
 
 
 /* =========================================
+   FAVORIS
+========================================= */
+
+.product-favorite-button {
+  position: absolute;
+
+  top: 10px;
+  right: 64px;
+
+  z-index: 30;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.96);
+  color: #173b5b;
+
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.15);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.product-favorite-button:active {
+  transform: scale(0.9);
+}
+
+.product-favorite-button.active {
+  color: #e11d48;
+  background: #fff0f3;
+}
+
+.product-favorite-button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+
+/* =========================================
    PARTAGER
 ========================================= */
 
@@ -656,9 +713,8 @@
   border: 1px solid #0874df;
   border-radius: 12px;
 
- background: #0874df;
-
-color: #ffffff;
+  background: #0874df;
+  color: #ffffff;
 
   cursor: pointer;
 }
@@ -971,4 +1027,71 @@ color: #ffffff;
     max-width: 500px;
   }
 
+}#root nav.umi-product-actions {
+  position: fixed !important;
+  inset: auto 0 0 !important;
+  width: 100% !important;
+  height: calc(15px + env(safe-area-inset-bottom, 0px)) !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 4px 8px !important;
+  padding-bottom: calc(4px + env(safe-area-inset-bottom, 0px)) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  background: #fff !important;
+  border-top: 1px solid #e3eaf2 !important;
+  box-shadow: none !important;
+  z-index: 600 !important;
+}
+
+#root nav.umi-product-actions > button {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  flex: 1 !important;
+  height: 44px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 3px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #163b5c !important;
+  font-family: inherit !important;
+  cursor: pointer;
+}
+
+#root .umi-product-action-icon {
+  position: static !important;
+  transform: none !important;
+  font-size: 21px !important;
+  line-height: 1 !important;
+}
+
+#root .umi-product-action-label {
+  position: static !important;
+  transform: none !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+#root .commerce-page .commerce-detail {
+  padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px)) !important;
+}
+/* Descendre les deux boutons à l’intérieur de la barre */
+#root nav.umi-product-actions > button {
+  position: relative !important;
+  top: 7px !important;
+}
+#root nav.umi-product-actions > button {
+  position: static !important;
+  inset: auto !important;
+  transform: translateY(6px) !important;
 }

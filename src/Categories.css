@@ -1,0 +1,432 @@
+/* =========================================
+   PAGE CATÉGORIES UMI
+========================================= */
+
+.categories-page {
+  min-height: 100vh;
+  background: #f5f6f8;
+  padding-bottom: 90px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.categories-header {
+  position: sticky;
+  top: 0;
+  z-index: 5000;
+
+  min-height: 72px;
+  height: 72px;
+
+  padding: 10px 15px;
+
+  display: grid;
+  grid-template-columns: 45px 1fr 45px;
+  align-items: center;
+  gap: 10px;
+
+  background: #087fc1;
+  color: white;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.categories-header h1 {
+  margin: 0;
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  color: #ffffff !important;
+}
+
+.categories-back {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f2f4;
+  color: #111111;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+.categories-header-space {
+  width: 38px;
+}
+
+
+/* =========================================
+   CONTENU
+========================================= */
+
+.categories-content {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+  padding: 18px 14px 30px;
+
+  box-sizing: border-box;
+}
+
+.categories-intro {
+  margin: 0 0 22px;
+
+  color: #666666;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.categories-section {
+  margin-bottom: 28px;
+}
+
+.categories-section h2 {
+  margin: 0 0 12px;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #171717;
+}
+
+
+/* =========================================
+   GRILLE DES CATÉGORIES
+========================================= */
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.categories-section {
+  margin-bottom: 30px;
+}
+
+.categories-section h2 {
+  margin: 0 0 14px;
+  padding-left: 2px;
+
+  font-size: 18px;
+  font-weight: 800;
+  color: #111827;
+}
+
+
+/* =========================================
+   CASE CATÉGORIE
+========================================= */
+
+.category-box {
+  width: 100%;
+  min-height: 125px;
+
+  padding: 16px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 11px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  cursor: pointer;
+  text-align: center;
+
+  box-sizing: border-box;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.category-box:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================================
+   ICÔNE DE LA CASE
+========================================= */
+
+.category-box-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+
+  font-size: 25px;
+}
+.category-box-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  border-radius: 0;
+}
+
+/* =========================================
+   NOM DE LA CATÉGORIE
+========================================= */
+
+.category-box-name {
+  width: 100%;
+
+  color: #1c1c1c;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   PRODUITS
+========================================= */
+
+.products-grid .category-box {
+  min-height: 120px;
+}
+
+.products-grid .category-box-icon {
+  background: #f4f7f2;
+}
+
+
+/* =========================================
+   SERVICES
+========================================= */
+
+.services-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.services-grid .category-box {
+  min-height: 120px;
+}
+
+.services-grid .category-box-icon {
+  background: #f5f3f8;
+}
+/* =========================================
+   BARRE DU BAS
+========================================= */
+
+.categories-bottom-nav {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 100;
+
+  height: 72px;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+
+  padding:
+    5px 4px
+    calc(5px + env(safe-area-inset-bottom));
+
+  background: #ffffff;
+
+  border-top: 1px solid #e6e6e6;
+
+  box-sizing: content-box;
+}
+
+
+/* =========================================
+   BOUTONS BARRE DU BAS
+========================================= */
+
+.categories-bottom-nav-item {
+  min-width: 0;
+  height: 60px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #777777;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.categories-bottom-nav-item.active {
+  color: #111111;
+}
+
+
+/* =========================================
+   ICÔNES BARRE DU BAS
+========================================= */
+
+.categories-bottom-nav-icon {
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 21px;
+}
+
+.categories-live-icon {
+  width: 29px;
+  height: 29px;
+
+  border-radius: 50%;
+
+  background: #111111;
+  color: #ffffff;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   PHOTO COMPTE
+========================================= */
+
+.categories-account-photo-wrapper {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: #eeeeee;
+}
+
+.categories-account-photo {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.categories-account-placeholder {
+  font-size: 18px;
+}
+
+
+/* =========================================
+   TABLETTE / GRAND ÉCRAN
+========================================= */
+
+@media (min-width: 700px) {
+  .categories-content {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .categories-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================
+   PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 360px) {
+  .categories-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .category-card {
+    grid-template-columns: 46px 1fr 20px;
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  .category-card-icon {
+    width: 43px;
+    height: 43px;
+
+    font-size: 21px;
+  }
+
+  .category-card-info strong {
+    font-size: 13px;
+  }
+
+  .category-card-info span {
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,85 @@
+.umi-admin-orders { min-height:100dvh; padding:24px 16px 100px; background:#f3f6fa; color:#152f48; font-family:inherit; }
+.umi-admin-orders *, .umi-admin-orders *::before, .umi-admin-orders *::after { box-sizing:border-box; }
+.umi-admin-orders button, .umi-admin-orders input, .umi-admin-orders select { font:inherit; }
+.umi-admin-orders button { cursor:pointer; }
+.umi-admin-orders .ao-container { max-width:1100px; margin:0 auto; }
+.umi-admin-orders .ao-header { display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+.umi-admin-orders .ao-back { flex-shrink:0; width:44px; height:44px; border:1px solid #dbe4ed; border-radius:14px; background:white; color:#163a5c; font-size:24px; }
+.umi-admin-orders .ao-eyebrow { font-size:10px; font-weight:800; letter-spacing:1.6px; color:#54748c; }
+.umi-admin-orders h1 { font-size:28px; line-height:1.15; margin:5px 0 6px; letter-spacing:-.6px; }
+.umi-admin-orders .ao-header p { font-size:13px; color:#617589; margin:0; }
+.umi-admin-orders .ao-tabs { display:flex; gap:6px; border-radius:15px; background:#e6edf4; padding:5px; margin-bottom:20px; }
+.umi-admin-orders .ao-tabs button { flex:1; min-height:46px; padding:10px; border:0; border-radius:11px; background:transparent; color:#516b80; font-size:14px; font-weight:700; }
+.umi-admin-orders .ao-tabs button.active { background:white; color:#163a5c; box-shadow:0 2px 5px #163a5c0a; }
+.umi-admin-orders .ao-tabs button span { display:inline-block; margin-left:5px; padding:2px 7px; background:#edf4fb; border-radius:6px; font-size:11px; }
+.umi-admin-orders .ao-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-bottom:20px; }
+.umi-admin-orders .ao-stats>div { padding:16px 20px; border:1px solid #e1e8ef; border-radius:16px; background:white; }
+.umi-admin-orders .ao-stats span { display:block; font-size:12px; color:#62788b; margin-bottom:8px; }
+.umi-admin-orders .ao-stats strong { font-size:28px; line-height:1; }
+.umi-admin-orders .ao-stats>div:nth-child(2) strong { color:#0876d8; }
+.umi-admin-orders .ao-stats>div:nth-child(3) strong { color:#a86615; }
+.umi-admin-orders .ao-filters { display:grid; grid-template-columns:minmax(0,1fr) 220px; gap:14px; background:#fff; border:1px solid #e1e8ef; border-radius:16px; padding:16px; }
+.umi-admin-orders .ao-filters label>span { display:block; font-size:12px; font-weight:700; margin-bottom:8px; }
+.umi-admin-orders input, .umi-admin-orders select { width:100%; min-width:0; min-height:44px; padding:10px 12px; border:1px solid #d5e0ea; border-radius:10px; background:#f8fafc; color:#152f48; font-size:16px; }
+.umi-admin-orders :is(button,input,select,summary):focus-visible { outline:3px solid #91c8ff; outline-offset:3px; }
+.umi-admin-orders .ao-results { margin:18px 2px 12px; font-size:12px; color:#63788b; }
+.umi-admin-orders .ao-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:16px; }
+.umi-admin-orders .ao-card { min-width:0; background:#fff; border:1px solid #e0e8f0; border-radius:18px; padding:20px; box-shadow:0 3px 12px #183a5c04; }
+.umi-admin-orders .ao-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:20px; }
+.umi-admin-orders .ao-order-number { display:block; font-size:13px; font-weight:800; overflow-wrap:anywhere; }
+.umi-admin-orders .ao-date { display:block; margin-top:5px; font-size:11px; color:#6d8194; }
+.umi-admin-orders .ao-badge { flex-shrink:0; max-width:48%; border-radius:7px; padding:6px 9px; font-size:11px; line-height:1.35; font-weight:750; text-align:center; }
+.umi-admin-orders .ao-badge-new { color:#1262a5; background:#eaf4ff; }
+.umi-admin-orders .ao-badge-paid, .umi-admin-orders .ao-badge-delivered { color:#247547; background:#eaf6ed; }
+.umi-admin-orders .ao-badge-confirmed, .umi-admin-orders .ao-badge-shipped { color:#6550a4; background:#f1edfc; }
+.umi-admin-orders .ao-badge-preparing { color:#966017; background:#fff4df; }
+.umi-admin-orders .ao-badge-cancelled { color:#aa3948; background:#fff0f2; }
+.umi-admin-orders .ao-client-row { display:flex; gap:12px; align-items:center; }
+.umi-admin-orders .ao-client-row>div:last-child { min-width:0; }
+.umi-admin-orders .ao-avatar { flex-shrink:0; display:grid; place-items:center; width:42px; height:42px; border-radius:13px; background:#eef4f9; color:#41637e; font-weight:800; }
+.umi-admin-orders .ao-field-label { font-size:10px; color:#6d8194; }
+.umi-admin-orders .ao-client-row h2 { margin:3px 0; font-size:16px; overflow-wrap:anywhere; }
+.umi-admin-orders .ao-client-row p { margin:4px 0 0; color:#6d8194; font-size:12px; }
+.umi-admin-orders .ao-total { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 0; margin-top:6px; border-bottom:1px solid #edf1f5; }
+.umi-admin-orders .ao-total span { font-size:12px; color:#657b8e; }
+.umi-admin-orders .ao-total strong { font-size:19px; text-align:right; overflow-wrap:anywhere; }
+.umi-admin-orders .ao-status-row { display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px 16px; align-items:center; padding:16px 0; }
+.umi-admin-orders .ao-status-row label { font-size:12px; font-weight:700; }
+.umi-admin-orders .ao-status-row select { font-size:14px; background:white; }
+.umi-admin-orders select:disabled { opacity:.65; cursor:wait; }
+.umi-admin-orders .ao-saving { grid-column:1/-1; font-size:11px; color:#54748c; }
+.umi-admin-orders .ao-details { border-top:1px solid #edf1f5; }
+.umi-admin-orders summary { cursor:pointer; padding:14px 0 0; font-size:12px; color:#0876d8; font-weight:700; }
+.umi-admin-orders .ao-detail-content { margin-top:14px; background:#f8fafc; border-radius:10px; padding:12px; }
+.umi-admin-orders dl { margin:0; }
+.umi-admin-orders dl>div { margin-bottom:12px; }
+.umi-admin-orders dl>div:last-child { margin-bottom:0; }
+.umi-admin-orders dt { font-size:11px; color:#6d8194; margin-bottom:4px; }
+.umi-admin-orders dd { margin:0; font-size:13px; overflow-wrap:anywhere; }
+.umi-admin-orders .ao-items { margin-top:16px; border-top:1px solid #e1e8ef; padding-top:12px; }
+.umi-admin-orders .ao-items h3 { font-size:12px; margin:0 0 10px; }
+.umi-admin-orders .ao-items>div { display:flex; justify-content:space-between; gap:12px; font-size:12px; padding:8px 0; }
+.umi-admin-orders .ao-items span { overflow-wrap:anywhere; }
+.umi-admin-orders .ao-items strong { flex-shrink:0; }
+.umi-admin-orders .ao-items small { display:block; color:#6d8194; margin-top:4px; }
+.umi-admin-orders .ao-empty { text-align:center; padding:40px 20px; margin-top:16px; background:white; border:1px dashed #d5e0ea; border-radius:16px; font-size:14px; }
+.umi-admin-orders .ao-empty p { color:#6d8194; font-size:13px; line-height:1.6; }
+.umi-admin-orders .ao-error { color:#a23848; }
+.umi-admin-orders .ao-reset { background:#163a5c; color:white; border:0; padding:12px 16px; border-radius:10px; margin-top:8px; }
+.umi-admin-orders .ao-sales .umi-seller-sales { padding:20px!important; border:1px solid #e1e8ef; border-radius:18px; background:white!important; }
+.umi-admin-orders .ao-sales h2 { margin:0 0 20px; font-size:20px; }
+.umi-admin-orders .ao-sales article { background:#f8fafc!important; border:1px solid #e1e8ef; overflow-wrap:anywhere; }
+.umi-admin-orders .ao-sales p { font-size:14px; line-height:1.6; }
+@media (max-width:640px) {
+  .umi-admin-orders { padding:20px 12px 100px; }
+  .umi-admin-orders h1 { font-size:25px; }
+  .umi-admin-orders .ao-header { gap:12px; }
+  .umi-admin-orders .ao-tabs button { font-size:12px; }
+  .umi-admin-orders .ao-stats { gap:8px; }
+  .umi-admin-orders .ao-stats>div { padding:14px 12px; }
+  .umi-admin-orders .ao-stats strong { font-size:25px; }
+  .umi-admin-orders .ao-filters { grid-template-columns:1fr; gap:12px; }
+  .umi-admin-orders .ao-list { grid-template-columns:1fr; gap:12px; }
+  .umi-admin-orders .ao-card { padding:16px; }
+  .umi-admin-orders .ao-total strong { font-size:18px; }
+}

@@ -677,3 +677,85 @@
   }
 
 }
+.active-lives-section {
+  padding: 16px;
+}
+
+.active-lives-section > h2 {
+  margin: 0 0 10px;
+  color: #164565;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.active-lives-section > p {
+  margin: 0 0 16px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.active-lives-section > .admin-live-card {
+  margin-bottom: 12px;
+  padding: 18px;
+  border: 1px solid #e2eaf1;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(22, 69, 101, 0.07);
+}
+
+.active-lives-section > .admin-live-card > strong {
+  display: block;
+  color: #164565;
+  font-size: 17px;
+}
+
+.active-lives-section > .admin-live-card > p {
+  margin: 8px 0 14px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.active-lives-section > .admin-live-card > button {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 12px;
+  background: #eaf3fa;
+  color: #145b89;
+
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.active-lives-section > .admin-live-card > button:hover {
+  background: #d9eaf7;
+}
+
+.active-lives-section > .admin-live-card > button:active {
+  transform: scale(0.98);
+}
+
+.active-lives-section > .admin-live-card > button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+/* Formulaire vidéo : un ordre de lecture stable sur ordinateur et téléphone. */
+.umi-video-form { display:flex !important; flex-direction:column; gap:16px !important; }
+.umi-video-heading { order:0; }
+.umi-video-form > .create-live-button:not(.umi-video-publish) { order:1; }
+.umi-video-form > section, .umi-video-fields { order:2; }
+.umi-video-form > p[role="alert"], .umi-video-publish, .umi-video-form > button:not(.create-live-button) { order:3; }
+.umi-video-fields { display:grid !important; grid-template-columns: minmax(0,1fr); gap:14px !important; }
+.umi-video-field { width:100%; box-sizing:border-box; }
+.umi-video-field label { display:block; }
+.umi-video-selected-list { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.umi-video-selected-list > span { display:inline-block; padding:5px 8px; border-radius:8px; background:#dceeff; color:#163a5c; font-size:12px; }

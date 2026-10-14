@@ -1,3 +1,4 @@
+import { getProductNumericPrice } from "./productModel";
 import "./Cart.css";
 
 
@@ -48,10 +49,10 @@ function Cart({
 
       2000
       2 000
-      2 000 €
-      2000 €
-      2.000,50 €
-      2,000.50 €
+      2 000 FCFA
+      2000 FCFA
+      2.000,50 FCFA
+      2,000.50 FCFA
     */
 
     let value = String(price)
@@ -162,56 +163,20 @@ function Cart({
   };
 
 
-  /* =========================================
+    /* =========================================
      RÉCUPÉRER LA DEVISE
+     UMI UTILISE UNIQUEMENT FCFA
   ========================================= */
 
-  const getCurrency = (price) => {
+  const getCurrency = () => {
+  return "FCFA";
+};
 
-    const value =
-      String(price || "")
-        .toUpperCase();
-
-
-    if (
-      value.includes("FCFA") ||
-      value.includes("CFA")
-    ) {
-      return "FCFA";
-    }
-
-
-    if (
-      value.includes("$") ||
-      value.includes("USD")
-    ) {
-      return "$";
-    }
-
-
-    if (
-      value.includes("CHF")
-    ) {
-      return "CHF";
-    }
-
-
-    if (
-      value.includes("€") ||
-      value.includes("EUR")
-    ) {
-      return "€";
-    }
-
-
-    /*
-      Devise par défaut si aucun symbole
-      n'est enregistré dans le prix.
-    */
-
-    return "€";
-
-  };
+const getCartItemPrice = (machine) => {
+  // Purchased selections retain their recorded price, including discounts.
+  const saved = getNumericPrice(machine?.price);
+  return saved !== null ? saved : getProductNumericPrice(machine);
+};
 
 
   /* =========================================
@@ -224,11 +189,11 @@ function Cart({
   ) => {
 
     if (
-      amount === null ||
-      amount === undefined
-    ) {
-      return "Prix sur demande";
-    }
+  amount === null ||
+  amount === undefined
+) {
+  return "Prix non renseigné";
+}
 
 
     const formattedAmount =
@@ -238,13 +203,6 @@ function Cart({
           maximumFractionDigits: 2,
         }
       ).format(amount);
-
-
-    if (currency === "$") {
-
-      return `${formattedAmount} $`;
-
-    }
 
 
     return `${formattedAmount} ${currency}`;
@@ -428,10 +386,10 @@ function Cart({
 
                     <article
                       className="cart-item"
-                      key={
-                        machine?.id ||
-                        index
-                      }
+                      key={JSON.stringify([
+  machine?.id ?? index,
+  machine?.selectedModelId || "",
+])}
                     >
 
 
@@ -484,22 +442,37 @@ function Cart({
                             "Machine industrielle"}
                         </h3>
 
+{machine?.selectedModelId && (
+  <p
+    style={{
+      margin: "4px 0 8px",
+      color: "#52657a",
+      fontSize: "13px",
+      overflowWrap: "anywhere",
+    }}
+  >
+    Modèle : <strong>{machine.model}</strong>
 
+    {machine.capacity && (
+      <>
+        <br />
+        Capacité : {machine.capacity}
+      </>
+    )}
+  </p>
+)}
                         {/* =====================================
                             PRIX MULTIPLIÉ
                         ===================================== */}
 
                         <p className="cart-item-price">
+  Prix unitaire : {formatPrice(unitPrice, currency)}
+</p>
 
-                          {lineTotal !== null
-                            ? formatPrice(
-                                lineTotal,
-                                currency
-                              )
-                            : "Prix sur demande"}
-
-                        </p>
-
+<p>
+  Total pour {quantity} :
+  {" "}{formatPrice(lineTotal, currency)}
+</p>
 
                         {/* =====================================
                             PRIX UNITAIRE

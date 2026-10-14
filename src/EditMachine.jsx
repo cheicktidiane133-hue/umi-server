@@ -1,3 +1,4 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useEffect, useState } from "react";
 
 import {
@@ -38,7 +39,73 @@ function EditMachine({
 
   const [model, setModel] =
     useState(machine?.model || "");
+const [machineModels, setMachineModels] = useState(() =>
+  Array.isArray(machine?.models)
+    ? machine.models.map((item) => ({
+        ...item,
+        id: item.id || crypto.randomUUID(),
+        name: item.name ?? "",
+        capacity: String(item.capacity ?? ""),
+        price: String(item.price ?? ""),
+        power: String(item.power ?? ""),
+        year: String(item.year ?? ""),
+        warranty: String(item.warranty ?? ""),
+        availability: String(item.availability ?? ""),
 
+        images: Array.from(
+          new Set([
+            ...(Array.isArray(item.images) ? item.images : []),
+            ...(item.imageUrl ? [item.imageUrl] : []),
+          ])
+        ),
+
+        videos: Array.from(
+          new Set([
+            ...(Array.isArray(item.videos) ? item.videos : []),
+            ...(item.videoUrl ? [item.videoUrl] : []),
+          ])
+        ),
+
+        imageFiles: [],
+        videoFiles: [],
+      }))
+    : []
+);
+
+const addMachineModel = () => {
+  setMachineModels((current) => [
+    ...current,
+    {
+      id: crypto.randomUUID(),
+      name: "",
+      capacity: "",
+      price: "",
+      power: "",
+      year: "",
+      warranty: "",
+      availability: "",
+      images: [],
+      videos: [],
+      imageFiles: [],
+      videoFiles: [],
+    },
+  ]);
+};
+const updateMachineModel = (modelId, field, value) => {
+  setMachineModels((current) =>
+    current.map((item) =>
+      item.id === modelId
+        ? { ...item, [field]: value }
+        : item
+    )
+  );
+};
+
+const removeMachineModel = (modelId) => {
+  setMachineModels((current) =>
+    current.filter((item) => item.id !== modelId)
+  );
+};
   const [capacity, setCapacity] =
     useState(machine?.capacity || "");
 
@@ -133,19 +200,15 @@ function EditMachine({
 
   const categories = [
     "Agroalimentaire",
-    "Emballage & conditionnement",
-    "Fabrication plastique",
-    "Eau & boissons",
+    "Machine de fabrication plastique et recyclage",
     "Produits chimiques & entretien",
     "Cosmétiques",
     "Agriculture & élevage",
     "Construction & BTP",
     "Bois & menuiserie",
-    "Métallurgie & fabrication",
     "Textile & habillement",
     "Papier & impression",
     "Énergie & équipements",
-    "Recyclage & environnement",
     "Autres machines & accessoires",
   ];
 
@@ -200,7 +263,7 @@ function EditMachine({
 
     if (totalPhotos > 10) {
 
-      alert(
+      umiNotify(
         "Vous pouvez avoir au maximum 10 photos."
       );
 
@@ -221,7 +284,7 @@ function EditMachine({
 
     if (invalidFile) {
 
-      alert(
+      umiNotify(
         "Veuillez sélectionner uniquement des photos."
       );
 
@@ -241,7 +304,7 @@ function EditMachine({
 
     if (tooLarge) {
 
-      alert(
+      umiNotify(
         "Chaque photo doit faire moins de 10 MB."
       );
 
@@ -356,7 +419,7 @@ function EditMachine({
       )
     ) {
 
-      alert(
+      umiNotify(
         "Veuillez sélectionner une vidéo."
       );
 
@@ -371,7 +434,7 @@ function EditMachine({
       100 * 1024 * 1024
     ) {
 
-      alert(
+      umiNotify(
         "La vidéo est trop grande. Maximum : 100 MB."
       );
 
@@ -432,10 +495,10 @@ function EditMachine({
      SUPPRIMER LA VIDÉO ACTUELLE
   ========================================= */
 
-  const removeCurrentVideo = () => {
+  const removeCurrentVideo = async () => {
 
     const confirmation =
-      window.confirm(
+      await umiAsk(
         "Voulez-vous supprimer la vidéo actuelle ?"
       );
 
@@ -585,7 +648,7 @@ function EditMachine({
 
       if (!name.trim()) {
 
-        alert(
+        await umiNotify(
           "Veuillez entrer le nom de la machine."
         );
 
@@ -595,7 +658,7 @@ function EditMachine({
 
       if (!category) {
 
-        alert(
+        await umiNotify(
           "Veuillez sélectionner une catégorie."
         );
 
@@ -603,52 +666,47 @@ function EditMachine({
       }
 
 
-      if (
-        !price
-          .toString()
-          .trim()
-      ) {
+      if (machineModels.length === 0) {
+  await umiNotify("Veuillez ajouter au moins un modèle.");
+  return;
+}
 
-        alert(
-          "Veuillez entrer le prix."
-        );
-
-        return;
-      }
-
-
-      if (!condition) {
-
-        alert(
-          "Veuillez sélectionner l'état de la machine."
-        );
-
-        return;
-      }
+if (
+  machineModels.some(
+    (item) =>
+      !item.name.trim() ||
+      !String(item.price ?? "").trim() ||
+      !Number.isFinite(Number(item.price)) ||
+      Number(item.price) <= 0
+  )
+) {
+  await umiNotify(
+    "Veuillez renseigner le nom et un prix valide pour chaque modèle."
+  );
+  return;
+}
 
 
       if (!machine?.id) {
 
-        alert(
+        await umiNotify(
           "Identifiant de la machine introuvable."
         );
 
         return;
       }
 
-
-      if (
-        currentImages.length === 0 &&
-        newImages.length === 0
-      ) {
-
-        alert(
-          "La machine doit avoir au moins une photo."
-        );
-
-        return;
-      }
-
+if (
+  currentImages.length === 0 &&
+  !machineModels.some(
+    (item) =>
+      item.images?.length > 0 ||
+      item.imageFiles?.length > 0
+  )
+) {
+  await umiNotify("Veuillez ajouter au moins une photo dans un modèle.");
+  return;
+}
 
       try {
 
@@ -659,74 +717,8 @@ function EditMachine({
         );
 
 
-        /* =====================================
-           ENVOYER LES NOUVELLES PHOTOS
-        ===================================== */
-
-        const uploadedImages = [];
-
-
-        for (
-          let index = 0;
-          index < newImages.length;
-          index++
-        ) {
-
-          setUploadStatus(
-            `Envoi de la photo ${
-              index + 1
-            }/${newImages.length}...`
-          );
-
-
-          const imageUrl =
-            await uploadToCloudinary(
-              newImages[index],
-              "image"
-            );
-
-
-          uploadedImages.push(
-            imageUrl
-          );
-
-        }
-
-
-        const finalImages = [
-          ...currentImages,
-          ...uploadedImages,
-        ];
-
-
-        /* =====================================
-           ENVOYER LA VIDÉO
-        ===================================== */
-
-        let finalVideoUrl =
-          currentVideoUrl;
-
-
-        if (newVideo) {
-
-          setUploadStatus(
-            "Envoi de la vidéo..."
-          );
-
-
-          const uploadedVideoUrl =
-            await uploadToCloudinary(
-              newVideo,
-              "video"
-            );
-
-
-          finalVideoUrl =
-            uploadedVideoUrl;
-
-        }
-
-
+        const finalImages = [...currentImages];
+const finalVideoUrl = currentVideoUrl;
         /* =====================================
            PRÉPARER LES DONNÉES
         ===================================== */
@@ -734,19 +726,65 @@ function EditMachine({
         setUploadStatus(
           "Enregistrement de la machine..."
         );
+const uploadedModels = [];
 
+for (const item of machineModels) {
+  const modelImages = [...(item.images || [])];
+  const modelVideos = [...(item.videos || [])];
+  const imageFiles = item.imageFiles || [];
+  const videoFiles = item.videoFiles || [];
 
+  if (modelImages.length + imageFiles.length > 6) {
+    throw new Error(
+      `Le modèle ${item.name} dépasse la limite de 6 photos.`
+    );
+  }
+
+  if (modelVideos.length + videoFiles.length > 3) {
+    throw new Error(
+      `Le modèle ${item.name} dépasse la limite de 3 vidéos.`
+    );
+  }
+
+  for (const [index, file] of imageFiles.entries()) {
+    setUploadStatus(
+      `Modèle ${item.name} : envoi de la photo ${index + 1}...`
+    );
+
+    const url = await uploadToCloudinary(file, "image");
+    modelImages.push(url);
+  }
+
+  for (const [index, file] of videoFiles.entries()) {
+    setUploadStatus(
+      `Modèle ${item.name} : envoi de la vidéo ${index + 1}...`
+    );
+
+    const url = await uploadToCloudinary(file, "video");
+    modelVideos.push(url);
+  }
+
+  uploadedModels.push({
+    id: item.id,
+    name: item.name.trim(),
+    capacity: String(item.capacity ?? "").trim(),
+    price: Number(item.price),
+    power: String(item.power ?? "").trim(),
+    year: String(item.year ?? "").trim(),
+    warranty: String(item.warranty ?? "").trim(),
+    availability: String(item.availability ?? "").trim(),
+    images: modelImages,
+    videos: modelVideos,
+    imageUrl: modelImages[0] || "",
+    videoUrl: modelVideos[0] || "",
+  });
+}
         const updatedMachine = {
 
           name:
             name.trim(),
 
           category,
-
-          price:
-            price
-              .toString()
-              .trim(),
 
           condition,
 
@@ -755,7 +793,7 @@ function EditMachine({
 
           model:
             model.trim(),
-
+models: uploadedModels,
           capacity:
             capacity.trim(),
 
@@ -777,13 +815,27 @@ function EditMachine({
             description.trim(),
 
           imageUrl:
-            finalImages[0],
+  uploadedModels.find(
+    (item) => item.images?.length > 0
+  )?.images[0] ||
+  finalImages[0] ||
+  "",
 
-          images:
-            finalImages,
+images: Array.from(
+  new Set([
+    ...finalImages,
+    ...uploadedModels.flatMap(
+      (item) => item.images || []
+    ),
+  ])
+),
 
-          videoUrl:
-            finalVideoUrl,
+videoUrl:
+  uploadedModels.find(
+    (item) => item.videos?.length > 0
+  )?.videos[0] ||
+  finalVideoUrl ||
+  "",
 
         };
 
@@ -818,7 +870,7 @@ function EditMachine({
         };
 
 
-        alert(
+        await umiNotify(
           "Machine modifiée avec succès !"
         );
 
@@ -840,7 +892,7 @@ function EditMachine({
         );
 
 
-        alert(
+        await umiNotify(
           `Erreur lors de la modification.\n\n${
             error?.message ||
             "Erreur inconnue."
@@ -930,320 +982,6 @@ function EditMachine({
         >
 
 
-          {/* =================================
-              PHOTOS
-          ================================= */}
-
-          <section className="edit-form-section">
-
-            <div className="edit-section-title">
-
-              <span className="edit-section-icon">
-                📷
-              </span>
-
-              <div>
-
-                <h2>
-                  Photos de la machine
-                </h2>
-
-                <p>
-                  La première photo est la photo principale.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            {currentImages.length > 0 && (
-
-              <>
-
-                <p className="edit-media-label">
-                  Photos actuelles
-                </p>
-
-
-                <div className="edit-images-grid">
-
-                  {currentImages.map(
-                    (imageUrl, index) => (
-
-                      <div
-                        className="edit-image-item"
-                        key={`${imageUrl}-${index}`}
-                      >
-
-                        <img
-                          src={imageUrl}
-                          alt={`Photo ${index + 1}`}
-                        />
-
-
-                        {index === 0 && (
-
-                          <span className="edit-main-photo">
-                            PRINCIPALE
-                          </span>
-
-                        )}
-
-
-                        <button
-                          type="button"
-                          className="edit-remove-media"
-                          onClick={() =>
-                            removeCurrentImage(
-                              index
-                            )
-                          }
-                          disabled={isSaving}
-                          aria-label="Supprimer la photo"
-                        >
-                          ×
-                        </button>
-
-                      </div>
-
-                    )
-                  )}
-
-                </div>
-
-              </>
-
-            )}
-
-
-            <label
-              htmlFor="edit-machine-images"
-              className="edit-media-upload"
-            >
-
-              <span className="edit-upload-icon">
-                +
-              </span>
-
-              <strong>
-                Ajouter des photos
-              </strong>
-
-              <small>
-                Jusqu'à 10 photos au total
-              </small>
-
-            </label>
-
-
-            <input
-              id="edit-machine-images"
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleImagesChange}
-              disabled={isSaving}
-              className="edit-hidden-input"
-            />
-
-
-            {newImagePreviews.length > 0 && (
-
-              <>
-
-                <p className="edit-media-label edit-new-label">
-                  Nouvelles photos
-                </p>
-
-
-                <div className="edit-images-grid">
-
-                  {newImagePreviews.map(
-                    (preview, index) => (
-
-                      <div
-                        className="edit-image-item"
-                        key={`${preview}-${index}`}
-                      >
-
-                        <img
-                          src={preview}
-                          alt={`Nouvelle photo ${index + 1}`}
-                        />
-
-
-                        <button
-                          type="button"
-                          className="edit-remove-media"
-                          onClick={() =>
-                            removeNewImage(
-                              index
-                            )
-                          }
-                          disabled={isSaving}
-                          aria-label="Supprimer la nouvelle photo"
-                        >
-                          ×
-                        </button>
-
-                      </div>
-
-                    )
-                  )}
-
-                </div>
-
-              </>
-
-            )}
-
-
-            <p className="edit-media-count">
-
-              {currentImages.length +
-                newImages.length}{" "}
-
-              photo
-              {currentImages.length +
-                newImages.length !== 1
-                ? "s"
-                : ""}{" "}
-              au total
-
-            </p>
-
-          </section>
-
-
-          {/* =================================
-              VIDÉO
-          ================================= */}
-
-          <section className="edit-form-section">
-
-            <div className="edit-section-title">
-
-              <span className="edit-section-icon">
-                🎥
-              </span>
-
-              <div>
-
-                <h2>
-                  Vidéo de la machine
-                </h2>
-
-                <p>
-                  Facultatif
-                </p>
-
-              </div>
-
-            </div>
-
-
-            {/* VIDÉO ACTUELLE */}
-
-            {currentVideoUrl &&
-              !newVideoPreview && (
-
-                <div className="edit-video-box">
-
-                  <video
-                    src={currentVideoUrl}
-                    controls
-                    playsInline
-                    preload="metadata"
-                  />
-
-
-                  <button
-                    type="button"
-                    className="edit-delete-video"
-                    onClick={
-                      removeCurrentVideo
-                    }
-                    disabled={isSaving}
-                  >
-                    Supprimer la vidéo actuelle
-                  </button>
-
-                </div>
-
-              )}
-
-
-            {/* NOUVELLE VIDÉO */}
-
-            {newVideoPreview && (
-
-              <div className="edit-video-box">
-
-                <video
-                  src={newVideoPreview}
-                  controls
-                  playsInline
-                  preload="metadata"
-                />
-
-
-                <p>
-                  {newVideo?.name}
-                </p>
-
-
-                <button
-                  type="button"
-                  className="edit-delete-video"
-                  onClick={
-                    cancelNewVideo
-                  }
-                  disabled={isSaving}
-                >
-                  Annuler la nouvelle vidéo
-                </button>
-
-              </div>
-
-            )}
-
-
-            <label
-              htmlFor="edit-machine-video"
-              className="edit-media-upload"
-            >
-
-              <span className="edit-upload-icon">
-                ▶
-              </span>
-
-              <strong>
-
-                {currentVideoUrl
-                  ? "Changer la vidéo"
-                  : "Ajouter une vidéo"}
-
-              </strong>
-
-              <small>
-                Maximum 100 MB
-              </small>
-
-            </label>
-
-
-            <input
-              id="edit-machine-video"
-              type="file"
-              accept="video/*"
-              onChange={handleVideoChange}
-              disabled={isSaving}
-              className="edit-hidden-input"
-            />
-
-          </section>
-
 
           {/* =================================
               INFORMATIONS PRINCIPALES
@@ -1272,33 +1010,7 @@ function EditMachine({
             </div>
 
 
-            <div className="edit-form-field">
-
-              <label htmlFor="edit-name">
-
-                Nom de la machine
-
-                <span className="edit-required">
-                  *
-                </span>
-
-              </label>
-
-
-              <input
-                id="edit-name"
-                type="text"
-                value={name}
-                onChange={(event) =>
-                  setName(
-                    event.target.value
-                  )
-                }
-                disabled={isSaving}
-                required
-              />
-
-            </div>
+            
 
 
             <div className="edit-form-field">
@@ -1355,307 +1067,259 @@ function EditMachine({
 
             </div>
 
+  
 
-            <div className="edit-form-field">
+          </section>
 
-              <label htmlFor="edit-price">
+<section className="edit-form-section">
+  <div className="edit-section-title">
+    <span className="edit-section-icon">⚙️</span>
+    <div>
+      <h2>Machine et modèles</h2>
+      <p>Modifiez les informations de chaque modèle.</p>
+    </div>
+  </div>
 
-                Prix
+  <div
+    className="edit-form-field"
+    style={{ gridColumn: "1 / -1" }}
+  >
+    <label htmlFor="edit-machine-name">
+      Nom de la machine
+    </label>
 
-                <span className="edit-required">
-                  *
-                </span>
+    <input
+      id="edit-machine-name"
+      type="text"
+      value={name}
+      onChange={(event) => setName(event.target.value)}
+      disabled={isSaving}
+      required
+    />
+  </div>
 
-              </label>
+  {machineModels.map((item, index) => (
+    <div key={item.id} className="edit-model-card">
+      <div className="edit-model-header">
+        <strong>Modèle {index + 1}</strong>
 
+        <button
+          type="button"
+          disabled={isSaving}
+          onClick={() => removeMachineModel(item.id)}
+        >
+          Retirer ce modèle
+        </button>
+      </div>
 
-              <input
-                id="edit-price"
-                type="text"
-                value={price}
-                onChange={(event) =>
-                  setPrice(
-                    event.target.value
-                  )
-                }
-                placeholder="Exemple : 2 500 000 FCFA"
-                disabled={isSaving}
-                required
-              />
+      <div className="edit-model-fields">
+        {[
+          ["name", "Nom du modèle"],
+          ["capacity", "Capacité de production"],
+          ["price", "Prix en FCFA"],
+          ["power", "Puissance"],
+          ["year", "Année de fabrication"],
+          ["warranty", "Garantie"],
+                    ["availability", "Disponibilité"],
+        ].map(([field, label]) => (
+          <div className="edit-form-field" key={field}>
+            <label htmlFor={`edit-model-${field}-${item.id}`}>
+              {label}
+            </label>
 
-            </div>
-
-
-            <div className="edit-form-field">
-
-              <label htmlFor="edit-condition">
-
-                État de la machine
-
-                <span className="edit-required">
-                  *
-                </span>
-
-              </label>
-
-
+            {field === "availability" ? (
               <select
-                id="edit-condition"
-                value={condition}
+                id={`edit-model-${field}-${item.id}`}
+                value={item[field] ?? ""}
+                disabled={isSaving}
                 onChange={(event) =>
-                  setCondition(
+                  updateMachineModel(
+                    item.id,
+                    field,
                     event.target.value
                   )
                 }
-                disabled={isSaving}
-                required
               >
-
-                {!condition && (
-
-                  <option
-                    value=""
-                    disabled
-                  >
-                    Sélectionnez l'état
-                  </option>
-
-                )}
-
-
-                <option value="Neuf">
-                  Neuf
+                <option value="">
+                  Sélectionnez la disponibilité
                 </option>
 
-                <option value="Occasion">
-                  Occasion
+                {item[field] &&
+                  ![
+                    "Disponible en stock",
+                    "Acheter en chine",
+                  ].includes(item[field]) && (
+                    <option value={item[field]}>
+                      {item[field]}
+                    </option>
+                  )}
+
+                <option value="Disponible en stock">
+                  Disponible en stock
                 </option>
 
-                <option value="Reconditionné">
-                  Reconditionné
+                <option value="Acheter en chine">
+                  Acheter en chine
                 </option>
-
               </select>
-
-            </div>
-
-          </section>
-
-
-          {/* =================================
-              CARACTÉRISTIQUES
-          ================================= */}
-
-          <section className="edit-form-section">
-
-            <div className="edit-section-title">
-
-              <span className="edit-section-icon">
-                🛠️
-              </span>
-
-              <div>
-
-                <h2>
-                  Caractéristiques
-                </h2>
-
-                <p>
-                  Informations techniques de la machine.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div className="edit-form-field">
-
-              <label htmlFor="edit-brand">
-                Marque
-              </label>
-
+            ) : (
               <input
-                id="edit-brand"
-                type="text"
-                value={brand}
+                id={`edit-model-${field}-${item.id}`}
+                type={field === "price" ? "number" : "text"}
+                min={field === "price" ? "1" : undefined}
+                step={field === "price" ? "1" : undefined}
+                value={item[field] ?? ""}
+                disabled={isSaving}
+                required={field === "name" || field === "price"}
                 onChange={(event) =>
-                  setBrand(
+                  updateMachineModel(
+                    item.id,
+                    field,
                     event.target.value
                   )
                 }
-                placeholder="Exemple : Bosch"
-                disabled={isSaving}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="edit-form-field">
+        <label>Photos enregistrées</label>
+
+        <div className="edit-images-grid">
+          {(item.images || []).map((url, photoIndex) => (
+            <div className="edit-image-item" key={url}>
+              <img
+                src={url}
+                alt={`Modèle ${index + 1}, photo ${photoIndex + 1}`}
               />
 
-            </div>
-
-
-            <div className="edit-form-field">
-
-              <label htmlFor="edit-model">
-                Modèle
-              </label>
-
-              <input
-                id="edit-model"
-                type="text"
-                value={model}
-                onChange={(event) =>
-                  setModel(
-                    event.target.value
+              <button
+                type="button"
+                className="edit-remove-media"
+                aria-label={`Retirer la photo ${photoIndex + 1}`}
+                disabled={isSaving}
+                onClick={() =>
+                  updateMachineModel(
+                    item.id,
+                    "images",
+                    item.images.filter(
+                      (_, position) => position !== photoIndex
+                    )
                   )
                 }
-                placeholder="Exemple : X200"
-                disabled={isSaving}
-              />
-
+              >
+                ×
+              </button>
             </div>
+          ))}
+        </div>
 
+        <label htmlFor={`edit-model-photos-${item.id}`}>
+          Ajouter des photos — 6 au total maximum
+        </label>
 
-            <div className="edit-form-field">
+        <input
+          id={`edit-model-photos-${item.id}`}
+          type="file"
+          accept="image/*"
+          multiple
+          disabled={isSaving}
+          onChange={(event) => {
+            const files = Array.from(event.target.files || []);
 
-              <label htmlFor="edit-capacity">
-                Capacité de production
-              </label>
+            if (
+              files.some(
+                (file) => !file.type.startsWith("image/")
+              ) ||
+              files.length + (item.images?.length || 0) > 6
+            ) {
+              umiNotify("Choisissez des photos, avec un maximum de 6 au total.");
+              event.target.value = "";
+              return;
+            }
 
-              <input
-                id="edit-capacity"
-                type="text"
-                value={capacity}
-                onChange={(event) =>
-                  setCapacity(
-                    event.target.value
+            updateMachineModel(item.id, "imageFiles", files);
+          }}
+        />
+
+        <small>
+          {item.imageFiles?.length || 0} nouvelle(s) photo(s)
+        </small>
+      </div>
+
+      <div className="edit-form-field">
+        <label>Vidéos enregistrées</label>
+
+        {(item.videos || []).map((url, videoIndex) => (
+          <div className="edit-video-box" key={url}>
+            <video src={url} controls preload="metadata" />
+
+            <button
+              type="button"
+              className="edit-delete-video"
+              disabled={isSaving}
+              onClick={() =>
+                updateMachineModel(
+                  item.id,
+                  "videos",
+                  item.videos.filter(
+                    (_, position) => position !== videoIndex
                   )
-                }
-                placeholder="Exemple : 500 sachets/heure"
-                disabled={isSaving}
-              />
+                )
+              }
+            >
+              Retirer cette vidéo
+            </button>
+          </div>
+        ))}
 
-            </div>
+        <label htmlFor={`edit-model-videos-${item.id}`}>
+          Ajouter des vidéos — 3 au total maximum
+        </label>
 
+        <input
+          id={`edit-model-videos-${item.id}`}
+          type="file"
+          accept="video/*"
+          multiple
+          disabled={isSaving}
+          onChange={(event) => {
+            const files = Array.from(event.target.files || []);
 
-            <div className="edit-form-field">
+            if (
+              files.some(
+                (file) => !file.type.startsWith("video/")
+              ) ||
+              files.length + (item.videos?.length || 0) > 3
+            ) {
+              umiNotify("Choisissez des vidéos, avec un maximum de 3 au total.");
+              event.target.value = "";
+              return;
+            }
 
-              <label htmlFor="edit-power">
-                Puissance
-              </label>
+            updateMachineModel(item.id, "videoFiles", files);
+          }}
+        />
 
-              <input
-                id="edit-power"
-                type="text"
-                value={power}
-                onChange={(event) =>
-                  setPower(
-                    event.target.value
-                  )
-                }
-                placeholder="Exemple : 5 kW"
-                disabled={isSaving}
-              />
+        <small>
+          {item.videoFiles?.length || 0} nouvelle(s) vidéo(s)
+        </small>
+      </div>
+    </div>
+  ))}
 
-            </div>
-
-
-            <div className="edit-form-field">
-
-              <label htmlFor="edit-year">
-                Année de fabrication
-              </label>
-
-              <input
-                id="edit-year"
-                type="number"
-                min="1900"
-                max="2100"
-                value={year}
-                onChange={(event) =>
-                  setYear(
-                    event.target.value
-                  )
-                }
-                placeholder="Exemple : 2026"
-                disabled={isSaving}
-              />
-
-            </div>
-
-
-            <div className="edit-form-field">
-
-              <label htmlFor="edit-warranty">
-                Garantie
-              </label>
-
-              <input
-                id="edit-warranty"
-                type="text"
-                value={warranty}
-                onChange={(event) =>
-                  setWarranty(
-                    event.target.value
-                  )
-                }
-                placeholder="Exemple : 12 mois"
-                disabled={isSaving}
-              />
-
-            </div>
-
-          </section>
-
-
-          {/* =================================
-              LOCALISATION
-          ================================= */}
-
-          <section className="edit-form-section">
-
-            <div className="edit-section-title">
-
-              <span className="edit-section-icon">
-                📍
-              </span>
-
-              <div>
-
-                <h2>
-                  Localisation
-                </h2>
-
-                <p>
-                  Indiquez où se trouve la machine.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div className="edit-form-field">
-
-              <label htmlFor="edit-location">
-                Ville / Pays
-              </label>
-
-              <input
-                id="edit-location"
-                type="text"
-                value={location}
-                onChange={(event) =>
-                  setLocation(
-                    event.target.value
-                  )
-                }
-                placeholder="Exemple : Bamako, Mali"
-                disabled={isSaving}
-              />
-
-            </div>
-
-          </section>
-
-
+  <button
+    type="button"
+    className="edit-cancel-button"
+    style={{ gridColumn: "1 / -1" }}
+    onClick={addMachineModel}
+    disabled={isSaving}
+  >
+    + Ajouter un modèle
+  </button>
+</section>
           {/* =================================
               DESCRIPTION
           ================================= */}

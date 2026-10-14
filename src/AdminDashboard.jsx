@@ -3,13 +3,19 @@ import logoUmi from "./assets/logo-umi.jpeg";
 
 
 function AdminDashboard({
+  onHome,
   onOpenMachines,
   onOpenAdminLive,
   onOpenRawMaterials,
   onOpenPackaging,
   onOpenQuotes,
   onOpenAdminChat,
+  onOpenOrders,
+  onOpenReviews,
+  onOpenHomeMedia,
   onLogout,
+  onOpenAccounts,
+  onOpenPrivacy,
 }) {
 
   return (
@@ -23,7 +29,20 @@ function AdminDashboard({
 
       <header className="dashboard-header">
 
-        <div className="dashboard-header-space"></div>
+        <button
+  type="button"
+  className="dashboard-home-button"
+  onClick={onHome}
+  aria-label="Accueil"
+>
+  <span className="dashboard-home-icon">
+    🏠
+  </span>
+
+  <span className="dashboard-home-label">
+    Accueil
+  </span>
+</button>
 
         <div className="dashboard-brand">
 
@@ -87,19 +106,15 @@ function AdminDashboard({
         <div className="dashboard-actions">
 
 
-          {/* GESTION DU CATALOGUE */}
+          {/* =========================
+              GESTION DU CATALOGUE
+          ========================= */}
 
           <button
-  type="button"
-  className="dashboard-action-card"
-  onClick={() => {
-    alert("BOUTON FONCTIONNE");
-
-    if (onOpenMachines) {
-      onOpenMachines();
-    }
-  }}
->
+            type="button"
+            className="dashboard-action-card"
+            onClick={onOpenMachines}
+          >
 
             <div className="dashboard-action-icon">
               ⚙️
@@ -108,7 +123,7 @@ function AdminDashboard({
             <div className="dashboard-action-text">
 
               <strong>
-                Gestion du catalogue
+                Machines industrielles
               </strong>
 
               <span>
@@ -125,38 +140,12 @@ function AdminDashboard({
           </button>
 
 
-          {/* UMI LIVE */}
-
-          <button
-            type="button"
-            className="dashboard-action-card"
-            onClick={onOpenAdminLive}
-          >
-
-            <div className="dashboard-action-icon live">
-              ▶
-            </div>
-
-            <div className="dashboard-action-text">
-
-              <strong>
-                Gérer UMI LIVE
-              </strong>
-
-              <span>
-                Créer et gérer les directs
-              </span>
-
-            </div>
-
-            <div className="dashboard-action-arrow">
-              ›
-            </div>
-
-          </button>
+          
 
 
-          {/* MATIÈRES PREMIÈRES */}
+          {/* =========================
+              MATIÈRES PREMIÈRES
+          ========================= */}
 
           <button
             type="button"
@@ -187,7 +176,9 @@ function AdminDashboard({
           </button>
 
 
-          {/* EMBALLAGES */}
+          {/* =========================
+              EMBALLAGES
+          ========================= */}
 
           <button
             type="button"
@@ -217,8 +208,44 @@ function AdminDashboard({
 
           </button>
 
+<button type="button" className="dashboard-action-card" onClick={onOpenAccounts}>
+  <div className="dashboard-action-icon">👥</div><div className="dashboard-action-text"><strong>Gestion des comptes</strong><span>Bloquer, débloquer ou supprimer un compte</span></div><div className="dashboard-action-arrow">›</div>
+</button>
+<button type="button" className="dashboard-action-card" onClick={onOpenPrivacy}>
+  <div className="dashboard-action-icon">🔒</div><div className="dashboard-action-text"><strong>Confidentialité</strong><span>Modifier la politique de confidentialité</span></div><div className="dashboard-action-arrow">›</div>
+</button>
+{/* =========================
+    MÉDIA D'ACCUEIL
+========================= */}
 
-          {/* DEVIS */}
+<button
+  type="button"
+  className="dashboard-action-card"
+  onClick={onOpenHomeMedia}
+>
+  <div className="dashboard-action-icon">
+    🖼️
+  </div>
+
+  <div className="dashboard-action-text">
+
+    <strong>
+      Média d'accueil
+    </strong>
+
+    <span>
+      Modifier la photo ou la vidéo d'accueil
+    </span>
+
+  </div>
+
+  <div className="dashboard-action-arrow">
+    ›
+  </div>
+</button>
+          {/* =========================
+              DEVIS
+          ========================= */}
 
           <button
             type="button"
@@ -248,8 +275,63 @@ function AdminDashboard({
 
           </button>
 
+{/* =========================
+    COMMANDES CLIENTS
+========================= */}
 
-          {/* MESSAGES CLIENTS */}
+<button
+  type="button"
+  className="dashboard-action-card"
+  onClick={onOpenOrders}
+>
+  <div className="dashboard-action-icon">
+    📦
+  </div>
+
+  <div className="dashboard-action-text">
+    <strong>
+      Les commandes
+    </strong>
+
+    <span>
+      Consulter et gérer les commandes
+    </span>
+  </div>
+
+  <div className="dashboard-action-arrow">
+    ›
+  </div>
+</button>
+{/* =========================
+    AVIS CLIENTS
+========================= */}
+
+<button
+  type="button"
+  className="dashboard-action-card"
+  onClick={onOpenReviews}
+>
+  <div className="dashboard-action-icon">
+    ⭐
+  </div>
+
+  <div className="dashboard-action-text">
+    <strong>
+      Avis clients
+    </strong>
+
+    <span>
+      Consulter et supprimer les avis clients
+    </span>
+  </div>
+
+  <div className="dashboard-action-arrow">
+    ›
+  </div>
+</button>
+          {/* =========================
+              MESSAGES CLIENTS
+          ========================= */}
 
           <button
             type="button"
@@ -279,154 +361,39 @@ function AdminDashboard({
 
           </button>
 
-        </div>
+        
+{/* =========================
+              UMI LIVE
+          ========================= */}
 
+          <button
+            type="button"
+            className="dashboard-action-card"
+            onClick={onOpenAdminLive}
+          >
 
-        {/* =========================
-            CENTRE UMI
-        ========================= */}
+            <div className="dashboard-action-icon live">
+              ▶
+            </div>
 
-        <section className="dashboard-machines-section">
+            <div className="dashboard-action-text">
 
-          <div className="dashboard-section-header">
+              <strong>
+                Gérer UMI LIVE
+              </strong>
 
-            <div>
-
-              <p className="dashboard-section-label">
-                GESTION COMMERCIALE
-              </p>
-
-              <h2>
-                Centre UMI
-              </h2>
+              <span>
+                Créer et gérer les directs
+              </span>
 
             </div>
 
-          </div>
+            <div className="dashboard-action-arrow">
+              ›
+            </div>
 
-
-          <div className="admin-commerce-summary">
-
-
-            <button
-              type="button"
-              className="admin-commerce-box"
-              onClick={onOpenQuotes}
-            >
-
-              <span>📄</span>
-
-              <div>
-
-                <strong>
-                  Devis
-                </strong>
-
-                <small>
-                  Suivre les demandes clients
-                </small>
-
-              </div>
-
-            </button>
-
-
-            <button
-              type="button"
-              className="admin-commerce-box"
-              onClick={onOpenAdminChat}
-            >
-
-              <span>💬</span>
-
-              <div>
-
-                <strong>
-                  Assistance
-                </strong>
-
-                <small>
-                  Répondre aux clients
-                </small>
-
-              </div>
-
-            </button>
-
-
-            <button
-              type="button"
-              className="admin-commerce-box"
-              onClick={onOpenRawMaterials}
-            >
-
-              <span>🌾</span>
-
-              <div>
-
-                <strong>
-                  Matières
-                </strong>
-
-                <small>
-                  Catalogue et stock
-                </small>
-
-              </div>
-
-            </button>
-
-
-            <button
-              type="button"
-              className="admin-commerce-box"
-              onClick={onOpenPackaging}
-            >
-
-              <span>📦</span>
-
-              <div>
-
-                <strong>
-                  Emballages
-                </strong>
-
-                <small>
-                  Catalogue et stock
-                </small>
-
-              </div>
-
-            </button>
-
-
-            <button
-              type="button"
-              className="admin-commerce-box"
-              onClick={onOpenMachines}
-            >
-
-              <span>⚙️</span>
-
-              <div>
-
-                <strong>
-                  Catalogue
-                </strong>
-
-                <small>
-                  Gérer les machines
-                </small>
-
-              </div>
-
-            </button>
-
-          </div>
-
-        </section>
-
-
+          </button>
+</div>
         {/* =========================
             DÉCONNEXION
         ========================= */}

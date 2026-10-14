@@ -1032,3 +1032,318 @@
   }
 
 }
+/* FORMULAIRE MODIFIER LA MACHINE — VERSION COMPACTE */
+
+.edit-machine-header {
+  min-height: 70px;
+  padding: 8px 12px;
+}
+
+.edit-machine-content {
+  max-width: 1100px;
+  padding: 12px 10px 25px;
+}
+
+.edit-machine-intro {
+  margin-bottom: 10px;
+}
+
+.edit-machine-intro h1 {
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.edit-form-section {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+}
+
+.edit-section-title {
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.edit-section-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 17px;
+  border-radius: 8px;
+}
+
+.edit-form-field {
+  min-width: 0;
+  margin-bottom: 10px;
+}
+
+.edit-form-field label {
+  margin-bottom: 4px;
+}
+
+.edit-form-field input,
+.edit-form-field select {
+  height: 44px;
+  padding: 0 10px;
+}
+
+.edit-form-field textarea {
+  min-height: 85px;
+  padding: 10px;
+}
+
+.edit-images-grid {
+  grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+  gap: 7px;
+  margin-bottom: 8px;
+}
+
+.edit-image-item {
+  height: 90px;
+  aspect-ratio: auto;
+}
+
+.edit-media-upload {
+  min-height: 70px;
+  padding: 8px;
+  margin-top: 7px;
+}
+
+.edit-upload-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.edit-new-label {
+  margin-top: 10px;
+}
+
+.edit-media-count {
+  margin-top: 7px;
+}
+
+.edit-video-box {
+  margin-bottom: 8px;
+}
+
+.edit-video-box video {
+  height: 150px;
+  max-height: 150px;
+}
+
+.edit-delete-video {
+  margin: 6px 10px;
+  min-height: 44px;
+}
+
+.edit-save-button,
+.edit-cancel-button {
+  min-height: 46px;
+}
+
+/* DEUX COLONNES POUR LES CHAMPS SUR GRAND ÉCRAN */
+
+@media (min-width: 700px) {
+  .edit-form-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    align-items: start;
+  }
+
+  .edit-form-section > * {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .edit-form-section > .edit-form-field {
+    grid-column: auto;
+  }
+
+  .edit-form-section > .edit-form-field:has(textarea) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* TÉLÉPHONE */
+
+@media (max-width: 420px) {
+  .edit-machine-header-title {
+    font-size: 16px;
+    white-space: normal;
+  }
+
+  .edit-machine-header-subtitle {
+    font-size: 9px;
+  }
+
+  .edit-machine-logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .edit-form-field input,
+  .edit-form-field select,
+  .edit-form-field textarea {
+    font-size: 16px;
+  }
+}
+/* CARTES DES MODÈLES */
+
+.edit-model-card {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin-bottom: 14px;
+  overflow: hidden;
+  border: 1px solid #dce7f1;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 16px rgba(18, 63, 95, 0.07);
+}
+
+.edit-model-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #064a7a, #0787df);
+  color: white;
+}
+
+.edit-model-header strong {
+  font-size: 15px;
+}
+
+.edit-model-header button {
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 9px;
+  background: white;
+  color: #b42336;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.edit-model-header button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.edit-model-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+  padding: 14px;
+}
+
+.edit-model-fields .edit-form-field {
+  min-width: 0;
+  margin: 0;
+}
+
+.edit-model-fields .edit-form-field:first-child,
+.edit-model-fields .edit-form-field:last-child {
+  grid-column: 1 / -1;
+}
+
+.edit-model-card .edit-form-field label {
+  color: #35536b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.edit-model-fields input {
+  height: 44px;
+  background: #f8fbfe;
+  border-radius: 9px;
+}
+
+.edit-model-fields input[type="number"] {
+  border-color: #a8d5f5;
+  background: #edf7ff;
+  color: #07558c;
+  font-weight: 800;
+}
+
+.edit-model-card > .edit-form-field {
+  width: auto;
+  min-width: 0;
+  margin: 0 14px 14px;
+  padding: 12px;
+  border: 1px solid #e3ebf2;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.edit-model-card input[type="file"] {
+  height: auto;
+  min-height: 44px;
+  padding: 7px;
+  font-size: 12px;
+  background: white;
+}
+
+.edit-model-card input[type="file"]::file-selector-button {
+  margin-right: 8px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 7px;
+  background: #e6f3ff;
+  color: #07558c;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.edit-model-card small {
+  display: block;
+  margin-top: 6px;
+  color: #667d90;
+  font-size: 11px;
+}
+
+.edit-model-card .edit-images-grid {
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+}
+
+.edit-model-card .edit-image-item {
+  height: 90px;
+  border-radius: 9px;
+}
+
+.edit-model-card .edit-image-item img {
+  object-fit: contain;
+  background: white;
+}
+
+.edit-model-card .edit-video-box video {
+  height: 140px;
+}
+
+@media (max-width: 420px) {
+  .edit-model-fields {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .edit-model-fields input {
+    padding: 0 8px;
+    font-size: 16px;
+  }
+
+  .edit-model-card > .edit-form-field {
+    margin: 0 10px 10px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 340px) {
+  .edit-model-fields {
+    grid-template-columns: 1fr;
+  }
+}

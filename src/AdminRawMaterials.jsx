@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
+import { useEffect, useState } from "react";
 
 import {
   addDoc,
   collection,
+  doc,
   serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
 
 import { db } from "./firebase";
@@ -11,99 +14,32 @@ import { db } from "./firebase";
 import "./AdminCommerce.css";
 
 
-/* =========================================
-   LISTE DES MATIÈRES PREMIÈRES
-========================================= */
-
-const RAW_MATERIAL_OPTIONS = [
-  "Eau purifiée",
-  "Eau déminéralisée",
-  "Sucre",
-  "Sel",
-  "Huile végétale",
-  "Huile de soja",
-  "Huile de tournesol",
-  "Vinaigre",
-  "Concentré de fruits",
-  "Purée de fruits",
-  "Arômes alimentaires",
-  "Colorants alimentaires",
-  "Acide citrique",
-  "Conservateurs alimentaires",
-  "Émulsifiants",
-  "Stabilisants alimentaires",
-  "Amidon",
-  "Œufs en poudre",
-  "Lait en poudre",
-
-  "Soude caustique",
-  "Hypochlorite de sodium",
-  "Carbonate de sodium",
-  "Bicarbonate de sodium",
-  "Silicate de sodium",
-  "SLES",
-  "LABSA",
-  "Tensioactifs",
-  "Parfum pour savon et détergent",
-  "Colorant pour savon et détergent",
-  "Glycérine",
-  "Agents épaississants",
-  "Agents moussants",
-  "Agents désinfectants",
-  "Peroxyde d’hydrogène",
-  "Éthanol",
-  "Acide chlorhydrique",
-
-  "Résine PET",
-  "Granulés PEHD",
-  "Granulés PEBD",
-  "Granulés PP",
-  "Additifs pour plastique",
-  "Pigments pour plastique",
-
-  "Autre matière première",
-];
-
-
-/* =========================================
-   COMPOSANT
-========================================= */
-
 function AdminRawMaterials({
   onBack,
   onOpenPublished,
+  product = null,
 }) {
+
+  /* =========================================
+     MODE AJOUT / MODIFICATION
+  ========================================= */
+
+  const isEditing = Boolean(product?.id);
+
 
   /* =========================================
      FORMULAIRE
   ========================================= */
 
-  const [saving, setSaving] =
-    useState(false);
+  const [saving, setSaving] = useState(false);
 
-  const [name, setName] =
-    useState("");
-
-  const [customName, setCustomName] =
-    useState("");
-
-  const [category, setCategory] =
-    useState("");
-
-  const [price, setPrice] =
-    useState("");
-
-  const [unit, setUnit] =
-    useState("");
-
-  const [origin, setOrigin] =
-    useState("");
-
-  const [stock, setStock] =
-    useState("");
-
-  const [description, setDescription] =
-    useState("");
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState("");
+  const [unit, setUnit] = useState("");
+  const [origin, setOrigin] = useState("");
+  const [stock, setStock] = useState("");
+  const [description, setDescription] = useState("");
 
 
   /* =========================================
@@ -113,9 +49,12 @@ function AdminRawMaterials({
   const [imageFiles, setImageFiles] =
     useState([]);
 
+  const [imagePreviews, setImagePreviews] =
+    useState([]);
+
   const [
-    imagePreviews,
-    setImagePreviews,
+    existingImageUrls,
+    setExistingImageUrls,
   ] = useState([]);
 
 
@@ -126,9 +65,12 @@ function AdminRawMaterials({
   const [videoFile, setVideoFile] =
     useState(null);
 
+  const [videoPreview, setVideoPreview] =
+    useState("");
+
   const [
-    videoPreview,
-    setVideoPreview,
+    existingVideoUrl,
+    setExistingVideoUrl,
   ] = useState("");
 
 
@@ -144,59 +86,178 @@ function AdminRawMaterials({
 
 
   /* =========================================
+     CHARGER LE PRODUIT À MODIFIER
+  ========================================= */
+
+  useEffect(() => {
+
+    /*
+      MODE AJOUT
+    */
+
+    if (!product?.id) {
+
+      setName("");
+      setCategory("");
+      setPrice("");
+      setUnit("");
+      setOrigin("");
+      setStock("");
+      setDescription("");
+
+      setExistingImageUrls([]);
+      setExistingVideoUrl("");
+
+      setImageFiles([]);
+      setImagePreviews([]);
+
+      setVideoFile(null);
+      setVideoPreview("");
+
+      return;
+    }
+
+
+    /*
+      MODE MODIFICATION
+      Remplir automatiquement
+      les anciennes informations.
+    */
+
+    setName(
+      String(product.name ?? "")
+    );
+
+    setCategory(
+      String(product.category ?? "")
+    );
+
+    setPrice(
+      String(product.price ?? "")
+    );
+
+    setUnit(
+      String(product.unit ?? "")
+    );
+
+    setOrigin(
+      String(product.origin ?? "")
+    );
+
+    setStock(
+      String(product.stock ?? "")
+    );
+
+    setDescription(
+      String(product.description ?? "")
+    );
+
+
+    /*
+      ANCIENNES PHOTOS
+    */
+
+    if (
+      Array.isArray(product.imageUrls) &&
+      product.imageUrls.length > 0
+    ) {
+
+      setExistingImageUrls(
+        product.imageUrls.filter(Boolean)
+      );
+
+    } else if (product.imageUrl) {
+
+      setExistingImageUrls([
+        product.imageUrl,
+      ]);
+
+    } else {
+
+      setExistingImageUrls([]);
+
+    }
+
+
+    /*
+      ANCIENNE VIDÉO
+    */
+
+    setExistingVideoUrl(
+      product.videoUrl || ""
+    );
+
+
+    /*
+      VIDER SEULEMENT LES NOUVEAUX
+      FICHIERS LOCAUX
+    */
+
+    setImageFiles([]);
+    setImagePreviews([]);
+
+    setVideoFile(null);
+    setVideoPreview("");
+
+  }, [product]);
+
+
+  /* =========================================
      CHOISIR LES PHOTOS
   ========================================= */
 
-  const handleImagesChange = (
-    event
-  ) => {
+  const handleImagesChange = (event) => {
 
     const selectedFiles =
       Array.from(
         event.target.files || []
       );
 
-    if (
-      selectedFiles.length === 0
-    ) {
+
+    if (selectedFiles.length === 0) {
       return;
     }
+
 
     const validImages =
       selectedFiles.filter(
         (file) =>
-          file.type.startsWith(
-            "image/"
-          )
+          file.type.startsWith("image/")
       );
+
 
     if (
       validImages.length !==
       selectedFiles.length
     ) {
 
-      alert(
+      umiNotify(
         "Certains fichiers sélectionnés ne sont pas des images."
       );
 
     }
 
+
+    const currentTotal =
+      existingImageUrls.length +
+      imageFiles.length;
+
+
     const remainingPlaces =
-      10 - imageFiles.length;
+      10 - currentTotal;
 
-    if (
-      remainingPlaces <= 0
-    ) {
 
-      alert(
+    if (remainingPlaces <= 0) {
+
+      umiNotify(
         "Vous avez déjà ajouté 10 photos."
       );
 
       event.target.value = "";
 
       return;
-
     }
+
 
     const imagesToAdd =
       validImages.slice(
@@ -204,24 +265,25 @@ function AdminRawMaterials({
         remainingPlaces
       );
 
+
     if (
       validImages.length >
       remainingPlaces
     ) {
 
-      alert(
+      umiNotify(
         "Vous pouvez ajouter maximum 10 photos."
       );
 
     }
 
+
     const newPreviews =
       imagesToAdd.map(
         (file) =>
-          URL.createObjectURL(
-            file
-          )
+          URL.createObjectURL(file)
       );
+
 
     setImageFiles(
       (previous) => [
@@ -230,6 +292,7 @@ function AdminRawMaterials({
       ]
     );
 
+
     setImagePreviews(
       (previous) => [
         ...previous,
@@ -237,24 +300,24 @@ function AdminRawMaterials({
       ]
     );
 
+
     event.target.value = "";
 
   };
 
 
   /* =========================================
-     SUPPRIMER UNE PHOTO
+     SUPPRIMER UNE NOUVELLE PHOTO
   ========================================= */
 
-  const removeImage = (
-    index
-  ) => {
+  const removeImage = (index) => {
 
     setImagePreviews(
       (previous) => {
 
         const preview =
           previous[index];
+
 
         if (preview) {
 
@@ -264,6 +327,7 @@ function AdminRawMaterials({
 
         }
 
+
         return previous.filter(
           (_, currentIndex) =>
             currentIndex !== index
@@ -272,7 +336,25 @@ function AdminRawMaterials({
       }
     );
 
+
     setImageFiles(
+      (previous) =>
+        previous.filter(
+          (_, currentIndex) =>
+            currentIndex !== index
+        )
+    );
+
+  };
+
+
+  /* =========================================
+     SUPPRIMER UNE ANCIENNE PHOTO
+  ========================================= */
+
+  const removeExistingImage = (index) => {
+
+    setExistingImageUrls(
       (previous) =>
         previous.filter(
           (_, currentIndex) =>
@@ -287,62 +369,42 @@ function AdminRawMaterials({
      CHOISIR UNE VIDÉO
   ========================================= */
 
-  const handleVideoChange = (
-    event
-  ) => {
+  const handleVideoChange = (event) => {
 
     const file =
       event.target.files?.[0];
+
 
     if (!file) {
       return;
     }
 
-    console.log(
-      "Vidéo sélectionnée :",
-      {
-        name: file.name,
-        type: file.type,
-        size: file.size,
-      }
-    );
 
     const fileName =
-      (
-        file.name || ""
-      ).toLowerCase();
+      (file.name || "")
+        .toLowerCase();
+
 
     const isVideo =
-      file.type?.startsWith(
-        "video/"
-      ) ||
-      fileName.endsWith(
-        ".mp4"
-      ) ||
-      fileName.endsWith(
-        ".mov"
-      ) ||
-      fileName.endsWith(
-        ".m4v"
-      ) ||
-      fileName.endsWith(
-        ".webm"
-      ) ||
-      fileName.endsWith(
-        ".3gp"
-      );
+      file.type?.startsWith("video/") ||
+      fileName.endsWith(".mp4") ||
+      fileName.endsWith(".mov") ||
+      fileName.endsWith(".m4v") ||
+      fileName.endsWith(".webm") ||
+      fileName.endsWith(".3gp");
+
 
     if (!isVideo) {
 
-      alert(
+      umiNotify(
         "Le fichier sélectionné n'est pas une vidéo compatible."
       );
 
       event.target.value = "";
 
       return;
-
     }
+
 
     if (videoPreview) {
 
@@ -352,24 +414,21 @@ function AdminRawMaterials({
 
     }
 
+
     const preview =
-      URL.createObjectURL(
-        file
-      );
+      URL.createObjectURL(file);
 
-    setVideoFile(
-      file
-    );
 
-    setVideoPreview(
-      preview
-    );
+    setVideoFile(file);
+    setVideoPreview(preview);
+
+    event.target.value = "";
 
   };
 
 
   /* =========================================
-     SUPPRIMER LA VIDÉO
+     SUPPRIMER LA NOUVELLE VIDÉO
   ========================================= */
 
   const removeVideo = () => {
@@ -382,27 +441,29 @@ function AdminRawMaterials({
 
     }
 
-    setVideoFile(
-      null
-    );
 
-    setVideoPreview(
-      ""
-    );
+    setVideoFile(null);
+    setVideoPreview("");
 
   };
 
 
   /* =========================================
+     SUPPRIMER L'ANCIENNE VIDÉO
+  ========================================= */
+
+  const removeExistingVideo = () => {
+
+    setExistingVideoUrl("");
+
+  };
+    /* =========================================
      UPLOAD PHOTO CLOUDINARY
   ========================================= */
 
-  const uploadImage = async (
-    file
-  ) => {
+  const uploadImage = async (file) => {
 
-    const formData =
-      new FormData();
+    const formData = new FormData();
 
     formData.append(
       "file",
@@ -414,19 +475,26 @@ function AdminRawMaterials({
       CLOUDINARY_UPLOAD_PRESET
     );
 
-    const response =
-      await fetch(
-        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
 
     const data =
       await response.json();
 
+
     if (!response.ok) {
+
+      console.error(
+        "Erreur Cloudinary photo :",
+        data
+      );
 
       throw new Error(
         data?.error?.message ||
@@ -435,10 +503,8 @@ function AdminRawMaterials({
 
     }
 
-    return (
-      data.secure_url ||
-      ""
-    );
+
+    return data.secure_url || "";
 
   };
 
@@ -447,12 +513,9 @@ function AdminRawMaterials({
      UPLOAD VIDÉO CLOUDINARY
   ========================================= */
 
-  const uploadVideo = async (
-    file
-  ) => {
+  const uploadVideo = async (file) => {
 
-    const formData =
-      new FormData();
+    const formData = new FormData();
 
     formData.append(
       "file",
@@ -464,17 +527,19 @@ function AdminRawMaterials({
       CLOUDINARY_UPLOAD_PRESET
     );
 
-    const response =
-      await fetch(
-        `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/video/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/video/upload`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
 
     const data =
       await response.json();
+
 
     if (!response.ok) {
 
@@ -490,10 +555,8 @@ function AdminRawMaterials({
 
     }
 
-    return (
-      data.secure_url ||
-      ""
-    );
+
+    return data.secure_url || "";
 
   };
 
@@ -507,12 +570,17 @@ function AdminRawMaterials({
     imagePreviews.forEach(
       (preview) => {
 
-        URL.revokeObjectURL(
-          preview
-        );
+        if (preview) {
+
+          URL.revokeObjectURL(
+            preview
+          );
+
+        }
 
       }
     );
+
 
     if (videoPreview) {
 
@@ -522,8 +590,8 @@ function AdminRawMaterials({
 
     }
 
+
     setName("");
-    setCustomName("");
     setCategory("");
     setPrice("");
     setUnit("");
@@ -533,39 +601,41 @@ function AdminRawMaterials({
 
     setImageFiles([]);
     setImagePreviews([]);
+    setExistingImageUrls([]);
 
     setVideoFile(null);
     setVideoPreview("");
+    setExistingVideoUrl("");
 
   };
 
 
   /* =========================================
-     PUBLIER
+     PUBLIER / MODIFIER
   ========================================= */
 
-  const handleSubmit = async (
-    event
-  ) => {
+  const handleSubmit = async (event) => {
 
     event.preventDefault();
 
 
-    /* =====================================
-       NOM FINAL
-    ===================================== */
+    if (saving) {
+      return;
+    }
+
 
     const finalName =
-      name ===
-      "Autre matière première"
-        ? customName.trim()
-        : name.trim();
+      name.trim();
 
+
+    /* =====================================
+       VÉRIFIER LE NOM
+    ===================================== */
 
     if (!finalName) {
 
-      alert(
-        "Sélectionnez ou indiquez une matière première."
+      await umiNotify(
+        "Indiquez le nom de la matière première."
       );
 
       return;
@@ -573,11 +643,18 @@ function AdminRawMaterials({
     }
 
 
-    if (
-      imageFiles.length === 0
-    ) {
+    /* =====================================
+       VÉRIFIER LES PHOTOS
+    ===================================== */
 
-      alert(
+    const totalImages =
+      existingImageUrls.length +
+      imageFiles.length;
+
+
+    if (totalImages === 0) {
+
+      await umiNotify(
         "Ajoutez au moins une photo."
       );
 
@@ -586,11 +663,9 @@ function AdminRawMaterials({
     }
 
 
-    if (
-      imageFiles.length > 10
-    ) {
+    if (totalImages > 10) {
 
-      alert(
+      await umiNotify(
         "Vous pouvez ajouter maximum 10 photos."
       );
 
@@ -601,37 +676,70 @@ function AdminRawMaterials({
 
     try {
 
-      setSaving(
-        true
-      );
+      setSaving(true);
 
 
       /* =====================================
-         ENVOYER LES PHOTOS
+         UPLOAD DES NOUVELLES PHOTOS
       ===================================== */
 
-      const imageUrls =
-        await Promise.all(
+      let uploadedImageUrls = [];
 
-          imageFiles.map(
-            (file) =>
-              uploadImage(
-                file
-              )
-          )
 
+      if (imageFiles.length > 0) {
+
+        uploadedImageUrls =
+          await Promise.all(
+
+            imageFiles.map(
+              (file) =>
+                uploadImage(file)
+            )
+
+          );
+
+      }
+
+
+      uploadedImageUrls =
+        uploadedImageUrls.filter(
+          Boolean
         );
 
 
       /* =====================================
-         ENVOYER LA VIDÉO
+         PHOTOS FINALES
       ===================================== */
 
-      let videoUrl = "";
+      const finalImageUrls = [
+
+        ...existingImageUrls,
+
+        ...uploadedImageUrls,
+
+      ].filter(Boolean);
+
+
+      if (finalImageUrls.length === 0) {
+
+        throw new Error(
+          "Aucune photo valide n'a été enregistrée."
+        );
+
+      }
+
+
+      /* =====================================
+         VIDÉO FINALE
+      ===================================== */
+
+      let finalVideoUrl =
+        existingVideoUrl || "";
+
 
       if (videoFile) {
 
-        videoUrl =
+        finalVideoUrl =
           await uploadVideo(
             videoFile
           );
@@ -666,31 +774,17 @@ function AdminRawMaterials({
         description:
           description.trim(),
 
-
-        /* PHOTO PRINCIPALE */
-
         imageUrl:
-          imageUrls[0] || "",
+          finalImageUrls[0] || "",
 
+        imageUrls:
+          finalImageUrls,
 
-        /* TOUTES LES PHOTOS */
-
-        imageUrls,
-
-
-        /* VIDÉO */
-
-        videoUrl,
-
-
-        /* TYPE */
+        videoUrl:
+          finalVideoUrl,
 
         productType:
           "rawMaterial",
-
-
-        createdAt:
-          serverTimestamp(),
 
         updatedAt:
           serverTimestamp(),
@@ -699,7 +793,47 @@ function AdminRawMaterials({
 
 
       /* =====================================
-         ENREGISTRER DANS FIRESTORE
+         MODE MODIFICATION
+      ===================================== */
+
+      if (isEditing) {
+
+        await updateDoc(
+
+          doc(
+            db,
+            "rawMaterials",
+            product.id
+          ),
+
+          productData
+
+        );
+
+
+        await umiNotify(
+          "Matière première modifiée avec succès."
+        );
+
+
+        if (onOpenPublished) {
+
+          onOpenPublished();
+
+        } else if (onBack) {
+
+          onBack();
+
+        }
+
+
+        return;
+
+      }
+
+
+      /* =====================================
+         MODE AJOUT
       ===================================== */
 
       await addDoc(
@@ -709,14 +843,22 @@ function AdminRawMaterials({
           "rawMaterials"
         ),
 
-        productData
+        {
+
+          ...productData,
+
+          createdAt:
+            serverTimestamp(),
+
+        }
 
       );
 
 
-      alert(
+      await umiNotify(
         "Matière première publiée avec succès."
       );
+
 
       resetForm();
 
@@ -724,22 +866,28 @@ function AdminRawMaterials({
     } catch (error) {
 
       console.error(
-        "Erreur publication matière première :",
+        isEditing
+          ? "Erreur modification matière première :"
+          : "Erreur publication matière première :",
         error
       );
 
-      alert(
+
+      await umiNotify(
         `Erreur : ${
           error?.message ||
-          "Impossible de publier la matière première."
+          (
+            isEditing
+              ? "Impossible de modifier la matière première."
+              : "Impossible de publier la matière première."
+          )
         }`
       );
 
+
     } finally {
 
-      setSaving(
-        false
-      );
+      setSaving(false);
 
     }
 
@@ -763,10 +911,9 @@ function AdminRawMaterials({
 
         <button
           type="button"
-          onClick={
-            onBack
-          }
+          onClick={onBack}
           className="admin-commerce-back"
+          disabled={saving}
         >
           ←
         </button>
@@ -796,7 +943,7 @@ function AdminRawMaterials({
 
 
         {/* =====================================
-            GÉRER LES PUBLICATIONS
+            GÉRER LES MATIÈRES PUBLIÉES
         ===================================== */}
 
         <div
@@ -811,9 +958,8 @@ function AdminRawMaterials({
           <button
             type="button"
             className="admin-commerce-save"
-            onClick={
-              onOpenPublished
-            }
+            onClick={onOpenPublished}
+            disabled={saving}
             style={{
               width: "100%",
               maxWidth: "520px",
@@ -826,7 +972,7 @@ function AdminRawMaterials({
 
 
         {/* =====================================
-            FORMULAIRE
+            CARTE FORMULAIRE
         ===================================== */}
 
         <section className="admin-commerce-form-card">
@@ -837,11 +983,18 @@ function AdminRawMaterials({
             <div>
 
               <span>
-                NOUVEAU PRODUIT
+                {isEditing
+                  ? "MODIFICATION"
+                  : "NOUVEAU PRODUIT"}
               </span>
 
+
               <h2>
-                Ajouter une matière première
+
+                {isEditing
+                  ? "Modifier une matière première"
+                  : "Ajouter une matière première"}
+
               </h2>
 
             </div>
@@ -851,135 +1004,34 @@ function AdminRawMaterials({
 
           <form
             className="admin-commerce-form"
-            onSubmit={
-              handleSubmit
-            }
+            onSubmit={handleSubmit}
           >
 
 
             {/* =================================
-                MATIÈRE PREMIÈRE
+                NOM
             ================================= */}
 
             <label>
 
-              Matière première *
-
-              <select
-                value={
-                  name
-                }
-                onChange={(
-                  event
-                ) => {
-
-                  const value =
-                    event.target.value;
-
-                  setName(
-                    value
-                  );
-
-                  if (
-                    value !==
-                    "Autre matière première"
-                  ) {
-
-                    setCustomName(
-                      ""
-                    );
-
-                  }
-
-                }}
-                required
-              >
-
-                <option value="">
-                  -- Sélectionner une matière première --
-                </option>
-
-
-                {RAW_MATERIAL_OPTIONS.map(
-                  (material) => (
-
-                    <option
-                      key={
-                        material
-                      }
-                      value={
-                        material
-                      }
-                    >
-                      {material}
-                    </option>
-
-                  )
-                )}
-
-              </select>
-
-            </label>
-
-
-            {/* =================================
-                AUTRE MATIÈRE
-            ================================= */}
-
-            {name ===
-              "Autre matière première" && (
-
-              <label>
-
-                Nom de la matière première *
-
-                <input
-                  type="text"
-                  value={
-                    customName
-                  }
-                  onChange={(
-                    event
-                  ) =>
-                    setCustomName(
-                      event.target.value
-                    )
-                  }
-                  placeholder="Écrivez le nom de la matière première"
-                  required
-                />
-
-              </label>
-
-            )}
-
-
-            {/* =================================
-                CATÉGORIE
-            ================================= */}
-
-            <label>
-
-              Catégorie
+              Nom de la matière première *
 
               <input
                 type="text"
-                value={
-                  category
-                }
-                onChange={(
-                  event
-                ) =>
-                  setCategory(
+                value={name}
+                onChange={(event) =>
+                  setName(
                     event.target.value
                   )
                 }
-                placeholder="Ex : Savon, boisson, détergent..."
+                placeholder="Ex : Sucre, glycérine, huile de soja..."
+                required
               />
 
             </label>
 
 
+            
             {/* =================================
                 PHOTOS
             ================================= */}
@@ -991,10 +1043,85 @@ function AdminRawMaterials({
               </strong>
 
               <p>
-                Ajoutez jusqu'à 10 photos
-                du produit.
+                Ajoutez jusqu'à 10 photos du produit.
               </p>
 
+
+              {/* PHOTOS DÉJÀ PUBLIÉES */}
+
+              {existingImageUrls.length > 0 && (
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns:
+                      "repeat(2, minmax(0, 1fr))",
+                    gap: "10px",
+                    marginTop: "15px",
+                    marginBottom: "15px",
+                  }}
+                >
+
+                  {existingImageUrls.map(
+                    (imageUrl, index) => (
+
+                      <div
+                        key={`${imageUrl}-${index}`}
+                        style={{
+                          position: "relative",
+                        }}
+                      >
+
+                        <img
+                          src={imageUrl}
+                          alt={`Photo existante ${index + 1}`}
+                          style={{
+                            display: "block",
+                            width: "100%",
+                            height: "150px",
+                            objectFit: "cover",
+                            borderRadius: "12px",
+                          }}
+                        />
+
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            removeExistingImage(
+                              index
+                            )
+                          }
+                          aria-label="Supprimer la photo"
+                          style={{
+                            position: "absolute",
+                            top: "6px",
+                            right: "6px",
+                            width: "34px",
+                            height: "34px",
+                            border: "none",
+                            borderRadius: "50%",
+                            background: "#dc2626",
+                            color: "#ffffff",
+                            fontSize: "20px",
+                            fontWeight: "700",
+                            cursor: "pointer",
+                          }}
+                        >
+                          ×
+                        </button>
+
+                      </div>
+
+                    )
+                  )}
+
+                </div>
+
+              )}
+
+
+              {/* CADRE AJOUTER PHOTOS */}
 
               <label className="admin-image-picker">
 
@@ -1005,6 +1132,7 @@ function AdminRawMaterials({
                   onChange={
                     handleImagesChange
                   }
+                  disabled={saving}
                 />
 
 
@@ -1014,12 +1142,22 @@ function AdminRawMaterials({
                     📷
                   </span>
 
+
                   <strong>
-                    Ajouter des photos
+
+                    {isEditing
+                      ? "Ajouter ou modifier les photos"
+                      : "Ajouter des photos"}
+
                   </strong>
 
+
                   <small>
-                    {imageFiles.length}/10 photos
+
+                    {existingImageUrls.length +
+                      imageFiles.length}
+                    /10 photos
+
                   </small>
 
                 </div>
@@ -1027,10 +1165,9 @@ function AdminRawMaterials({
               </label>
 
 
-              {/* APERÇU PHOTOS */}
+              {/* APERÇU NOUVELLES PHOTOS */}
 
-              {imagePreviews.length >
-                0 && (
+              {imagePreviews.length > 0 && (
 
                 <div
                   style={{
@@ -1043,35 +1180,24 @@ function AdminRawMaterials({
                 >
 
                   {imagePreviews.map(
-                    (
-                      preview,
-                      index
-                    ) => (
+                    (preview, index) => (
 
                       <div
                         key={`${preview}-${index}`}
                         style={{
-                          position:
-                            "relative",
+                          position: "relative",
                         }}
                       >
 
                         <img
-                          src={
-                            preview
-                          }
+                          src={preview}
                           alt={`Photo ${index + 1}`}
                           style={{
-                            display:
-                              "block",
-                            width:
-                              "100%",
-                            height:
-                              "150px",
-                            objectFit:
-                              "cover",
-                            borderRadius:
-                              "12px",
+                            display: "block",
+                            width: "100%",
+                            height: "150px",
+                            objectFit: "cover",
+                            borderRadius: "12px",
                           }}
                         />
 
@@ -1085,26 +1211,18 @@ function AdminRawMaterials({
                           }
                           aria-label="Supprimer la photo"
                           style={{
-                            position:
-                              "absolute",
+                            position: "absolute",
                             top: "6px",
                             right: "6px",
                             width: "34px",
                             height: "34px",
-                            border:
-                              "none",
-                            borderRadius:
-                              "50%",
-                            background:
-                              "#dc2626",
-                            color:
-                              "#ffffff",
-                            fontSize:
-                              "20px",
-                            fontWeight:
-                              "700",
-                            cursor:
-                              "pointer",
+                            border: "none",
+                            borderRadius: "50%",
+                            background: "#dc2626",
+                            color: "#ffffff",
+                            fontSize: "20px",
+                            fontWeight: "700",
+                            cursor: "pointer",
                           }}
                         >
                           ×
@@ -1120,17 +1238,11 @@ function AdminRawMaterials({
               )}
 
             </div>
-
-
-            {/* =================================
+                        {/* =================================
                 VIDÉO
             ================================= */}
 
-            <div
-              style={{
-                marginTop: "20px",
-              }}
-            >
+            <div>
 
               <strong>
                 Vidéo
@@ -1141,7 +1253,66 @@ function AdminRawMaterials({
               </p>
 
 
-              {!videoPreview ? (
+              {/* VIDÉO DÉJÀ PUBLIÉE */}
+
+              {existingVideoUrl &&
+                !videoPreview && (
+
+                  <div
+                    style={{
+                      position: "relative",
+                      marginTop: "10px",
+                      marginBottom: "15px",
+                    }}
+                  >
+
+                    <video
+                      src={existingVideoUrl}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        maxHeight: "400px",
+                        borderRadius: "14px",
+                        background: "#000000",
+                      }}
+                    />
+
+
+                    <button
+                      type="button"
+                      onClick={
+                        removeExistingVideo
+                      }
+                      aria-label="Supprimer la vidéo"
+                      style={{
+                        position: "absolute",
+                        top: "8px",
+                        right: "8px",
+                        width: "38px",
+                        height: "38px",
+                        border: "none",
+                        borderRadius: "50%",
+                        background: "#dc2626",
+                        color: "#ffffff",
+                        fontSize: "22px",
+                        fontWeight: "700",
+                        cursor: "pointer",
+                      }}
+                    >
+                      ×
+                    </button>
+
+                  </div>
+
+                )}
+
+
+              {/* CADRE AJOUTER / REMPLACER VIDÉO */}
+
+              {!videoPreview && (
 
                 <label className="admin-image-picker">
 
@@ -1151,6 +1322,7 @@ function AdminRawMaterials({
                     onChange={
                       handleVideoChange
                     }
+                    disabled={saving}
                   />
 
 
@@ -1160,9 +1332,15 @@ function AdminRawMaterials({
                       🎥
                     </span>
 
+
                     <strong>
-                      Ajouter une vidéo
+
+                      {existingVideoUrl
+                        ? "Remplacer la vidéo"
+                        : "Ajouter une vidéo"}
+
                     </strong>
+
 
                     <small>
                       MP4, MOV, M4V, WebM
@@ -1172,35 +1350,31 @@ function AdminRawMaterials({
 
                 </label>
 
-              ) : (
+              )}
+
+
+              {/* APERÇU NOUVELLE VIDÉO */}
+
+              {videoPreview && (
 
                 <div
                   style={{
-                    position:
-                      "relative",
-                    marginTop:
-                      "10px",
+                    position: "relative",
+                    marginTop: "15px",
                   }}
                 >
 
                   <video
-                    src={
-                      videoPreview
-                    }
+                    src={videoPreview}
                     controls
                     playsInline
                     preload="metadata"
                     style={{
-                      display:
-                        "block",
-                      width:
-                        "100%",
-                      maxHeight:
-                        "400px",
-                      borderRadius:
-                        "14px",
-                      background:
-                        "#000000",
+                      display: "block",
+                      width: "100%",
+                      maxHeight: "400px",
+                      borderRadius: "14px",
+                      background: "#000000",
                     }}
                   />
 
@@ -1212,25 +1386,18 @@ function AdminRawMaterials({
                     }
                     aria-label="Supprimer la vidéo"
                     style={{
-                      position:
-                        "absolute",
+                      position: "absolute",
                       top: "8px",
                       right: "8px",
                       width: "38px",
                       height: "38px",
                       border: "none",
-                      borderRadius:
-                        "50%",
-                      background:
-                        "#dc2626",
-                      color:
-                        "#ffffff",
-                      fontSize:
-                        "22px",
-                      fontWeight:
-                        "700",
-                      cursor:
-                        "pointer",
+                      borderRadius: "50%",
+                      background: "#dc2626",
+                      color: "#ffffff",
+                      fontSize: "22px",
+                      fontWeight: "700",
+                      cursor: "pointer",
                     }}
                   >
                     ×
@@ -1255,12 +1422,8 @@ function AdminRawMaterials({
 
                 <input
                   type="text"
-                  value={
-                    price
-                  }
-                  onChange={(
-                    event
-                  ) =>
+                  value={price}
+                  onChange={(event) =>
                     setPrice(
                       event.target.value
                     )
@@ -1273,24 +1436,64 @@ function AdminRawMaterials({
 
               <label>
 
-                Unité
+  Unité
 
-                <input
-                  type="text"
-                  value={
-                    unit
-                  }
-                  onChange={(
-                    event
-                  ) =>
-                    setUnit(
-                      event.target.value
-                    )
-                  }
-                  placeholder="kg, tonne, litre..."
-                />
+  <select
+    value={unit}
+    onChange={(event) =>
+      setUnit(
+        event.target.value
+      )
+    }
+  >
 
-              </label>
+    <option value="">
+      Sélectionner une unité
+    </option>
+
+    <option value="kg">
+      Kilogramme (kg)
+    </option>
+
+    <option value="g">
+      Gramme (g)
+    </option>
+
+    <option value="tonne">
+      Tonne
+    </option>
+
+    <option value="L">
+      Litre (L)
+    </option>
+
+    <option value="mL">
+      Millilitre (mL)
+    </option>
+
+    <option value="sac">
+      Sac
+    </option>
+
+    <option value="carton">
+      Carton
+    </option>
+
+    <option value="pièce">
+      Pièce
+    </option>
+
+    <option value="bidon">
+      Bidon
+    </option>
+
+    <option value="fût">
+      Fût
+    </option>
+
+  </select>
+
+</label>
 
             </div>
 
@@ -1307,12 +1510,8 @@ function AdminRawMaterials({
 
                 <input
                   type="text"
-                  value={
-                    origin
-                  }
-                  onChange={(
-                    event
-                  ) =>
+                  value={origin}
+                  onChange={(event) =>
                     setOrigin(
                       event.target.value
                     )
@@ -1329,12 +1528,8 @@ function AdminRawMaterials({
 
                 <input
                   type="text"
-                  value={
-                    stock
-                  }
-                  onChange={(
-                    event
-                  ) =>
+                  value={stock}
+                  onChange={(event) =>
                     setStock(
                       event.target.value
                     )
@@ -1357,12 +1552,8 @@ function AdminRawMaterials({
 
               <textarea
                 rows="6"
-                value={
-                  description
-                }
-                onChange={(
-                  event
-                ) =>
+                value={description}
+                onChange={(event) =>
                   setDescription(
                     event.target.value
                   )
@@ -1374,23 +1565,28 @@ function AdminRawMaterials({
 
 
             {/* =================================
-                PUBLIER
+                BOUTON PUBLIER / MODIFIER
             ================================= */}
 
             <button
               type="submit"
               className="admin-commerce-save"
-              disabled={
-                saving
-              }
+              disabled={saving}
             >
 
               {saving
-                ? "Envoi des fichiers et publication..."
-                : "＋ Publier la matière première"}
+                ? (
+                    isEditing
+                      ? "Modification..."
+                      : "Envoi des fichiers et publication..."
+                  )
+                : (
+                    isEditing
+  ? "💾 Enregistrer la modification"
+  : "＋ Publier la matière première"
+)}
 
             </button>
-
 
           </form>
 

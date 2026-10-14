@@ -1,29 +1,47 @@
-/* =========================================
-   PAGE MON COMPTE UMI
-========================================= */
+/* =========================================================
+   ACCOUNT.CSS - UMI GROUP
+========================================================= */
 
 * {
   box-sizing: border-box;
 }
 
+
+/* =========================================================
+   PAGE
+========================================================= */
+
 .account-page {
   width: 100%;
   min-height: 100dvh;
-  background: #f5faff;
-  font-family: Arial, Helvetica, sans-serif;
+
+  padding-bottom: 90px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f5faff 0%,
+      #ffffff 55%,
+      #eef8ff 100%
+    );
+
   color: #173b5b;
+
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
-/* =========================================
+/* =========================================================
    EN-TÊTE
-========================================= */
+========================================================= */
 
 .account-header {
   position: sticky;
   top: 0;
+
   z-index: 100;
 
+  width: 100%;
   height: 62px;
 
   display: flex;
@@ -32,12 +50,17 @@
 
   padding: 0 14px;
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.97);
+
   border-bottom: 1px solid #e2edf5;
 
   box-shadow:
     0 2px 10px rgba(0, 60, 110, 0.06);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
+
 
 .account-header h1 {
   margin: 0;
@@ -47,6 +70,11 @@
   font-size: 19px;
   font-weight: 800;
 }
+
+
+/* =========================================================
+   BOUTON RETOUR
+========================================================= */
 
 .account-back {
   width: 38px;
@@ -62,6 +90,7 @@
   border-radius: 50%;
 
   background: #e8f4ff;
+
   color: #0876d8;
 
   font-size: 22px;
@@ -69,6 +98,16 @@
 
   cursor: pointer;
 }
+
+
+.account-back:active {
+  transform: scale(0.9);
+}
+
+
+/* =========================================================
+   PHOTO MINIATURE EN HAUT
+========================================================= */
 
 .account-header-icon {
   width: 38px;
@@ -78,6 +117,10 @@
   align-items: center;
   justify-content: center;
 
+  flex-shrink: 0;
+
+  overflow: hidden;
+
   border-radius: 50%;
 
   background: #e8f4ff;
@@ -86,30 +129,45 @@
 }
 
 
-/* =========================================
+.account-header-photo {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+
+/* =========================================================
    CONTENU
-========================================= */
+========================================================= */
 
 .account-content {
   width: 100%;
 
-  padding: 22px 14px 40px;
+  padding: 18px 14px 35px;
 }
 
 
-/* =========================================
-   PROFIL
-========================================= */
+/* =========================================================
+   CARTE PROFIL
+========================================================= */
 
 .account-profile {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 
-  padding: 22px 15px;
+  padding: 24px 15px 22px;
 
+  border: 1px solid #e5f0f8;
   border-radius: 18px;
 
   background: #ffffff;
@@ -118,16 +176,38 @@
     0 5px 18px rgba(0, 60, 110, 0.07);
 }
 
+
+/* =========================================================
+   CONTENEUR PHOTO
+========================================================= */
+
+.account-avatar-container {
+  position: relative;
+
+  width: 104px;
+  height: 104px;
+
+  margin: 0 auto 15px;
+}
+
+
+/* =========================================================
+   PHOTO DE PROFIL
+========================================================= */
+
 .account-avatar {
-  width: 78px;
-  height: 78px;
+  width: 104px;
+  height: 104px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 12px;
+  margin: 0;
 
+  overflow: hidden;
+
+  border: 3px solid #ffffff;
   border-radius: 50%;
 
   background:
@@ -139,11 +219,129 @@
 
   color: #ffffff;
 
-  font-size: 38px;
-
   box-shadow:
     0 7px 18px rgba(8, 118, 216, 0.22);
 }
+
+
+.account-avatar-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 50%;
+}
+
+
+.account-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 43px;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   PETIT CRAYON SUR LA PHOTO
+========================================================= */
+
+.account-avatar-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.account-photo-edit {
+  position: absolute;
+
+  right: -5px;
+  bottom: 5px;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #eaf6fd;
+
+  font-size: 16px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow: none;
+}
+
+.account-photo-edit:disabled {
+  opacity: 0.6;
+}
+
+.account-photo-edit::before {
+  content: "✎";
+
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+
+.account-photo-edit:active {
+  transform: scale(0.9);
+}
+
+
+.account-photo-edit:disabled {
+  opacity: 0.6;
+}
+
+
+/* IMPORTANT :
+   cache complètement le bouton HTML
+   "Choisir un fichier"
+*/
+
+.account-photo-input {
+  display: none !important;
+
+  width: 0 !important;
+  height: 0 !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  opacity: 0;
+
+  position: absolute;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   NOM DU PROFIL
+========================================================= */
 
 .account-profile h2 {
   margin: 0 0 5px;
@@ -152,7 +350,10 @@
 
   font-size: 20px;
   font-weight: 900;
+
+  text-align: center;
 }
+
 
 .account-profile p {
   margin: 0;
@@ -160,18 +361,23 @@
   color: #8295a6;
 
   font-size: 12px;
+
+  text-align: center;
 }
 
 
-/* =========================================
-   INFORMATIONS
-========================================= */
+/* =========================================================
+   CARTE INFORMATIONS
+========================================================= */
 
 .account-info {
+  width: 100%;
+
   margin-bottom: 16px;
 
   padding: 16px;
 
+  border: 1px solid #e5f0f8;
   border-radius: 16px;
 
   background: #ffffff;
@@ -180,15 +386,69 @@
     0 4px 14px rgba(0, 60, 110, 0.06);
 }
 
-.account-info h3 {
-  margin: 0 0 15px;
+
+/* =========================================================
+   TITRE INFORMATIONS
+========================================================= */
+
+.account-info-title {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 8px;
+}
+
+
+.account-info-title h3 {
+  margin: 0;
 
   color: #123e69;
 
   font-size: 15px;
+  font-weight: 800;
 }
 
+
+/* =========================================================
+   BOUTON MODIFIER INFORMATIONS
+========================================================= */
+
+.account-edit-button {
+  padding: 7px 11px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #e8f4ff;
+
+  color: #0876d8;
+
+  font-family: inherit;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.account-edit-button:active {
+  transform: scale(0.94);
+}
+
+
+/* =========================================================
+   LIGNES INFORMATIONS
+========================================================= */
+
 .account-info-row {
+  width: 100%;
+
   display: flex;
   align-items: center;
 
@@ -199,9 +459,11 @@
   border-bottom: 1px solid #edf3f7;
 }
 
-.account-info-row:last-child {
+
+.account-info-row:last-of-type {
   border-bottom: none;
 }
+
 
 .account-info-row > span {
   width: 40px;
@@ -217,44 +479,163 @@
 
   background: #e8f4ff;
 
-  font-size: 19px;
+  font-size: 18px;
 }
 
-.account-info-row div {
+
+/* =========================================================
+   CHAMP INFORMATION
+========================================================= */
+
+.account-field {
   min-width: 0;
+
+  flex: 1;
 
   display: flex;
   flex-direction: column;
 
-  gap: 3px;
+  gap: 4px;
 }
 
-.account-info-row small {
+
+.account-field small {
   color: #8798a7;
 
   font-size: 10px;
+  font-weight: 600;
 }
 
-.account-info-row strong {
+
+.account-field strong {
+  width: 100%;
+
   overflow: hidden;
 
   color: #173b5b;
 
   font-size: 13px;
+  font-weight: 700;
 
   text-overflow: ellipsis;
+
+  white-space: nowrap;
 }
 
 
-/* =========================================
-   MENU
-========================================= */
+/* =========================================================
+   CHAMPS EN MODE MODIFICATION
+========================================================= */
+
+.account-field input {
+  width: 100%;
+  height: 39px;
+
+  padding: 0 11px;
+
+  border: 1px solid #d5e5f1;
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #f9fcff;
+
+  color: #173b5b;
+
+  font-family: inherit;
+
+  font-size: 13px;
+}
+
+
+.account-field input:focus {
+  border-color: #1689eb;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(8, 118, 216, 0.09);
+}
+
+
+.account-field input::placeholder {
+  color: #9aabb8;
+}
+
+
+/* =========================================================
+   ANNULER / ENREGISTRER
+========================================================= */
+
+.account-edit-actions {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 16px;
+}
+
+
+.account-edit-actions button {
+  min-height: 43px;
+
+  padding: 8px 10px;
+
+  border: none;
+  border-radius: 12px;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.account-edit-actions button:disabled {
+  opacity: 0.6;
+}
+
+
+.account-cancel-button {
+  background: #edf3f7;
+
+  color: #61788c;
+}
+
+
+.account-save-button {
+  background:
+    linear-gradient(
+      135deg,
+      #1689eb,
+      #0567c1
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 5px 12px rgba(8, 118, 216, 0.18);
+}
+
+
+/* =========================================================
+   MENU DU COMPTE
+========================================================= */
 
 .account-menu {
+  width: 100%;
+
   overflow: hidden;
 
   margin-bottom: 20px;
 
+  border: 1px solid #e5f0f8;
   border-radius: 16px;
 
   background: #ffffff;
@@ -262,6 +643,7 @@
   box-shadow:
     0 4px 14px rgba(0, 60, 110, 0.06);
 }
+
 
 .account-menu button {
   width: 100%;
@@ -279,14 +661,25 @@
 
   background: #ffffff;
 
+  font-family: inherit;
+
   text-align: left;
 
   cursor: pointer;
 }
 
+
 .account-menu button:last-child {
   border-bottom: none;
 }
+
+
+.account-menu button:active {
+  background: #f6fbff;
+}
+
+
+/* ICÔNE MENU */
 
 .account-menu button > span {
   width: 40px;
@@ -305,8 +698,17 @@
   font-size: 19px;
 }
 
+
+.account-menu button:first-child > span {
+  background: #fff0f2;
+}
+
+
+/* TEXTE MENU */
+
 .account-menu button div {
   min-width: 0;
+
   flex: 1;
 
   display: flex;
@@ -315,17 +717,20 @@
   gap: 3px;
 }
 
+
 .account-menu strong {
   color: #173b5b;
 
   font-size: 13px;
 }
 
+
 .account-menu small {
   color: #8a9baa;
 
   font-size: 10px;
 }
+
 
 .account-menu b {
   color: #0876d8;
@@ -335,63 +740,18 @@
 }
 
 
-/* =========================================
-   DÉCONNEXION
-========================================= */
+/* =========================================================
+   ADMIN
+========================================================= */
 
-.account-logout {
-  width: 100%;
-  height: 48px;
-
-  border: 1px solid #ffd5d5;
-  border-radius: 24px;
-
-  background: #fff2f2;
-  color: #df3e3e;
-
-  font-size: 13px;
-  font-weight: 800;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
-
-.account-logout:active {
-  transform: scale(0.96);
-
-  background: #ffe5e5;
+.account-admin-button > span {
+  background: #eef0ff !important;
 }
 
 
-/* =========================================
-   GRAND ÉCRAN
-========================================= */
-
-@media (min-width: 500px) {
-
-  .account-page {
-    max-width: 500px;
-
-    margin: 0 auto;
-  }
-
-}
-/* =========================================
-   ESPACE POUR LA BARRE DU BAS
-========================================= */
-
-.account-page {
-  min-height: 100vh;
-  padding-bottom: 90px;
-}
-
-
-/* =========================================
-   BARRE DE NAVIGATION DU BAS
-========================================= */
+/* =========================================================
+   NAVIGATION BAS
+========================================================= */
 
 .account-bottom-nav {
   position: fixed;
@@ -399,30 +759,417 @@
   left: 50%;
   bottom: 0;
 
-  transform: translateX(-50%);
+  z-index: 1000;
 
   width: 100%;
-  max-width: 600px;
-
+  max-width: 500px;
   height: 72px;
-
-  background: #ffffff;
-
-  border-top: 1px solid #e5e7eb;
-
-  box-shadow:
-    0 -4px 20px
-    rgba(0, 0, 0, 0.08);
 
   display: grid;
 
   grid-template-columns:
-    repeat(4, 1fr);
-
-  z-index: 1000;
+    repeat(4, minmax(0, 1fr));
 
   padding-bottom:
     env(safe-area-inset-bottom);
+
+  border-top: 1px solid #e5e7eb;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  box-shadow:
+    0 -4px 20px rgba(0, 0, 0, 0.08);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transform: translateX(-50%);
+}
+
+
+.account-bottom-nav button {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  padding: 3px 1px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #64798b;
+
+  font-family: inherit;
+
+  cursor: pointer;
+}
+
+
+.account-bottom-nav button:first-child {
+  color: #0b63ce;
+}
+
+
+.account-bottom-nav button:active {
+  transform: translateY(-2px) scale(0.94);
+}
+
+
+.account-nav-icon {
+  font-size: 22px;
+
+  line-height: 1;
+}
+
+
+.account-bottom-nav small {
+  font-size: 10px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+.account-bottom-nav .account-nav-logout {
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   PETITS TÉLÉPHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .account-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .account-header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .account-profile {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+
+  .account-avatar-container {
+    width: 94px;
+    height: 94px;
+  }
+
+
+  .account-avatar {
+    width: 94px;
+    height: 94px;
+  }
+
+
+  .account-avatar-placeholder {
+    font-size: 39px;
+  }
+
+
+  .account-photo-edit {
+    width: 33px;
+    min-width: 33px;
+    height: 33px;
+
+    right: -2px;
+  }
+
+
+  .account-photo-edit::before {
+    font-size: 16px;
+  }
+
+
+  .account-profile h2 {
+    font-size: 18px;
+  }
+
+
+  .account-info {
+    padding: 13px;
+  }
+
+
+  .account-info-row {
+    gap: 9px;
+  }
+
+
+  .account-info-row > span {
+    width: 37px;
+    height: 37px;
+
+    font-size: 17px;
+  }
+
+
+  .account-field input {
+    font-size: 12px;
+  }
+
+
+  .account-edit-button {
+    padding: 6px 8px;
+
+    font-size: 10px;
+  }
+
+
+  .account-bottom-nav {
+    height: 68px;
+  }
+
+
+  .account-nav-icon {
+    font-size: 20px;
+  }
+
+
+  .account-bottom-nav small {
+    font-size: 9px;
+  }
+
+}
+
+
+/* =========================================================
+   ÉCRANS 500PX ET PLUS
+========================================================= */
+
+@media (min-width: 500px) {
+
+  .account-page {
+    max-width: 500px;
+
+    margin: 0 auto;
+
+    border-left: 1px solid #eaf0f5;
+    border-right: 1px solid #eaf0f5;
+  }
+
+}
+/* =========================================================
+   BOUTON DÉCONNEXION SOUS MES DEVIS
+========================================================= */
+
+.account-menu .account-menu-logout {
+  background: #fffafa;
+}
+
+
+.account-menu .account-menu-logout > span {
+  background: #fff0f0;
+
+  color: #dc2626;
+}
+
+
+.account-menu .account-menu-logout strong {
+  color: #dc2626;
+}
+
+
+.account-menu .account-menu-logout b {
+  color: #dc2626;
+}
+
+
+.account-menu .account-menu-logout:active {
+  background: #fff1f1;
+}
+
+
+/* =========================================================
+   PHOTO COMPTE DANS LA BARRE DU BAS
+========================================================= */
+
+.account-bottom-profile-photo {
+  width: 27px;
+  height: 27px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 1.5px solid #0876d8;
+}
+
+
+/* COMPTE ACTIF */
+
+.account-bottom-nav .account-nav-account-active {
+  color: #0b63ce;
+}
+/* =========================================
+   ROGNAGE PHOTO DE PROFIL
+========================================= */
+
+.account-crop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+
+  background: rgba(0, 0, 0, 0.72);
+}
+
+
+.account-crop-modal {
+  width: 100%;
+  max-width: 430px;
+
+  background: #ffffff;
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 20px 60px
+    rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================================
+   EN-TÊTE
+========================================= */
+
+.account-crop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 20px 10px;
+}
+
+
+.account-crop-header h2 {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  color: #111827;
+}
+
+
+.account-crop-close {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f3f4f6;
+
+  color: #111827;
+
+  font-size: 26px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.account-crop-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   TEXTE D'AIDE
+========================================= */
+
+.account-crop-help {
+  margin: 0;
+
+  padding:
+    0
+    20px
+    15px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   ZONE PHOTO
+========================================= */
+
+.account-crop-area {
+  position: relative;
+
+  width: 100%;
+  height: 360px;
+
+  background: #111111;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   ZOOM
+========================================= */
+
+.account-crop-zoom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding:
+    18px
+    20px
+    10px;
+}
+
+
+.account-crop-zoom span {
+  min-width: 20px;
+
+  text-align: center;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  color: #374151;
+}
+
+
+.account-crop-zoom input {
+  flex: 1;
+
+  cursor: pointer;
 }
 
 
@@ -430,80 +1177,47 @@
    BOUTONS
 ========================================= */
 
-.account-bottom-nav button {
-  border: none;
-
-  background: transparent;
-
+.account-crop-actions {
   display: flex;
+  gap: 10px;
 
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 4px;
-
-  cursor: pointer;
-
-  color: #444;
-
-  font-family: inherit;
-
-  min-width: 0;
+  padding:
+    10px
+    20px
+    20px;
 }
 
 
-/* =========================================
-   ICÔNES
-========================================= */
+.account-crop-actions button {
+  flex: 1;
 
-.account-nav-icon {
-  font-size: 23px;
+  min-height: 48px;
 
-  line-height: 1;
-}
+  border: none;
+  border-radius: 12px;
 
-
-/* =========================================
-   TEXTE
-========================================= */
-
-.account-bottom-nav small {
-  font-size: 11px;
-
+  font-size: 14px;
   font-weight: 700;
 
-  white-space: nowrap;
+  cursor: pointer;
 }
 
 
-/* =========================================
-   ACCUEIL ACTIF
-========================================= */
-
-.account-bottom-nav button:first-child {
-  color: #0b63ce;
+.account-crop-cancel {
+  background: #f3f4f6;
+  color: #374151;
 }
 
 
-/* =========================================
-   DÉCONNEXION
-========================================= */
-
-.account-bottom-nav
-.account-nav-logout {
-  color: #dc2626;
+.account-crop-confirm {
+  background: #111827;
+  color: #ffffff;
 }
 
 
-/* =========================================
-   EFFET CLIC
-========================================= */
-
-.account-bottom-nav button:active {
-  transform: scale(0.94);
+.account-crop-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 
@@ -511,18 +1225,831 @@
    MOBILE
 ========================================= */
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
-  .account-bottom-nav {
-    height: 68px;
+  .account-crop-overlay {
+    padding: 12px;
   }
 
-  .account-nav-icon {
-    font-size: 21px;
+
+  .account-crop-modal {
+    max-width: 100%;
+
+    border-radius: 18px;
   }
 
-  .account-bottom-nav small {
-    font-size: 10px;
+
+  .account-crop-area {
+    height: 330px;
   }
 
+
+  .account-crop-header {
+    padding:
+      16px
+      16px
+      8px;
+  }
+
+
+  .account-crop-help {
+    padding:
+      0
+      16px
+      14px;
+  }
+
+
+  .account-crop-zoom {
+    padding:
+      16px
+      16px
+      8px;
+  }
+
+
+  .account-crop-actions {
+    padding:
+      10px
+      16px
+      16px;
+  }
+
+}
+
+
+/* =========================================
+   PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+  .account-crop-area {
+    height: 290px;
+  }
+
+
+  .account-crop-header h2 {
+    font-size: 18px;
+  }
+
+
+  .account-crop-actions button {
+    font-size: 13px;
+  }
+
+}
+/* =========================================
+   CORRECTION PHOTO DE PROFIL
+========================================= */
+
+.account-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 20px 16px;
+}
+
+
+.account-avatar-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+
+  position: relative;
+}
+
+
+.account-avatar {
+  width: 105px;
+  height: 105px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  background: #eef2f5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.account-avatar-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 50%;
+}
+
+
+.account-avatar-placeholder {
+  font-size: 48px;
+}
+
+
+/* BOUTON CHANGER PHOTO */
+
+.account-photo-button {
+  position: static !important;
+
+  width: auto !important;
+  height: auto !important;
+
+  min-width: 135px;
+  min-height: 38px;
+
+  margin: 0 !important;
+  padding: 9px 16px !important;
+
+  border: none !important;
+  border-radius: 20px !important;
+
+  background: #087fc1 !important;
+  color: white !important;
+
+  font-size: 13px !important;
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+
+/* NOM + EMAIL */
+
+.account-profile-text {
+  width: 100%;
+
+  margin-top: 12px;
+
+  text-align: center;
+}
+
+
+.account-profile-text h2 {
+  margin: 0 0 5px;
+
+  font-size: 22px;
+  line-height: 1.25;
+
+  color: #18344f;
+}
+
+
+.account-profile-text p {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: #8291a1;
+}
+/* =========================================
+   PETIT CRAYON SUR PHOTO DE PROFIL
+========================================= */
+
+.account-avatar-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.account-photo-edit {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 3px solid white;
+  border-radius: 50%;
+
+  background: #087fc1;
+  color: white;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.account-photo-edit:disabled {
+  opacity: 0.6;
+}
+/* =========================================
+   PHOTO PROFIL + PETIT CRAYON
+========================================= */
+
+.account-avatar-container {
+  position: relative !important;
+
+  width: 105px !important;
+  height: 105px !important;
+
+  margin: 0 auto 16px !important;
+
+  flex: none !important;
+}
+
+
+/* PHOTO RONDE */
+
+.account-avatar {
+  position: relative;
+
+  width: 105px !important;
+  height: 105px !important;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: #eef5f9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.account-avatar-image {
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: cover !important;
+  object-position: center !important;
+
+  display: block;
+
+  border-radius: 50%;
+}
+
+
+/* =========================================
+   PETIT CARRÉ DU CRAYON
+========================================= */
+
+.account-photo-edit {
+  position: absolute !important;
+
+  right: -5px !important;
+  bottom: 3px !important;
+
+  width: 34px !important;
+  height: 34px !important;
+
+  min-width: 34px !important;
+  min-height: 34px !important;
+
+  max-width: 34px !important;
+  max-height: 34px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: none !important;
+  outline: none !important;
+
+  border-radius: 9px !important;
+
+  background: #eaf6fd !important;
+
+  box-shadow: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer;
+
+  z-index: 5;
+}
+
+
+.account-photo-edit:hover,
+.account-photo-edit:focus,
+.account-photo-edit:active {
+  background: #eaf6fd !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================
+   PHOTO PROFIL + PETIT CRAYON
+========================================= */
+
+.account-avatar-container {
+  position: relative !important;
+
+  width: 105px !important;
+  height: 105px !important;
+
+  margin: 0 auto 16px !important;
+
+  flex: none !important;
+}
+
+
+/* PHOTO RONDE */
+
+.account-avatar {
+  position: relative;
+
+  width: 105px !important;
+  height: 105px !important;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: #eef5f9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.account-avatar-image {
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: cover !important;
+  object-position: center !important;
+
+  display: block;
+
+  border-radius: 50%;
+}
+
+
+/* =========================================
+   PETIT CARRÉ DU CRAYON
+========================================= */
+
+.account-photo-edit {
+  position: absolute !important;
+
+  right: -5px !important;
+  bottom: 3px !important;
+
+  width: 34px !important;
+  height: 34px !important;
+
+  min-width: 34px !important;
+  min-height: 34px !important;
+
+  max-width: 34px !important;
+  max-height: 34px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: none !important;
+  outline: none !important;
+
+  border-radius: 9px !important;
+
+  background: #eaf6fd !important;
+
+  box-shadow: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer;
+
+  z-index: 5;
+}
+
+
+.account-photo-edit:hover,
+.account-photo-edit:focus,
+.account-photo-edit:active {
+  background: #eaf6fd !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================
+   PETIT CRAYON
+========================================= */
+
+.account-pencil {
+  position: relative;
+
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  transform: rotate(-45deg);
+}
+
+
+/* CORPS DU CRAYON */
+
+.account-pencil-body {
+  position: absolute;
+
+  left: 5px;
+  top: 1px;
+
+  display: block;
+
+  width: 6px;
+  height: 13px;
+
+  border-radius: 2px;
+
+  background: #ff765f;
+}
+
+
+/* PETIT BOUT BLEU */
+
+.account-pencil-body::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: -3px;
+
+  width: 6px;
+  height: 4px;
+
+  border-radius: 2px 2px 0 0;
+
+  background: #45b7e8;
+}
+
+
+/* POINTE DU CRAYON */
+
+.account-pencil-tip {
+  position: absolute;
+
+  left: 5px;
+  top: 14px;
+
+  display: block;
+
+  width: 0;
+  height: 0;
+
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid #e6ad56;
+}
+
+
+/* PENDANT L'ENREGISTREMENT */
+
+.account-photo-edit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+/* =========================================
+   CRAYON SEUL SUR LA PHOTO
+========================================= */
+
+.account-photo-edit {
+  position: absolute !important;
+
+  right: 2px !important;
+  bottom: 5px !important;
+
+  width: 25px !important;
+  height: 25px !important;
+
+  min-width: 25px !important;
+  min-height: 25px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: none !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+  outline: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer;
+  z-index: 10;
+}
+
+.account-photo-edit:hover,
+.account-photo-edit:focus,
+.account-photo-edit:active {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+
+/* CRAYON */
+
+.account-pencil {
+  position: relative;
+
+  display: block;
+
+  width: 17px;
+  height: 17px;
+
+  transform: rotate(-45deg);
+
+  filter:
+    drop-shadow(
+      0 1px 1px
+      rgba(0, 0, 0, 0.18)
+    );
+}
+
+
+/* CORPS ORANGE */
+
+.account-pencil-body {
+  position: absolute;
+
+  left: 5px;
+  top: 1px;
+
+  width: 6px;
+  height: 13px;
+
+  display: block;
+
+  border-radius: 2px;
+
+  background: #ff765f;
+}
+
+
+/* HAUT BLEU */
+
+.account-pencil-body::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: -3px;
+
+  width: 6px;
+  height: 4px;
+
+  background: #45b7e8;
+
+  border-radius: 2px 2px 0 0;
+}
+
+
+/* POINTE */
+
+.account-pencil-tip {
+  position: absolute;
+
+  left: 5px;
+  top: 14px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 5px solid #e6ad56;
+}
+/* =========================================
+   POSITION FINALE DU PETIT CRAYON
+========================================= */
+
+.account-photo-edit {
+  position: absolute !important;
+
+  right: 5px !important;
+  bottom: 7px !important;
+
+  width: 18px !important;
+  height: 18px !important;
+
+  min-width: 18px !important;
+  min-height: 18px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  z-index: 10;
+}
+
+
+/* PETIT CRAYON */
+
+.account-pencil {
+  position: relative;
+
+  width: 12px !important;
+  height: 12px !important;
+
+  display: block;
+
+  transform: rotate(-45deg);
+}
+
+
+/* CORPS */
+
+.account-pencil-body {
+  position: absolute;
+
+  left: 4px;
+  top: 1px;
+
+  width: 4px !important;
+  height: 9px !important;
+
+  border-radius: 1px;
+
+  background: #ff765f;
+}
+
+
+/* BOUT BLEU */
+
+.account-pencil-body::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: -2px;
+
+  width: 4px;
+  height: 3px;
+
+  background: #45b7e8;
+}
+
+
+/* POINTE */
+
+.account-pencil-tip {
+  position: absolute;
+
+  left: 4px;
+  top: 10px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-top: 3px solid #e6ad56;
+}
+/* =========================================
+   CRAYON - POSITION AJUSTÉE
+========================================= */
+
+.account-photo-edit {
+  position: absolute !important;
+
+  /* rapproche le crayon de la photo */
+  right: 1px !important;
+  bottom: 4px !important;
+
+  width: 25px !important;
+  height: 25px !important;
+
+  min-width: 25px !important;
+  min-height: 25px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  z-index: 10;
+  cursor: pointer;
+}
+
+
+/* CRAYON UN PEU PLUS GRAND */
+
+.account-pencil {
+  position: relative;
+
+  display: block;
+
+  width: 17px !important;
+  height: 17px !important;
+
+  /* La pointe regarde vers la photo */
+  transform: rotate(135deg);
+}
+
+
+/* CORPS ORANGE */
+
+.account-pencil-body {
+  position: absolute;
+
+  left: 5px;
+  top: 1px;
+
+  width: 6px !important;
+  height: 13px !important;
+
+  border-radius: 2px;
+
+  background: #ff765f;
+}
+
+
+/* BOUT BLEU */
+
+.account-pencil-body::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: -3px;
+
+  width: 6px;
+  height: 4px;
+
+  border-radius: 2px 2px 0 0;
+
+  background: #45b7e8;
+}
+
+
+/* POINTE DU CRAYON */
+
+.account-pencil-tip {
+  position: absolute;
+
+  left: 5px;
+  top: 14px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+
+  border-top: 5px solid #e6ad56;
 }

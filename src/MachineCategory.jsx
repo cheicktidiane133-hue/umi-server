@@ -1,3 +1,4 @@
+import { getProductPrice } from "./productPrice";
 import { useState } from "react";
 
 import "./MachineCategory.css";
@@ -5,8 +6,10 @@ import logoUmi from "./assets/logo-umi.jpeg";
 
 
 function MachineCategory({
+  selectionMode = false,
+  selectedIds = [],
   category,
-  machines,
+  machines = [],
   onBack,
   onOpenProduct,
 }) {
@@ -20,25 +23,262 @@ function MachineCategory({
 
 
   /* =========================================
+     NORMALISER LE TEXTE
+  ========================================= */
+
+  const normalizeText = (value) => {
+
+    return String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(
+        /[\u0300-\u036f]/g,
+        ""
+      )
+      .replace(
+        /[^a-z0-9]+/g,
+        " "
+      )
+      .trim();
+
+  };
+
+
+  /* =========================================
+     NOM DE LA CATÉGORIE
+  ========================================= */
+
+  const categoryName =
+    typeof category === "string"
+      ? category
+      : category?.name ||
+        category?.category ||
+        category?.categorie ||
+        "";
+
+
+  const normalizedCategory =
+    normalizeText(categoryName);
+
+
+  /* =========================================
+     CATÉGORIE D'UNE MACHINE
+  ========================================= */
+
+  const getMachineCategory =
+    (machine) => {
+
+      return (
+        machine?.category ||
+        machine?.categorie ||
+        machine?.categoryName ||
+        machine?.categorieName ||
+        ""
+      );
+
+    };
+
+
+  /* =========================================
      MACHINES DE LA CATÉGORIE
   ========================================= */
 
   const categoryMachines =
     machines.filter(
-      (machine) =>
-        machine.category ===
-        category?.name
+      (machine) => {
+
+        const machineCategory =
+          normalizeText(
+            getMachineCategory(
+              machine
+            )
+          );
+
+
+        if (
+          !machineCategory ||
+          !normalizedCategory
+        ) {
+          return false;
+        }
+
+
+        /*
+          1. Correspondance exacte
+        */
+
+        if (
+          machineCategory ===
+          normalizedCategory
+        ) {
+          return true;
+        }
+
+
+        /*
+          2. Correspondance plus souple
+        */
+
+        return (
+          machineCategory.includes(
+            normalizedCategory
+          ) ||
+          normalizedCategory.includes(
+            machineCategory
+          )
+        );
+
+      }
     );
 
 
   /* =========================================
-     FILTRER AVEC LA RECHERCHE
+     PHOTO D'UNE MACHINE
+  ========================================= */
+
+  const getMachineImage =
+    (machine) => {
+
+      if (!machine) {
+        return "";
+      }
+
+
+      if (machine.imageUrl) {
+        return machine.imageUrl;
+      }
+
+
+      if (machine.imageURL) {
+        return machine.imageURL;
+      }
+
+
+      if (machine.photoUrl) {
+        return machine.photoUrl;
+      }
+
+
+      if (machine.photoURL) {
+        return machine.photoURL;
+      }
+
+
+      if (machine.image) {
+        return machine.image;
+      }
+
+
+      if (machine.photo) {
+        return machine.photo;
+      }
+
+
+      if (
+        Array.isArray(
+          machine.imageUrls
+        ) &&
+        machine.imageUrls.length > 0
+      ) {
+
+        return (
+          machine.imageUrls[0] ||
+          ""
+        );
+
+      }
+
+
+      if (
+        Array.isArray(
+          machine.images
+        ) &&
+        machine.images.length > 0
+      ) {
+
+        const firstImage =
+          machine.images[0];
+
+
+        if (
+          typeof firstImage ===
+          "string"
+        ) {
+
+          return firstImage;
+
+        }
+
+
+        if (
+          typeof firstImage ===
+          "object"
+        ) {
+
+          return (
+            firstImage?.url ||
+            firstImage?.imageUrl ||
+            firstImage?.secure_url ||
+            firstImage?.photoURL ||
+            ""
+          );
+
+        }
+
+      }
+
+
+      return "";
+
+    };
+
+
+  /* =========================================
+     NOM MACHINE
+  ========================================= */
+
+  const getMachineName =
+    (machine) => {
+
+      return (
+        machine?.name ||
+        machine?.nom ||
+        machine?.title ||
+        "Machine industrielle"
+      );
+
+    };
+
+
+  /* =========================================
+     PRIX
+  ========================================= */
+
+  const getMachinePrice = (machine) => {
+  return getProductPrice(machine);
+};
+  /* =========================================
+     LOCALISATION
+  ========================================= */
+
+  const getMachineLocation =
+    (machine) => {
+
+      return (
+        machine?.location ||
+        machine?.localisation ||
+        ""
+      );
+
+    };
+
+
+  /* =========================================
+     RECHERCHE
   ========================================= */
 
   const searchText =
-    search
-      .trim()
-      .toLowerCase();
+    normalizeText(search);
 
 
   const filteredMachines =
@@ -50,21 +290,35 @@ function MachineCategory({
         }
 
 
-        const searchableText = [
-          machine?.name,
-          machine?.brand,
-          machine?.model,
-          machine?.location,
-          machine?.description,
-          machine?.price,
-          machine?.condition,
-          machine?.capacity,
-          machine?.power,
-          machine?.year,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
+        const searchableText =
+          normalizeText(
+            [
+              machine?.name,
+              machine?.nom,
+              machine?.title,
+
+              machine?.brand,
+              machine?.marque,
+
+              machine?.model,
+              machine?.modele,
+
+              machine?.location,
+              machine?.localisation,
+
+              machine?.description,
+
+              machine?.price,
+              machine?.prix,
+
+              machine?.condition,
+              machine?.capacity,
+              machine?.power,
+              machine?.year,
+            ]
+              .filter(Boolean)
+              .join(" ")
+          );
 
 
         return searchableText.includes(
@@ -73,6 +327,29 @@ function MachineCategory({
 
       }
     );
+
+
+  /* =========================================
+     OUVRIR UNE MACHINE
+  ========================================= */
+
+  const handleOpenMachine =
+    (machine) => {
+
+      if (!machine) {
+        return;
+      }
+
+
+      if (onOpenProduct) {
+
+        onOpenProduct(
+          machine
+        );
+
+      }
+
+    };
 
 
   /* =========================================
@@ -102,7 +379,7 @@ function MachineCategory({
 
 
         <h1>
-          {category?.name ||
+          {categoryName ||
             "Machines"}
         </h1>
 
@@ -176,7 +453,9 @@ function MachineCategory({
         </div>
 
 
-        {/* NOMBRE DE RÉSULTATS */}
+        {/* =================================
+            NOMBRE DE RÉSULTATS
+        ================================= */}
 
         {search && (
 
@@ -230,6 +509,7 @@ function MachineCategory({
                 à votre recherche.
               </p>
 
+
               <button
                 type="button"
                 onClick={() =>
@@ -244,106 +524,131 @@ function MachineCategory({
           ) : (
 
             filteredMachines.map(
-              (machine) => (
+              (machine, index) => {
 
-                <div
-                  className="category-machine-item"
-                  key={machine.id}
-                  onClick={() =>
-                    onOpenProduct(
-                      machine
-                    )
-                  }
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(event) => {
+                const machineImage =
+                  getMachineImage(
+                    machine
+                  );
 
-                    if (
-                      event.key ===
-                        "Enter" ||
-                      event.key === " "
-                    ) {
 
-                      onOpenProduct(
-                        machine
-                      );
+                const machineName =
+                  getMachineName(
+                    machine
+                  );
 
+
+                const machinePrice =
+                  getMachinePrice(
+                    machine
+                  );
+
+
+                const machineLocation =
+                  getMachineLocation(
+                    machine
+                  );
+
+
+                return (
+
+                  <button
+                    type="button"
+                    className="category-machine-item"
+              aria-pressed={selectionMode ? selectedIds.includes(machine.id) : undefined}
+                    key={
+                      machine?.id ||
+                      machine?.machineId ||
+                      index
                     }
+                    onClick={() =>
+                      handleOpenMachine(
+                        machine
+                      )
+                    }
+                  >
 
-                  }}
-                >
+
+                    {/* =====================
+                        PHOTO
+                    ===================== */}
+
+                    {machineImage ? (
+
+                      <img
+                        src={
+                          machineImage
+                        }
+                        alt={
+                          machineName
+                        }
+                        className="category-machine-image"
+                      />
+
+                    ) : (
+
+                      <div className="category-machine-no-image">
+
+                        📷
+
+                        <span>
+                          Photo bientôt disponible
+                        </span>
+
+                      </div>
+
+                    )}
 
 
-                  {/* PHOTO */}
+                    {/* =====================
+                        INFORMATIONS
+                    ===================== */}
 
-                  {machine.imageUrl ? (
+                    <div className="category-machine-info">
 
-                    <img
-                      src={
-                        machine.imageUrl
-                      }
-                      alt={
-                        machine.name ||
-                        "Machine"
-                      }
-                      className="category-machine-image"
-                    />
 
-                  ) : (
+                      <h3>
+                        {machineName}
+                      </h3>
 
-                    <div className="category-machine-no-image">
 
-                      📷
+                      {machineLocation && (
 
-                      <span>
-                        Photo bientôt disponible
-                      </span>
+                        <p>
+                          📍{" "}
+                          {machineLocation}
+                        </p>
+
+                      )}
+
+
+                      {machine?.description && (
+
+                        <p>
+                          {machine.description}
+                        </p>
+
+                      )}
+
+
+                      <strong>
+                        {machinePrice}
+                      </strong>
+
 
                     </div>
 
-                  )}
+
+                    <span className="category-machine-arrow">
+                      ›
+                    </span>
 
 
-                  {/* INFORMATIONS */}
+                  </button>
 
-                  <div className="category-machine-info">
+                );
 
-
-                    <h3>
-                      {machine.name}
-                    </h3>
-
-
-                    {machine.location && (
-
-                      <p>
-                        📍 {machine.location}
-                      </p>
-
-                    )}
-
-
-                    {machine.description && (
-
-                      <p>
-                        {machine.description}
-                      </p>
-
-                    )}
-
-
-                    <strong>
-                      {machine.price ||
-                        "Prix sur demande"}
-                    </strong>
-
-
-                  </div>
-
-
-                </div>
-
-              )
+              }
             )
 
           )}

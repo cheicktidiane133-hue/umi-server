@@ -1,0 +1,11 @@
+.umi-live-catalog-selection { min-height:100dvh; background:#f5f7fa; padding-bottom:130px; }
+.umi-live-catalog-heading { position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:#163a5c; color:#fff; }
+.umi-live-catalog-heading button { border:0; border-radius:9px; padding:10px; background:#ffffff22; color:#fff; cursor:pointer; }
+.umi-live-catalog-selection .machines-bottom-nav { display:none !important; }
+.umi-live-catalog-selection .machines-search-result-card[aria-pressed="true"], .umi-live-catalog-selection .category-machine-item[aria-pressed="true"] { outline:3px solid #0876d8; outline-offset:-3px; background:#e7f3ff; }
+.umi-live-catalog-footer { position:fixed; bottom:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px max(12px,env(safe-area-inset-bottom)); background:#fff; box-shadow:0 -3px 16px #163a5c20; color:#163a5c; }
+.umi-live-catalog-footer > div { min-width:0; flex:1; }
+.umi-live-catalog-chips { display:flex; gap:6px; overflow-x:auto; margin-top:7px; max-width:100%; }
+.umi-live-catalog-chips button { flex-shrink:0; padding:7px 10px; border:1px solid #c7dced; border-radius:15px; background:#edf6ff; color:#163a5c; cursor:pointer; }
+.umi-live-catalog-confirm { flex-shrink:0; border:0; padding:12px; border-radius:10px; background:#0876d8; color:#fff; font-weight:700; cursor:pointer; }
+@media(max-width:480px){.umi-live-catalog-footer { flex-wrap:wrap; }.umi-live-catalog-confirm { width:100%; }.umi-live-catalog-selection { padding-bottom:165px; }}

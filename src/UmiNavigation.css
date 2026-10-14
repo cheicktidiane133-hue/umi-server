@@ -1,0 +1,30 @@
+/* Toutes les barres de navigation UMI, côté admin et client.
+   Les dimensions, positions et zones de sécurité restent définies par chaque page. */
+#root nav:is(.bottom-nav, .account-bottom-nav, .machines-bottom-nav, .umi-client-bottom-nav, .categories-bottom-nav, .admin-live-bottom-nav, .my-live-bottom-nav, .commerce-bottom-nav, .admin-bottom-nav) {
+  background: #ffffff !important;
+  background-image: none !important;
+  border-top-color: #e5e7eb !important;
+  color: #000000 !important;
+}
+
+#root nav:is(.bottom-nav, .account-bottom-nav, .machines-bottom-nav, .umi-client-bottom-nav, .categories-bottom-nav, .admin-live-bottom-nav, .my-live-bottom-nav, .commerce-bottom-nav, .admin-bottom-nav) > :is(button, a) {
+  color: #000000 !important;
+  background: transparent !important;
+}
+
+#root nav:is(.bottom-nav, .account-bottom-nav, .machines-bottom-nav, .umi-client-bottom-nav, .categories-bottom-nav, .admin-live-bottom-nav, .my-live-bottom-nav, .commerce-bottom-nav, .admin-bottom-nav) > :is(button, a) :is(p, small) {
+  color: #000000 !important;
+}
+
+/* Repérer la page ouverte tout en conservant des libellés noirs. */
+#root nav:is(.bottom-nav, .account-bottom-nav, .machines-bottom-nav, .umi-client-bottom-nav, .categories-bottom-nav, .admin-live-bottom-nav, .my-live-bottom-nav, .commerce-bottom-nav, .admin-bottom-nav) > :is(button, a):is(.active, .account-nav-account-active) {
+  color: #000000 !important;
+  background: #f3f4f6 !important;
+  border-radius: 12px;
+}
+
+
+/* Libellés noirs, sans modifier les couleurs propres des icônes. */
+#root nav:is(.bottom-nav, .account-bottom-nav, .machines-bottom-nav, .umi-client-bottom-nav, .categories-bottom-nav, .admin-live-bottom-nav, .my-live-bottom-nav, .commerce-bottom-nav, .admin-bottom-nav) > :is(button, a) > span:last-child:not(:first-child):not([class*="icon"]) {
+  color: #000000 !important;
+}

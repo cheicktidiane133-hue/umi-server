@@ -25,7 +25,8 @@
 
   color: #163a5c;
 
-  overflow-x: hidden;
+  overflow-x: clip;
+overflow-y: visible;
 
   isolation: isolate;
 

@@ -43,55 +43,14 @@ function MyOrders({
   /* =========================================
      DEVISE
   ========================================= */
+  /* =========================================
+     DEVISE
+     UMI UTILISE UNIQUEMENT FCFA
+  ========================================= */
 
-  const getCurrency = (order) => {
-
-    if (order?.currency) {
-      return order.currency;
-    }
-
-    const firstProduct =
-      Array.isArray(order?.products)
-        ? order.products[0]
-        : null;
-
-    const price =
-      String(firstProduct?.price || "")
-        .toUpperCase();
-
-    if (
-      price.includes("FCFA") ||
-      price.includes("CFA")
-    ) {
-      return "FCFA";
-    }
-
-    if (
-      price.includes("$") ||
-      price.includes("USD")
-    ) {
-      return "$";
-    }
-
-    if (price.includes("CHF")) {
-      return "CHF";
-    }
-
-    if (
-      price.includes("€") ||
-      price.includes("EUR")
-    ) {
-      return "€";
-    }
-
-    /*
-      Les anciennes commandes UMI
-      utilisent principalement le FCFA.
-    */
-
+  const getCurrency = () => {
     return "FCFA";
   };
-
 
   /* =========================================
      FORMAT DU PRIX
@@ -123,10 +82,7 @@ function MyOrders({
         }
       ).format(number);
 
-    if (currency === "$") {
-      return `${formatted} $`;
-    }
-
+  
     return `${formatted} ${currency}`;
   };
 

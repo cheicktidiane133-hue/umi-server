@@ -1,5 +1,6 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useEffect, useState } from "react";
-
+import { getProductPrice } from "./productPrice";
 import {
   collection,
   deleteDoc,
@@ -51,7 +52,7 @@ function AdminRawMaterialsList({
         error
       );
 
-      alert(
+      await umiNotify(
         "Impossible de charger les matières premières."
       );
 
@@ -77,7 +78,7 @@ function AdminRawMaterialsList({
 
   const handleDelete = async (product) => {
 
-    const confirmation = window.confirm(
+    const confirmation = await umiAsk(
       `Voulez-vous vraiment supprimer "${product?.name || "cette matière première"}" ?`
     );
 
@@ -103,7 +104,7 @@ function AdminRawMaterialsList({
           )
       );
 
-      alert(
+      await umiNotify(
         "Matière première supprimée avec succès."
       );
 
@@ -114,7 +115,7 @@ function AdminRawMaterialsList({
         error
       );
 
-      alert(
+      await umiNotify(
         "Impossible de supprimer cette matière première."
       );
 
@@ -270,12 +271,9 @@ function AdminRawMaterialsList({
                           "Sans nom"}
                       </h3>
 
-                      <strong className="admin-commerce-product-price">
-
-                        {product.price ||
-                          "Prix sur demande"}
-
-                      </strong>
+                     <strong className="admin-commerce-product-price">
+  {getProductPrice(product)}
+</strong>
 
 
                       <div className="admin-commerce-product-details">

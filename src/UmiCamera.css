@@ -1,0 +1,82 @@
+/* Affichage de la caméra, sans dimensions imposées à la capture. */
+.umi-presenter-live .umi-live-background-video,
+.live-camera-preview video {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: var(--umi-camera-transform, scaleX(-1)) !important;
+  background: #000;
+}
+
+/* Dimensionner la caméra dans son cadre, pas dans la fenêtre du navigateur. */
+/* Plein écran seulement lorsque le panneau est fermé */
+#root .umi-presenter-live .umi-live-background,
+#root .umi-real-live:not(.umi-live-panel-open) .umi-live-background {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+#root :is(.umi-presenter-live, .umi-real-live) .umi-live-background-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Le fond de galerie reste sous la caméra, sans masquer son image. */
+#root :is(.umi-presenter-live, .umi-real-live) .umi-live-gallery-background {
+  z-index: 0 !important;
+  object-fit: cover !important;
+  pointer-events: none !important;
+}
+#root :is(.umi-presenter-live, .umi-real-live) .umi-live-background-video {
+  z-index: 1 !important;
+}
+
+/* Cadrage repris de l'ancienne version fournie. */
+#root .umi-presenter-live .umi-live-background {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto !important;
+  transform: none !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+#root .umi-presenter-live .umi-live-background-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: var(--umi-camera-transform, scaleX(-1)) !important;
+}
+#root .create-live-page .live-camera-preview {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 9 / 12 !important;
+  max-height: 500px !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+}
+#root .create-live-page .live-camera-preview video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}

@@ -9,11 +9,8 @@
 .order-page {
   width: 100%;
   min-height: 100dvh;
-
-  padding-bottom: 120px;
-
-  background: #f5faff;
-
+  padding-bottom: 118px;
+  background: #f6f8fb;
   font-family: Arial, Helvetica, sans-serif;
   color: #173b5b;
 }
@@ -28,20 +25,18 @@
   top: 0;
   z-index: 100;
 
-  height: 62px;
+  height: 60px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
   align-items: center;
-  justify-content: space-between;
 
   padding: 0 14px;
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #e8eef4;
 
-  border-bottom: 1px solid #e2edf5;
-
-  box-shadow:
-    0 2px 10px rgba(0, 60, 110, 0.06);
+  box-shadow: 0 2px 12px rgba(25, 60, 90, 0.05);
 }
 
 .order-header h1 {
@@ -49,14 +44,11 @@
 
   color: #123e69;
 
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 800;
+
+  text-align: center;
 }
-
-
-/* =========================================
-   FLÈCHE RETOUR
-========================================= */
 
 .order-back {
   width: 38px;
@@ -69,21 +61,16 @@
   padding: 0;
 
   border: none;
-  border-radius: 50%;
+  border-radius: 11px;
 
-  background: #e8f4ff;
+  background: #eef6fd;
   color: #0876d8;
 
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 700;
 
   cursor: pointer;
 }
-
-
-/* =========================================
-   ICÔNE EN-TÊTE
-========================================= */
 
 .order-header-icon {
   width: 38px;
@@ -93,11 +80,13 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: 50%;
+  justify-self: end;
 
-  background: #e8f4ff;
+  border-radius: 11px;
 
-  font-size: 18px;
+  background: #eef6fd;
+
+  font-size: 17px;
 }
 
 
@@ -108,35 +97,35 @@
 .order-content {
   width: 100%;
 
-  padding: 16px 12px 35px;
+  padding: 14px 12px 32px;
 }
 
 
 /* =========================================
-   SECTIONS
+   CARTES / SECTIONS
 ========================================= */
 
 .order-section {
+  width: 100%;
+
   margin-bottom: 14px;
-
   padding: 16px;
-
-  border: 1px solid #e3edf5;
-  border-radius: 16px;
 
   background: #ffffff;
 
-  box-shadow:
-    0 4px 14px rgba(0, 60, 110, 0.06);
+  border: 1px solid #e8eef4;
+  border-radius: 14px;
+
+  box-shadow: 0 3px 14px rgba(20, 60, 95, 0.05);
 }
 
 .order-section h2 {
-  margin: 0 0 5px;
+  margin: 0 0 14px;
 
   color: #123e69;
 
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 
@@ -151,25 +140,25 @@
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .order-summary-heading h2 {
-  margin: 0 0 4px;
+  margin: 0 0 3px;
 }
 
 .order-count {
   margin: 0;
 
-  color: #8798a7;
+  color: #8a9baa;
 
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 
 /* =========================================
-   LISTE DES PRODUITS
+   PRODUITS
 ========================================= */
 
 .order-products {
@@ -177,14 +166,7 @@
 
   display: flex;
   flex-direction: column;
-
-  gap: 0;
 }
-
-
-/* =========================================
-   PRODUIT
-========================================= */
 
 .order-product {
   width: 100%;
@@ -192,11 +174,11 @@
   display: flex;
   align-items: flex-start;
 
-  gap: 11px;
+  gap: 12px;
 
   padding: 14px 0;
 
-  border-top: 1px solid #edf3f7;
+  border-top: 1px solid #edf1f5;
 }
 
 .order-product:first-child {
@@ -209,8 +191,8 @@
 ========================================= */
 
 .order-product-image {
-  width: 74px;
-  height: 74px;
+  width: 76px;
+  height: 76px;
 
   flex-shrink: 0;
 
@@ -220,9 +202,10 @@
 
   overflow: hidden;
 
+  border: 1px solid #edf2f6;
   border-radius: 12px;
 
-  background: #f3f8fc;
+  background: #f8fafc;
 }
 
 .order-product-image img {
@@ -231,11 +214,11 @@
 
   object-fit: contain;
 
-  padding: 3px;
+  padding: 4px;
 }
 
 .order-product-image span {
-  font-size: 29px;
+  font-size: 28px;
 }
 
 
@@ -253,11 +236,6 @@
   gap: 6px;
 }
 
-
-/* =========================================
-   NOM PRODUIT
-========================================= */
-
 .order-product-name {
   display: block;
 
@@ -270,16 +248,11 @@
   color: #173b5b;
 
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
 
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
-
-/* =========================================
-   PRIX UNITAIRE ET QUANTITÉ
-========================================= */
 
 .order-product-detail {
   width: 100%;
@@ -292,25 +265,20 @@
 }
 
 .order-product-detail span {
-  color: #7b91a4;
+  color: #8193a2;
 
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .order-product-detail strong {
   color: #173b5b;
 
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 700;
 
   text-align: right;
 }
-
-
-/* =========================================
-   SOUS-TOTAL PRODUIT
-========================================= */
 
 .order-product-subtotal {
   width: 100%;
@@ -322,33 +290,31 @@
   gap: 10px;
 
   margin-top: 3px;
+  padding-top: 7px;
 
-  padding-top: 6px;
-
-  border-top: 1px dashed #dbe8f2;
+  border-top: 1px dashed #dce5ec;
 }
 
 .order-product-subtotal span {
   color: #52738e;
 
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .order-product-subtotal strong {
   color: #0876d8;
 
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
 
   text-align: right;
-
   white-space: nowrap;
 }
 
 
 /* =========================================
-   TOTAL GÉNÉRAL DU RÉSUMÉ
+   TOTAL DU PANIER
 ========================================= */
 
 .order-total {
@@ -360,91 +326,117 @@
 
   gap: 15px;
 
-  margin-top: 8px;
+  margin-top: 6px;
+  padding-top: 14px;
 
-  padding-top: 15px;
-
-  border-top: 2px solid #dce9f3;
+  border-top: 1px solid #dce6ee;
 }
 
 .order-total span {
   color: #173b5b;
 
-  font-size: 15px;
-  font-weight: 900;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .order-total strong {
   color: #0876d8;
 
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 900;
 
   text-align: right;
-
   white-space: nowrap;
 }
 
 
 /* =========================================
-   INFORMATIONS CLIENT
+   FORMULAIRE ACHETEUR
 ========================================= */
 
-.order-client-row {
-  display: flex;
-  align-items: center;
+.order-buyer-form {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   gap: 12px;
-
-  padding: 12px 0;
-
-  border-bottom: 1px solid #edf3f7;
 }
 
-.order-client-row:last-child {
-  border-bottom: none;
-}
 
-.order-client-row > span {
-  width: 40px;
-  height: 40px;
+/* =========================================
+   CHAMP
+========================================= */
 
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 12px;
-
-  background: #e8f4ff;
-
-  font-size: 18px;
-}
-
-.order-client-row div {
+.order-buyer-field {
   min-width: 0;
 
   display: flex;
   flex-direction: column;
 
-  gap: 3px;
+  gap: 6px;
 }
 
-.order-client-row small {
-  color: #8798a7;
+.order-buyer-field span {
+  padding-left: 2px;
 
-  font-size: 10px;
+  color: #526d82;
+
+  font-size: 11px;
+  font-weight: 700;
 }
 
-.order-client-row strong {
-  overflow: hidden;
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.order-buyer-field input {
+  width: 100%;
+  height: 47px;
+
+  padding: 0 13px;
+
+  outline: none;
+
+  border: 1px solid #dbe5ed;
+  border-radius: 10px;
+
+  background: #f9fbfd;
 
   color: #173b5b;
 
+  font-family: inherit;
   font-size: 13px;
+  font-weight: 600;
 
-  text-overflow: ellipsis;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.order-buyer-field input::placeholder {
+  color: #a3b0bb;
+  font-weight: 400;
+}
+
+.order-buyer-field input:focus {
+  border-color: #1689eb;
+
+  background: #ffffff;
+
+  box-shadow: 0 0 0 3px rgba(22, 137, 235, 0.09);
+}
+
+
+/* =========================================
+   ADRESSE + LIEU LIVRAISON PLUS LARGES
+========================================= */
+
+.order-buyer-field:nth-child(3),
+.order-buyer-field:nth-child(6) {
+  grid-column: 1 / -1;
 }
 
 
@@ -453,23 +445,25 @@
 ========================================= */
 
 .order-information {
+  width: 100%;
+
   display: flex;
   align-items: flex-start;
 
   gap: 10px;
 
-  padding: 14px;
+  padding: 13px 14px;
 
-  border: 1px solid #cfe8ff;
-  border-radius: 14px;
+  border: 1px solid #d5e9f9;
+  border-radius: 12px;
 
-  background: #eaf6ff;
+  background: #f0f8ff;
 }
 
 .order-information > span {
   flex-shrink: 0;
 
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .order-information p {
@@ -483,7 +477,7 @@
 
 
 /* =========================================
-   BARRE PAIEMENT FIXE EN BAS
+   BARRE FIXE EN BAS
 ========================================= */
 
 .order-bottom {
@@ -500,28 +494,27 @@
   max-width: 500px;
 
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
+  grid-template-columns: 0.9fr 1.25fr;
 
   align-items: center;
 
-  gap: 10px;
+  gap: 12px;
 
   padding:
     10px
     12px
     calc(10px + env(safe-area-inset-bottom));
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.98);
 
-  border-top: 1px solid #dce8f2;
+  border-top: 1px solid #e1e9ef;
 
-  box-shadow:
-    0 -4px 18px rgba(0, 50, 100, 0.12);
+  box-shadow: 0 -4px 18px rgba(20, 55, 85, 0.09);
 }
 
 
 /* =========================================
-   TOTAL DANS LA BARRE DU BAS
+   TOTAL BARRE DU BAS
 ========================================= */
 
 .order-bottom-total {
@@ -534,18 +527,18 @@
 }
 
 .order-bottom-total span {
-  color: #7b91a4;
+  color: #8193a2;
 
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .order-bottom-total strong {
   overflow: hidden;
 
-  color: #0876d8;
+  color: #123e69;
 
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 900;
 
   white-space: nowrap;
@@ -559,37 +552,36 @@
 
 .order-confirm-button {
   width: 100%;
-  height: 52px;
+  height: 50px;
 
-  padding: 0 15px;
+  padding: 0 16px;
 
   border: none;
-  border-radius: 14px;
+  border-radius: 11px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #1689eb,
-      #0567c1
-    );
+  background: #0876d8;
 
   color: #ffffff;
 
-  font-size: 15px;
-  font-weight: 900;
+  font-size: 14px;
+  font-weight: 800;
 
-  box-shadow:
-    0 5px 15px rgba(8, 118, 216, 0.22);
+  box-shadow: 0 5px 14px rgba(8, 118, 216, 0.2);
 
   cursor: pointer;
 
   transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
+    transform 0.18s ease,
+    background 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.order-confirm-button:hover {
+  background: #066bc5;
 }
 
 .order-confirm-button:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 .order-confirm-button:disabled {
@@ -605,48 +597,58 @@
    PETITS TÉLÉPHONES
 ========================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
+
+  .order-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
   .order-section {
-    padding: 13px;
+    padding: 14px;
   }
+
+  .order-buyer-form {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .order-buyer-field:nth-child(3),
+  .order-buyer-field:nth-child(6) {
+    grid-column: auto;
+  }
+
+  .order-buyer-field input {
+    height: 48px;
+  }
+}
+
+
+/* =========================================
+   TRÈS PETITS TÉLÉPHONES
+========================================= */
+
+@media (max-width: 360px) {
 
   .order-product {
     gap: 8px;
   }
 
   .order-product-image {
-    width: 64px;
-    height: 64px;
+    width: 65px;
+    height: 65px;
   }
 
   .order-product-name {
     font-size: 12px;
   }
 
-  .order-product-detail span {
-    font-size: 9px;
-  }
-
-  .order-product-detail strong {
-    font-size: 10px;
-  }
-
-  .order-product-subtotal span {
-    font-size: 10px;
-  }
-
-  .order-product-subtotal strong {
-    font-size: 12px;
-  }
-
   .order-total strong {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .order-bottom {
-    grid-template-columns: 0.9fr 1.2fr;
-
+    grid-template-columns: 0.85fr 1.2fr;
     gap: 8px;
 
     padding-left: 10px;
@@ -654,13 +656,11 @@
   }
 
   .order-bottom-total strong {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .order-confirm-button {
-    height: 50px;
-
-    font-size: 14px;
+    height: 48px;
   }
 }
 
@@ -673,7 +673,6 @@
 
   .order-page {
     max-width: 500px;
-
     margin: 0 auto;
   }
 }
@@ -685,6 +684,7 @@
 
 @media (prefers-reduced-motion: reduce) {
 
+  .order-buyer-field input,
   .order-confirm-button {
     transition: none;
   }

@@ -1,8 +1,10 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useState } from "react";
 
 import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  signOut,
 } from "firebase/auth";
 
 import {
@@ -45,7 +47,7 @@ function Login({
 
       if (!email.trim()) {
 
-        alert(
+        await umiNotify(
           "Entrez d'abord votre adresse e-mail."
         );
 
@@ -62,7 +64,7 @@ function Login({
         );
 
 
-        alert(
+        await umiNotify(
           "Un e-mail de réinitialisation du mot de passe vous a été envoyé. Vérifiez votre boîte e-mail."
         );
 
@@ -80,7 +82,7 @@ function Login({
           "auth/invalid-email"
         ) {
 
-          alert(
+          await umiNotify(
             "L'adresse e-mail n'est pas valide."
           );
 
@@ -91,7 +93,7 @@ function Login({
           "auth/too-many-requests"
         ) {
 
-          alert(
+          await umiNotify(
             "Trop de demandes ont été effectuées. Veuillez réessayer plus tard."
           );
 
@@ -99,7 +101,7 @@ function Login({
 
         else {
 
-          alert(
+          await umiNotify(
             "Impossible d'envoyer l'e-mail de réinitialisation. Veuillez réessayer."
           );
 
@@ -122,7 +124,7 @@ function Login({
         !password
       ) {
 
-        alert(
+        await umiNotify(
           "Veuillez remplir votre e-mail et votre mot de passe."
         );
 
@@ -174,7 +176,8 @@ function Login({
           !userSnapshot.exists()
         ) {
 
-          alert(
+          await signOut(auth);
+          await umiNotify(
             "Votre profil UMI est introuvable."
           );
 
@@ -185,6 +188,12 @@ function Login({
 
         const userData =
           userSnapshot.data();
+        if (userData.blocked || userData.deleting) {
+          await signOut(auth);
+          await umiNotify("Ce compte est bloqué. Contactez UMI.");
+          return;
+        }
+
 
 
         /* =========================
@@ -224,7 +233,7 @@ function Login({
           "admin"
         ) {
 
-          alert(
+          await umiNotify(
             "Connexion administrateur réussie !"
           );
 
@@ -247,7 +256,7 @@ function Login({
            CLIENT
         ========================= */
 
-        alert(
+        await umiNotify(
           "Connexion réussie !"
         );
 
@@ -278,7 +287,7 @@ function Login({
             "auth/user-not-found"
         ) {
 
-          alert(
+          await umiNotify(
             "Adresse e-mail ou mot de passe incorrect."
           );
 
@@ -289,7 +298,7 @@ function Login({
           "auth/invalid-email"
         ) {
 
-          alert(
+          await umiNotify(
             "L'adresse e-mail n'est pas valide."
           );
 
@@ -300,7 +309,7 @@ function Login({
           "auth/too-many-requests"
         ) {
 
-          alert(
+          await umiNotify(
             "Trop de tentatives. Veuillez réessayer plus tard."
           );
 
@@ -308,7 +317,7 @@ function Login({
 
         else {
 
-          alert(
+          await umiNotify(
             "Impossible de vous connecter. Veuillez réessayer."
           );
 

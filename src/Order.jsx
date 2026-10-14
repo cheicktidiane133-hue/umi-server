@@ -1,3 +1,5 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
+import { useEffect, useState } from "react";
 import "./Order.css";
 
 
@@ -7,6 +9,61 @@ function Order({
   onBack,
   onConfirmOrder,
 }) {
+
+
+  /* =========================================
+     INFORMATIONS DE L'ACHETEUR
+  ========================================= */
+
+  const [buyerInfo, setBuyerInfo] = useState({
+    nom: "",
+    prenom: "",
+    adresse: "",
+    email: "",
+    telephone: "",
+    lieuLivraison: "",
+  });
+
+
+  /* =========================================
+     PRÉREMPLIR AVEC LE COMPTE
+  ========================================= */
+
+  useEffect(() => {
+
+    setBuyerInfo({
+      nom: user?.nom || "",
+      prenom: user?.prenom || "",
+      adresse: user?.adresse || "",
+      email: user?.email || "",
+      telephone: user?.telephone || "",
+      lieuLivraison:
+        user?.lieuLivraison || "",
+    });
+
+  }, [user]);
+
+
+  /* =========================================
+     MODIFIER UNE INFORMATION
+  ========================================= */
+
+  const handleBuyerChange = (event) => {
+
+    const {
+      name,
+      value,
+    } = event.target;
+
+
+    setBuyerInfo(
+      (previousInfo) => ({
+        ...previousInfo,
+        [name]: value,
+      })
+    );
+
+  };
 
 
   /* =========================================
@@ -122,86 +179,33 @@ function Order({
   /* =========================================
      RÉCUPÉRER LA DEVISE
   ========================================= */
+  /* =========================================
+     DEVISE
+     UMI UTILISE UNIQUEMENT FCFA
+  ========================================= */
 
-  const getCurrency = (price) => {
-
-    const value =
-      String(price || "")
-        .toUpperCase();
-
-
-    if (
-      value.includes("FCFA") ||
-      value.includes("CFA")
-    ) {
-      return "FCFA";
-    }
-
-
-    if (
-      value.includes("$") ||
-      value.includes("USD")
-    ) {
-      return "$";
-    }
-
-
-    if (value.includes("CHF")) {
-      return "CHF";
-    }
-
-
-    if (
-      value.includes("€") ||
-      value.includes("EUR")
-    ) {
-      return "€";
-    }
-
-
-    return "€";
-
+  const getCurrency = () => {
+    return "FCFA";
   };
-
-
   /* =========================================
      FORMATER LE PRIX
   ========================================= */
+const formatPrice = (amount, currency = "FCFA") => {
+  if (
+    amount === null ||
+    amount === undefined ||
+    !Number.isFinite(amount)
+  ) {
+    return "Prix non renseigné";
+  }
 
-  const formatPrice = (
-    amount,
-    currency
-  ) => {
+  const formattedAmount =
+    new Intl.NumberFormat("fr-FR", {
+      maximumFractionDigits: 2,
+    }).format(amount);
 
-    if (
-      amount === null ||
-      amount === undefined
-    ) {
-      return "Prix sur demande";
-    }
-
-
-    const formattedAmount =
-      new Intl.NumberFormat(
-        "fr-FR",
-        {
-          maximumFractionDigits: 2,
-        }
-      ).format(amount);
-
-
-    if (currency === "$") {
-
-      return `${formattedAmount} $`;
-
-    }
-
-
-    return `${formattedAmount} ${currency}`;
-
-  };
-
-
+  return `${formattedAmount} ${currency}`;
+};
   /* =========================================
      NOMBRE TOTAL DE MACHINES
   ========================================= */
@@ -283,6 +287,60 @@ function Order({
     );
 
 
+  /* =========================================
+     CONTINUER VERS LE PAIEMENT
+  ========================================= */
+
+  const handleContinuePayment = () => {
+
+    if (!buyerInfo.nom.trim()) {
+      umiNotify("Veuillez renseigner votre nom.");
+      return;
+    }
+
+
+    if (!buyerInfo.prenom.trim()) {
+      umiNotify("Veuillez renseigner votre prénom.");
+      return;
+    }
+
+
+    if (!buyerInfo.adresse.trim()) {
+      umiNotify("Veuillez renseigner votre adresse.");
+      return;
+    }
+
+
+    if (!buyerInfo.email.trim()) {
+      umiNotify("Veuillez renseigner votre e-mail.");
+      return;
+    }
+
+
+    if (!buyerInfo.telephone.trim()) {
+      umiNotify("Veuillez renseigner votre téléphone.");
+      return;
+    }
+
+
+    if (!buyerInfo.lieuLivraison.trim()) {
+      umiNotify(
+        "Veuillez renseigner le lieu de livraison."
+      );
+      return;
+    }
+
+
+    onConfirmOrder?.({
+      buyerInfo,
+      cart,
+      total: orderTotal,
+      currency: orderCurrency,
+    });
+
+  };
+
+
   return (
 
     <div className="order-page">
@@ -338,18 +396,13 @@ function Order({
 
 
               <p className="order-count">
-
-                {totalQuantity}
-
-                {" "}
-
-                machine
-                {totalQuantity > 1
-                  ? "s"
-                  : ""}
-
-              </p>
-
+  {totalQuantity}
+  {" "}
+  article
+  {totalQuantity > 1
+    ? "s"
+    : ""}
+</p>
             </div>
 
           </div>
@@ -402,9 +455,6 @@ function Order({
                     }
                   >
 
-
-                    {/* PHOTO */}
-
                     <div className="order-product-image">
 
                       {machine?.imageUrl ||
@@ -432,8 +482,6 @@ function Order({
                     </div>
 
 
-                    {/* INFORMATIONS */}
-
                     <div className="order-product-info">
 
                       <strong className="order-product-name">
@@ -444,8 +492,6 @@ function Order({
                       </strong>
 
 
-                      {/* PRIX UNITAIRE */}
-
                       <div className="order-product-detail">
 
                         <span>
@@ -453,33 +499,24 @@ function Order({
                         </span>
 
                         <strong>
-                          {unitPrice !== null
-                            ? formatPrice(
-                                unitPrice,
-                                currency
-                              )
-                            : "Prix sur demande"}
-                        </strong>
-
+  {formatPrice(unitPrice, currency)}
+</strong>
                       </div>
 
-
-                      {/* QUANTITÉ */}
 
                       <div className="order-product-detail">
 
-                        <span>
-                          Quantité
-                        </span>
+  <span>
+    Quantité
+  </span>
 
-                        <strong>
-                          {quantity}
-                        </strong>
+  <strong>
+    {quantity}
+    {machine?.unit ? ` ${machine.unit}` : ""}
+  </strong>
 
-                      </div>
+</div>
 
-
-                      {/* SOUS-TOTAL */}
 
                       <div className="order-product-subtotal">
 
@@ -487,14 +524,9 @@ function Order({
                           Sous-total
                         </span>
 
-                        <strong>
-                          {lineTotal !== null
-                            ? formatPrice(
-                                lineTotal,
-                                currency
-                              )
-                            : "Prix sur demande"}
-                        </strong>
+                       <strong>
+  {formatPrice(lineTotal, currency)}
+</strong>
 
                       </div>
 
@@ -509,10 +541,6 @@ function Order({
 
           </div>
 
-
-          {/* =====================================
-              TOTAL GÉNÉRAL
-          ===================================== */}
 
           <div className="order-total">
 
@@ -536,84 +564,136 @@ function Order({
 
 
         {/* =====================================
-            INFORMATIONS CLIENT
+            INFORMATIONS DE L'ACHETEUR
         ===================================== */}
 
         <section className="order-section">
 
           <h2>
-            Informations client
+            Informations de l'acheteur
           </h2>
 
 
-          {/* NOM */}
+          <div className="order-buyer-form">
 
-          <div className="order-client-row">
 
-            <span>
-              👤
-            </span>
+            {/* NOM */}
 
-            <div>
+            <label className="order-buyer-field">
 
-              <small>
+              <span>
                 Nom
-              </small>
+              </span>
 
-              <strong>
-                {user?.nom ||
-                  "Non renseigné"}
-              </strong>
+              <input
+                type="text"
+                name="nom"
+                value={buyerInfo.nom}
+                onChange={handleBuyerChange}
+                placeholder="Votre nom"
+              />
 
-            </div>
-
-          </div>
+            </label>
 
 
-          {/* EMAIL */}
+            {/* PRÉNOM */}
 
-          <div className="order-client-row">
+            <label className="order-buyer-field">
 
-            <span>
-              📧
-            </span>
+              <span>
+                Prénom
+              </span>
 
-            <div>
+              <input
+                type="text"
+                name="prenom"
+                value={buyerInfo.prenom}
+                onChange={handleBuyerChange}
+                placeholder="Votre prénom"
+              />
 
-              <small>
+            </label>
+
+
+            {/* ADRESSE */}
+
+            <label className="order-buyer-field">
+
+              <span>
+                Adresse
+              </span>
+
+              <input
+                type="text"
+                name="adresse"
+                value={buyerInfo.adresse}
+                onChange={handleBuyerChange}
+                placeholder="Votre adresse"
+              />
+
+            </label>
+
+
+            {/* EMAIL */}
+
+            <label className="order-buyer-field">
+
+              <span>
                 E-mail
-              </small>
+              </span>
 
-              <strong>
-                {user?.email ||
-                  "Non renseigné"}
-              </strong>
+              <input
+                type="email"
+                name="email"
+                value={buyerInfo.email}
+                onChange={handleBuyerChange}
+                placeholder="Votre e-mail"
+              />
 
-            </div>
-
-          </div>
+            </label>
 
 
-          {/* TÉLÉPHONE */}
+            {/* TÉLÉPHONE */}
 
-          <div className="order-client-row">
+            <label className="order-buyer-field">
 
-            <span>
-              📱
-            </span>
-
-            <div>
-
-              <small>
+              <span>
                 Téléphone
-              </small>
+              </span>
 
-              <strong>
-                {user?.telephone ||
-                  "Non renseigné"}
-              </strong>
+              <input
+                type="tel"
+                name="telephone"
+                value={buyerInfo.telephone}
+                onChange={handleBuyerChange}
+                placeholder="Votre téléphone"
+              />
 
-            </div>
+            </label>
+
+
+            {/* LIEU DE LIVRAISON */}
+
+            <label className="order-buyer-field">
+
+              <span>
+                Lieu de livraison
+              </span>
+
+              <input
+                type="text"
+                name="lieuLivraison"
+                value={
+                  buyerInfo.lieuLivraison
+                }
+                onChange={
+                  handleBuyerChange
+                }
+                placeholder="Ex. Bamako, Mali"
+              />
+
+            </label>
+
 
           </div>
 
@@ -632,10 +712,9 @@ function Order({
 
 
           <p>
-            Vérifiez votre commande avant
+            Vérifiez votre commande et vos
+            informations de livraison avant
             de continuer vers le paiement.
-            Vous pourrez ensuite choisir
-            votre moyen de paiement.
           </p>
 
         </div>
@@ -656,10 +735,12 @@ function Order({
           </span>
 
           <strong>
+
             {formatPrice(
               orderTotal,
               orderCurrency
             )}
+
           </strong>
 
         </div>
@@ -668,7 +749,9 @@ function Order({
         <button
           type="button"
           className="order-confirm-button"
-          onClick={onConfirmOrder}
+          onClick={
+            handleContinuePayment
+          }
           disabled={
             cart.length === 0
           }

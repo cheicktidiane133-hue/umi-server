@@ -1,3 +1,4 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import {
   useEffect,
   useState,
@@ -387,7 +388,7 @@ function ScheduleLive({ onBack }) {
           : "LIVE UMI";
 
       const confirmed =
-        window.confirm(
+        await umiAsk(
           `Supprimer ce ${type} programmé ?`
         );
 
@@ -417,7 +418,7 @@ function ScheduleLive({ onBack }) {
           error
         );
 
-        alert(
+        await umiNotify(
           "Impossible de supprimer cette programmation."
         );
       } finally {

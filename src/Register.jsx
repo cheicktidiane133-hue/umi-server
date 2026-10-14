@@ -1,3 +1,4 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useState } from "react";
 
 import {
@@ -30,6 +31,7 @@ function Register({
     useState({
 
       nom: "",
+      prenom: "",
       email: "",
       telephone: "",
       password: "",
@@ -55,13 +57,14 @@ function Register({
 
       if (
         !formData.nom.trim() ||
+        !formData.prenom.trim() ||
         !formData.email.trim() ||
         !formData.telephone.trim() ||
         !formData.password ||
         !formData.confirmPassword
       ) {
 
-        alert(
+        await umiNotify(
           "Veuillez remplir tous les champs."
         );
 
@@ -80,7 +83,7 @@ function Register({
         )
       ) {
 
-        alert(
+        await umiNotify(
           "Veuillez entrer une adresse e-mail valide."
         );
 
@@ -98,7 +101,7 @@ function Register({
         6
       ) {
 
-        alert(
+        await umiNotify(
           "Le mot de passe doit contenir au moins 6 caractères."
         );
 
@@ -116,7 +119,7 @@ function Register({
         formData.confirmPassword
       ) {
 
-        alert(
+        await umiNotify(
           "Les deux mots de passe ne sont pas identiques."
         );
 
@@ -140,6 +143,10 @@ function Register({
           formData.nom.trim();
 
 
+        const prenom =
+          formData.prenom.trim();
+
+
         const telephone =
           formData.telephone.trim();
 
@@ -161,7 +168,8 @@ function Register({
 
 
         /* =========================
-           AJOUTER NOM
+           AJOUTER NOM + PRÉNOM
+           DANS FIREBASE AUTH
         ========================= */
 
         await updateProfile(
@@ -169,7 +177,7 @@ function Register({
           {
 
             displayName:
-              nom,
+              `${prenom} ${nom}`,
 
           }
         );
@@ -192,6 +200,8 @@ function Register({
 
             nom,
 
+            prenom,
+
             email,
 
             telephone,
@@ -213,10 +223,6 @@ function Register({
 
         /* =========================
            ENREGISTRER SESSION UMI
-
-           Firebase connecte déjà
-           automatiquement l'utilisateur
-           après createUserWithEmailAndPassword.
         ========================= */
 
         localStorage.setItem(
@@ -227,6 +233,8 @@ function Register({
               firebaseUser.uid,
 
             nom,
+
+            prenom,
 
             email,
 
@@ -239,7 +247,7 @@ function Register({
         );
 
 
-        alert(
+        await umiNotify(
           "Votre compte UMI a été créé avec succès !"
         );
 
@@ -286,7 +294,7 @@ function Register({
           "auth/email-already-in-use"
         ) {
 
-          alert(
+          await umiNotify(
             "Cette adresse e-mail possède déjà un compte UMI."
           );
 
@@ -297,7 +305,7 @@ function Register({
           "auth/invalid-email"
         ) {
 
-          alert(
+          await umiNotify(
             "L'adresse e-mail n'est pas valide."
           );
 
@@ -308,7 +316,7 @@ function Register({
           "auth/weak-password"
         ) {
 
-          alert(
+          await umiNotify(
             "Le mot de passe est trop faible."
           );
 
@@ -316,7 +324,7 @@ function Register({
 
         else {
 
-          alert(
+          await umiNotify(
             "Impossible de créer le compte. Veuillez réessayer."
           );
 
@@ -401,13 +409,13 @@ function Register({
           {/* NOM */}
 
           <label>
-            Nom et prénom
+            Nom
           </label>
 
 
           <input
             type="text"
-            placeholder="Votre nom et prénom"
+            placeholder="Votre nom"
             value={
               formData.nom
             }
@@ -422,7 +430,35 @@ function Register({
             onKeyDown={
               handleKeyDown
             }
-            autoComplete="name"
+            autoComplete="family-name"
+          />
+
+
+          {/* PRÉNOM */}
+
+          <label>
+            Prénom
+          </label>
+
+
+          <input
+            type="text"
+            placeholder="Votre prénom"
+            value={
+              formData.prenom
+            }
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+
+                prenom:
+                  event.target.value,
+              })
+            }
+            onKeyDown={
+              handleKeyDown
+            }
+            autoComplete="given-name"
           />
 
 

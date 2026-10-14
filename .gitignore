@@ -23,3 +23,22 @@ dist-ssr
 *.sln
 *.sw?
 .env
+# Clés privées serveur
+secrets/
+# Variables locales et sauvegardes
+.env.*
+!.env.example
+src-ancien/
+src-sauvegarde*/
+src/*-sauvegarde*
+server-sauvegarde.js
+
+# Fichiers locaux Xcode
+ios/**/xcuserdata/
+ios/**/DerivedData/
+ios/**/build/
+
+# Fichiers de signature Apple
+*.p12
+*.p8
+*.mobileprovision

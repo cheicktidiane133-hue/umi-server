@@ -1121,3 +1121,187 @@ overflow-y: auto;
   }
 
 }
+/* =========================================
+   PHOTO PROFIL - CORRECTION
+========================================= */
+
+.home-profile {
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.home-profile-photo {
+  width: 48px !important;
+  height: 48px !important;
+
+  border-radius: 50% !important;
+  object-fit: cover !important;
+
+  border: 2px solid white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+
+  display: block !important;
+}.umi-live-cart-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #0007;
+}
+
+.umi-live-cart-window {
+  position: relative;
+  width: min(500px, 100%);
+  max-height: 85dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 20px;
+  background: #f5faff;
+  color: #173b5b;
+  box-shadow: 0 15px 50px #0006;
+}
+
+.umi-live-cart-close {
+  position: sticky;
+  top: 10px;
+  z-index: 6000;
+  display: block;
+  width: 36px;
+  height: 36px;
+  margin: 10px 10px -46px auto;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #ed1745;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.umi-live-cart-window .cart-page {
+  min-height: 0;
+}
+
+.umi-live-cart-window .cart-header {
+  padding-right: 58px;
+}
+
+.umi-live-cart-window .cart-content,
+.umi-live-cart-window .cart-empty {
+  min-height: 0;
+}
+
+.umi-live-cart-window .cart-content {
+  padding-bottom: 20px;
+}
+
+.umi-live-cart-window .cart-total-box,
+.umi-live-cart-window .cart-taskbar {
+  position: static;
+  inset: auto;
+  transform: none;
+  width: 100%;
+  max-width: none;
+}
+.umi-replay-offer-window .umi-offer-confirmation {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin: 14px 0 0;
+  padding: 14px 12px;
+  border: 2px solid #087fc1;
+  border-radius: 12px;
+  background: #fff;
+  color: #163a5c;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+}
+.umi-live-order-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.umi-live-order-window {
+  position: relative;
+  width: min(500px, 100%);
+  max-height: 85dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 22px;
+  background: #f6f8fb;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  animation: umi-order-enter 220ms ease-out;
+}
+
+.umi-live-order-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 200;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #e53935;
+  color: white;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.umi-live-order-window .order-page {
+  min-height: 0;
+  padding-bottom: 0;
+}
+
+.umi-live-order-window .order-header {
+  padding-right: 58px;
+}
+
+.umi-live-order-window .order-bottom {
+  position: sticky;
+  bottom: 0;
+  left: auto;
+  width: 100%;
+  max-width: none;
+  transform: none;
+}
+
+@keyframes umi-order-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .umi-live-order-window {
+    animation: none;
+  }
+}

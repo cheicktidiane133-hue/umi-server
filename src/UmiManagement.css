@@ -1,0 +1,10 @@
+.umi-management { min-height: 100dvh; padding: 20px 16px 90px; background: #f4f7fb; color: #163a5c; font-family: Arial, sans-serif; }
+.umi-management header { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; }
+.umi-management h1 { font-size: 22px; margin: 0; }
+.umi-management > input, .umi-management textarea { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 12px; font: inherit; background: white; color: #163a5c; }
+.umi-management article { padding: 18px; margin: 12px 0; border-radius: 15px; background: white; border: 1px solid #e2e8f0; }
+.umi-management article p { overflow-wrap: anywhere; }
+.umi-management button { padding: 11px 14px; border: 0; border-radius: 10px; background: #163a5c; color: white; font-weight: bold; cursor: pointer; }
+.umi-management button:disabled { opacity: .5; cursor: wait; }
+.umi-management-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.umi-management button.danger { background: #be123c; }

@@ -1,3 +1,5 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
+import { getProductPrice } from "./productPrice";
 import { useMemo, useState } from "react";
 
 import {
@@ -77,7 +79,7 @@ function AdminMachines({
     async (machineId) => {
 
       const confirmation =
-        window.confirm(
+        await umiAsk(
           "Voulez-vous vraiment supprimer cette machine ?"
         );
 
@@ -103,7 +105,7 @@ function AdminMachines({
         );
 
 
-        alert(
+        await umiNotify(
           "Machine supprimée avec succès."
         );
 
@@ -116,7 +118,7 @@ function AdminMachines({
         );
 
 
-        alert(
+        await umiNotify(
           "Erreur lors de la suppression."
         );
 
@@ -392,12 +394,8 @@ function AdminMachines({
 
 
                     <p className="admin-catalog-price">
-
-                      {machine.price
-                        ? machine.price
-                        : "Prix non renseigné"}
-
-                    </p>
+  {getProductPrice(machine)}
+</p>
 
 
                     {/* ACTIONS */}

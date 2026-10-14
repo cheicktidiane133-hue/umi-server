@@ -1,3 +1,4 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useState } from "react";
 
 import {
@@ -6,15 +7,27 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-import { db } from "./firebase";
+import {
+  auth,
+  db,
+} from "./firebase";
 
 import "./CommerceModule.css";
 
 
 function QuoteRequest({
   user,
+  userPhoto,
   product,
   onBack,
+  onOpenQuotes,
+
+  /* BARRE DES TÂCHES */
+  onHome,
+  onMachines,
+  onLive,
+  onCart,
+  onAccount,
 }) {
 
   /* =========================================
@@ -28,7 +41,6 @@ function QuoteRequest({
       ""
     );
 
-
   const [phone, setPhone] =
     useState(
       user?.telephone ||
@@ -36,13 +48,11 @@ function QuoteRequest({
       ""
     );
 
-
   const [email, setEmail] =
     useState(
       user?.email ||
       ""
     );
-
 
   const [companyName, setCompanyName] =
     useState("");
@@ -59,25 +69,39 @@ function QuoteRequest({
         : ""
     );
 
-
   const [quantity, setQuantity] =
     useState("");
-
 
   const [country, setCountry] =
     useState("");
 
-
   const [budget, setBudget] =
     useState("");
-
 
   const [message, setMessage] =
     useState("");
 
-
   const [saving, setSaving] =
     useState(false);
+
+  const [
+    showNewQuoteForm,
+    setShowNewQuoteForm,
+  ] = useState(true);
+
+
+  /* =========================================
+     FERMER LA FENÊTRE NOUVEAU DEVIS
+  ========================================= */
+
+  const closeNewQuoteForm = () => {
+  if (saving) {
+    return;
+  }
+
+  onBack?.();
+};
+
 
 
   /* =========================================
@@ -93,14 +117,19 @@ function QuoteRequest({
        VÉRIFIER CONNEXION
     ===================================== */
 
-    if (!user?.userId) {
+    const currentUserId =
+      auth.currentUser?.uid ||
+      user?.uid ||
+      user?.userId ||
+      "";
 
-      alert(
+    if (!currentUserId) {
+
+      await umiNotify(
         "Vous devez être connecté."
       );
 
       return;
-
     }
 
 
@@ -110,12 +139,11 @@ function QuoteRequest({
 
     if (!fullName.trim()) {
 
-      alert(
+      await umiNotify(
         "Indiquez votre nom et prénom."
       );
 
       return;
-
     }
 
 
@@ -125,12 +153,11 @@ function QuoteRequest({
 
     if (!phone.trim()) {
 
-      alert(
+      await umiNotify(
         "Indiquez votre numéro de téléphone."
       );
 
       return;
-
     }
 
 
@@ -140,12 +167,11 @@ function QuoteRequest({
 
     if (!email.trim()) {
 
-      alert(
+      await umiNotify(
         "Indiquez votre adresse e-mail."
       );
 
       return;
-
     }
 
 
@@ -155,12 +181,11 @@ function QuoteRequest({
 
     if (!subject.trim()) {
 
-      alert(
+      await umiNotify(
         "Indiquez l'objet de votre demande."
       );
 
       return;
-
     }
 
 
@@ -170,12 +195,11 @@ function QuoteRequest({
 
     if (!message.trim()) {
 
-      alert(
+      await umiNotify(
         "Décrivez votre besoin."
       );
 
       return;
-
     }
 
 
@@ -198,7 +222,7 @@ function QuoteRequest({
           /* UTILISATEUR */
 
           userId:
-            user.userId,
+            currentUserId,
 
 
           /* INFORMATIONS CLIENT */
@@ -263,7 +287,6 @@ function QuoteRequest({
 
           createdAt:
             serverTimestamp(),
-
         }
       );
 
@@ -272,12 +295,30 @@ function QuoteRequest({
          CONFIRMATION
       ===================================== */
 
-      alert(
+      await umiNotify(
         "Votre demande de devis a été envoyée avec succès.\n\nVotre devis vous sera envoyé par e-mail dans les 24 heures."
       );
 
 
-      onBack();
+      /*
+        On ferme seulement la fenêtre.
+        On ne quitte plus automatiquement
+        la page Demander un devis.
+      */
+
+      setShowNewQuoteForm(false);
+
+      setCompanyName("");
+      setQuantity("");
+      setCountry("");
+      setBudget("");
+      setMessage("");
+
+      setSubject(
+        product?.name
+          ? `Demande de devis - ${product.name}`
+          : ""
+      );
 
 
     } catch (error) {
@@ -287,18 +328,63 @@ function QuoteRequest({
         error
       );
 
-
-      alert(
+      await umiNotify(
         "Impossible d'envoyer votre demande de devis."
       );
-
 
     } finally {
 
       setSaving(false);
-
     }
+  };
 
+
+  /* =========================================
+     STYLE COMMUN DES DEUX BOUTONS
+  ========================================= */
+
+  const quoteTopButtonStyle = {
+
+    flex: "1 1 0",
+
+    minWidth: 0,
+
+    height: "58px",
+
+    padding: "0 12px",
+
+    border: "none",
+
+    borderRadius: "15px",
+
+    background: "#174b91",
+
+    color: "#ffffff",
+
+    cursor:
+      saving
+        ? "not-allowed"
+        : "pointer",
+
+    display: "flex",
+
+    alignItems: "center",
+
+    justifyContent: "center",
+
+    gap: "8px",
+
+    fontSize: "14px",
+
+    fontWeight: "800",
+
+    boxShadow:
+      "0 4px 14px rgba(23,75,145,0.18)",
+
+    opacity:
+      saving
+        ? 0.7
+        : 1,
   };
 
 
@@ -308,338 +394,474 @@ function QuoteRequest({
 
   return (
 
-    <div className="commerce-page">
+    <div style={{ display: "contents" }}>
 
 
-      {/* =====================================
-          EN-TÊTE
-      ===================================== */}
+      
 
-      <header className="commerce-header">
+      {/* =========================================
+          FENÊTRE NOUVEAU DEVIS
+      ========================================= */}
 
-        <button
-          type="button"
-          onClick={onBack}
-          disabled={saving}
+      {showNewQuoteForm && (
+
+        <div
+          onClick={closeNewQuoteForm}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background:
+              "rgba(0, 0, 0, 0.48)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "16px",
+            boxSizing: "border-box",
+          }}
         >
-          ←
-        </button>
-
-
-        <div>
-
-          <h1>
-            Demander un devis
-          </h1>
-
-          <p>
-            UMI
-          </p>
-
-        </div>
-
-
-        <span>
-          📄
-        </span>
-
-      </header>
-
-
-      {/* =====================================
-          CONTENU
-      ===================================== */}
-
-      <main className="commerce-content">
-
-
-        {/* ===================================
-            INTRODUCTION
-        =================================== */}
-
-        <div className="commerce-intro">
-
-          <h2>
-            Parlez-nous de votre besoin
-          </h2>
-
-
-          <p>
-            Remplissez le formulaire ci-dessous.
-            L'administration UMI étudiera votre
-            demande et votre devis vous sera
-            envoyé par e-mail dans les 24 heures.
-          </p>
-
-        </div>
-
-
-        {/* ===================================
-            FORMULAIRE
-        =================================== */}
-
-        <form
-          className="quote-form"
-          onSubmit={handleSubmit}
-        >
-
-
-          {/* =================================
-              NOM ET PRÉNOM
-          ================================= */}
-
-          <label>
-
-            Nom et prénom *
-
-            <input
-              type="text"
-              value={fullName}
-              onChange={(event) =>
-                setFullName(
-                  event.target.value
-                )
-              }
-              placeholder="Votre nom et prénom"
-              autoComplete="name"
-              required
-            />
-
-          </label>
-
-
-          {/* =================================
-              TÉLÉPHONE
-          ================================= */}
-
-          <label>
-
-            Téléphone / WhatsApp *
-
-            <input
-              type="tel"
-              value={phone}
-              onChange={(event) =>
-                setPhone(
-                  event.target.value
-                )
-              }
-              placeholder="+223..."
-              autoComplete="tel"
-              required
-            />
-
-          </label>
-
-
-          {/* =================================
-              EMAIL
-          ================================= */}
-
-          <label>
-
-            Adresse e-mail *
-
-            <input
-              type="email"
-              value={email}
-              onChange={(event) =>
-                setEmail(
-                  event.target.value
-                )
-              }
-              placeholder="exemple@email.com"
-              autoComplete="email"
-              required
-            />
-
-          </label>
-
-
-          {/* =================================
-              SOCIÉTÉ
-          ================================= */}
-
-          <label>
-
-            Nom de la société
-
-            <input
-              type="text"
-              value={companyName}
-              onChange={(event) =>
-                setCompanyName(
-                  event.target.value
-                )
-              }
-              placeholder="Facultatif"
-              autoComplete="organization"
-            />
-
-          </label>
-
-
-          {/* =================================
-              OBJET
-          ================================= */}
-
-          <label>
-
-            Objet de la demande *
-
-            <input
-              type="text"
-              value={subject}
-              onChange={(event) =>
-                setSubject(
-                  event.target.value
-                )
-              }
-              placeholder="Exemple : Ligne de production"
-              required
-            />
-
-          </label>
-
-
-          {/* =================================
-              QUANTITÉ
-          ================================= */}
-
-          <label>
-
-            Quantité souhaitée
-
-            <input
-              type="text"
-              value={quantity}
-              onChange={(event) =>
-                setQuantity(
-                  event.target.value
-                )
-              }
-              placeholder="Exemple : 5 tonnes"
-            />
-
-          </label>
-
-
-          {/* =================================
-              PAYS
-          ================================= */}
-
-          <label>
-
-            Pays de livraison
-
-            <input
-              type="text"
-              value={country}
-              onChange={(event) =>
-                setCountry(
-                  event.target.value
-                )
-              }
-              placeholder="Exemple : Mali"
-              autoComplete="country-name"
-            />
-
-          </label>
-
-
-          {/* =================================
-              BUDGET
-          ================================= */}
-
-          <label>
-
-            Budget approximatif
-
-            <input
-              type="text"
-              value={budget}
-              onChange={(event) =>
-                setBudget(
-                  event.target.value
-                )
-              }
-              placeholder="Facultatif"
-            />
-
-          </label>
-
-
-          {/* =================================
-              BESOIN
-          ================================= */}
-
-          <label>
-
-            Votre besoin *
-
-            <textarea
-              rows="7"
-              value={message}
-              onChange={(event) =>
-                setMessage(
-                  event.target.value
-                )
-              }
-              placeholder="Décrivez précisément votre besoin..."
-              required
-            />
-
-          </label>
-
-
-          {/* =================================
-              INFORMATION 24 HEURES
-          ================================= */}
 
           <div
+            onClick={(event) =>
+              event.stopPropagation()
+            }
             style={{
-              padding: "14px",
-              borderRadius: "12px",
-              background: "#eef7ff",
-              color: "#163d59",
-              fontSize: "13px",
-              lineHeight: "1.5",
-              fontWeight: "600",
+              width: "100%",
+              maxWidth: "560px",
+              maxHeight: "88vh",
+              overflowY: "auto",
+              background: "#ffffff",
+              borderRadius: "20px",
+              boxShadow:
+                "0 18px 50px rgba(0,0,0,0.25)",
+              boxSizing: "border-box",
             }}
           >
 
-            📧 Après l'envoi de votre demande,
-            votre devis vous sera envoyé à
-            l'adresse e-mail indiquée dans un
-            délai de 24 heures.
+
+            {/* =================================
+                EN-TÊTE DE LA FENÊTRE
+            ================================= */}
+
+            <div
+              style={{
+                position: "sticky",
+                top: 0,
+                zIndex: 2,
+                background: "#ffffff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent:
+                  "space-between",
+                gap: "12px",
+                padding: "16px 18px",
+                borderBottom:
+                  "1px solid #e7ebf0",
+                borderRadius:
+                  "20px 20px 0 0",
+              }}
+            >
+
+              <div>
+
+                <h2
+                  style={{
+                    margin: 0,
+                    color: "#174b91",
+                    fontSize: "20px",
+                  }}
+                >
+                  Nouveau devis
+                </h2>
+
+                <p
+                  style={{
+                    margin: "4px 0 0",
+                    color: "#6b7280",
+                    fontSize: "12px",
+                  }}
+                >
+                  UMI
+                </p>
+
+              </div>
+
+
+              <button
+                type="button"
+                onClick={
+                  closeNewQuoteForm
+                }
+                disabled={saving}
+                aria-label="Fermer"
+                style={{
+                  width: "38px",
+                  height: "38px",
+                  border: "none",
+                  borderRadius: "50%",
+                  background: "#f1f4f8",
+                  color: "#222222",
+                  cursor:
+                    saving
+                      ? "not-allowed"
+                      : "pointer",
+                  fontSize: "22px",
+                  fontWeight: "700",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent:
+                    "center",
+                  flexShrink: 0,
+                }}
+              >
+                ×
+              </button>
+
+            </div>
+
+
+            {/* =================================
+                CONTENU DE LA FENÊTRE
+            ================================= */}
+
+            <div
+              style={{
+                padding: "18px",
+              }}
+            >
+
+              <div className="commerce-intro">
+
+                <h2>
+                  Parlez-nous de votre besoin
+                </h2>
+
+                <p>
+                  Remplissez le formulaire
+                  ci-dessous. L'administration UMI
+                  étudiera votre demande et votre
+                  devis vous sera envoyé par e-mail
+                  dans les 24 heures.
+                </p>
+
+              </div>
+
+
+              {/* =================================
+                  FORMULAIRE
+              ================================= */}
+
+              <form
+                className="quote-form"
+                onSubmit={handleSubmit}
+              >
+
+
+                {/* =================================
+                    NOM ET PRÉNOM
+                ================================= */}
+
+                <label>
+
+                  Nom et prénom *
+
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(event) =>
+                      setFullName(
+                        event.target.value
+                      )
+                    }
+                    placeholder="Votre nom et prénom"
+                    autoComplete="name"
+                    required
+                  />
+
+                </label>
+
+
+                {/* =================================
+                    TÉLÉPHONE
+                ================================= */}
+
+                <label>
+
+                  Téléphone / WhatsApp *
+
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(event) =>
+                      setPhone(
+                        event.target.value
+                      )
+                    }
+                    placeholder="+223..."
+                    autoComplete="tel"
+                    required
+                  />
+
+                </label>
+
+
+                {/* =================================
+                    EMAIL
+                ================================= */}
+
+                <label>
+
+                  Adresse e-mail *
+
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(event) =>
+                      setEmail(
+                        event.target.value
+                      )
+                    }
+                    placeholder="exemple@email.com"
+                    autoComplete="email"
+                    required
+                  />
+
+                </label>
+                                {/* =================================
+                    SOCIÉTÉ
+                ================================= */}
+
+                <label>
+
+                  Société / entreprise
+
+                  <input
+                    type="text"
+                    value={companyName}
+                    onChange={(event) =>
+                      setCompanyName(
+                        event.target.value
+                      )
+                    }
+                    placeholder="Nom de votre société"
+                    autoComplete="organization"
+                  />
+
+                </label>
+
+
+                {/* =================================
+                    OBJET DE LA DEMANDE
+                ================================= */}
+
+                <label>
+
+                  Objet de la demande *
+
+                  <input
+                    type="text"
+                    value={subject}
+                    onChange={(event) =>
+                      setSubject(
+                        event.target.value
+                      )
+                    }
+                    placeholder="Ex. Demande de devis pour une machine"
+                    required
+                  />
+
+                </label>
+
+
+                {/* =================================
+                    QUANTITÉ
+                ================================= */}
+
+                <label>
+
+                  Quantité souhaitée
+
+                  <input
+                    type="number"
+                    min="1"
+                    value={quantity}
+                    onChange={(event) =>
+                      setQuantity(
+                        event.target.value
+                      )
+                    }
+                    placeholder="Ex. 1"
+                  />
+
+                </label>
+
+
+                {/* =================================
+                    PAYS / DESTINATION
+                ================================= */}
+
+                <label>
+
+                  Pays / lieu de livraison
+
+                  <input
+                    type="text"
+                    value={country}
+                    onChange={(event) =>
+                      setCountry(
+                        event.target.value
+                      )
+                    }
+                    placeholder="Ex. Bamako, Mali"
+                  />
+
+                </label>
+
+
+                {/* =================================
+                    BUDGET
+                ================================= */}
+
+                <label>
+
+                  Budget estimatif
+
+                  <input
+                    type="text"
+                    value={budget}
+                    onChange={(event) =>
+                      setBudget(
+                        event.target.value
+                      )
+                    }
+                    placeholder="Ex. 5 000 000 FCFA"
+                  />
+
+                </label>
+
+
+                {/* =================================
+                    BESOIN DU CLIENT
+                ================================= */}
+
+                <label>
+
+                  Décrivez votre besoin *
+
+                  <textarea
+                    value={message}
+                    onChange={(event) =>
+                      setMessage(
+                        event.target.value
+                      )
+                    }
+                    placeholder="Décrivez précisément votre besoin, les caractéristiques souhaitées, la capacité, les dimensions ou toute autre information utile."
+                    rows={7}
+                    required
+                  />
+
+                </label>
+
+
+                {/* =================================
+                    PRODUIT SÉLECTIONNÉ
+                ================================= */}
+
+                {product && (
+
+                  <div
+                    style={{
+                      marginTop: "14px",
+                      padding: "14px",
+                      borderRadius: "12px",
+                      background: "#f5f8fb",
+                      border:
+                        "1px solid #e2e8ee",
+                    }}
+                  >
+
+                    <div
+                      style={{
+                        marginBottom: "5px",
+                        color: "#6b7280",
+                        fontSize: "12px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      Produit concerné
+                    </div>
+
+                    <div
+                      style={{
+                        color: "#173e59",
+                        fontSize: "14px",
+                        fontWeight: "800",
+                      }}
+                    >
+                      {product.name ||
+                        "Produit UMI"}
+                    </div>
+
+                  </div>
+
+                )}
+
+
+                {/* =================================
+                    BOUTON ENVOYER
+                ================================= */}
+
+                <button
+                  type="submit"
+                  className="quote-submit-button"
+                  disabled={saving}
+                  style={{
+                    width: "100%",
+                    marginTop: "20px",
+                    padding: "15px",
+                    border: "none",
+                    borderRadius: "13px",
+                    background: "#174b91",
+                    color: "#ffffff",
+                    fontSize: "15px",
+                    fontWeight: "800",
+                    cursor:
+                      saving
+                        ? "not-allowed"
+                        : "pointer",
+                    opacity:
+                      saving
+                        ? 0.7
+                        : 1,
+                  }}
+                >
+
+                  {saving
+                    ? "Envoi en cours..."
+                    : "📄 Envoyer ma demande"}
+
+                </button>
+
+              </form>
+
+            </div>
 
           </div>
 
+        </div>
 
-          {/* =================================
-              ENVOYER
-          ================================= */}
+      )}
 
-          <button
-            type="submit"
-            className="commerce-primary-button"
-            disabled={saving}
-          >
 
-            {saving
-              ? "Envoi en cours..."
-              : "📄 Envoyer ma demande"}
+      {/* =========================================
+          BARRE DES TÂCHES
+      ========================================= */}
 
-          </button>
-
-        </form>
-
-      </main>
+      
 
     </div>
 
   );
-
 }
 
 

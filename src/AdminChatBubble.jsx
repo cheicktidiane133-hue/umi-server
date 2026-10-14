@@ -1,3 +1,4 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import {
   useEffect,
   useRef,
@@ -480,7 +481,7 @@ function AdminChatBubble({ user }) {
         );
 
 
-        alert(
+        await umiNotify(
           "Impossible d'envoyer le message."
         );
 

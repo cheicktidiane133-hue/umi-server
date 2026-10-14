@@ -641,7 +641,7 @@
 
   font-size: 18px;
   font-weight: 900;
-
+transform: translateY(9px);
   box-shadow:
     0 2px 8px rgba(0, 0, 0, 0.28);
 }
@@ -863,12 +863,12 @@
      Avant : 205px
      Maintenant : 145px
   */
-  bottom: 145px;
+  bottom: 275px;
 
   z-index: 70;
 
   width: min(78%, 420px);
-  max-height: 31vh;
+  max-height: 46vh;
 
   display: flex;
   flex-direction: column;
@@ -959,7 +959,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 50%;
 
@@ -971,6 +971,17 @@
 
   box-shadow:
     0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.umi-live-comment-avatar-img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 50%;
 }
 
 .umi-live-comment-content {
@@ -1184,8 +1195,19 @@
   gap: 8px;
 
   margin: 0;
-}
 
+  flex-wrap: nowrap;
+}
+.umi-live-input-row {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin: 0;
+}
 .umi-live-input-row input {
   flex: 1;
 
@@ -1274,9 +1296,9 @@
   z-index: 9999;
 
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
 
-  overflow-y: auto;
+  overflow: hidden;
 
   background: #000000;
 }
@@ -1652,11 +1674,11 @@
   .umi-live-comments {
     left: 10px !important;
 
-    bottom: 140px !important;
+    bottom: 180px !important;
 
-    width: 82% !important;
+    width: calc(100% - 90px) !important;
 
-    max-height: 31vh !important;
+    max-height: 46vh !important;
 
     gap: 6px;
   }
@@ -1923,5 +1945,3489 @@
     padding: 5px 3px;
 
     font-size: 10px;
+  }
+}
+/* =========================================
+   BARRE DES TÂCHES CLIENT - UMI LIVE
+========================================= */
+
+.umi-live-page {
+  padding-bottom:
+    calc(74px + env(safe-area-inset-bottom));
+}
+
+
+/* =========================================
+   BARRE FIXE
+========================================= */
+
+.umi-client-bottom-nav {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 5000;
+
+  width: 100%;
+  min-height: 64px;
+
+  padding:
+    6px
+    5px
+    calc(6px + env(safe-area-inset-bottom));
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  align-items: center;
+
+  background: #ffffff;
+
+  border-top:
+    1px solid #e5eaf0;
+
+  box-shadow:
+    0 -3px 14px
+    rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   BOUTONS
+========================================= */
+
+.umi-client-bottom-nav-item {
+  min-width: 0;
+
+  padding: 4px 2px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #748091;
+
+  font-family: inherit;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   ICÔNES
+========================================= */
+
+.umi-client-bottom-nav-icon {
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 21px;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   UMI LIVE
+========================================= */
+
+.umi-client-live-icon {
+  width: 34px;
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #087fc1;
+
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   PAGE ACTIVE
+========================================= */
+
+.umi-client-bottom-nav-item.active {
+  color: #087fc1;
+}
+
+
+/* =========================================
+   EFFET APPUI
+========================================= */
+
+.umi-client-bottom-nav-item:active {
+  opacity: 0.65;
+}
+/* =========================================
+   PHOTO COMPTE - BARRE UMI LIVE
+========================================= */
+
+.umi-client-account-photo-wrapper {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  flex-shrink: 0;
+}
+
+.umi-client-account-photo {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 50%;
+}
+/* =========================================================
+   NOUVEAU DESIGN UMI LIVE
+========================================================= */
+
+
+/* ==============================
+   ACTIONS À DROITE
+============================== */
+
+.umi-live-side-actions {
+  position: absolute;
+
+  right: 12px;
+  bottom: 200px;
+
+  z-index: 90;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 14px;
+}
+
+
+.umi-live-side-button {
+  width: 58px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+
+.umi-live-side-button > span {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  color: #ffffff;
+
+  font-size: 25px;
+
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+
+.umi-live-side-button small {
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+.umi-live-side-button .umi-live-heart {
+  color: #ef233c;
+
+  font-size: 32px;
+}
+
+
+.umi-live-cart-icon {
+  position: relative;
+}
+
+
+.umi-live-cart-icon b {
+  position: absolute;
+
+  top: -4px;
+  right: -3px;
+
+  min-width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 4px;
+
+  border-radius: 9px;
+
+  background: #ef233c;
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+
+/* ==============================
+   COMMENTAIRE + MACHINES SIMILAIRES
+   SUR LA MÊME LIGNE
+============================== */
+
+.umi-live-input-row {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+.umi-live-comment-box {
+  flex: 1;
+
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+}
+
+
+.umi-live-comment-box input {
+  width: 100%;
+  height: 48px;
+
+  padding:
+    0
+    52px
+    0
+    16px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.4);
+
+  border-radius: 24px;
+
+  outline: none;
+
+  background:
+    rgba(30, 30, 30, 0.72);
+
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+
+.umi-live-comment-box input::placeholder {
+  color:
+    rgba(255, 255, 255, 0.8);
+}
+
+
+/* ENVOYER DANS LA BARRE */
+
+.umi-live-comment-box
+.umi-live-send-button {
+  position: absolute;
+
+  right: 4px;
+  top: 4px;
+
+  width: 40px;
+  height: 40px;
+
+  flex: none;
+
+  border-radius: 50%;
+}
+
+
+/* ==============================
+   BOUTON MACHINES SIMILAIRES
+============================== */
+
+.umi-live-similar-button {
+  flex: 0 0 145px;
+
+  height: 48px;
+
+  padding: 0 12px;
+
+  border: none;
+  border-radius: 24px;
+
+  background: #f59e0b;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 3px 10px
+    rgba(0, 0, 0, 0.25);
+}
+/* =========================================
+   LIVE RÉDUIT + PANNEAU PRODUITS
+========================================= */
+
+.umi-tiktok-live.umi-live-panel-open {
+  height: 100dvh;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.umi-tiktok-live.umi-live-panel-open
+.umi-live-background {
+  position: relative;
+  width: 100%;
+  height: 34dvh;
+  flex-shrink: 0;
+  background: #000000;
+  overflow: hidden;
+}
+
+.umi-tiktok-live.umi-live-panel-open
+.umi-live-background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* =========================================
+   PANNEAU SOUS LE LIVE RÉDUIT
+========================================= */
+
+.umi-live-shop-panel {
+  position: relative;
+  width: 100%;
+  height: 66dvh;
+  background: #ffffff;
+  color: #111111;
+  overflow-y: auto;
+  z-index: 200;
+}
+
+.umi-live-shop-tabs {
+  width: 100%;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid #e5e5e5;
+  background: #ffffff;
+
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.umi-live-shop-tabs button {
+  flex: 1;
+  height: 52px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: #777777;
+
+  cursor: pointer;
+}
+
+.umi-live-shop-tabs button.active {
+  color: #111111;
+  border-bottom: 3px solid #f2b400;
+}
+
+
+/* PRODUITS */
+
+.umi-live-products-panel {
+  padding: 16px;
+}
+
+.umi-live-products-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.umi-live-product-item {
+  background: #ffffff;
+
+  border: 1px solid #eeeeee;
+  border-radius: 14px;
+
+  padding: 14px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.umi-live-product-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.umi-live-product-name {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.umi-live-product-price {
+  margin-top: 5px;
+
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.umi-live-product-favorite {
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  font-size: 22px;
+}
+
+.umi-live-product-cart {
+  width: 100%;
+  height: 44px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #f2b400;
+  color: #111111;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+/* CORRECTION MODE LIVE RÉDUIT */
+
+.umi-tiktok-live.umi-live-panel-open {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
+}
+
+/* VIDEO TOUJOURS EN HAUT */
+.umi-tiktok-live.umi-live-panel-open .umi-live-background {
+  order: 1 !important;
+
+  position: relative !important;
+  inset: auto !important;
+
+  width: 100% !important;
+  height: 32dvh !important;
+  min-height: 220px !important;
+
+  flex: 0 0 32dvh !important;
+
+  background: #000;
+  overflow: hidden;
+}
+
+/* PANNEAU SOUS LA VIDEO */
+.umi-tiktok-live.umi-live-panel-open .umi-live-shop-panel {
+  order: 2 !important;
+
+  position: relative !important;
+  inset: auto !important;
+
+  width: 100% !important;
+  height: 0 !important;
+min-height: 0 !important;
+flex: 1 1 0 !important;
+
+  overflow-y: auto !important;
+  background: #fff;
+}
+/* BOUTONS J'AIME / PARTAGER / PANIER
+   DANS LE LIVE RÉDUIT */
+
+.umi-tiktok-live.umi-live-panel-open .umi-live-side-actions {
+  position: absolute !important;
+
+  top: 135px !important;
+  right: 10px !important;
+  bottom: auto !important;
+
+  height: auto !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  gap: 0 !important;
+
+  z-index: 1000 !important;
+}
+
+.umi-tiktok-live.umi-live-panel-open .umi-live-side-button {
+  width: 55px !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  transform: none !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  gap: 0 !important;
+}
+
+.umi-tiktok-live.umi-live-panel-open .umi-live-side-button > span {
+  font-size: 25px !important;
+  line-height: 28px !important;
+}
+
+.umi-tiktok-live.umi-live-panel-open .umi-live-side-button small {
+  font-size: 10px !important;
+  line-height: 12px !important;
+}
+/* =========================================
+   MACHINES SIMILAIRES - FORMAT COMPACT
+========================================= */
+
+.umi-live-products-panel {
+  padding: 10px !important;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.umi-live-products-title {
+  font-size: 16px !important;
+  margin-bottom: 8px !important;
+}
+
+.umi-live-product-item {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: grid !important;
+  grid-template-columns: 72px 1fr 38px;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  row-gap: 5px;
+
+  align-items: center;
+
+  padding: 8px !important;
+  margin-bottom: 8px;
+
+  border-radius: 10px !important;
+
+  flex-wrap: unset !important;
+}
+
+/* PHOTO MACHINE */
+.umi-live-product-image {
+  grid-column: 1;
+  grid-row: 1 / 3;
+
+  width: 72px !important;
+  height: 72px !important;
+
+  object-fit: contain;
+  border-radius: 7px;
+
+  background: #fff;
+}
+
+/* NOM + PRIX */
+.umi-live-product-info {
+  grid-column: 2;
+  grid-row: 1;
+
+  min-width: 0;
+}
+
+.umi-live-product-name {
+  font-size: 13px !important;
+  line-height: 16px;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.umi-live-product-price {
+  font-size: 13px !important;
+  margin-top: 3px !important;
+  font-weight: 900;
+}
+
+/* COEUR */
+.umi-live-product-favorite {
+  grid-column: 3;
+  grid-row: 1;
+
+  width: 34px !important;
+  height: 34px !important;
+
+  font-size: 19px !important;
+  padding: 0 !important;
+}
+
+/* AJOUTER AU PANIER */
+.umi-live-product-cart {
+  grid-column: 2 / 4;
+  grid-row: 2;
+
+  width: 100% !important;
+  height: 34px !important;
+
+  margin: 0 !important;
+  padding: 0 8px !important;
+
+  font-size: 12px !important;
+  border-radius: 7px !important;
+}
+/* =========================================
+   CHAT DANS LE PANNEAU DU LIVE
+========================================= */
+
+/* =========================================
+   CHAT DANS LE PANNEAU DU LIVE
+========================================= */
+
+/* =========================================
+   CHAT PRIVÉ DANS LE LIVE - FIXE
+========================================= */
+
+.umi-live-panel-chat {
+  width: 100% !important;
+
+  /* hauteur du panneau moins la barre des onglets */
+  height: calc(68dvh - 52px) !important;
+  min-height: 0 !important;
+  max-height: calc(68dvh - 52px) !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  background: #ffffff !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box !important;
+}
+
+/* =========================================
+   MESSAGES - SEULE CETTE ZONE DÉFILE
+========================================= */
+
+.umi-live-panel-chat-messages {
+  flex: 1 1 0;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 0 12px 12px;
+
+  box-sizing: border-box;
+
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+
+.umi-live-panel-chat-messages::-webkit-scrollbar {
+  display: none;
+}
+
+.umi-live-panel-chat-empty {
+  text-align: center;
+  color: #888888;
+  font-size: 13px;
+  padding: 30px 10px;
+}
+
+.umi-live-panel-chat-message {
+  width: 100%;
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+
+  padding: 8px 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.umi-live-panel-chat-avatar {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+
+  border-radius: 50%;
+  background: #f2b400;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  color: #111111;
+}
+
+.umi-live-panel-chat-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.umi-live-panel-chat-content strong {
+  font-size: 13px;
+  color: #111111;
+}
+
+.umi-live-panel-chat-content span {
+  margin-top: 2px;
+  font-size: 13px;
+  color: #333333;
+  overflow-wrap: anywhere;
+}
+
+.umi-live-panel-chat-reply {
+  margin-top: 3px;
+  padding: 4px 7px;
+
+  border-left: 3px solid #f2b400;
+  background: #f5f5f5;
+
+  font-size: 11px;
+  color: #666666;
+}
+
+.umi-live-panel-reply {
+  flex-shrink: 0;
+
+  padding: 7px 12px;
+
+  background: #f5f5f5;
+  border-top: 1px solid #eeeeee;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 12px;
+}
+
+.umi-live-panel-reply button {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+/* BARRE DE COMMENTAIRE */
+
+.umi-live-panel-chat-input {
+  
+  position: relative !important;
+
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+
+  flex: 0 0 auto;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 10px;
+
+  background: #ffffff;
+  border-top: 1px solid #eeeeee;
+
+  box-shadow: none !important;
+  z-index: 2;
+}
+
+.umi-live-panel-chat-input input {
+  flex: 1;
+  min-width: 0;
+
+  width: auto !important;
+  height: 42px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dddddd;
+  border-radius: 22px;
+
+  padding: 0 14px;
+
+  outline: none;
+  font-size: 13px;
+}
+
+.umi-live-panel-chat-input button {
+  position: relative !important;
+
+  flex: 0 0 42px;
+
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+
+  margin: 0 !important;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f2b400;
+  color: #111111;
+
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.umi-live-panel-chat-input button:disabled {
+  opacity: 0.45;
+}
+/* =========================================
+   DETAILS DU LIVE
+========================================= */
+
+.umi-live-details-panel {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.umi-live-details-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding-bottom: 14px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.umi-live-details-logo {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+
+  border-radius: 50%;
+  background: #1596d2;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.umi-live-details-header-text {
+  flex: 1;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.umi-live-details-header-text strong {
+  font-size: 15px;
+  color: #111111;
+}
+
+.umi-live-details-header-text span {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #777777;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.umi-live-details-live-badge {
+  flex-shrink: 0;
+
+  padding: 6px 9px;
+  border-radius: 7px;
+
+  background: #ef233c;
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+
+/* SECTIONS */
+
+.umi-live-details-section {
+  margin-top: 18px;
+}
+
+.umi-live-details-section h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #111111;
+}
+
+.umi-live-details-section p {
+  margin: 8px 0 0;
+
+  font-size: 13px;
+  line-height: 1.5;
+  color: #555555;
+}
+
+.umi-live-details-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+
+.umi-live-details-section-title span {
+  font-size: 12px;
+  font-weight: 700;
+  color: #888888;
+}
+
+
+/* =========================================
+   PHOTOS - MAXIMUM 10
+========================================= */
+
+.umi-live-details-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.umi-live-details-photo {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  padding: 0;
+  border: 1px solid #eeeeee;
+  border-radius: 9px;
+
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+.umi-live-details-photo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+  object-fit: cover;
+}
+
+
+/* =========================================
+   VIDEOS - MAXIMUM 3
+========================================= */
+
+.umi-live-details-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.umi-live-details-video {
+  width: 100%;
+
+  border-radius: 10px;
+  background: #000000;
+
+  overflow: hidden;
+}
+
+.umi-live-details-video video {
+  width: 100%;
+  max-height: 230px;
+
+  display: block;
+  background: #000000;
+  object-fit: contain;
+}
+
+
+/* AUCUN MEDIA */
+
+.umi-live-details-media-empty {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 20px 12px;
+
+  border: 1px dashed #cccccc;
+  border-radius: 10px;
+
+  background: #fafafa;
+
+  text-align: center;
+  font-size: 12px;
+  color: #888888;
+}
+/* =========================================
+   MACHINE MISE EN AVANT - LIVE CLIENT
+========================================= */
+
+.umi-live-featured-product {
+  position: absolute !important;
+
+  left: 20px !important;
+  right: 20px !important;
+  bottom: 105px !important;
+
+  z-index: 150 !important;
+
+  width: auto !important;
+  height: 74px;
+
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 14px;
+
+  background: #ffffff;
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  transform: none !important;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.20);
+}
+
+
+/* PHOTO */
+
+.umi-live-featured-image {
+  width: 56px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 8px;
+
+  background: #f4f4f4;
+}
+
+.umi-live-featured-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+/* NOM + PRIX */
+
+.umi-live-featured-info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 4px;
+}
+
+.umi-live-featured-name {
+  overflow: hidden;
+
+  color: #222222;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* PRIX SOUS LE NOM */
+
+.umi-live-featured-price {
+  color: #1596d2;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+
+/* BOUTON ACHETER */
+
+.umi-live-featured-buy {
+  min-width: 70px;
+  height: 34px;
+
+  padding: 0 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #1596d2;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+.umi-live-bottom-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.umi-live-featured-product {
+  width: 100%;
+  box-sizing: border-box;
+
+  border-radius: 14px;
+  overflow: hidden;
+
+  
+}
+
+/* =========================================
+   COMMENTAIRES AFFICHES SUR LA VIDEO
+========================================= */
+
+.umi-live-video-comments {
+  position: absolute;
+
+  left: 14px;
+  bottom: 200px;
+
+  width: min(72%, 330px);
+  max-height: 400px;
+
+  z-index: 85;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+.umi-live-video-comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  padding: 2px 0;
+
+  border: none;
+  border-radius: 0;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+
+.umi-live-video-comment-avatar {
+  width: 27px;
+  height: 27px;
+  min-width: 27px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f2b400;
+  color: #111111;
+
+  font-size: 11px;
+  font-weight: 900;
+}
+
+
+.umi-live-video-comment-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+.umi-live-video-comment-content strong {
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+.umi-live-video-comment-content span {
+  color: #ffffff;
+
+  font-size: 12px;
+  line-height: 1.25;
+
+  overflow-wrap: anywhere;
+
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.8);
+}
+/* =========================================
+   COEURS FLOTTANTS
+========================================= */
+
+.umi-live-floating-hearts {
+  position: absolute;
+
+  right: 20px;
+
+  /* DÉPART JUSTE AU-DESSUS DU BOUTON J'AIME */
+  bottom: 400px;
+
+  width: 70px;
+  height: 220px;
+
+  z-index: 200;
+
+  pointer-events: none;
+}
+
+
+.umi-live-floating-heart {
+  position: absolute;
+
+  right: 15px;
+  bottom: 0;
+
+  color: #ef233c;
+
+  font-size: 34px;
+  line-height: 1;
+
+  opacity: 0;
+
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.35);
+
+  animation:
+    umiHeartFloat 1.5s ease-out forwards;
+}
+
+
+@keyframes umiHeartFloat {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(0, 0)
+      scale(0.5);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      translate(
+        var(--heart-x),
+        -100px
+      )
+      scale(1.15);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(var(--heart-x) * 1.5),
+        -220px
+      )
+      scale(1.35);
+  }
+
+}
+/* =========================================
+   NOMBRE DE J'AIME SOUS LE PROFIL
+========================================= */
+
+.umi-live-like-count {
+  margin-top: 2px;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.umi-live-like-count::first-letter {
+  color: #ef233c;
+}
+/* PROFIL + COMPTEUR J'AIME */
+
+
+/* J'AIME SOUS LE CERCLE DU PROFIL */
+
+
+/* =========================================
+   PROFIL + J'AIME SOUS LA PHOTO
+========================================= */
+
+
+
+.umi-live-profile-column .umi-live-profile-circle {
+  flex-shrink: 0 !important;
+}
+
+
+.umi-live-profile-column {
+  position: relative;
+
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  overflow: visible;
+}
+
+
+/* J'AIME DIRECTEMENT SOUS LE PROFIL */
+
+.umi-live-profile-column .umi-live-like-count {
+  position: absolute;
+
+  top: 47px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: block;
+
+  width: max-content;
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 12px;
+
+  white-space: nowrap;
+
+  z-index: 999;
+
+  text-shadow:
+    0 1px 2px #000000,
+    0 1px 5px rgba(0, 0, 0, 0.9);
+}
+/* =========================================
+   NOUVELLE ENTETE UMI LIVE
+========================================= */
+
+.umi-live-top-left {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 4px;
+
+  overflow: visible;
+}
+
+
+/* PREMIERE LIGNE */
+
+.umi-live-profile-main-row {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+}
+
+
+/* UMI LIVE */
+
+.umi-live-profile-title {
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 900;
+
+  line-height: 1;
+
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.85);
+}
+
+
+/* J'AIME SOUS LA LIGNE */
+
+.umi-live-top-like-count {
+  margin-left: 50px;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 1px 2px #000000,
+    0 1px 4px rgba(0, 0, 0, 0.9);
+}
+/* =========================================
+   ENTETE UMI LIVE
+========================================= */
+
+.umi-live-top-left {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 4px;
+  
+}
+
+
+/* PROFIL + UMI LIVE + EN DIRECT */
+
+.umi-live-profile-main-row {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+}
+
+
+/* TITRE */
+
+.umi-live-profile-title {
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 900;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+
+/* NOMBRE DE J'AIME */
+
+.umi-live-top-like-count {
+  margin-left: 50px;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.9);
+}
+.umi-live-top-like-heart {
+  color: #ef233c;
+  font-size: 13px;
+}
+.umi-live-comments {
+  position: absolute;
+
+  left: 14px;
+  bottom: 145px;
+
+  z-index: 70;
+
+  width: min(78%, 420px);
+
+  /* PLUS DE COMMENTAIRES VISIBLES */
+  max-height: 46vh;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding-right: 4px;
+
+  overscroll-behavior: contain;
+
+  scrollbar-width: none;
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 18%,
+      black 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 18%,
+      black 100%
+    );
+}
+
+.umi-live-comments::-webkit-scrollbar {
+  display: none;
+}
+.umi-live-video-comment-avatar {
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
+.umi-live-video-comment-avatar-img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  border-radius: 50%;
+}
+.umi-live-comment-avatar {
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
+.umi-live-comment-avatar-img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+.umi-live-featured-product {
+  position: relative;
+}
+
+.umi-live-offer-badge {
+  position: absolute;
+
+  top: -12px;
+  left: -5px;
+
+  z-index: 10;
+
+  min-width: 42px;
+
+  padding: 4px 6px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #ef233c;
+  color: #ffffff;
+
+  line-height: 1.05;
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
+}
+
+.umi-live-offer-badge strong {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.umi-live-offer-badge span {
+  margin-top: 2px;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+.umi-live-offer-badge {
+  position: absolute;
+
+  /* SOUS SPECTATEURS + FERMETURE */
+  top: 95px;
+right: 18px;
+left: auto;
+
+  z-index: 90;
+
+  width: 52px;
+  height: 46px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #ef233c;
+  color: #ffffff;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.28);
+
+  line-height: 1;
+}
+
+.umi-live-offer-badge strong {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.umi-live-offer-badge span {
+  margin-top: 4px;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+/* ANIMATION OFFRE LIVE */
+.umi-live-offer-badge {
+  animation: umiLiveOfferDance 0.7s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes umiLiveOfferDance {
+
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  20% {
+    transform: rotate(-7deg) scale(1.06);
+  }
+
+  40% {
+    transform: rotate(7deg) scale(1.06);
+  }
+
+  60% {
+    transform: rotate(-5deg) scale(1.03);
+  }
+
+  80% {
+    transform: rotate(5deg) scale(1.03);
+  }
+
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+.umi-live-profile-info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 4px;
+  transform: translateY(15px);
+  
+}
+
+.umi-live-red-badge {
+  width: fit-content;
+
+  padding: 4px 8px;
+
+  border-radius: 7px;
+
+  background: #ef233c;
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+.umi-live-top-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.umi-live-profile-circle {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+}
+
+.umi-live-profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 3px;
+}
+
+.umi-live-profile-info strong {
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  line-height: 18px;
+}
+
+.umi-live-red-badge {
+  width: fit-content;
+
+  padding: 3px 7px;
+
+  border-radius: 6px;
+
+  background: #ef233c;
+  color: #ffffff;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+.umi-live-top-left {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  gap: 9px;
+}
+
+
+.umi-live-profile-circle {
+  flex-shrink: 0;
+
+  margin-top: 0;
+}
+
+
+.umi-live-profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 4px;
+}
+
+
+.umi-live-profile-title {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  line-height: 18px;
+}
+
+
+.umi-live-red-badge {
+  margin: 0;
+
+  width: fit-content;
+}
+
+
+.umi-live-top-like-count {
+  margin: 0 0 0 250px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+.umi-live-top-like-heart {
+  color: #ef233c;
+
+  font-size: 13px;
+}
+.umi-live-top-like-count .umi-live-top-like-heart {
+  color: #ef233c !important;
+  font-size: 14px;
+  font-weight: 900;
+}
+.umi-live-profile-circle {
+  overflow: hidden;
+}
+
+.umi-live-presenter-photo {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+@keyframes offreLiveClignote {
+  0% {
+    border-color: red;
+    box-shadow: 0 0 5px red;
+  }
+
+  50% {
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  100% {
+    border-color: red;
+    box-shadow: 0 0 5px red;
+  }
+}
+
+.umi-live-offer-popup {
+  border: 2px solid red !important;
+  animation: offreLiveClignote 1s infinite;
+}
+@keyframes offreLiveClignoteFenetre {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.umi-live-offer-popup {
+  border: 2px solid red !important;
+  animation: offreLiveClignoteFenetre 1s infinite !important;
+}
+@keyframes umiFenetreOffreFlash {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.15;
+    transform: scale(0.98);
+  }
+}
+
+.umi-live-offer-popup {
+  animation: umiFenetreOffreFlash 0.8s ease-in-out infinite !important;
+}
+.umi-live-side-button > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.umi-live-share-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  padding: 0;
+  margin: 0;
+}
+
+.umi-live-share-icon svg {
+  display: block;
+  margin: 0;
+}
+.umi-live-side-button {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.umi-live-side-button:focus,
+.umi-live-side-button:focus-visible,
+.umi-live-side-button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+/* =========================================
+   SCROLL COMMENTAIRES LIVE CLIENT
+   GLISSEMENT VERTICAL FLUIDE
+========================================= */
+
+.umi-live-video-comments {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  pointer-events: auto !important;
+
+  /* IMPORTANT POUR LE GLISSEMENT */
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch;
+
+  overscroll-behavior-y: contain;
+
+  scrollbar-width: none;
+
+  /* évite un déplacement horizontal accidentel */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.umi-live-video-comments::-webkit-scrollbar {
+  display: none;
+}
+
+/* Le doigt doit pouvoir commencer le scroll
+   directement sur un commentaire */
+.umi-live-video-comment {
+  pointer-events: auto !important;
+
+  touch-action: pan-y !important;
+
+  cursor: pointer;
+}
+
+/* Tous les éléments à l'intérieur laissent
+   le geste vertical au conteneur */
+.umi-live-video-comment * {
+  touch-action: pan-y !important;
+}
+/* =========================================
+   HAUTEUR COMMENTAIRES SUR LE LIVE
+========================================= */
+
+.umi-live-video-comments {
+  top: auto !important;
+  bottom: 210px !important;
+
+  height: 260px !important;
+  max-height: 260px !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch;
+}
+.umi-live-video-comment.selected {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  border-radius: 12px;
+  padding: 6px 8px;
+}
+/* =========================================
+   DÉTAILS LIVE - PRIX ET LOCALISATION
+========================================= */
+
+.umi-live-details-product-info {
+  margin: 14px 0 18px;
+  padding: 14px;
+
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* PRIX */
+
+.umi-live-details-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.umi-live-details-price strong {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111111;
+}
+
+
+/* LOCALISATION */
+
+.umi-live-details-location {
+  padding-top: 12px;
+
+  border-top: 1px solid #eeeeee;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.umi-live-details-location-icon {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f5f5f5;
+  border-radius: 50%;
+
+  font-size: 17px;
+}
+
+.umi-live-details-location > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.umi-live-details-info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #777777;
+}
+
+.umi-live-details-location strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222222;
+}
+/* =========================================
+   FERMER PANNEAU LIVE
+========================================= */
+
+.umi-live-shop-panel {
+  position: relative;
+}
+
+.umi-live-shop-close {
+  position: absolute !important;
+
+  top: 8px !important;
+  right: 8px !important;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 23px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 9999 !important;
+
+  flex-shrink: 0;
+}
+
+.umi-live-shop-close:active {
+  transform: scale(0.94);
+}
+/* =========================================
+   BOUTON FERMER PANNEAU LIVE
+========================================= */
+
+.umi-live-shop-panel {
+  position: relative;
+}
+
+.umi-live-shop-close {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 999;
+}
+
+.umi-live-shop-close:active {
+  transform: scale(0.94);
+}
+
+.umi-live-shop-tabs {
+  padding-right: 42px;
+}
+/* =========================================
+   CLIGNOTEMENT BARRE MACHINE DU LIVE
+========================================= */
+
+.umi-live-featured-product {
+  animation: umiProductBlink 1.2s ease-in-out infinite;
+}
+
+@keyframes umiProductBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+/* =========================================================
+   CORRECTION FINALE PANNEAU LIVE
+   ONGLETS + X FIXES / SEUL LE CONTENU DÉFILE
+========================================================= */
+
+/* PANNEAU PRINCIPAL */
+.umi-tiktok-live.umi-live-panel-open .umi-live-shop-panel {
+  position: relative !important;
+
+  width: 100% !important;
+  height: 68dvh !important;
+
+  flex: 1 1 auto !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  background: #ffffff !important;
+
+  /* IMPORTANT : LE PANNEAU ENTIER NE DÉFILE PLUS */
+  overflow: hidden !important;
+
+  z-index: 200 !important;
+}
+
+
+/* =========================================
+   BARRE PRODUITS / CHAT / DÉTAILS
+   ELLE RESTE FIXE
+========================================= */
+
+.umi-live-shop-tabs {
+  position: relative !important;
+
+  top: auto !important;
+
+  flex: 0 0 52px !important;
+
+  width: 100% !important;
+  height: 52px !important;
+  min-height: 52px !important;
+
+  background: #ffffff !important;
+
+  border-bottom: 1px solid #e5e5e5;
+
+  z-index: 500 !important;
+
+  padding-right: 42px !important;
+}
+
+
+/* =========================================
+   X TOUJOURS FIXE EN HAUT À DROITE
+========================================= */
+
+.umi-live-shop-close {
+  position: absolute !important;
+
+  top: 8px !important;
+  right: 8px !important;
+
+  width: 32px !important;
+  height: 32px !important;
+
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: none !important;
+  border-radius: 50% !important;
+
+  background: rgba(0, 0, 0, 0.08) !important;
+  color: #111111 !important;
+
+  font-size: 23px !important;
+  line-height: 1 !important;
+
+  cursor: pointer;
+
+  z-index: 9999 !important;
+}
+
+
+/* =========================================
+   PRODUITS
+   SEUL LE CONTENU DÉFILE
+========================================= */
+
+.umi-live-products-panel {
+  flex: 1 1 0 !important;
+
+  min-height: 0 !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  overscroll-behavior: contain;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* /* =========================================
+   CHAT - OCCUPE TOUT L'ESPACE DISPONIBLE
+========================================= */
+
+.umi-live-panel-chat {
+  flex: 1 1 0 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  min-height: 0 !important;
+  max-height: none !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  overflow: hidden !important;
+
+  background: #ffffff !important;
+}
+
+
+/* =========================================
+   CHAT - CORRECTION MOBILE FINALE
+========================================= */
+
+.umi-live-panel-chat {
+  flex: 1 1 0 !important;
+
+  width: 100% !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  overflow: hidden !important;
+
+  background: #ffffff !important;
+  box-sizing: border-box !important;
+}
+
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.umi-live-panel-chat-messages {
+  flex: 1 1 0 !important;
+
+  min-height: 0 !important;
+  height: auto !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  padding: 0 12px 12px !important;
+
+  box-sizing: border-box !important;
+
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================
+   BARRE D'ÉCRITURE - EN BAS
+========================================= */
+
+.umi-live-panel-chat-input {
+  position: relative !important;
+
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+
+  flex: 0 0 66px !important;
+
+  width: 100% !important;
+  height: 66px !important;
+
+  margin: 0 !important;
+  margin-top: auto !important;
+
+  padding: 8px 10px !important;
+
+  box-sizing: border-box !important;
+
+  background: #ffffff !important;
+  border-top: 1px solid #eeeeee !important;
+
+  z-index: 10 !important;
+}
+/* =========================================
+   CHAT - DESCENDRE UNIQUEMENT LA BARRE
+   D'ÉCRITURE
+========================================= */
+
+.umi-live-panel-chat-input {
+  transform: translateY(70px) !important;
+}
+/* =========================================================
+   MÉDIA DU PRÉSENTATEUR CHEZ LE SPECTATEUR
+========================================================= */
+
+.umi-live-background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+
+/* CAMÉRA LIVEKIT */
+
+.umi-live-background-video {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* CACHER L'IMAGE CAMÉRA
+   LORSQU'UN MÉDIA EST PRÉSENT */
+
+.umi-live-background-video.presenter-media-hidden {
+  opacity: 0;
+
+  visibility: hidden;
+}
+
+
+/* PHOTO / VIDÉO DU PRÉSENTATEUR */
+
+.umi-presenter-background-media {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  background: #000000;
+
+  pointer-events: none;
+}
+
+
+/* PHOTO */
+
+img.umi-presenter-background-media {
+  object-fit: contain;
+}
+
+
+/* VIDÉO */
+
+video.umi-presenter-background-media {
+  object-fit: cover;
+}
+/* PHOTO PARTAGÉE SUR LE LIVE SPECTATEUR */
+
+.umi-spectator-live-media {
+  position: absolute !important;
+
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+
+  z-index: 2 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  margin: 0 !important;
+
+  display: block !important;
+
+  object-fit: contain !important;
+
+  background: #000000;
+
+  pointer-events: none;
+}
+/* Cadre vertical des temps forts */
+.umi-vertical-card {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+}
+
+.umi-vertical-card .live-video-container {
+  width: 100%;
+  aspect-ratio: 4 / 6;
+}
+
+.umi-vertical-card .live-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Texte superposé en bas de la vidéo */
+.umi-vertical-card .live-card-content {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 55px 18px 22px;
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.8)
+  );
+  pointer-events: none;
+}
+
+.umi-vertical-card .live-card-content h2 {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.umi-vertical-card .live-machine-name {
+  color: #fff;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* La vidéo joue déjà automatiquement */
+.umi-vertical-card .live-play-overlay {
+  display: none;
+}
+.umi-vertical-card .live-video-container {
+  position: relative;
+}
+
+.umi-preview-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px 35px;
+  background: linear-gradient(#0009, transparent);
+  color: white;
+  pointer-events: none;
+}
+
+.umi-preview-avatar {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  background: white;
+  color: #087fc1;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+.umi-preview-header strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.umi-preview-badge {
+  display: block;
+  width: fit-content;
+  margin-top: 5px;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #ec1745;
+  font-size: 12px;
+  font-weight: bold;
+}
+/* Interface commune des vidéos et temps forts, avant et après le clic. */
+.umi-replay-surface { position: relative; isolation: isolate; background: #000; color: #fff; overflow: hidden; box-sizing: border-box; font-family: Arial, sans-serif; }
+.umi-replay-surface button { cursor: pointer; font-family: inherit; }
+.umi-replay-surface button:disabled { opacity: .55; cursor: default; }
+.umi-replay-preview { width: 100%; max-width: 430px; aspect-ratio: 4 / 6; margin: 0 auto; border: 0; border-radius: 24px; touch-action: pan-y; }
+.umi-replay-full { position: fixed; inset: 0; z-index: 99999; width: 100%; height: 100dvh; border-radius: 0; }
+.umi-replay-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; touch-action: pan-y; cursor: pointer; }
+.umi-replay-full .umi-replay-video { object-fit: contain; }
+.umi-replay-gradient { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(#0007, transparent 30%, transparent 40%, #000c); }
+.umi-replay-header { position: absolute; top: max(14px, env(safe-area-inset-top)); left: 14px; right: 14px; z-index: 2; display: flex; align-items: flex-start; gap: 8px; }
+.umi-replay-avatar { flex-shrink: 0; width: 42px; height: 42px; overflow: hidden; border-radius: 50%; background: white; color: #087fc1; display: grid; place-items: center; }
+.umi-replay-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.umi-replay-brand { display: flex; flex-direction: column; gap: 5px; }
+.umi-replay-brand strong { font-size: 14px; }
+.umi-replay-brand > span { width: fit-content; padding: 4px 7px; background: #ed1745; border-radius: 5px; font-size: 10px; font-weight: 800; }
+.umi-replay-count { margin-left: auto; white-space: nowrap; font-size: 12px; font-weight: 700; padding-top: 5px; text-shadow: 0 1px 3px #000; }
+.umi-replay-close { flex-shrink: 0; border: 0; color: white; background: #0004; border-radius: 50%; width: 30px; height: 30px; font-size: 28px; line-height: 24px; }
+.umi-replay-offer { position: absolute; right: 14px; top: calc(max(14px, env(safe-area-inset-top)) + 60px); z-index: 3; display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; border: 0; border-radius: 12px; color: #fff; background: #ff2037; box-shadow: 0 3px 10px #0003; }
+.umi-replay-offer strong { font-size: 23px; }
+.umi-replay-offer span { font-size: 12px; }
+.umi-replay-side { position: absolute; right: 10px; top: 34%; z-index: 3; display: grid; gap: 11px; }
+.umi-replay-side button { display: flex; flex-direction: column; align-items: center; gap: 2px; border: 0; padding: 0; color: #fff; background: transparent; text-shadow: 0 1px 3px #000; }
+.umi-replay-side button > span { font-size: 27px; line-height: 30px; }
+.umi-replay-side .umi-replay-heart { color: #ff2451; font-size: 34px; }
+.umi-replay-side small { font-size: 9px; }
+.umi-replay-side svg { width: 29px; height: 29px; }
+.umi-replay-bottom { position: absolute; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 3; }
+.umi-replay-bottom h2 { margin: 0 50px 8px 0; font-size: 15px; color: #fff; text-shadow: 0 1px 4px #000; }
+.umi-replay-comments { max-height: 104px; overflow-y: auto; width: calc(100% - 52px); margin-bottom: 9px; overscroll-behavior: contain; }
+.umi-replay-comment { display: flex; gap: 6px; margin-top: 6px; font-size: 11px; text-shadow: 0 1px 3px #000; }
+.umi-replay-comment > img, .umi-replay-comment-avatar { flex-shrink: 0; width: 25px; height: 25px; border-radius: 50%; object-fit: cover; background: #087fc1; display: grid; place-items: center; }
+.umi-replay-comment > div { min-width: 0; }
+.umi-replay-comment strong, .umi-replay-comment div span { display: block; overflow-wrap: anywhere; }
+.umi-replay-featured { display: flex; align-items: center; gap: 8px; padding: 9px; border-radius: 14px; background: #fff; color: #163a5c; border: 2px solid #fff; animation: umi-replay-offer-pulse 2s ease-in-out infinite; }
+.umi-replay-product-link { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; padding: 0; border: 0; text-align: left; color: inherit; background: transparent; }
+.umi-replay-product-link > img, .umi-replay-product-link > span:first-child { flex-shrink: 0; width: 42px; height: 42px; border-radius: 8px; object-fit: contain; }
+.umi-replay-product-link > span:last-child { min-width: 0; }
+.umi-replay-product-link strong { display: block; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.umi-replay-product-link b { display: block; margin-top: 5px; font-size: 13px; color: #ed1745; }
+.umi-replay-buy { flex-shrink: 0; padding: 9px 10px; border: 0; border-radius: 9px; color: #fff; background: #ed1745; font-size: 11px; font-weight: 800; }
+.umi-replay-form { display: flex; gap: 6px; margin-top: 10px; }
+.umi-replay-input-wrap { display: flex; align-items: center; flex: 1; min-width: 0; padding: 4px 5px 4px 9px; border: 1px solid #ffffff60; border-radius: 24px; background: #0006; }
+.umi-replay-input-wrap input { width: 100%; min-width: 0; border: 0; outline: none; background: transparent; color: #fff; padding: 6px 0; font-size: 16px; }
+.umi-replay-input-wrap input::placeholder { color: #e0e0e0; font-size: 11px; }
+.umi-replay-send { display: grid; place-items: center; flex-shrink: 0; width: 30px; height: 30px; border: 0; border-radius: 50%; background: #087fc1; color: #fff; padding: 6px; }
+.umi-replay-send svg { width: 100%; height: 100%; }
+.umi-replay-similar { max-width: 105px; border: 0; border-radius: 22px; padding: 6px 8px; background: #fff; color: #163a5c; font-size: 10px; font-weight: 800; }
+.umi-replay-notice { max-height: 60px; overflow-y: auto; overflow-wrap: anywhere; margin-top: 5px; padding: 5px 8px; border-radius: 8px; background: #000b; font-size: 11px; }
+.umi-replay-play { position: absolute; top: 43%; left: 43%; z-index: 2; width: 50px; height: 50px; border: 0; border-radius: 50%; background: #0007; color: #fff; font-size: 25px; }
+.umi-replay-hearts { position: absolute; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+.umi-replay-hearts > span { position: absolute; bottom: 25%; color: #ff2451; font-size: 35px; animation: umi-replay-heart-rise 1.5s ease-out forwards; }
+.umi-replay-panel { position: absolute; inset: auto 0 0; max-height: 70%; min-height: 45%; overflow-y: auto; overscroll-behavior: contain; z-index: 10; box-sizing: border-box; border-radius: 22px 22px 0 0; padding: 45px 12px 16px; background: #fff; color: #163a5c; }
+.umi-replay-panel-close { position: absolute; right: 12px; top: 7px; width: 32px; height: 32px; border: 0; border-radius: 50%; background: #eff4f8; color: #163a5c; font-size: 25px; }
+.umi-replay-panel h3 { font-size: 16px; margin: 12px 0; }
+.umi-replay-panel .umi-replay-featured { animation: none; margin: 9px 0; border-color: #e3eaf0; }
+.umi-replay-tabs { display: flex; gap: 5px; position: sticky; top: 0; z-index: 1; background: #fff; padding-bottom: 8px; }
+.umi-replay-tabs button { flex: 1; border: 0; border-radius: 9px; padding: 9px 5px; background: #eef3f7; color: #163a5c; font-weight: 700; font-size: 12px; }
+.umi-replay-tabs button.active { background: #087fc1; color: #fff; }
+.umi-replay-description { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; }
+@keyframes umi-replay-offer-pulse { 0%, 100% { border-color: #fff; } 50% { border-color: #ed1745; } }
+@keyframes umi-replay-heart-rise { from { transform: translateY(0) scale(.7); opacity: 1; } to { transform: translateY(-180px) scale(1.3) rotate(-15deg); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .umi-replay-featured { animation: none; } .umi-replay-hearts > span { animation-duration: .1s; } }
+@media (max-width: 350px) { .umi-replay-count { font-size: 10px; } .umi-replay-avatar { width: 34px; height: 34px; } .umi-replay-brand strong { font-size: 12px; } .umi-replay-side { gap: 7px; } .umi-replay-comments { max-height: 75px; } }
+/* Aperçu simplifié avant le clic */
+.umi-replay-preview .umi-replay-offer,
+.umi-replay-preview .umi-replay-side,
+.umi-replay-preview .umi-replay-hearts,
+.umi-replay-preview .umi-replay-bottom,
+.umi-replay-preview .umi-replay-panel,
+.umi-replay-preview .umi-replay-play {
+  display: none !important;
+}
+
+/* La vidéo reste cliquable */
+.umi-replay-preview .umi-replay-header {
+  pointer-events: none;
+}
+/* Les cœurs apparaissent au niveau du bouton J’aime */
+.umi-replay-hearts > span {
+  top: calc(34% - 4px);
+  bottom: auto;
+  left: auto !important;
+  right: 15px;
+}
+/* Départ des cœurs au niveau du bouton J’aime */
+.umi-replay-full .umi-replay-hearts > span {
+  top: calc(34% - 4px) !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: 15px !important;
+}
+/* Garder les cœurs visibles pendant leur montée */
+.umi-replay-full .umi-replay-hearts > span {
+  animation: umi-replay-heart-rise 1.5s ease-out forwards !important;
+}
+/* Garder les boutons au-dessus des éléments décoratifs */
+.umi-replay-full .umi-replay-side {
+  z-index: 8 !important;
+  pointer-events: auto !important;
+}
+
+.umi-replay-full .umi-replay-side button {
+  pointer-events: auto !important;
+  touch-action: manipulation;
+}
+
+.umi-replay-full .umi-replay-side button > * {
+  pointer-events: none;
+}
+
+.umi-replay-gradient,
+.umi-replay-hearts {
+  pointer-events: none !important;
+}
+/* La petite carte rouge danse après le clic */
+.umi-replay-full .umi-replay-offer {
+  transform-origin: center;
+  animation: umi-offer-dance 1.4s ease-in-out infinite;
+}
+
+@keyframes umi-offer-dance {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: translateY(-5px) rotate(-5deg) scale(1.04);
+  }
+
+  50% {
+    transform: translateY(0) rotate(5deg) scale(1);
+  }
+
+  75% {
+    transform: translateY(-5px) rotate(-3deg) scale(1.04);
+  }
+}
+.umi-replay-full .umi-replay-offer {
+  padding: 6px 8px;
+  border-radius: 9px;
+  gap: 2px;
+}
+
+.umi-replay-full .umi-replay-offer strong {
+  font-size: 17px;
+}
+
+.umi-replay-full .umi-replay-offer span {
+  font-size: 9px;
+}
+.umi-replay-full .umi-replay-offer-window {
+  inset: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(340px, calc(100% - 32px));
+  min-height: 0;
+  max-height: 80dvh;
+  padding: 44px 20px 22px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 12px 45px #0008;
+}
+
+.umi-offer-machine-image {
+  display: block;
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin: 12px auto;
+}
+
+.umi-offer-price {
+  margin: 12px 0;
+  color: #ed1745;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.umi-offer-add-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 12px;
+  background: #087fc1;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.umi-offer-add-cart span {
+  font-size: 23px;
+}
+
+.umi-offer-confirmation {
+  margin: 12px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+.umi-replay-offer-window .umi-offer-confirmation {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin: 14px 0 0;
+  padding: 14px 12px;
+  border: 1px solid #087fc1;
+  border-radius: 12px;
+  background: #fff;
+  color: #163a5c;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 3px 12px #0002;
+}
+.umi-replay-full .umi-replay-offer-window {
+  border: 3px solid #ed1745;
+  animation: umi-offer-blink 1.2s ease-in-out infinite;
+}
+
+@keyframes umi-offer-blink {
+  0%, 100% {
+    border-color: #ed1745;
+    box-shadow: 0 0 8px #ed174540;
+  }
+
+  50% {
+    border-color: #fff;
+    box-shadow: 0 0 22px #ed1745aa;
+  }
+}
+.umi-replay-full .umi-replay-offer-window {
+  width: min(280px, calc(100% - 40px));
+  padding: 38px 14px 16px;
+  border-radius: 16px;
+}
+
+.umi-replay-offer-window .umi-offer-machine-image {
+  height: 110px;
+  margin: 8px auto;
+}
+
+.umi-replay-offer-window h3 {
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+.umi-replay-offer-window .umi-offer-price {
+  font-size: 19px;
+  margin: 8px 0;
+}
+
+.umi-replay-offer-window .umi-offer-add-cart {
+  padding: 10px;
+  font-size: 13px;
+}
+.umi-replay-full .umi-replay-offer-window {
+  top: 44%;
+}
+.umi-offer-cart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.umi-offer-quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid #ccd8e3;
+  border-radius: 12px;
+  background: #f5faff;
+  color: #163a5c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.umi-offer-quantity input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 0;
+  background: transparent;
+  color: #163a5c;
+  font-size: 16px;
+  text-align: center;
+}
+
+.umi-offer-cart-row .umi-offer-add-cart {
+  min-width: 0;
+  padding: 10px 6px;
+  gap: 5px;
+}
+.umi-offer-cart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.umi-offer-quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid #ccd8e3;
+  border-radius: 12px;
+  background: #f5faff;
+  color: #163a5c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.umi-offer-quantity input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 0;
+  background: transparent;
+  color: #163a5c;
+  font-size: 16px;
+  text-align: center;
+}
+
+.umi-offer-cart-row .umi-offer-add-cart {
+  min-width: 0;
+  padding: 10px 6px;
+  gap: 5px;
+}
+.umi-offer-quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.umi-offer-quantity-controls button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: #087fc1;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.umi-offer-quantity-controls strong {
+  min-width: 20px;
+  color: #163a5c;
+  font-size: 16px;
+  text-align: center;
+}
+
+.umi-offer-quantity-controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+/* Animation de la barre blanche uniquement */
+.umi-replay-bottom .umi-replay-featured {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #fff;
+  background: #fff;
+  animation:
+    umi-white-bar-float 3s ease-in-out infinite,
+    umi-white-bar-glow 2s ease-in-out infinite;
+}
+
+/* Reflet lumineux qui traverse la barre */
+.umi-replay-bottom .umi-replay-featured::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    #ffffffb3 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  animation: umi-white-bar-shine 4s ease-in-out infinite;
+}
+
+/* Animation du prix */
+.umi-replay-bottom .umi-replay-product-link b {
+  animation: umi-white-price-pulse 2s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+/* Animation du bouton Acheter */
+.umi-replay-bottom .umi-replay-buy {
+  animation: umi-white-buy-pulse 2s ease-in-out infinite;
+  transition: background 0.2s;
+}
+
+.umi-replay-bottom .umi-replay-buy:hover {
+  background: #c91036;
+}
+
+@keyframes umi-white-bar-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes umi-white-bar-glow {
+  0%, 100% {
+    border-color: #fff;
+    box-shadow: 0 0 5px #ffffff60;
+  }
+  50% {
+    border-color: #ed1745;
+    box-shadow: 0 0 15px #ed174580;
+  }
+}
+
+@keyframes umi-white-bar-shine {
+  0%, 25% { transform: translateX(-120%); }
+  75%, 100% { transform: translateX(120%); }
+}
+
+@keyframes umi-white-price-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes umi-white-buy-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #ed174540;
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 5px #ed174500;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .umi-replay-bottom .umi-replay-featured,
+  .umi-replay-bottom .umi-replay-featured::after,
+  .umi-replay-bottom .umi-replay-product-link b,
+  .umi-replay-bottom .umi-replay-buy {
+    animation: none;
+  }
+}
+/* Fenêtre Message : seuls les messages défilent */
+.umi-replay-panel:has(.chat-page) {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  min-height: 0;
+  max-height: 70%;
+  overflow: hidden;
+}
+
+.umi-replay-panel:has(.chat-page) .umi-replay-tabs {
+  position: relative;
+  top: auto;
+  z-index: 20;
+  flex-shrink: 0;
+  margin: 0;
+  background: #fff;
+}
+
+.umi-replay-panel .chat-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.umi-replay-panel .chat-messages {
+  position: static;
+  flex: 1;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  margin: 0;
+  padding: 12px 6px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.umi-replay-panel .chat-compose {
+  position: static;
+  inset: auto;
+  transform: none;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 8px;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 6px;
+  border-top: 1px solid #e5edf3;
+  background: #fff;
+}
+
+.umi-replay-panel .chat-compose input {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+}
+
+.umi-replay-panel .chat-compose-send-button {
+  flex-shrink: 0;
+}
+.umi-live-machine-sheet {
+  width: 100%;
+  min-width: 0;
+}
+
+.umi-replay-panel .umi-embedded-product {
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.umi-replay-panel .umi-embedded-product .commerce-detail {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px 0 12px;
+}
+/* Onglet Description : défilement de la fiche uniquement */
+.umi-replay-panel:has(.umi-live-machine-sheet) {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  min-height: 0;
+  max-height: 70%;
+  overflow: hidden;
+}
+
+.umi-replay-panel:has(.umi-live-machine-sheet)
+  .umi-replay-tabs {
+  position: relative;
+  top: auto;
+  z-index: 20;
+  flex-shrink: 0;
+  margin: 0;
+  background: #fff;
+}
+
+.umi-replay-panel .umi-live-machine-sheet {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.umi-replay-panel .umi-embedded-product
+  nav[aria-label="Navigation principale"] {
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 6px 8px !important;
+}
+
+.umi-replay-panel .umi-embedded-product {
+  padding-bottom: 0 !important;
+}
+
+.umi-replay-panel:has(.umi-live-machine-sheet) {
+  padding-bottom: 0;
+}
+/* Barre commentaire : uniquement les écrans spectateur. */
+.umi-spectator-comment-row {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+.umi-spectator-comment-row > .umi-live-comment-box,
+.umi-spectator-comment-row > .umi-replay-input-wrap {
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  height: 46px !important;
+  box-sizing: border-box !important;
+  padding: 5px 6px 5px 12px !important;
+  border: 1px solid rgba(255,255,255,.5) !important;
+  border-radius: 999px !important;
+  background: rgba(0,0,0,.24) !important;
+  box-shadow: none !important;
+}
+.umi-spectator-comment-row input {
+  flex: 1 1 0 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  font-size: 16px !important;
+}
+.umi-spectator-comment-row input::placeholder {
+  color: rgba(255,255,255,.92) !important;
+  font-size: 12px !important;
+  opacity: 1 !important;
+}
+.umi-spectator-comment-row .umi-live-send-button,
+.umi-spectator-comment-row .umi-replay-send {
+  position: static !important;
+  transform: none !important;
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  margin: 0 !important;
+  padding: 7px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: #08789f !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+.umi-spectator-comment-row .umi-live-send-button:disabled,
+.umi-spectator-comment-row .umi-replay-send:disabled {
+  opacity: .65 !important;
+}
+.umi-spectator-comment-row button svg {
+  width: 100%;
+  height: 100%;
+}
+.umi-spectator-comment-row > .umi-live-similar-button,
+.umi-spectator-comment-row > .umi-replay-similar {
+  position: static !important;
+  transform: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 30% !important;
+  width: 30% !important;
+  min-width: 88px !important;
+  max-width: 120px !important;
+  height: 46px !important;
+  margin: 0 !important;
+  padding: 5px 12px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  color: #163a5c !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  white-space: normal !important;
+  box-shadow: none !important;
+}
+.umi-spectator-effects {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.umi-spectator-effects span {
+  position: absolute;
+  bottom: -60px;
+  font-size: 36px;
+  animation: umi-spectator-float 4s linear infinite;
+}
+
+@keyframes umi-spectator-float {
+  from {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh) rotate(20deg);
+    opacity: 0;
   }
 }

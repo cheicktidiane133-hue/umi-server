@@ -499,6 +499,7 @@
   display: -webkit-box;
 
   -webkit-line-clamp: 2;
+  line-clamp: 2;
 
   -webkit-box-orient: vertical;
 }
@@ -825,4 +826,58 @@
 
 .admin-commerce-box:active {
   transform: scale(0.98);
+}
+/* =========================================
+   BOUTON ACCUEIL DANS LA BANNIÈRE
+========================================= */
+.dashboard-home-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 55px;
+  min-height: 55px;
+
+  gap: 4px;
+  padding: 3px;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.dashboard-home-icon {
+  display: block;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.dashboard-home-label {
+  display: block;
+
+  color: #ffffff !important;
+
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  visibility: visible;
+  opacity: 1;
+}
+
+.dashboard-home-button:active {
+  transform: scale(0.92);
+}
+/* ESPACEMENT IDENTIQUE ENTRE TOUTES LES CASES */
+
+.dashboard-actions {
+  gap: 10px;
+}
+
+.dashboard-actions > .dashboard-action-card {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }

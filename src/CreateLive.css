@@ -1,49 +1,59 @@
-* {
-  box-sizing: border-box;
-}
-
-/* =========================
-   PAGE
-========================= */
+/* =========================================================
+   CREATE LIVE — PAGE GÉNÉRALE
+========================================================= */
 
 .create-live-page {
   min-height: 100vh;
-  background: #f4f7fb;
-  font-family: Arial, Helvetica, sans-serif;
-  padding-bottom: 40px;
+  width: 100%;
+
+  background: #f5f6f8;
+
+  color: #171717;
+
+  box-sizing: border-box;
 }
 
 
-/* =========================
+.create-live-page *,
+.create-live-page *::before,
+.create-live-page *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
    EN-TÊTE
-========================= */
+========================================================= */
 
 .create-live-header {
-  position: relative;
-  z-index: 20;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 
-  min-height: 100px;
+  width: 100%;
+  min-height: 66px;
+
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 48px;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 9px 14px;
 
   background: #ffffff;
 
-  display: grid;
-  grid-template-columns: 48px 1fr 48px;
+  border-bottom: 1px solid #e8e8e8;
 
-  align-items: center;
-
-  padding: 14px 12px;
-
-  border-bottom: 1px solid #e5ebf3;
+  box-shadow:
+    0 2px 8px
+    rgba(0, 0, 0, 0.04);
 }
 
 
-/* =========================
-   BOUTON RETOUR
-========================= */
-
 .create-live-back {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
 
   display: flex;
   align-items: center;
@@ -51,184 +61,135 @@
 
   padding: 0;
 
-  border: 1px solid #dce6ef;
-  border-radius: 12px;
+  border: none;
+  border-radius: 50%;
 
-  background: #ffffff;
+  background: #f1f2f4;
 
-  color: #087fc1;
+  color: #171717;
 
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 25px;
-  font-weight: 600;
-
-  line-height: 1;
+  font-size: 23px;
+  font-weight: 700;
 
   cursor: pointer;
-
-  box-shadow:
-    0 3px 10px rgba(20, 50, 80, 0.08);
 }
 
-.create-live-back:hover {
-  background: #f2f8fc;
-}
-
-
-/* =========================
-   TITRE EN-TÊTE
-========================= */
 
 .create-live-brand {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
+  min-width: 0;
 }
+
 
 .create-live-header-title {
-  color: #087fc1;
+  overflow: hidden;
 
-  font-family: Arial, Helvetica, sans-serif;
+  color: #111111;
 
-  font-size: 21px;
-  font-weight: 600;
-
-  line-height: 1.2;
-
-  letter-spacing: 0.2px;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.15;
 
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
+
 
 .create-live-header-subtitle {
-  margin-top: 5px;
+  margin-top: 3px;
 
-  color: #667085;
+  overflow: hidden;
 
-  font-family: Arial, Helvetica, sans-serif;
+  color: #777777;
 
   font-size: 10px;
-  font-weight: 400;
+  font-weight: 600;
 
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 
-/* =========================
-   LOGO
-========================= */
-
 .create-live-logo {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
 
   justify-self: end;
 
-  object-fit: cover;
+  object-fit: contain;
 
-  border-radius: 50%;
-
-  background: white;
-
-  border: 1px solid #e1e8ef;
+  border-radius: 10px;
 }
 
 
-/* =========================
+/* =========================================================
    CONTENU
-========================= */
+========================================================= */
 
 .create-live-content {
-  width: 100%;
-  max-width: 650px;
+  width: min(100%, 760px);
 
   margin: 0 auto;
 
-  padding: 17px 12px 35px;
+  padding:
+    20px
+    14px
+    40px;
 }
 
-
-/* =========================
-   INTRODUCTION
-========================= */
 
 .create-live-intro {
   margin-bottom: 16px;
-
-  padding: 4px 3px;
 }
+
 
 .create-live-intro h1 {
-  margin: 0 0 6px;
-
-  color: #123f5d;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif !important;
-
-  font-size: 20px !important;
-
-  font-weight: 600 !important;
-
-  line-height: 1.3;
-
-  letter-spacing: 0;
-}
-
-.create-live-intro p {
   margin: 0;
 
-  color: #7b8b98;
+  color: #151515;
 
-  font-family: Arial, Helvetica, sans-serif;
-
-  font-size: 13px;
-
-  font-weight: 400;
-
-  line-height: 1.5;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.15;
 }
 
 
-/* =========================
+.create-live-intro p {
+  margin:
+    6px
+    0
+    0;
+
+  color: #777777;
+
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+
+/* =========================================================
    CARTES
-========================= */
+========================================================= */
 
 .create-live-card {
   width: 100%;
 
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 
-  padding: 17px;
+  padding: 16px;
 
-  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 18px;
 
-  border: 1px solid #e7eef3;
-
-  border-radius: 16px;
+  background: #ffffff;
 
   box-shadow:
-    0 3px 14px rgba(18, 63, 95, 0.07);
+    0 4px 18px
+    rgba(0, 0, 0, 0.045);
 }
 
 
-/* =========================
-   TITRE DES SECTIONS
-========================= */
-
 .create-live-section-title {
-  width: 100%;
-
   display: flex;
-
   align-items: center;
 
   gap: 11px;
@@ -236,74 +197,72 @@
   margin-bottom: 17px;
 }
 
+
 .create-live-section-icon {
+  flex: 0 0 42px;
+
   width: 42px;
   height: 42px;
 
-  flex-shrink: 0;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 
-  background: #e8f5ff;
+  border-radius: 13px;
 
-  border-radius: 11px;
+  background: #f0f3ff;
 
-  font-size: 20px;
+  font-size: 21px;
 }
+
+
+.create-live-section-title > div:last-child {
+  min-width: 0;
+}
+
 
 .create-live-section-title h2 {
-  margin: 0 0 3px;
-
-  color: #173e59;
-
-  font-family: Arial, Helvetica, sans-serif;
-
-  font-size: 15px;
-
-  font-weight: 600;
-
-  line-height: 1.3;
-
-  letter-spacing: 0;
-}
-
-.create-live-section-title p {
   margin: 0;
 
-  color: #8997a3;
+  color: #171717;
 
-  font-family: Arial, Helvetica, sans-serif;
-
-  font-size: 11px;
-
-  font-weight: 400;
-
-  line-height: 1.4;
+  font-size: 16px;
+  font-weight: 850;
 }
 
 
-/* =========================
-   ZONE CAMÉRA
-========================= */
+.create-live-section-title p {
+  margin:
+    3px
+    0
+    0;
+
+  color: #818181;
+
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   CAMÉRA AVANT LIVE
+========================================================= */
 
 .live-camera-preview {
-  width: 100%;
-
-  aspect-ratio: 16 / 9;
-
   position: relative;
+
+  width: 100%;
+  aspect-ratio: 9 / 12;
+
+  max-height: 500px;
 
   overflow: hidden;
 
-  border-radius: 14px;
+  border-radius: 18px;
 
-  background: #101820;
-
-  border: 1px solid #dfe8ee;
+  background: #111111;
 }
+
 
 .live-camera-preview video {
   width: 100%;
@@ -313,13 +272,9 @@
 
   object-fit: cover;
 
-  background: #101820;
+  background: #111111;
 }
 
-
-/* =========================
-   CAMÉRA DÉSACTIVÉE
-========================= */
 
 .camera-placeholder {
   position: absolute;
@@ -327,569 +282,4719 @@
   inset: 0;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
-  text-align: center;
+  gap: 7px;
 
   padding: 20px;
 
   background:
     linear-gradient(
       145deg,
-      #142a39,
-      #0b1821
+      #191919,
+      #050505
     );
 
-  color: white;
+  color: #ffffff;
+
+  text-align: center;
 }
+
 
 .camera-placeholder-icon {
-  width: 55px;
-  height: 55px;
+  margin-bottom: 4px;
 
-  margin-bottom: 10px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background:
-    rgba(255, 255, 255, 0.1);
-
-  font-size: 25px;
+  font-size: 38px;
 }
+
 
 .camera-placeholder strong {
-  font-family: Arial, Helvetica, sans-serif;
-
-  font-size: 14px;
-
-  font-weight: 600;
+  font-size: 15px;
 }
 
+
 .camera-placeholder span {
-  max-width: 230px;
+  max-width: 260px;
 
-  margin-top: 6px;
-
-  color: #aebdca;
-
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 0.72);
 
   font-size: 11px;
-
   line-height: 1.4;
 }
 
 
-/* =========================
-   BADGE EN DIRECT
-========================= */
-
-.camera-live-badge {
-  position: absolute;
-
-  top: 10px;
-  left: 10px;
-
-  min-height: 29px;
-
-  padding: 0 10px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 6px;
-
-  border-radius: 7px;
-
-  background: #e32636;
-
-  color: white;
-
-  font-family: Arial, Helvetica, sans-serif;
-
-  font-size: 10px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.4px;
-
-  box-shadow:
-    0 3px 10px rgba(0, 0, 0, 0.25);
-}
-
-.live-red-dot {
-  width: 7px;
-  height: 7px;
-
-  display: block;
-
-  border-radius: 50%;
-
-  background: white;
-
-  animation:
-    livePulse 1.2s infinite;
-}
-
-@keyframes livePulse {
-
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.35;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-
-/* =========================
-   ACTIVER CAMÉRA
-========================= */
-
 .activate-camera-button {
   width: 100%;
 
-  min-height: 48px;
-
   margin-top: 12px;
 
+  padding:
+    12px
+    14px;
+
   border: none;
+  border-radius: 12px;
 
-  border-radius: 11px;
+  background: #171717;
 
-  background: #e8f5ff;
-
-  color: #087dcc;
-
-  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
 
   font-size: 13px;
-
-  font-weight: 600;
+  font-weight: 800;
 
   cursor: pointer;
 }
 
-.activate-camera-button:active {
-  transform: scale(0.99);
-}
-
-
-/* =========================
-   STATUT CAMÉRA
-========================= */
 
 .camera-status {
-  width: 100%;
-
-  margin-top: 11px;
+  margin-top: 9px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 7px;
 
-  color: #8997a3;
-
-  font-family: Arial, Helvetica, sans-serif;
+  color: #8a8a8a;
 
   font-size: 11px;
-
-  font-weight: 600;
+  font-weight: 700;
 }
+
 
 .camera-status-dot {
   width: 8px;
   height: 8px;
 
-  flex-shrink: 0;
-
   border-radius: 50%;
 
-  background: #a8b4bd;
+  background: #a8a8a8;
 }
 
+
 .camera-status.ready {
-  color: #198754;
+  color: #18884a;
 }
+
 
 .camera-status.ready
 .camera-status-dot {
-  background: #25a65a;
-}
-
-.camera-status.live {
-  color: #dc2536;
-
-  font-weight: 600;
-}
-
-.camera-status.live
-.camera-status-dot {
-  background: #e32636;
-
-  box-shadow:
-    0 0 0 4px rgba(227, 38, 54, 0.1);
+  background: #1aae61;
 }
 
 
-/* =========================
-   CHAMPS
-========================= */
+/* =========================================================
+   FORMULAIRE
+========================================================= */
 
 .create-live-field {
   width: 100%;
 
-  margin-bottom: 17px;
+  margin-bottom: 20px;
 }
+
 
 .create-live-field:last-child {
   margin-bottom: 0;
 }
 
-.create-live-field label {
+
+.create-live-field > label {
   display: block;
 
   margin-bottom: 7px;
 
-  color: #294d64;
-
-  font-family: Arial, Helvetica, sans-serif;
+  color: #202020;
 
   font-size: 12px;
-
-  font-weight: 600;
+  font-weight: 800;
 }
 
-.live-required {
-  margin-left: 3px;
 
-  color: #e53935;
-}
-
-.create-live-field input {
+.create-live-field input[type="text"],
+.create-live-field input[type="number"],
+.create-live-field textarea {
   width: 100%;
-  height: 50px;
 
-  padding: 0 13px;
+  padding:
+    12px
+    13px;
 
-  border:
-    1.5px solid #dce6ed;
-
-  border-radius: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 11px;
 
   outline: none;
 
-  background: #fbfdff;
+  background: #ffffff;
 
-  color: #183e57;
+  color: #171717;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: inherit;
+  font-size: 13px;
 
-  font-size: 14px;
-
-  transition: 0.2s;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
-.create-live-field input::placeholder {
-  color: #a6b1ba;
-}
 
-.create-live-field input:focus {
-  border-color: #0787df;
-
-  background: white;
+.create-live-field input:focus,
+.create-live-field textarea:focus {
+  border-color: #2457e6;
 
   box-shadow:
-    0 0 0 3px rgba(7, 135, 223, 0.08);
-}
-
-.create-live-field input:disabled {
-  background: #f1f4f6;
-
-  color: #77848d;
-
-  cursor: not-allowed;
+    0 0 0 3px
+    rgba(36, 87, 230, 0.1);
 }
 
 
-/* =========================
-   DÉMARRER LIVE
-========================= */
+.create-live-field textarea {
+  min-height: 110px;
 
-.start-live-button {
+  resize: vertical;
+
+  line-height: 1.45;
+}
+
+
+.create-live-media-help {
+  margin:
+    -1px
+    0
+    10px;
+
+  color: #858585;
+
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   BOUTON SÉLECTION MACHINES
+========================================================= */
+
+.create-live-open-machines {
   width: 100%;
+  min-height: 67px;
 
-  min-height: 55px;
+  display: grid;
 
-  margin-top: 3px;
+  grid-template-columns:
+    42px
+    minmax(0, 1fr)
+    22px;
 
-  border: none;
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    10px
+    12px;
+
+  border: 1px solid #e0e0e0;
+  border-radius: 13px;
+
+  background: #ffffff;
+
+  color: #171717;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.create-live-open-machines:active {
+  background: #f7f7f7;
+}
+
+
+.create-live-open-machines-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border-radius: 12px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #e01e35,
-      #f04455
-    );
+  background: #f3f4f7;
 
-  color: white;
+  font-size: 20px;
+}
+
+
+.create-live-open-machines-text {
+  min-width: 0;
 
   display: flex;
+  flex-direction: column;
 
+  gap: 4px;
+}
+
+
+.create-live-open-machines-text strong {
+  overflow: hidden;
+
+  font-size: 12px;
+  font-weight: 850;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.create-live-open-machines-text span {
+  overflow: hidden;
+
+  color: #7b7b7b;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.create-live-open-machines-arrow {
+  color: #8d8d8d;
+
+  font-size: 25px;
+  font-weight: 400;
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   POURCENTAGE OFFRE
+========================================================= */
+
+.create-live-offer-percent {
+  margin-top: 13px;
+}
+
+
+.create-live-offer-percent > label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #333333;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+.create-live-offer-percent-row {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.create-live-offer-percent-row input {
+  min-width: 0;
+}
+
+
+.create-live-offer-percent-row strong {
+  min-width: 58px;
+
+  color: #e3222a;
+
+  font-size: 17px;
+  font-weight: 900;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   PHOTOS + VIDÉOS AVANT LIVE
+========================================================= */
+
+.create-live-media-row {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+
+.create-live-media-column {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+.create-live-simple-title {
+  width: 100%;
+
+  color: #292929;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  text-align: center;
+}
+
+
+.create-live-simple-upload {
+  width: 100%;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px dashed #cfcfcf;
+  border-radius: 13px;
+
+  background: #fafafa;
+
+  cursor: pointer;
+}
+
+
+.create-live-simple-upload:active {
+  background: #f2f2f2;
+}
+
+
+.create-live-hidden-file {
+  display: none !important;
+}
+
+
+.create-live-simple-icon {
+  font-size: 27px;
+}
+
+
+.create-live-media-column small {
+  color: #858585;
+
+  font-size: 9px;
+}
+
+
+.create-live-media-grid,
+.create-live-video-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+
+.create-live-media-preview,
+.create-live-video-preview {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  border-radius: 11px;
+
+  background: #111111;
+}
+
+
+.create-live-media-preview img,
+.create-live-video-preview video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+.create-live-media-preview > button,
+.create-live-video-preview > button {
+  position: absolute;
+
+  top: 5px;
+  right: 5px;
+
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background:
+    rgba(0, 0, 0, 0.72);
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   DÉMARRER / ANNULER
+========================================================= */
+
+.start-live-button {
+  width: 100%;
+  min-height: 50px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
 
   gap: 9px;
 
-  font-family: Arial, Helvetica, sans-serif;
+  padding:
+    13px
+    16px;
 
-  font-size: 15px;
+  border: none;
+  border-radius: 14px;
 
-  font-weight: 600;
+  background: #e3222a;
 
-  cursor: pointer;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 900;
 
   box-shadow:
-    0 5px 15px rgba(224, 30, 53, 0.22);
+    0 5px 16px
+    rgba(227, 34, 42, 0.22);
+
+  cursor: pointer;
 }
 
-.start-live-button:active {
-  transform: scale(0.99);
-}
 
 .start-live-button:disabled {
-  opacity: 0.65;
+  opacity: 0.55;
 
   cursor: not-allowed;
 }
 
-.start-live-dot {
-  width: 10px;
-  height: 10px;
 
-  flex-shrink: 0;
+.start-live-dot {
+  width: 9px;
+  height: 9px;
 
   border-radius: 50%;
 
-  background: white;
-}
-
-
-/* =========================
-   ARRÊTER LIVE
-========================= */
-
-.stop-live-button {
-  width: 100%;
-
-  min-height: 55px;
-
-  margin-top: 3px;
-
-  border: none;
-
-  border-radius: 12px;
-
-  background: #202d36;
-
-  color: white;
-
-  font-family: Arial, Helvetica, sans-serif;
-
-  font-size: 15px;
-
-  font-weight: 600;
-
-  cursor: pointer;
+  background: #ffffff;
 
   box-shadow:
-    0 5px 15px rgba(32, 45, 54, 0.18);
+    0 0 0 4px
+    rgba(255, 255, 255, 0.16);
 }
 
-.stop-live-button:active {
-  transform: scale(0.99);
-}
-
-
-/* =========================
-   ANNULER
-========================= */
 
 .create-live-cancel {
   width: 100%;
 
-  min-height: 48px;
-
   margin-top: 10px;
 
-  border:
-    1px solid #dce5eb;
+  padding: 12px;
 
-  border-radius: 12px;
+  border: none;
 
-  background: white;
+  background: transparent;
 
-  color: #667985;
+  color: #6f6f6f;
 
-  font-family: Arial, Helvetica, sans-serif;
-
-  font-size: 13px;
-
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 750;
 
   cursor: pointer;
 }
 
 
-/* =========================
-   TÉLÉPHONE
-========================= */
+/* =========================================================
+   SÉLECTEUR MACHINES PLEIN ÉCRAN
+========================================================= */
 
-@media (max-width: 420px) {
+.create-live-machine-selector {
+  position: fixed;
 
-  .create-live-header {
-    min-height: 88px;
+  inset: 0;
 
-    grid-template-columns:
-      42px 1fr 42px;
+  z-index: 5000;
 
-    padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+
+  background: #f5f6f8;
+
+  color: #171717;
+}
+
+
+.create-live-machine-selector-header {
+  flex: 0 0 auto;
+
+  min-height: 67px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding:
+    10px
+    14px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+
+.create-live-machine-selector-back {
+  flex: 0 0 39px;
+
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f2f4;
+
+  color: #171717;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+
+.create-live-machine-selector-header > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.create-live-machine-selector-header strong {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+.create-live-machine-selector-header span {
+  overflow: hidden;
+
+  color: #777777;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.create-live-machine-selector-count {
+  flex: 0 0 auto;
+
+  padding:
+    9px
+    14px;
+
+  background: #ffffff;
+
+  color: #707070;
+
+  border-bottom: 1px solid #ededed;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+.create-live-machine-selector-list {
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding:
+    12px
+    12px
+    100px;
+}
+
+
+.create-live-machine-select-card {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    58px
+    minmax(0, 1fr)
+    30px;
+
+  align-items: center;
+
+  gap: 11px;
+
+  margin-bottom: 9px;
+
+  padding: 9px;
+
+  border: 1px solid #e2e2e2;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  color: #171717;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.create-live-machine-select-card.selected {
+  border-color: #2457e6;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(36, 87, 230, 0.08);
+}
+
+
+.create-live-machine-select-image {
+  width: 58px;
+  height: 58px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #f0f1f3;
+
+  font-size: 23px;
+}
+
+
+.create-live-machine-select-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+.create-live-machine-select-info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+
+.create-live-machine-select-info strong {
+  overflow: hidden;
+
+  font-size: 12px;
+  font-weight: 850;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.create-live-machine-select-info span {
+  overflow: hidden;
+
+  color: #707070;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.create-live-machine-select-circle {
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #cccccc;
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+
+.create-live-machine-select-circle.selected {
+  border-color: #2457e6;
+
+  background: #2457e6;
+}
+
+
+.create-live-machine-selector-bottom {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding:
+    10px
+    14px
+    calc(10px + env(safe-area-inset-bottom));
+
+  background: #ffffff;
+
+  border-top: 1px solid #e4e4e4;
+}
+
+
+.create-live-machine-selector-bottom > button {
+  width: 100%;
+  min-height: 46px;
+
+  border: none;
+  border-radius: 13px;
+
+  background: #2457e6;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 850;
+
+  cursor: pointer;
+}
+
+
+.create-live-similar-empty {
+  padding: 30px 15px;
+
+  color: #858585;
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   FENÊTRE SÉLECTION BARRE ACHETER
+========================================================= */
+
+.create-live-buy-selector-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 6000;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  background:
+    rgba(0, 0, 0, 0.42);
+}
+
+
+.create-live-buy-selector {
+  position: relative;
+
+  width: 100%;
+  max-height: 82vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border-radius:
+    22px
+    22px
+    0
+    0;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 -10px 35px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+.create-live-buy-selector-header {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding:
+    15px
+    15px
+    12px;
+
+  border-bottom: 1px solid #ececec;
+}
+
+
+.create-live-buy-selector-header > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.create-live-buy-selector-header strong {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+
+.create-live-buy-selector-header span {
+  color: #777777;
+
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+
+.create-live-buy-selector-header > button {
+  flex: 0 0 34px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f0f0f0;
+
+  color: #222222;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+/* =========================================================
+   ÉCRAN PRÉSENTATEUR LIVE
+========================================================= */
+
+.umi-presenter-live {
+  position: relative;
+
+  width: 100%;
+  height: 100dvh;
+
+  min-height: 100dvh;
+
+  overflow: hidden;
+
+  background: #000000;
+
+  color: #ffffff;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   FOND / CAMÉRA
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-background {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #000000;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-background-video {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  background: #000000;
+
+  transition:
+    filter 0.25s ease;
+}
+
+
+/* =========================================================
+   FILTRES
+========================================================= */
+
+.umi-presenter-filter-none
+.umi-presenter-live .umi-live-background-video {
+  filter: none;
+}
+
+
+.umi-presenter-filter-warm
+.umi-presenter-live .umi-live-background-video {
+  filter:
+    saturate(1.18)
+    sepia(0.12)
+    brightness(1.04);
+}
+
+
+.umi-presenter-filter-cold
+.umi-presenter-live .umi-live-background-video {
+  filter:
+    saturate(0.9)
+    hue-rotate(8deg)
+    brightness(1.03);
+}
+
+
+.umi-presenter-filter-bw
+.umi-presenter-live .umi-live-background-video {
+  filter:
+    grayscale(1)
+    contrast(1.05);
+}
+
+
+.umi-presenter-filter-bright
+.umi-presenter-live .umi-live-background-video {
+  filter:
+    brightness(1.18);
+}
+
+
+.umi-presenter-filter-contrast
+.umi-presenter-live .umi-live-background-video {
+  filter:
+    contrast(1.3)
+    saturate(1.05);
+}
+
+
+/* =========================================================
+   PHOTO / VIDÉO SUR LE FOND DU LIVE
+========================================================= */
+
+.umi-presenter-media-background {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 4;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #000000;
+}
+
+
+.umi-presenter-media-full {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  background: #000000;
+}
+
+
+.umi-presenter-media-close {
+  position: absolute;
+
+  top: 82px;
+  right: 14px;
+
+  z-index: 8;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.25);
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 0, 0, 0.55);
+
+  color: #ffffff;
+
+  font-size: 25px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  backdrop-filter:
+    blur(8px);
+}
+
+
+/* =========================================================
+   EFFETS
+========================================================= */
+
+.umi-presenter-effect-layer {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  font-size: 42px;
+}
+
+
+.umi-presenter-effect-layer > span {
+  position: absolute;
+
+  display: block;
+
+  animation:
+    umiPresenterFloatEffect
+    3.4s
+    ease-in-out
+    infinite;
+}
+
+
+.umi-presenter-effect-layer > span:nth-child(1) {
+  left: 16%;
+  bottom: 20%;
+}
+
+
+.umi-presenter-effect-layer > span:nth-child(2) {
+  right: 18%;
+  bottom: 34%;
+
+  animation-delay: 0.8s;
+}
+
+
+@keyframes umiPresenterFloatEffect {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(30px)
+      scale(0.75);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(-180px)
+      scale(1.2);
+  }
+
+}
+
+
+/* =========================================================
+   EN-TÊTE DU LIVE
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-overlay-top {
+  position: absolute;
+
+  top:
+    calc(
+      10px +
+      env(safe-area-inset-top)
+    );
+
+  left: 10px;
+  right: 10px;
+
+  z-index: 30;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 8px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CÔTÉ GAUCHE DE L'EN-TÊTE
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-top-left {
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 8px;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   PHOTO + UMI LIVE
+========================================================= */
+
+.umi-presenter-live .umi-live-presenter-identity {
+  flex: 0 0 48px;
+
+  width: 48px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-profile-circle {
+  width: 44px;
+  height: 44px;
+
+  min-width: 44px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid
+    rgba(255, 255, 255, 0.95);
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #2b5bea,
+      #142d84
+    );
+
+  color: #ffffff;
+
+  font-size: 17px;
+  font-weight: 900;
+
+  box-shadow:
+    0 2px 9px
+    rgba(0, 0, 0, 0.25);
+}
+
+
+.umi-presenter-live .umi-live-presenter-photo {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: inherit;
+}
+
+
+.umi-presenter-live .umi-live-presenter-name {
+  width: 62px;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 9px;
+  font-weight: 850;
+  line-height: 1.1;
+
+  text-align: center;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  text-shadow:
+    0 1px 4px
+    rgba(0, 0, 0, 0.65);
+}
+
+
+/* =========================================================
+   NOM MACHINE + EN DIRECT
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-profile-info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 5px;
+
+  padding-top: 2px;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-profile-info strong {
+  max-width: 120px;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.15;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  text-shadow:
+    0 1px 5px
+    rgba(0, 0, 0, 0.72);
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-red-badge {
+  position: static;
+
+  min-height: 21px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+
+  padding:
+    3px
+    7px;
+
+  border-radius: 6px;
+
+  background: #e3222a;
+
+  color: #ffffff;
+
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 2px 7px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   COMPTEUR + FERMETURE
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-top-right {
+  position: relative;
+
+  top: 8px;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  pointer-events: auto;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-viewers {
+  min-width: 44px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    0
+    8px;
+
+  border-radius: 16px;
+
+  background:
+    rgba(0, 0, 0, 0.42);
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  backdrop-filter:
+    blur(8px);
+}
+
+
+.umi-presenter-live .umi-live-right-buttons {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-power-button {
+  position: relative;
+
+  width: 31px;
+  height: 31px;
+
+  min-width: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background:
+    rgba(0, 0, 0, 0.48);
+
+  cursor: pointer;
+
+  backdrop-filter:
+    blur(8px);
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-power-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+.umi-presenter-live .umi-power-symbol {
+  position: relative;
+
+  width: 13px;
+  height: 13px;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+
+
+.umi-presenter-live .umi-power-symbol::before {
+  content: "";
+
+  position: absolute;
+
+  top: -4px;
+  left: 50%;
+
+  width: 2px;
+  height: 8px;
+
+  border-radius: 2px;
+
+  background: #ffffff;
+
+  transform:
+    translateX(-50%);
+}
+
+
+/* =========================================================
+   BARRE OFFRE
+   CACHÉE SUR ÉCRAN PRÉSENTATEUR
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-offer {
+  display: none !important;
+}
+
+
+/* =========================================================
+   BARRE ACHETER SUR L'ÉCRAN PRÉSENTATEUR
+========================================================= */
+
+.umi-presenter-buy-bar {
+  position: absolute;
+
+  top:
+    calc(
+      83px +
+      env(safe-area-inset-top)
+    );
+
+  left: 50%;
+
+  z-index: 18;
+
+  width:
+    min(
+      calc(100% - 112px),
+      330px
+    );
+
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 7px;
+
+  padding:
+    5px
+    6px
+    5px
+    8px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.6);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  color: #171717;
+
+  box-shadow:
+    0 4px 15px
+    rgba(0, 0, 0, 0.2);
+
+  transform:
+    translateX(-50%);
+
+  pointer-events: none;
+}
+
+
+.umi-presenter-buy-product {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+.umi-presenter-buy-product img {
+  flex: 0 0 34px;
+
+  width: 34px;
+  height: 34px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+
+  background: #eeeeee;
+}
+
+
+.umi-presenter-buy-product > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.umi-presenter-buy-product strong {
+  max-width: 125px;
+
+  overflow: hidden;
+
+  color: #171717;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.umi-presenter-buy-product span {
+  color: #e3222a;
+
+  font-size: 9px;
+  font-weight: 850;
+
+  white-space: nowrap;
+}
+
+
+.umi-presenter-buy-button {
+  flex: 0 0 auto;
+
+  min-width: 68px;
+  min-height: 31px;
+
+  padding:
+    5px
+    10px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #2457e6;
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  white-space: nowrap;
+
+  animation:
+    umiPresenterBuyPulse
+    1.3s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes umiPresenterBuyPulse {
+
+  0%,
+  100% {
+    transform:
+      scale(1);
+
+    box-shadow:
+      0 0 0
+      rgba(36, 87, 230, 0);
+  }
+
+  50% {
+    transform:
+      scale(1.05);
+
+    box-shadow:
+      0 0 0 5px
+      rgba(36, 87, 230, 0.12);
+  }
+
+}
+
+
+/* =========================================================
+   OUTILS DES DEUX CÔTÉS
+========================================================= */
+
+.umi-presenter-tools {
+  position: absolute;
+
+  top: 50%;
+
+  z-index: 25;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  transform:
+    translateY(-50%);
+
+  pointer-events: auto;
+}
+
+
+.umi-presenter-tools-left {
+  left: 8px;
+}
+
+
+.umi-presenter-tools-right {
+  right: 8px;
+}
+
+
+.umi-presenter-tool {
+  width: 48px;
+  min-height: 48px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 2px;
+
+  padding:
+    4px
+    2px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.15);
+
+  border-radius: 14px;
+
+  background:
+    rgba(20, 20, 20, 0.36);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 2px 9px
+    rgba(0, 0, 0, 0.12);
+
+  cursor: pointer;
+
+  backdrop-filter:
+    blur(7px);
+}
+
+
+.umi-presenter-tool.active {
+  border-color:
+    rgba(255, 255, 255, 0.8);
+
+  background:
+    rgba(36, 87, 230, 0.88);
+}
+
+
+.umi-presenter-tool.disabled {
+  opacity: 0.65;
+}
+
+
+.umi-presenter-tool-icon {
+  min-height: 23px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+.umi-presenter-media-icon {
+  font-size: 21px;
+}
+
+
+.umi-presenter-tool small {
+  max-width: 45px;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 7px;
+  font-weight: 800;
+  line-height: 1.1;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   PANNEAU D'UN OUTIL
+========================================================= */
+
+.umi-presenter-tool-panel {
+  position: absolute;
+
+  left: 50%;
+  bottom:
+    calc(
+      82px +
+      env(safe-area-inset-bottom)
+    );
+
+  z-index: 80;
+
+  width:
+    min(
+      calc(100% - 118px),
+      360px
+    );
+
+  max-height: 57vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.24);
+
+  border-radius: 17px;
+
+  background:
+    rgba(255, 255, 255, 0.98);
+
+  color: #171717;
+
+  box-shadow:
+    0 10px 35px
+    rgba(0, 0, 0, 0.32);
+
+  transform:
+    translateX(-50%);
+
+  backdrop-filter:
+    blur(14px);
+}
+
+
+.umi-presenter-tool-panel-header {
+  flex: 0 0 auto;
+
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding:
+    9px
+    10px
+    9px
+    13px;
+
+  border-bottom:
+    1px solid #ececec;
+
+  background: #ffffff;
+}
+
+
+.umi-presenter-tool-panel-header strong {
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: #171717;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.umi-presenter-tool-panel-header > button {
+  flex: 0 0 30px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f0f0f0;
+
+  color: #222222;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-tool-content {
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding: 11px;
+}
+
+
+.umi-presenter-tool-content > label {
+  display: block;
+
+  margin:
+    4px
+    0
+    7px;
+
+  color: #333333;
+
+  font-size: 10px;
+  font-weight: 850;
+}
+
+
+/* =========================================================
+   LISTE MACHINES DANS LES MODULES
+========================================================= */
+
+.umi-presenter-machine-list {
+  min-height: 0;
+
+  max-height: 265px;
+
+  overflow-y: auto;
+
+  padding: 8px;
+}
+
+
+.umi-presenter-tool-content
+.umi-presenter-machine-list {
+  max-height: 200px;
+
+  margin-bottom: 10px;
+
+  padding: 0;
+}
+
+
+.umi-presenter-machine {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    45px
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 7px;
+
+  padding: 7px;
+
+  border: 1px solid #e4e4e4;
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  color: #171717;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-machine:last-child {
+  margin-bottom: 0;
+}
+
+
+.umi-presenter-machine.selected {
+  border-color: #2457e6;
+
+  background: #f3f6ff;
+}
+
+
+.umi-presenter-machine-image {
+  width: 45px;
+  height: 45px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #f0f1f3;
+
+  font-size: 19px;
+}
+
+
+.umi-presenter-machine-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+.umi-presenter-machine-info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.umi-presenter-machine-info strong {
+  overflow: hidden;
+
+  color: #171717;
+
+  font-size: 10px;
+  font-weight: 850;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.umi-presenter-machine-info span {
+  overflow: hidden;
+
+  color: #777777;
+
+  font-size: 8px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.umi-presenter-machine-check {
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #2457e6;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   POURCENTAGES DE L'OFFRE
+========================================================= */
+
+.umi-presenter-percent-row {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 6px;
+
+  margin-bottom: 9px;
+}
+
+
+.umi-presenter-percent-row button {
+  min-height: 34px;
+
+  padding:
+    5px
+    3px;
+
+  border: 1px solid #dedede;
+  border-radius: 9px;
+
+  background: #f7f7f7;
+
+  color: #333333;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-percent-row button.selected {
+  border-color: #e3222a;
+
+  background: #e3222a;
+
+  color: #ffffff;
+}
+
+
+.umi-presenter-custom-percent {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    30px;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 10px;
+}
+
+
+.umi-presenter-custom-percent input {
+  width: 100%;
+
+  min-height: 38px;
+
+  padding:
+    8px
+    10px;
+
+  border: 1px solid #dddddd;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #171717;
+
+  font-size: 11px;
+}
+
+
+.umi-presenter-custom-percent span {
+  font-size: 14px;
+  font-weight: 900;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   BOUTON ENREGISTRER DES MODULES
+========================================================= */
+
+.umi-presenter-save-button {
+  width: 100%;
+  min-height: 40px;
+
+  margin-top: 8px;
+
+  padding:
+    9px
+    12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #2457e6;
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-save-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   DÉTAILS DU LIVE
+========================================================= */
+
+.umi-presenter-details-input,
+.umi-presenter-details-textarea {
+  width: 100%;
+
+  padding:
+    9px
+    10px;
+
+  border: 1px solid #dddddd;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #171717;
+
+  font-family: inherit;
+  font-size: 10px;
+}
+
+
+.umi-presenter-details-input:focus,
+.umi-presenter-details-textarea:focus {
+  border-color: #2457e6;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(36, 87, 230, 0.08);
+}
+
+
+.umi-presenter-details-textarea {
+  min-height: 75px;
+
+  resize: vertical;
+
+  line-height: 1.4;
+}
+
+
+.umi-presenter-details-media-section {
+  margin-top: 12px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid #eeeeee;
+}
+
+
+.umi-presenter-details-media-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin-bottom: 8px;
+}
+
+
+.umi-presenter-details-media-title strong {
+  color: #222222;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+
+.umi-presenter-details-media-title span {
+  color: #858585;
+
+  font-size: 8px;
+  font-weight: 700;
+}
+
+
+.umi-presenter-add-media {
+  min-height: 39px;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding:
+    7px
+    9px;
+
+  border: 1px dashed #cfcfcf;
+  border-radius: 9px;
+
+  background: #f8f8f8;
+
+  color: #333333 !important;
+
+  font-size: 9px !important;
+  font-weight: 800 !important;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-add-media input {
+  display: none;
+}
+
+
+.umi-presenter-add-media span {
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   GRILLE MÉDIAS DU PRÉSENTATEUR
+========================================================= */
+
+.umi-presenter-media-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 6px;
+
+  margin-top: 8px;
+}
+
+
+.umi-presenter-media-grid > button,
+.umi-presenter-edit-media {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #111111;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-media-grid img,
+.umi-presenter-media-grid video,
+.umi-presenter-edit-media img,
+.umi-presenter-edit-media video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+.umi-presenter-edit-media > button {
+  position: absolute;
+
+  top: 4px;
+  right: 4px;
+
+  z-index: 3;
+
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background:
+    rgba(0, 0, 0, 0.72);
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-media-play {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 0, 0, 0.58);
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  transform:
+    translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   RETOUR CAMÉRA
+========================================================= */
+
+.umi-presenter-camera-return {
+  width: 100%;
+
+  margin-bottom: 9px;
+
+  padding:
+    9px
+    10px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #171717;
+
+  color: #ffffff;
+
+  font-size: 9px;
+  font-weight: 850;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   TITRES MÉDIAS
+========================================================= */
+
+.umi-presenter-tool-content h4 {
+  margin:
+    10px
+    0
+    5px;
+
+  color: #222222;
+
+  font-size: 10px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   MODULE VIDE
+========================================================= */
+
+.umi-presenter-empty {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding:
+    20px
+    10px;
+
+  color: #858585;
+
+  font-size: 9px;
+
+  text-align: center;
+}
+
+
+.umi-presenter-empty-media-icon {
+  font-size: 28px;
+}
+
+
+.umi-presenter-empty strong {
+  color: #444444;
+
+  font-size: 10px;
+}
+
+
+.umi-presenter-empty small {
+  color: #888888;
+
+  font-size: 8px;
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   FILTRES / EFFETS — BOUTONS
+========================================================= */
+
+.umi-presenter-options-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 7px;
+
+  padding: 10px;
+}
+
+
+.umi-presenter-options-grid button {
+  min-height: 63px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 7px;
+
+  border: 1px solid #e1e1e1;
+  border-radius: 11px;
+
+  background: #f8f8f8;
+
+  color: #333333;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-options-grid button span {
+  font-size: 21px;
+}
+
+
+.umi-presenter-options-grid button.selected {
+  border-color: #2457e6;
+
+  background: #2457e6;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   APERÇU BARRE ACHETER
+========================================================= */
+
+.umi-presenter-buy-preview {
+  margin-top: 12px;
+
+  padding: 9px;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+
+  background: #f8f8f8;
+}
+
+
+.umi-presenter-buy-preview > span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #858585;
+
+  font-size: 8px;
+  font-weight: 700;
+}
+
+
+.umi-presenter-buy-preview > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+
+.umi-presenter-buy-preview strong {
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: #222222;
+
+  font-size: 9px;
+  font-weight: 850;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.umi-presenter-buy-preview button {
+  flex: 0 0 auto;
+
+  padding:
+    6px
+    9px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #2457e6;
+
+  color: #ffffff;
+
+  font-size: 8px;
+  font-weight: 850;
+}
+/* =========================================================
+   COMMENTAIRES DU LIVE PRÉSENTATEUR
+   PAS DE GRANDE BARRE NOIRE TRANSPARENTE
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comments {
+  position: absolute;
+
+  left: 64px;
+  bottom:
+    calc(
+      82px +
+      env(safe-area-inset-bottom)
+    );
+
+  z-index: 22;
+
+  width:
+    min(
+      58%,
+      310px
+    );
+
+  max-height: 205px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  overflow-y: auto;
+
+  padding: 0;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+  scrollbar-width: none;
+
+  pointer-events: auto;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comments::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   CHAQUE COMMENTAIRE
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comment {
+  width: fit-content;
+  max-width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 6px;
+
+  padding: 3px 5px;
+
+  border: none !important;
+  border-radius: 9px;
+
+  background: transparent !important;
+
+  color: #ffffff;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  box-shadow: none !important;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comment.selected {
+  background:
+    rgba(
+      36,
+      87,
+      230,
+      0.25
+    ) !important;
+}
+
+
+/* =========================================================
+   AVATAR COMMENTAIRE
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comment-avatar {
+  flex: 0 0 27px;
+
+  width: 27px;
+  height: 27px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.65);
+
+  border-radius: 50%;
+
+  background:
+    rgba(40, 40, 40, 0.65);
+
+  color: #ffffff;
+
+  font-size: 9px;
+  font-weight: 900;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comment-avatar-img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   TEXTE COMMENTAIRE
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comment-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1px;
+
+  padding-top: 1px;
+
+  text-shadow:
+    0 1px 3px
+    rgba(0, 0, 0, 0.85);
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comment-content strong {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.82
+    );
+
+  font-size: 8px;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-comment-content > span {
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.28;
+
+  overflow-wrap: anywhere;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-replied-message {
+  margin:
+    2px
+    0;
+
+  padding:
+    3px
+    5px;
+
+  border-left:
+    2px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.6
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.78
+    );
+
+  font-size: 7px;
+  line-height: 1.25;
+}
+
+
+/* =========================================================
+   ERREUR CHAT
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-chat-error {
+  position: absolute;
+
+  left: 50%;
+  bottom:
+    calc(
+      75px +
+      env(safe-area-inset-bottom)
+    );
+
+  z-index: 60;
+
+  max-width:
+    calc(100% - 120px);
+
+  padding:
+    6px
+    9px;
+
+  border-radius: 8px;
+
+  background:
+    rgba(
+      227,
+      34,
+      42,
+      0.92
+    );
+
+  color: #ffffff;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  text-align: center;
+
+  transform:
+    translateX(-50%);
+}
+
+
+/* =========================================================
+   ZONE DU BAS
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live-bottom {
+  position: absolute;
+
+  left: 61px;
+  right: 61px;
+
+  bottom:
+    calc(
+      10px +
+      env(safe-area-inset-bottom)
+    );
+
+  z-index: 35;
+
+  width: auto;
+
+  padding: 0;
+
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   APERÇU RÉPONSE
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-reply-preview {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 7px;
+
+  margin-bottom: 5px;
+
+  padding:
+    6px
+    8px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.94
+    );
+
+  color: #171717;
+
+  box-shadow:
+    0 3px 10px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-reply-preview > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-reply-preview strong {
+  color: #2457e6;
+
+  font-size: 8px;
+  font-weight: 850;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-reply-preview span {
+  overflow: hidden;
+
+  color: #555555;
+
+  font-size: 8px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-reply-preview > button {
+  flex: 0 0 24px;
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #ededed;
+
+  color: #222222;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   CHAMP COMMENTAIRE ADMIN
+   BLANC ET NON NOIR
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-input-row {
+  width: 100%;
+
+  min-height: 43px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding:
+    4px
+    5px
+    4px
+    10px;
+
+  border: 1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.8
+    );
+
+  border-radius: 22px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.95
+    ) !important;
+
+  box-shadow:
+    0 3px 13px
+    rgba(0, 0, 0, 0.18);
+
+  backdrop-filter:
+    blur(9px);
+}
+
+
+.umi-presenter-live
+.umi-presenter-input-row input {
+  flex: 1 1 auto;
+
+  min-width: 0;
+  height: 34px;
+
+  padding:
+    0
+    3px;
+
+  border: none !important;
+  outline: none !important;
+
+  background:
+    transparent !important;
+
+  color:
+    #171717 !important;
+
+  font-family: inherit;
+  font-size: 10px;
+
+  box-shadow:
+    none !important;
+}
+
+
+.umi-presenter-live
+.umi-presenter-input-row input::placeholder {
+  color: #8c8c8c;
+}
+
+
+.umi-presenter-live
+.umi-presenter-input-row input:disabled {
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   BOUTON ENVOYER
+========================================================= */
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-send-button {
+  flex: 0 0 34px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #2457e6;
+
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+
+.umi-presenter-live
+.umi-presenter-live .umi-live-send-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   ORDINATEUR
+   LE LIVE RESTE CENTRÉ
+========================================================= */
+
+@media (min-width: 768px) {
+
+  .umi-presenter-live {
+    width: min(
+      100%,
+      520px
+    );
+
+    height: 100dvh;
+
+    min-height: 100dvh;
+
+    margin:
+      0
+      auto;
+
+    border-left:
+      1px solid
+      rgba(
+        255,
+        255,
+        255,
+        0.08
+      );
+
+    border-right:
+      1px solid
+      rgba(
+        255,
+        255,
+        255,
+        0.08
+      );
+
+    box-shadow:
+      0 0 35px
+      rgba(
+        0,
+        0,
+        0,
+        0.3
+      );
   }
 
 
-  .create-live-back {
+  .umi-presenter-live
+  .umi-live-background-video {
+    object-fit: cover;
+  }
+
+
+  .umi-presenter-live
+  .umi-live-overlay-top {
+    left: 12px;
+    right: 12px;
+  }
+
+
+  .umi-presenter-live
+  .umi-live-profile-info strong {
+    max-width: 180px;
+
+    font-size: 17px;
+  }
+
+
+  .umi-presenter-buy-bar {
+    width: min(
+      calc(100% - 130px),
+      350px
+    );
+  }
+
+
+  .umi-presenter-tool-panel {
+    width: 365px;
+
+    max-height: 60vh;
+  }
+
+
+  .umi-presenter-live
+  .umi-live-comments {
+    width: 300px;
+
+    max-height: 220px;
+  }
+
+
+  .umi-presenter-live
+  .umi-presenter-live-bottom {
+    left: 65px;
+    right: 65px;
+  }
+
+
+  .create-live-buy-selector {
+    max-width: 520px;
+
+    max-height: 78vh;
+
+    border-radius:
+      22px
+      22px
+      0
+      0;
+  }
+
+}
+
+
+/* =========================================================
+   GRAND ORDINATEUR
+========================================================= */
+
+@media (min-width: 1100px) {
+
+  .create-live-content {
+    width: 760px;
+  }
+
+
+  .umi-presenter-live {
+    width: 500px;
+  }
+
+}
+
+
+/* =========================================================
+   PETITS TÉLÉPHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .umi-presenter-live
+  .umi-live-overlay-top {
+    left: 7px;
+    right: 7px;
+  }
+
+
+  .umi-live-presenter-identity {
+    flex-basis: 43px;
+
+    width: 43px;
+  }
+
+
+  .umi-presenter-live
+  .umi-live-profile-circle {
     width: 40px;
     height: 40px;
 
-    border-radius: 11px;
-
-    font-size: 23px;
+    min-width: 40px;
   }
 
 
-  .create-live-header-title {
-    font-size: 18px;
-    font-weight: 600;
+  .umi-live-presenter-name {
+    width: 50px;
+
+    font-size: 8px;
   }
 
 
-  .create-live-header-subtitle {
+  .umi-presenter-live
+  .umi-live-profile-info strong {
+    max-width: 92px;
+
+    font-size: 14px;
+  }
+
+
+  .umi-presenter-live
+  .umi-live-top-right {
+    gap: 4px;
+  }
+
+
+  .umi-presenter-live
+  .umi-live-viewers {
+    min-width: 39px;
+
+    padding:
+      0
+      6px;
+
     font-size: 9px;
   }
 
 
-  .create-live-logo {
-    width: 38px;
-    height: 38px;
+  .umi-presenter-tool {
+    width: 43px;
+    min-height: 45px;
   }
 
 
-  .create-live-content {
-    padding:
-      15px 10px 30px;
+  .umi-presenter-tool-icon {
+    font-size: 18px;
   }
 
 
-  .create-live-intro h1 {
-    font-family:
-      Arial,
-      Helvetica,
-      sans-serif !important;
+  .umi-presenter-tool small {
+    max-width: 40px;
 
-    font-size: 20px !important;
-
-    font-weight: 600 !important;
-
-    line-height: 1.3;
-
-    letter-spacing: 0;
+    font-size: 6.5px;
   }
 
 
-  .create-live-intro p {
-    font-size: 12px;
+  .umi-presenter-tools-left {
+    left: 5px;
   }
 
 
-  .create-live-card {
-    padding: 15px;
-
-    border-radius: 14px;
-
-    margin-bottom: 12px;
+  .umi-presenter-tools-right {
+    right: 5px;
   }
 
 
-  .create-live-section-title {
-    margin-bottom: 15px;
+  .umi-presenter-tool-panel {
+    width:
+      calc(100% - 104px);
+
+    max-height: 55vh;
   }
 
 
-  .create-live-section-icon {
-    width: 40px;
-    height: 40px;
+  .umi-presenter-live
+  .umi-live-comments {
+    left: 54px;
 
-    font-size: 19px;
+    width:
+      calc(100% - 108px);
   }
 
 
-  .create-live-section-title h2 {
-    font-size: 14px;
-    font-weight: 600;
+  .umi-presenter-live
+  .umi-presenter-live-bottom {
+    left: 52px;
+    right: 52px;
   }
 
 
-  .create-live-section-title p {
-    font-size: 10px;
+  .umi-presenter-buy-bar {
+    width:
+      calc(100% - 104px);
   }
 
 
-  .live-camera-preview {
-    border-radius: 12px;
+  .umi-presenter-percent-row {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+}
+
+
+/* =========================================================
+   ÉCRANS TRÈS BAS
+========================================================= */
+
+@media (max-height: 650px) {
+
+  .umi-presenter-tools {
+    gap: 4px;
   }
 
 
-  .camera-placeholder-icon {
-    width: 50px;
-    height: 50px;
-
-    font-size: 23px;
+  .umi-presenter-tool {
+    min-height: 41px;
   }
 
 
-  .create-live-field input {
-    height: 49px;
+  .umi-presenter-tool-icon {
+    min-height: 18px;
 
-    font-size: 14px;
+    font-size: 17px;
   }
 
 
-  .start-live-button,
-  .stop-live-button {
-    min-height: 53px;
-
-    font-size: 15px;
+  .umi-presenter-tool-panel {
+    max-height: 50vh;
   }
 
+
+  .umi-presenter-live
+  .umi-live-comments {
+    max-height: 130px;
+  }
+
+}
+
+
+/* =========================================================
+   SÉCURITÉ POUR LES BOUTONS
+========================================================= */
+
+.umi-presenter-live button,
+.create-live-page button,
+.create-live-machine-selector button {
+  font-family: inherit;
+
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+
+.umi-presenter-live button:focus-visible,
+.create-live-page button:focus-visible,
+.create-live-machine-selector button:focus-visible {
+  outline:
+    2px solid
+    #2457e6;
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   ÉVITER LES DÉBORDEMENTS
+========================================================= */
+
+.umi-presenter-live img,
+.umi-presenter-live video,
+.create-live-page img,
+.create-live-page video {
+  max-width: 100%;
+}
+
+
+.umi-presenter-live input,
+.umi-presenter-live textarea,
+.create-live-page input,
+.create-live-page textarea {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SAFE AREA IPHONE / ANDROID
+========================================================= */
+
+@supports (
+  padding:
+    max(
+      0px,
+      env(safe-area-inset-bottom)
+    )
+) {
+
+  .umi-presenter-live {
+    padding-bottom:
+      env(
+        safe-area-inset-bottom
+      );
+  }
+
+}
+/* =========================================================
+   DÉTAILS LIVE — PHOTOS ET VIDÉOS MODIFIABLES
+========================================================= */
+
+.umi-presenter-details-media-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 8px;
+
+  margin:
+    6px
+    0
+    14px;
+}
+
+
+/* =========================================================
+   PHOTO / VIDÉO
+========================================================= */
+
+.umi-presenter-details-media-item {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.18);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+}
+
+.umi-presenter-details-media-item img,
+.umi-presenter-details-media-item video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   VIDÉO
+========================================================= */
+
+.umi-presenter-details-video-item {
+  background: #111111;
+}
+
+.umi-presenter-details-video-item video {
+  background: #000000;
+}
+
+
+/* =========================================================
+   BOUTON SUPPRIMER ×
+========================================================= */
+
+.umi-presenter-details-media-remove {
+  position: absolute;
+
+  top: 5px;
+  right: 5px;
+
+  z-index: 5;
+
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background:
+    rgba(227, 34, 42, 0.94);
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 2px 7px
+    rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   CASE + AJOUTER PHOTO / VIDÉO
+========================================================= */
+
+.umi-presenter-details-add-media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  padding: 7px;
+
+  border: 1px dashed
+    rgba(255, 255, 255, 0.45);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  cursor: pointer;
+}
+
+.umi-presenter-details-add-media > span {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.umi-presenter-details-add-media > small {
+  color:
+    rgba(255, 255, 255, 0.88);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   FICHIER INPUT CACHÉ
+========================================================= */
+
+.umi-presenter-details-add-media
+.create-live-hidden-file {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TÉLÉPHONE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .umi-presenter-details-media-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 6px;
+  }
+
+  .umi-presenter-details-media-remove {
+    top: 4px;
+    right: 4px;
+
+    width: 23px;
+    height: 23px;
+
+    font-size: 16px;
+  }
+
+  .umi-presenter-details-add-media > span {
+    width: 28px;
+    height: 28px;
+
+    font-size: 20px;
+  }
+
+  .umi-presenter-details-add-media > small {
+    font-size: 7px;
+  }
+
+}
+/* =========================================================
+   AFFICHAGE ORDINATEUR — UMI LIVE
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+  /* ÉCRAN LIVE */
+  .umi-presenter-live {
+    width: min(100%, 900px);
+    height: 100dvh;
+    min-height: 100dvh;
+
+    margin: 0 auto;
+
+    position: relative;
+    overflow: hidden;
+
+    background: #000000;
+  }
+
+
+  /* CAMÉRA / FOND */
+  .umi-presenter-live .umi-live-background,
+  .umi-presenter-live .umi-live-background-video {
+    width: 100%;
+    height: 100%;
+  }
+
+  .umi-presenter-live .umi-live-background-video {
+    object-fit: cover;
+  }
+
+
+  /* BOUTONS GAUCHE */
+  .umi-presenter-tools-left {
+    left: 18px;
+  }
+
+
+  /* BOUTONS DROITE */
+  .umi-presenter-tools-right {
+    right: 18px;
+  }
+
+
+  /* BOUTONS OUTILS */
+  .umi-presenter-tool {
+    width: 54px;
+    min-height: 54px;
+  }
+
+  .umi-presenter-tool-icon {
+    font-size: 22px;
+  }
+
+  .umi-presenter-tool small {
+    max-width: 51px;
+    font-size: 8px;
+  }
+
+
+  /* FENÊTRE DES OUTILS : MÉDIA, PRODUIT, ETC. */
+  .umi-presenter-tool-panel {
+    width: 420px;
+    max-height: 65vh;
+
+    left: 50%;
+    bottom: 105px;
+
+    transform: translateX(-50%);
+  }
+
+
+  /* BARRE BLANCHE PRODUIT */
+  .umi-presenter-buy-bar {
+    width: 390px;
+    max-width: calc(100% - 180px);
+  }
+
+
+  /* COMMENTAIRES */
+  .umi-presenter-live .umi-live-comments {
+    width: 360px;
+    max-height: 240px;
+  }
+
+
+  /* ZONE MESSAGE EN BAS */
+  .umi-presenter-live .umi-presenter-live-bottom {
+    left: 90px;
+    right: 90px;
+  }
+
+
+  /* NOM DE LA MACHINE */
+  .umi-presenter-live .umi-live-profile-info strong {
+    max-width: 260px;
+    font-size: 17px;
+  }
+
+
+  /* FENÊTRE DE SÉLECTION PRODUIT */
+  .create-live-buy-selector {
+    width: 520px;
+    max-width: calc(100% - 40px);
+
+    max-height: 78vh;
+
+    border-radius: 22px 22px 0 0;
+  }
+}
+
+
+/* =========================================================
+   GRAND ÉCRAN ORDINATEUR
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+  .umi-presenter-live {
+    width: 960px;
+  }
+
+}
+/* =========================================================
+   CORRECTION FINALE AFFICHAGE LIVE SUR ORDINATEUR
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+  /* PAGE NOIRE AUTOUR DU LIVE */
+  body {
+    background: #111;
+  }
+
+  /* CONTENEUR PRINCIPAL DU LIVE */
+  .umi-tiktok-live {
+    position: relative !important;
+
+    width: 500px !important;
+    max-width: 500px !important;
+
+    height: 100vh !important;
+    min-height: 100vh !important;
+
+    margin: 0 auto !important;
+
+    overflow: hidden !important;
+
+    background: #000 !important;
+
+    isolation: isolate;
+  }
+
+
+  /* CAMÉRA */
+  .umi-tiktok-live .umi-live-background {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    z-index: 0 !important;
+
+    overflow: hidden !important;
+  }
+
+
+  .umi-tiktok-live .umi-live-background-video {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+
+    z-index: 0 !important;
+  }
+
+
+  /* PHOTO / VIDÉO CHOISIE */
+  .umi-tiktok-live .umi-presenter-background-media {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+
+    z-index: 1 !important;
+
+    pointer-events: none !important;
+  }
+
+
+  /* DÉGRADÉ */
+  .umi-tiktok-live .umi-live-dark-gradient {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    z-index: 2 !important;
+
+    pointer-events: none !important;
+  }
+
+
+  /* =========================
+     BOUTONS GAUCHE
+  ========================= */
+
+  .umi-tiktok-live .umi-presenter-tools-left {
+    position: absolute !important;
+
+    left: 12px !important;
+    right: auto !important;
+
+    top: 31% !important;
+
+    transform: none !important;
+
+    z-index: 100 !important;
+  }
+
+
+  /* =========================
+     BOUTONS DROITE
+  ========================= */
+
+  .umi-tiktok-live .umi-presenter-tools-right {
+    position: absolute !important;
+
+    right: 12px !important;
+    left: auto !important;
+
+    top: 31% !important;
+
+    transform: none !important;
+
+    z-index: 100 !important;
+  }
+
+
+  /* BOUTONS */
+  .umi-tiktok-live .umi-presenter-tool {
+    width: 52px !important;
+    min-height: 52px !important;
+
+    pointer-events: auto !important;
+  }
+
+
+  /* =========================
+     HAUT DU LIVE
+  ========================= */
+
+  .umi-tiktok-live .umi-live-overlay-top {
+    position: absolute !important;
+
+    top: 12px !important;
+    left: 12px !important;
+    right: 12px !important;
+
+    width: auto !important;
+
+    z-index: 110 !important;
+
+    pointer-events: auto !important;
+  }
+
+
+  /* =========================
+     COMMENTAIRES
+  ========================= */
+
+  .umi-tiktok-live .umi-live-comments {
+    position: absolute !important;
+
+    left: 15px !important;
+    right: 80px !important;
+
+    bottom: 95px !important;
+
+    width: auto !important;
+    max-height: 210px !important;
+
+    z-index: 80 !important;
+  }
+
+
+  /* =========================
+     CHAMP MESSAGE
+  ========================= */
+
+  .umi-tiktok-live .umi-live-bottom {
+    position: absolute !important;
+
+    left: 15px !important;
+    right: 15px !important;
+
+    bottom: 15px !important;
+
+    width: auto !important;
+
+    z-index: 120 !important;
+
+    pointer-events: auto !important;
+  }
+
+
+  .umi-tiktok-live .umi-live-input-row {
+    width: 100% !important;
+  }
+
+
+  /* =========================
+     BARRE BLANCHE PRODUIT
+  ========================= */
+
+  .umi-tiktok-live .umi-presenter-featured-product {
+    position: absolute !important;
+
+    left: 15px !important;
+    right: 15px !important;
+
+    bottom: 82px !important;
+
+    width: auto !important;
+
+    z-index: 90 !important;
+  }
+
+
+  /* =========================
+     FENÊTRE OUTILS
+  ========================= */
+
+  .umi-tiktok-live .umi-presenter-tool-panel {
+    position: absolute !important;
+
+    width: 365px !important;
+    max-width: calc(100% - 40px) !important;
+
+    max-height: 60vh !important;
+
+    left: 50% !important;
+    right: auto !important;
+
+    bottom: 105px !important;
+
+    transform: translateX(-50%) !important;
+
+    z-index: 1000 !important;
+
+    pointer-events: auto !important;
+  }
+
+}
+/* =========================================================
+   CORRECTION IMAGE DE LA BARRE PRODUIT
+========================================================= */
+
+.umi-presenter-featured-product {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+
+  min-height: 64px !important;
+  max-height: 72px !important;
+
+  padding: 7px 10px !important;
+
+  background: #ffffff !important;
+  border-radius: 14px !important;
+
+  overflow: hidden !important;
+}
+
+
+/* PETITE IMAGE DU PRODUIT */
+
+.umi-presenter-featured-image {
+  position: relative !important;
+
+  width: 52px !important;
+  height: 52px !important;
+
+  min-width: 52px !important;
+  max-width: 52px !important;
+
+  min-height: 52px !important;
+  max-height: 52px !important;
+
+  overflow: hidden !important;
+
+  border-radius: 10px !important;
+
+  flex: 0 0 52px !important;
+}
+
+
+/* EMPÊCHE L'IMAGE PRODUIT DE PRENDRE L'ÉCRAN */
+
+.umi-presenter-featured-image img {
+  position: static !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: 52px !important;
+  max-height: 52px !important;
+
+  object-fit: cover !important;
+
+  display: block !important;
+
+  transform: none !important;
+}
+
+
+/* NOM + PRIX */
+
+.umi-presenter-featured-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+
+/* RÉDUCTION */
+
+.umi-presenter-featured-discount {
+  flex: 0 0 auto !important;
+}
+/* =========================================================
+   CORRECTION BOUTON OFFRE LIVE
+========================================================= */
+
+.umi-presenter-live .umi-live-offer {
+  position: absolute !important;
+
+  top: 105px !important;
+  left: 16px !important;
+
+  width: auto !important;
+  height: auto !important;
+  min-width: 85px !important;
+  min-height: 48px !important;
+
+  padding: 7px 12px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1px !important;
+
+  background: #ff3040 !important;
+  color: #ffffff !important;
+
+  border: none !important;
+  border-radius: 12px !important;
+
+  z-index: 150 !important;
+
+  line-height: 1.1 !important;
+
+  pointer-events: auto !important;
+}
+
+.umi-presenter-live .umi-live-offer strong {
+  display: block !important;
+
+  margin: 0 !important;
+
+  font-size: 17px !important;
+  font-weight: 900 !important;
+
+  color: #ffffff !important;
+  line-height: 1 !important;
+}
+
+.umi-presenter-live .umi-live-offer span {
+  display: block !important;
+
+  margin: 2px 0 0 !important;
+
+  font-size: 10px !important;
+  font-weight: 700 !important;
+
+  color: #ffffff !important;
+  white-space: nowrap !important;
+}
+.umi-presenter-live .umi-live-presenter-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.umi-presenter-live .umi-live-presenter-name {
+  position: relative;
+  top: 6px;
+}
+
+.umi-presenter-live .umi-live-presenter-identity .umi-live-profile-circle {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.umi-presenter-live .umi-live-presenter-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.umi-presenter-live:has(.umi-presenter-tools) .umi-live-top-right {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.umi-presenter-live:has(.umi-presenter-tools) .umi-live-viewers {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  min-width: 54px;
+  padding: 8px 12px;
+  border-radius: 22px;
+
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+}
+.umi-presenter-viewer-counter {
+  position: fixed !important;
+  top: calc(env(safe-area-inset-top, 0px) + 75px) !important;
+  right: 16px !important;
+  z-index: 10000 !important;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 58px;
+  padding: 9px 12px;
+  border-radius: 24px;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.umi-presenter-like-counter {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.umi-presenter-like-counter > span:first-child {
+  color: #ff304f;
+  font-size: 20px;
+}
+.umi-presenter-like-counter {
+  position: fixed !important;
+  top: calc(env(safe-area-inset-top, 0px) + 62px);
+  right: 4px !important;
+  z-index: 10000;
+
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+
+  margin: 0;
+  padding: 5px 8px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+.umi-presenter-live .umi-presenter-like-counter {
+  position: fixed !important;
+
+  left: auto !important;
+  right: 4px !important;
+
+  width: max-content !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+.umi-presenter-live .umi-live-top-right {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  left: auto !important;
+}
+
+.umi-presenter-live .umi-live-top-right .umi-presenter-like-counter {
+  position: absolute !important;
+  top: 52px !important;
+  right: 0 !important;
+  left: auto !important;
+
+  width: max-content !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+.umi-presenter-live:has(.umi-presenter-tools) .umi-live-top-right {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.umi-presenter-live .umi-live-top-right .umi-presenter-viewer-counter {
+  position: static !important;
+  inset: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+.umi-presenter-live:has(.umi-presenter-tools) .umi-live-right-buttons {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+}
+.umi-presenter-live:has(.umi-presenter-tools) .umi-live-top-right {
+  top: 24px !important;
+}
+
+
+/* Les contrôles du présentateur restent dans son propre écran. */
+.umi-presenter-live .umi-live-top-right { display:flex !important; flex-direction:row !important; align-items:center !important; gap:6px !important; }
+.umi-presenter-live .umi-presenter-viewer-counter { min-width:42px; height:30px; padding:4px 8px; font-size:12px; border-radius:16px; }
+.umi-presenter-live .umi-presenter-close { display:flex !important; width:32px; height:32px; font-size:24px; z-index:30; }
+.create-live-media-column { min-width:0; }
+.create-live-media-column .create-live-media-grid, .create-live-media-column .create-live-video-grid { width:100%; margin-top:12px; }
+.create-live-field textarea { width:100%; box-sizing:border-box; padding:12px; border:1px solid #ccd8e3; border-radius:12px; font:inherit; }
+.home-header {
+  background: rgba(255, 255, 255, 0.75) !important;
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.bottom-nav {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+/* Éditeur de texte du direct. */
+.umi-live-text-editor { display: grid; gap: 14px; padding: 16px; }
+.umi-live-text-editor label { margin: 0; font-size: 14px; font-weight: 700; color: #163a5c; }
+.umi-live-text-editor textarea { box-sizing: border-box; width: 100%; min-height: 130px; padding: 14px; border: 1px solid #cbd5e1; border-radius: 12px; background: #f8fafc; color: #111827; font: inherit; font-size: 16px; line-height: 1.5; resize: vertical; }
+.umi-live-text-editor textarea:focus { outline: 2px solid #0876d8; outline-offset: 2px; background: #fff; }
+.umi-live-text-editor button { width: 100%; padding: 13px 16px; border-radius: 12px; font: inherit; font-weight: 700; cursor: pointer; }
+.umi-live-text-editor .umi-live-text-save { border: 0; background: #0876d8; color: #fff; }
+.umi-live-text-editor .umi-live-text-remove { border: 1px solid #fecaca; background: #fff; color: #b91c1c; }
+
+/* Dégager les commentaires sous les outils du présentateur. */
+#root .umi-presenter-live .umi-presenter-tools-left {
+  translate: 0 -56px;
+}
+/* Cadre vidéo adapté aux ordinateurs */
+@media (min-width: 900px) {
+  .create-live-page {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+  }
+
+  .create-live-page .live-camera-preview {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 16 / 9;
+    margin-inline: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .create-live-page .live-camera-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+@media (min-width: 768px) {
+  .create-live-page {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .create-live-page .create-live-content {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 760px !important;
+    margin: 0 auto !important;
+    padding: 24px 20px 40px !important;
+    box-sizing: border-box !important;
+  }
+
+  .create-live-page .camera-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .create-live-page .live-camera-preview {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 16 / 9 !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    border-radius: 18px !important;
+  }
+
+  .create-live-page .live-camera-preview video {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+}
+.umi-presenter-live .umi-presenter-tools-right {
+  margin-top: -30px !important;
+}
+.umi-presenter-live .presenter-filter-none {
+  filter: none;
+}
+
+.umi-presenter-live .presenter-filter-warm {
+  filter: sepia(.22) saturate(1.2) brightness(1.05);
+}
+
+.umi-presenter-live .presenter-filter-cold {
+  filter: hue-rotate(15deg) saturate(.85) contrast(1.08);
+}
+
+.umi-presenter-live .presenter-filter-bw {
+  filter: grayscale(1) contrast(1.15);
+}
+
+.umi-presenter-live .presenter-filter-bright {
+  filter: brightness(1.18) saturate(1.08);
+}
+
+.umi-presenter-live .presenter-filter-contrast {
+  filter: contrast(1.25) saturate(1.15);
+}
+
+.umi-presenter-live .presenter-filter-cinema {
+  filter: contrast(1.18) saturate(.75) sepia(.12);
+}
+
+.umi-presenter-live .presenter-filter-gold {
+  filter: sepia(.4) saturate(1.4) brightness(1.08);
+}
+
+.umi-presenter-live .presenter-filter-vintage {
+  filter: sepia(.5) contrast(.9) saturate(.75);
+}
+
+.umi-presenter-live .presenter-filter-neon {
+  filter: saturate(2) contrast(1.2) hue-rotate(20deg);
+}
+
+.umi-presenter-live .presenter-filter-rose {
+  filter: sepia(.25) hue-rotate(310deg) saturate(1.3);
+}
+
+.umi-presenter-live .presenter-filter-dramatic {
+  filter: grayscale(1) contrast(1.5) brightness(.85);
+}
+/* Nouveaux filtres côté présentateur */
+.umi-presenter-live .umi-live-background.presenter-filter-sunset {
+  filter: sepia(.35) saturate(1.5) hue-rotate(345deg) !important;
+}
+
+.umi-presenter-live .umi-live-background.presenter-filter-ocean {
+  filter: sepia(.3) hue-rotate(155deg) saturate(1.3) !important;
+}
+
+.umi-presenter-live .umi-live-background.presenter-filter-emerald {
+  filter: sepia(.35) hue-rotate(75deg) saturate(1.2) !important;
+}
+
+.umi-presenter-live .umi-live-background.presenter-filter-purple {
+  filter: sepia(.35) hue-rotate(235deg) saturate(1.4) !important;
+}
+
+.umi-presenter-live .umi-live-background.presenter-filter-retro {
+  filter: sepia(.45) saturate(.65) contrast(1.15) !important;
+}
+
+.umi-presenter-live .umi-live-background.presenter-filter-vivid {
+  filter: saturate(1.6) contrast(1.12) brightness(1.05) !important;
+}
+
+/* Vidéo en haut, panneau sur la moitié basse */
+#root .umi-real-live.umi-live-panel-open {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
+}
+
+#root .umi-real-live.umi-live-panel-open .umi-live-background {
+  position: relative !important;
+  inset: auto !important;
+  order: 1 !important;
+
+  width: 100% !important;
+  height: 50% !important;
+  min-height: 0 !important;
+  max-height: 50% !important;
+  flex: 0 0 50% !important;
+}
+
+#root .umi-real-live.umi-live-panel-open .umi-live-shop-panel {
+  position: relative !important;
+  inset: auto !important;
+  order: 2 !important;
+
+  width: 100% !important;
+  height: 50% !important;
+  min-height: 0 !important;
+  max-height: 50% !important;
+  flex: 0 0 50% !important;
+
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  border-radius: 18px 18px 0 0 !important;
+}
+
+#root .umi-real-live .umi-real-panel-scroll {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
 }

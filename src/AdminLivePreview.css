@@ -1,0 +1,7 @@
+.umi-admin-live-preview { position: relative; width: 100%; height: 280px; margin: 14px 0; overflow: hidden; border-radius: 16px; background: #101a24; }
+.umi-admin-live-preview video, .umi-admin-live-preview > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.umi-admin-preview-status { position: absolute; top: 12px; left: 12px; right: 12px; padding: 9px; border-radius: 10px; background: rgba(0,0,0,.65); color: white; font-size: 13px; }
+.umi-admin-preview-audio { position: absolute; bottom: 12px; right: 12px; padding: 8px 12px; border: none; border-radius: 20px; background: rgba(0,0,0,.65); color: white; cursor: pointer; }
+.umi-admin-stop-button { display: block; width: 100%; min-height: 44px; margin-top: 14px; padding: 12px; border: none; border-radius: 12px; background: #e52d43; color: white; font-weight: 800; cursor: pointer; }
+.umi-admin-stop-button:disabled { opacity: .55; cursor: wait; }
+@media (min-width: 700px) { .umi-admin-live-preview { height: 340px; } }

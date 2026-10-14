@@ -83,35 +83,13 @@ function Invoice({
      DEVISE
   ========================================= */
 
-  const getCurrency = (price) => {
-    const value = String(price || "").toUpperCase();
+   /* =========================================
+     DEVISE
+     UMI UTILISE UNIQUEMENT FCFA
+  ========================================= */
 
-    if (
-      value.includes("FCFA") ||
-      value.includes("CFA")
-    ) {
-      return "FCFA";
-    }
-
-    if (
-      value.includes("$") ||
-      value.includes("USD")
-    ) {
-      return "$";
-    }
-
-    if (value.includes("CHF")) {
-      return "CHF";
-    }
-
-    if (
-      value.includes("€") ||
-      value.includes("EUR")
-    ) {
-      return "€";
-    }
-
-    return "€";
+  const getCurrency = () => {
+    return "FCFA";
   };
 
 
@@ -133,27 +111,25 @@ function Invoice({
      FORMATER LE PRIX
   ========================================= */
 
-  const formatPrice = (amount) => {
-    if (
-      amount === null ||
-      amount === undefined
-    ) {
-      return "Prix sur demande";
-    }
+    /* =========================================
+     FORMATER LE PRIX
+  ========================================= */
+const formatPrice = (amount) => {
+  if (
+    amount === null ||
+    amount === undefined ||
+    !Number.isFinite(amount)
+  ) {
+    return "Prix non renseigné";
+  }
 
-    const formatted =
-      new Intl.NumberFormat("fr-FR", {
-        maximumFractionDigits: 2,
-      }).format(amount);
+  const formatted =
+    new Intl.NumberFormat("fr-FR", {
+      maximumFractionDigits: 2,
+    }).format(amount);
 
-    if (currency === "$") {
-      return `${formatted} $`;
-    }
-
-    return `${formatted} ${currency}`;
-  };
-
-
+  return `${formatted} ${currency}`;
+};
   /* =========================================
      TOTAL
   ========================================= */

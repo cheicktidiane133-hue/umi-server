@@ -1,9 +1,11 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useEffect, useState } from "react";
 
 import {
   addDoc,
   collection,
   doc,
+  increment,
   onSnapshot,
   orderBy,
   query,
@@ -11,7 +13,6 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-
 import { db } from "./firebase";
 
 import "./AdminChat.css";
@@ -105,66 +106,98 @@ function AdminChat({ user, onBack }) {
 
 
   /* =========================================
-     CHARGER LES MESSAGES
-  ========================================= */
+   CHARGER LES MESSAGES
+   ET MARQUER LA CONVERSATION OUVERTE COMME LUE
+========================================= */
 
-  useEffect(() => {
+useEffect(() => {
+  const conversationId = selectedConversation?.id;
 
-    if (!selectedConversation?.id) {
+  if (!conversationId) {
+    setMessages([]);
+    return;
+  }
 
-      setMessages([]);
-      return;
+  setLoadingMessages(true);
 
+  const conversationRef = doc(
+    db,
+    "conversations",
+    conversationId
+  );
+
+  const messagesQuery = query(
+    collection(
+      db,
+      "conversations",
+      conversationId,
+      "messages"
+    ),
+    orderBy("createdAt", "asc")
+  );
+
+  const unsubscribeMessages = onSnapshot(
+    messagesQuery,
+    (snapshot) => {
+      const data = snapshot.docs.map(
+        (document) => ({
+          id: document.id,
+          ...document.data(),
+        })
+      );
+
+      setMessages(data);
+      setLoadingMessages(false);
+    },
+    (error) => {
+      console.error(
+        "Erreur chargement messages :",
+        error
+      );
+
+      setLoadingMessages(false);
     }
+  );
 
+  /* Remet à zéro les messages non lus
+     uniquement pour cette conversation ouverte. */
 
-    setLoadingMessages(true);
+  const unsubscribeRead = onSnapshot(
+    conversationRef,
+    (snapshot) => {
+      if (!snapshot.exists()) return;
 
+      const data = snapshot.data();
 
-    const messagesQuery = query(
-      collection(
-        db,
-        "conversations",
-        selectedConversation.id,
-        "messages"
-      ),
-      orderBy("createdAt", "asc")
-    );
+      const hasUnreadMessages =
+        data.unreadAdmin === true ||
+        Number(data.unreadAdminCount || 0) > 0;
 
+      if (!hasUnreadMessages) return;
 
-    const unsubscribe = onSnapshot(
-      messagesQuery,
-
-      (snapshot) => {
-
-        const data = snapshot.docs.map(
-          (document) => ({
-            id: document.id,
-            ...document.data(),
-          })
-        );
-
-        setMessages(data);
-        setLoadingMessages(false);
-
-      },
-
-      (error) => {
-
+      updateDoc(conversationRef, {
+        unreadAdmin: false,
+        unreadAdminCount: 0,
+      }).catch((error) => {
         console.error(
-          "Erreur chargement messages :",
+          "Erreur lecture automatique conversation :",
           error
         );
+      });
+    },
+    (error) => {
+      console.error(
+        "Erreur suivi conversation ouverte :",
+        error
+      );
+    }
+  );
 
-        setLoadingMessages(false);
-
-      }
-    );
-
-
-    return () => unsubscribe();
-
-  }, [selectedConversation?.id]);
+  return () => {
+    unsubscribeMessages();
+    unsubscribeRead();
+  };
+}, [selectedConversation?.id]);
 
 
   /* =========================================
@@ -183,15 +216,17 @@ function AdminChat({ user, onBack }) {
     try {
 
       await updateDoc(
-        doc(
-          db,
-          "conversations",
-          conversation.id
-        ),
-        {
-          unreadAdmin: false,
-        }
-      );
+  doc(
+    db,
+    "conversations",
+    conversation.id
+  ),
+  {
+    unreadAdmin: false,
+
+    unreadAdminCount: 0,
+  }
+);
 
     } catch (error) {
 
@@ -284,13 +319,19 @@ function AdminChat({ user, onBack }) {
             "Ouverte",
 
           unreadAdmin:
-            false,
+  false,
 
-          unreadClient:
-            true,
+unreadAdminCount:
+  0,
 
-          updatedAt:
-            serverTimestamp(),
+unreadClient:
+  true,
+
+unreadClientCount:
+  increment(1),
+
+updatedAt:
+  serverTimestamp(),
         },
         {
           merge: true,
@@ -340,7 +381,7 @@ function AdminChat({ user, onBack }) {
       );
 
 
-      alert(
+      await umiNotify(
         "Impossible d'envoyer le message."
       );
 
@@ -541,13 +582,18 @@ function AdminChat({ user, onBack }) {
 
 
             <strong>
-              {
-                conversations.filter(
-                  (conversation) =>
-                    conversation.unreadAdmin
-                ).length
-              }
-            </strong>
+  {
+    conversations.reduce(
+      (total, conversation) =>
+        total +
+        Number(
+          conversation.unreadAdminCount ||
+          0
+        ),
+      0
+    )
+  }
+</strong>
 
           </div>
 

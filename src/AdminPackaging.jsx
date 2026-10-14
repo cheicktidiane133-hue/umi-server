@@ -1,3 +1,4 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useEffect, useState } from "react";
 
 import {
@@ -243,7 +244,7 @@ function AdminPackaging({
       selectedFiles.length
     ) {
 
-      alert(
+      umiNotify(
         "Certains fichiers sélectionnés ne sont pas des images."
       );
 
@@ -258,7 +259,7 @@ function AdminPackaging({
       remainingPlaces <= 0
     ) {
 
-      alert(
+      umiNotify(
         "Vous avez déjà ajouté 10 photos."
       );
 
@@ -281,7 +282,7 @@ function AdminPackaging({
       remainingPlaces
     ) {
 
-      alert(
+      umiNotify(
         "Vous pouvez ajouter maximum 10 photos."
       );
 
@@ -419,7 +420,7 @@ function AdminPackaging({
 
     if (!isVideo) {
 
-      alert(
+      umiNotify(
         "Veuillez sélectionner une vidéo compatible."
       );
 
@@ -714,7 +715,7 @@ function AdminPackaging({
 
     if (!name.trim()) {
 
-      alert(
+      await umiNotify(
         "Indiquez le nom de l'emballage."
       );
 
@@ -727,7 +728,7 @@ function AdminPackaging({
       totalPhotos === 0
     ) {
 
-      alert(
+      await umiNotify(
         "Ajoutez au moins une photo de l'emballage."
       );
 
@@ -740,7 +741,7 @@ function AdminPackaging({
       totalPhotos > 10
     ) {
 
-      alert(
+      await umiNotify(
         "Vous pouvez ajouter maximum 10 photos."
       );
 
@@ -891,7 +892,7 @@ function AdminPackaging({
         );
 
 
-        alert(
+        await umiNotify(
           "Emballage modifié avec succès."
         );
 
@@ -936,7 +937,7 @@ function AdminPackaging({
       );
 
 
-      alert(
+      await umiNotify(
         "Emballage publié avec succès."
       );
 
@@ -952,7 +953,7 @@ function AdminPackaging({
       );
 
 
-      alert(
+      await umiNotify(
         `Erreur : ${
           error?.message ||
           "Impossible d'enregistrer l'emballage."

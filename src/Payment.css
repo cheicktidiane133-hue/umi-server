@@ -9,9 +9,11 @@
 .payment-page {
   width: 100%;
   min-height: 100dvh;
-  padding-bottom: 105px;
 
-  background: #f5faff;
+  /* espace pour paiement + navigation */
+  padding-bottom: 175px;
+
+  background: #f6f8fb;
 
   font-family: Arial, Helvetica, sans-serif;
   color: #173b5b;
@@ -27,20 +29,20 @@
   top: 0;
   z-index: 100;
 
-  height: 62px;
+  height: 60px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
   align-items: center;
-  justify-content: space-between;
 
   padding: 0 14px;
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.97);
 
-  border-bottom: 1px solid #e2edf5;
+  border-bottom: 1px solid #e7edf3;
 
   box-shadow:
-    0 2px 10px rgba(0, 60, 110, 0.06);
+    0 2px 12px rgba(20, 60, 90, 0.05);
 }
 
 .payment-header h1 {
@@ -48,8 +50,10 @@
 
   color: #123e69;
 
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 800;
+
+  text-align: center;
 }
 
 
@@ -68,13 +72,13 @@
   padding: 0;
 
   border: none;
-  border-radius: 50%;
+  border-radius: 11px;
 
-  background: #e8f4ff;
+  background: #eef6fd;
   color: #0876d8;
 
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 700;
 
   cursor: pointer;
 }
@@ -92,9 +96,11 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: 50%;
+  justify-self: end;
 
-  background: #e8f4ff;
+  border-radius: 11px;
+
+  background: #eef6fd;
 
   font-size: 17px;
 }
@@ -107,12 +113,12 @@
 .payment-content {
   width: 100%;
 
-  padding: 16px 12px 30px;
+  padding: 14px 12px 30px;
 }
 
 
 /* =========================================
-   CARTE TOTAL
+   CARTE MONTANT
 ========================================= */
 
 .payment-total-card {
@@ -124,10 +130,9 @@
   justify-content: center;
 
   margin-bottom: 14px;
-
   padding: 22px 15px;
 
-  border-radius: 18px;
+  border-radius: 14px;
 
   background:
     linear-gradient(
@@ -139,7 +144,7 @@
   color: #ffffff;
 
   box-shadow:
-    0 7px 20px rgba(8, 118, 216, 0.2);
+    0 6px 18px rgba(8, 118, 216, 0.18);
 }
 
 .payment-total-card span {
@@ -154,19 +159,19 @@
 .payment-total-card strong {
   margin-bottom: 5px;
 
-  font-size: 28px;
+  font-size: 27px;
   font-weight: 900;
 }
 
 .payment-total-card small {
   font-size: 10px;
 
-  opacity: 0.8;
+  opacity: 0.82;
 }
 
 
 /* =========================================
-   SECTION PAIEMENT
+   SECTION MOYEN DE PAIEMENT
 ========================================= */
 
 .payment-section {
@@ -174,13 +179,13 @@
 
   padding: 16px;
 
-  border: 1px solid #e1ebf3;
-  border-radius: 17px;
+  border: 1px solid #e7edf3;
+  border-radius: 14px;
 
   background: #ffffff;
 
   box-shadow:
-    0 4px 14px rgba(0, 60, 110, 0.06);
+    0 3px 14px rgba(20, 60, 95, 0.05);
 }
 
 .payment-section h2 {
@@ -189,7 +194,7 @@
   color: #123e69;
 
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .payment-subtitle {
@@ -208,7 +213,7 @@
 
 .payment-method {
   width: 100%;
-  min-height: 68px;
+  min-height: 66px;
 
   display: flex;
   align-items: center;
@@ -216,22 +221,23 @@
   gap: 12px;
 
   margin-bottom: 10px;
-
   padding: 10px 12px;
 
-  border: 1px solid #dce8f2;
-  border-radius: 14px;
+  border: 1px solid #dce6ee;
+  border-radius: 12px;
 
   background: #ffffff;
 
+  font-family: inherit;
   text-align: left;
 
   cursor: pointer;
 
   transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
-    transform 0.15s ease;
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.15s ease,
+    box-shadow 0.18s ease;
 }
 
 .payment-method:last-child {
@@ -239,7 +245,7 @@
 }
 
 .payment-method:active {
-  transform: scale(0.98);
+  transform: scale(0.985);
 }
 
 
@@ -248,14 +254,17 @@
 ========================================= */
 
 .payment-method.selected {
-  border: 2px solid #0876d8;
+  border-color: #0876d8;
 
-  background: #f1f8ff;
+  background: #f3f9ff;
+
+  box-shadow:
+    0 0 0 2px rgba(8, 118, 216, 0.08);
 }
 
 
 /* =========================================
-   ICÔNES
+   ICÔNES MOYENS DE PAIEMENT
 ========================================= */
 
 .payment-method-icon {
@@ -268,9 +277,9 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: 12px;
+  border-radius: 11px;
 
-  font-size: 23px;
+  font-size: 22px;
 }
 
 .payment-card-icon {
@@ -287,7 +296,7 @@
 
 
 /* =========================================
-   TEXTE
+   TEXTE MOYEN DE PAIEMENT
 ========================================= */
 
 .payment-method-text {
@@ -304,7 +313,7 @@
   color: #173b5b;
 
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .payment-method-text small {
@@ -315,12 +324,12 @@
 
 
 /* =========================================
-   CERCLE DE SÉLECTION
+   CERCLE SÉLECTION
 ========================================= */
 
 .payment-radio {
-  width: 24px;
-  height: 24px;
+  width: 23px;
+  height: 23px;
 
   flex-shrink: 0;
 
@@ -333,7 +342,7 @@
 
   color: #ffffff;
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 900;
 }
 
@@ -357,19 +366,18 @@
   gap: 10px;
 
   margin-top: 14px;
+  padding: 13px 14px;
 
-  padding: 14px;
+  border: 1px solid #d5e9f9;
+  border-radius: 12px;
 
-  border: 1px solid #cfe8ff;
-  border-radius: 14px;
-
-  background: #eaf6ff;
+  background: #f0f8ff;
 }
 
 .payment-security > span {
   flex-shrink: 0;
 
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .payment-security p {
@@ -383,16 +391,25 @@
 
 
 /* =========================================
-   BARRE FIXE EN BAS
+   TOTAL + BOUTON CONTINUER
+   JUSTE AU-DESSUS DE LA NAVIGATION
 ========================================= */
 
 .payment-bottom {
   position: fixed;
 
   left: 50%;
-  bottom: 0;
 
-  z-index: 5000;
+  /*
+    La navigation occupe le bas.
+    Le paiement reste juste au-dessus.
+  */
+  bottom:
+    calc(
+      66px + env(safe-area-inset-bottom)
+    );
+
+  z-index: 4900;
 
   transform: translateX(-50%);
 
@@ -400,23 +417,20 @@
   max-width: 500px;
 
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
+  grid-template-columns: 0.9fr 1.25fr;
 
   align-items: center;
 
-  gap: 10px;
+  gap: 11px;
 
-  padding:
-    10px
-    12px
-    calc(10px + env(safe-area-inset-bottom));
+  padding: 9px 12px;
 
   background: #ffffff;
 
-  border-top: 1px solid #dce8f2;
+  border-top: 1px solid #e1e9ef;
 
   box-shadow:
-    0 -4px 18px rgba(0, 50, 100, 0.12);
+    0 -3px 14px rgba(20, 55, 85, 0.07);
 }
 
 
@@ -437,15 +451,15 @@
   color: #7b91a4;
 
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .payment-bottom-total strong {
   overflow: hidden;
 
-  color: #0876d8;
+  color: #123e69;
 
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 900;
 
   white-space: nowrap;
@@ -459,37 +473,38 @@
 
 .payment-continue-button {
   width: 100%;
-  height: 52px;
+  height: 48px;
 
   padding: 0 15px;
 
   border: none;
-  border-radius: 14px;
+  border-radius: 11px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #1689eb,
-      #0567c1
-    );
+  background: #0876d8;
 
   color: #ffffff;
 
+  font-family: inherit;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 800;
 
   box-shadow:
-    0 5px 15px rgba(8, 118, 216, 0.22);
+    0 5px 14px rgba(8, 118, 216, 0.2);
 
   cursor: pointer;
 
   transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
+    transform 0.18s ease,
+    background 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.payment-continue-button:hover:not(:disabled) {
+  background: #066bc5;
 }
 
 .payment-continue-button:active:not(:disabled) {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 .payment-continue-button:disabled {
@@ -502,10 +517,173 @@
 
 
 /* =========================================
+   BARRE DE NAVIGATION DU BAS
+========================================= */
+
+.payment-page .bottom-nav {
+  position: fixed;
+
+  left: 50%;
+  bottom: 0;
+
+  z-index: 5000;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 500px;
+
+  min-height: 66px;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+
+  padding:
+    5px
+    4px
+    calc(5px + env(safe-area-inset-bottom));
+
+  background: #ffffff;
+
+  border-top: 1px solid #e1e9ef;
+
+  box-shadow:
+    0 -3px 14px rgba(20, 55, 85, 0.08);
+}
+
+
+/* =========================================
+   ÉLÉMENTS NAVIGATION
+========================================= */
+
+.payment-page .nav-item {
+  min-width: 0;
+  height: 54px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  padding: 3px 1px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #71879a;
+
+  font-family: inherit;
+
+  cursor: pointer;
+}
+
+.payment-page .nav-item > span {
+  min-height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+}
+
+.payment-page .nav-item p {
+  margin: 0;
+
+  overflow: hidden;
+
+  color: inherit;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   UMI LIVE
+========================================= */
+
+.payment-page .live-nav {
+  color: #0876d8;
+}
+
+.payment-page .bottom-live-icon {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #0876d8;
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  box-shadow:
+    0 3px 9px rgba(8, 118, 216, 0.22);
+}
+
+
+/* =========================================
+   PHOTO DU COMPTE
+========================================= */
+
+.payment-page .bottom-account-photo-wrapper {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: #edf4fa;
+}
+
+.payment-page .bottom-account-photo {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+.payment-page .bottom-account-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+
+/* =========================================
    PETITS TÉLÉPHONES
 ========================================= */
 
 @media (max-width: 380px) {
+
+  .payment-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
   .payment-total-card strong {
     font-size: 24px;
@@ -525,11 +703,11 @@
     width: 42px;
     height: 42px;
 
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .payment-bottom {
-    grid-template-columns: 0.9fr 1.2fr;
+    grid-template-columns: 0.85fr 1.2fr;
 
     gap: 8px;
 
@@ -538,13 +716,28 @@
   }
 
   .payment-bottom-total strong {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .payment-continue-button {
-    height: 50px;
+    height: 47px;
 
     font-size: 13px;
+  }
+
+  .payment-page .nav-item p {
+    font-size: 8px;
+  }
+
+  .payment-page .nav-item > span {
+    font-size: 18px;
+  }
+
+  .payment-page .bottom-live-icon {
+    width: 29px;
+    height: 29px;
+
+    font-size: 11px;
   }
 }
 

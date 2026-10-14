@@ -1,3 +1,5 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
+import { getProductPrice } from "./productPrice";
 import {
   useEffect,
   useState,
@@ -79,7 +81,7 @@ function AdminPackagingList({
             false
           );
 
-          alert(
+          umiNotify(
             "Impossible de charger les emballages."
           );
 
@@ -104,7 +106,7 @@ function AdminPackagingList({
   ) => {
 
     const confirmation =
-      window.confirm(
+      await umiAsk(
         `Voulez-vous vraiment supprimer "${product?.name || "cet emballage"}" ?`
       );
 
@@ -123,7 +125,7 @@ function AdminPackagingList({
         )
       );
 
-      alert(
+      await umiNotify(
         "Emballage supprimé avec succès."
       );
 
@@ -135,7 +137,7 @@ function AdminPackagingList({
         error
       );
 
-      alert(
+      await umiNotify(
         "Impossible de supprimer cet emballage."
       );
 
@@ -298,11 +300,8 @@ function AdminPackagingList({
 
 
                       <strong className="admin-commerce-product-price">
-
-                        {product.price ||
-                          "Prix sur demande"}
-
-                      </strong>
+  {getProductPrice(product)}
+</strong>
 
 
                       <div className="admin-commerce-product-details">

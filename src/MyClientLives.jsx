@@ -1,3 +1,4 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useEffect, useState } from "react";
 
 import {
@@ -195,7 +196,7 @@ function MyClientLives({
       live.ownerId !== currentUser.userId
     ) {
 
-      alert(
+      umiNotify(
         "Vous ne pouvez pas gérer ce LIVE."
       );
 
@@ -243,7 +244,7 @@ function MyClientLives({
 
       if (!currentUser?.userId) {
 
-        alert(
+        await umiNotify(
           "Vous devez être connecté."
         );
 
@@ -254,7 +255,7 @@ function MyClientLives({
 
       if (!sellerName.trim()) {
 
-        alert(
+        await umiNotify(
           "Entre le nom du vendeur."
         );
 
@@ -265,7 +266,7 @@ function MyClientLives({
 
       if (!productName.trim()) {
 
-        alert(
+        await umiNotify(
           "Entre le nom du produit."
         );
 
@@ -276,7 +277,7 @@ function MyClientLives({
 
       if (!date || !time) {
 
-        alert(
+        await umiNotify(
           "Choisis la date et l'heure."
         );
 
@@ -295,7 +296,7 @@ function MyClientLives({
         )
       ) {
 
-        alert(
+        await umiNotify(
           "Date ou heure incorrecte."
         );
 
@@ -309,7 +310,7 @@ function MyClientLives({
         Date.now()
       ) {
 
-        alert(
+        await umiNotify(
           "La date doit être dans le futur."
         );
 
@@ -417,7 +418,7 @@ function MyClientLives({
         setEditingId("");
 
 
-        alert(
+        await umiNotify(
           editingId
             ? "LIVE programmé modifié."
             : "LIVE programmé avec succès."
@@ -432,7 +433,7 @@ function MyClientLives({
         );
 
 
-        alert(
+        await umiNotify(
           "Impossible d'enregistrer le LIVE programmé."
         );
 
@@ -563,7 +564,7 @@ function MyClientLives({
 
 
       const confirmed =
-        window.confirm(
+        await umiAsk(
           "Supprimer définitivement ce LIVE programmé ?"
         );
 
@@ -610,7 +611,7 @@ function MyClientLives({
         );
 
 
-        alert(
+        await umiNotify(
           "Impossible de supprimer cette programmation."
         );
 
@@ -640,7 +641,7 @@ function MyClientLives({
 
       if (!live.highlightFilePath) {
 
-        alert(
+        await umiNotify(
           "Fichier du Temps fort introuvable."
         );
 
@@ -650,7 +651,7 @@ function MyClientLives({
 
 
       const confirmed =
-        window.confirm(
+        await umiAsk(
           "Supprimer définitivement ce Temps fort ?\n\nLe Replay complet sera conservé."
         );
 
@@ -745,7 +746,7 @@ function MyClientLives({
         );
 
 
-        alert(
+        await umiNotify(
           "Temps fort supprimé."
         );
 
@@ -758,7 +759,7 @@ function MyClientLives({
         );
 
 
-        alert(
+        await umiNotify(
           deleteError.message ||
           "Impossible de supprimer le Temps fort."
         );
@@ -789,7 +790,7 @@ function MyClientLives({
 
       if (!live.recordingFilePath) {
 
-        alert(
+        await umiNotify(
           "Fichier du Replay introuvable."
         );
 
@@ -811,7 +812,7 @@ function MyClientLives({
           : "Supprimer définitivement le Replay complet ?\n\nCette rediffusion disparaîtra de UMI LIVE.";
 
 
-      if (!window.confirm(message)) {
+      if (!await umiAsk(message)) {
 
         return;
 
@@ -900,7 +901,7 @@ function MyClientLives({
         );
 
 
-        alert(
+        await umiNotify(
           "Replay supprimé."
         );
 
@@ -913,7 +914,7 @@ function MyClientLives({
         );
 
 
-        alert(
+        await umiNotify(
           deleteError.message ||
           "Impossible de supprimer le Replay."
         );

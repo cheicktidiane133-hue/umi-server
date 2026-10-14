@@ -1,3 +1,4 @@
+import { umiAlert as umiNotify, umiConfirm as umiAsk } from "./umiDialogs";
 import { useState } from "react";
 
 import "./AdminLogin.css";
@@ -28,7 +29,7 @@ function AdminLogin({
       password.trim() === ""
     ) {
 
-      alert(
+      umiNotify(
         "Veuillez remplir tous les champs."
       );
 

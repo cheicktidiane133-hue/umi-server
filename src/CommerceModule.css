@@ -544,3 +544,569 @@
 .chat-compose button:disabled {
   opacity: 0.5;
 }
+/* =========================================================
+   BARRE DES TÂCHES CLIENT
+   Matières premières / Emballages / Devis / Chat
+========================================================= */
+
+.commerce-bottom-nav {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 9999;
+
+  width: 100%;
+
+  min-height: 66px;
+
+  padding:
+    6px
+    4px
+    calc(6px + env(safe-area-inset-bottom));
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  align-items: center;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e5e9ee;
+
+  box-shadow:
+    0 -3px 14px
+    rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   BOUTONS
+========================================================= */
+
+.commerce-bottom-nav-item {
+  min-width: 0;
+  min-height: 52px;
+
+  padding: 4px 2px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #6c7682;
+
+  font-family: inherit;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   ICÔNES
+========================================================= */
+
+.commerce-bottom-nav-icon {
+  min-height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 21px;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   TEXTE
+========================================================= */
+
+.commerce-bottom-nav-item > span:last-child {
+  max-width: 100%;
+
+  overflow: hidden;
+
+  color: inherit;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  line-height: 1.1;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   PAGE ACTIVE
+========================================================= */
+
+.commerce-bottom-nav-item.active {
+  color: #087fc1;
+}
+
+
+/* =========================================================
+   UMI LIVE
+========================================================= */
+
+.commerce-live-nav-icon {
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+
+  background: #087fc1;
+
+  color: #ffffff;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   PHOTO DU COMPTE
+========================================================= */
+
+.commerce-account-nav-photo-wrapper {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: #eef3f7;
+}
+
+
+.commerce-account-nav-photo {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+
+.commerce-account-nav-placeholder {
+  font-size: 20px;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   ESPACE POUR NE PAS CACHER LE CONTENU
+========================================================= */
+
+.commerce-page {
+  padding-bottom:
+    calc(72px + env(safe-area-inset-bottom));
+}
+
+
+.commerce-content,
+.commerce-detail {
+  padding-bottom:
+    calc(95px + env(safe-area-inset-bottom));
+}
+
+
+/* =========================================================
+   PETITS TÉLÉPHONES
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .commerce-bottom-nav-item > span:last-child {
+    font-size: 8px;
+  }
+
+
+  .commerce-bottom-nav-icon {
+    font-size: 19px;
+  }
+
+
+  .commerce-live-nav-icon {
+    width: 25px;
+    height: 25px;
+
+    font-size: 10px;
+  }
+
+}
+/* =========================================
+   CHAT + BARRE DES TÂCHES
+========================================= */
+
+.chat-page {
+  padding-bottom:
+    calc(68px + env(safe-area-inset-bottom));
+}
+
+
+/* La zone des messages prend
+   l'espace disponible */
+
+.chat-messages {
+  min-height: 0;
+}
+
+
+/* Zone pour écrire le message */
+
+.chat-compose {
+  position: relative;
+  z-index: 20;
+
+  flex-shrink: 0;
+
+  padding:
+    10px
+    12px
+    10px;
+}
+
+
+/* Barre des tâches du chat */
+
+.chat-bottom-nav {
+  flex-shrink: 0;
+}
+
+
+/* Comme commerce-bottom-nav est normalement
+   fixed, on la laisse fixée en bas.
+   On ajoute suffisamment d'espace au chat. */
+
+.chat-page .chat-messages {
+  padding-bottom: 20px;
+}
+/* =========================================
+   CHAT INTÉGRÉ DANS UMI LIVE
+========================================= */
+
+.umi-live-panel-chat .chat-page {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+padding-bottom: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+
+  overflow: hidden !important;
+}
+
+.umi-live-panel-chat .chat-messages {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.umi-live-panel-chat .chat-compose {
+  position: relative !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  flex: 0 0 auto !important;
+
+  width: 100% !important;
+  margin-top: auto !important;
+
+  transform: none !important;
+}
+/* =========================================================
+   CORRECTION CHAT INTÉGRÉ DANS UMI LIVE
+   La zone d'écriture reste en bas du panneau
+========================================================= */
+
+.umi-live-panel-chat {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* =========================================================
+   CHAT INTÉGRÉ DANS UMI LIVE
+   VERSION COMPLÈTE
+========================================================= */
+
+
+/* PAGE DU CHAT À L'INTÉRIEUR DU LIVE */
+
+.umi-live-panel-chat .chat-page {
+  position: relative !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  min-height: 0 !important;
+  max-height: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  background: #f4f6f8 !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   ON CACHE L'EN-TÊTE DU CHAT DANS LE LIVE
+   Le Live possède déjà sa propre interface
+========================================================= */
+
+.umi-live-panel-chat .chat-header {
+  display: none !important;
+}
+
+
+/* =========================================================
+   ZONE DES MESSAGES
+   Elle prend tout l'espace disponible
+========================================================= */
+
+.umi-live-panel-chat .chat-messages {
+  position: relative !important;
+
+  flex: 1 1 0 !important;
+
+  width: 100% !important;
+  height: 0 !important;
+
+  min-height: 0 !important;
+
+  margin: 0 !important;
+
+  padding:
+    12px
+    15px
+    12px !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  box-sizing: border-box !important;
+
+  overscroll-behavior: contain;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================================
+   BIENVENUE
+========================================================= */
+
+.umi-live-panel-chat .chat-welcome {
+  margin:
+    5px
+    auto
+    18px !important;
+}
+
+
+/* =========================================================
+   BARRE ÉCRIRE MESSAGE
+   TOUJOURS AU BAS DU CHAT
+========================================================= */
+
+.umi-live-panel-chat .chat-compose {
+  position: relative !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  flex: 0 0 68px !important;
+
+  width: 100% !important;
+  height: 68px !important;
+  min-height: 68px !important;
+
+  margin: 0 !important;
+  padding: 10px 12px !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  gap: 8px !important;
+
+  background: #ffffff !important;
+
+  border-top: 1px solid #e5e5e5 !important;
+
+  box-shadow:
+    0 -2px 8px
+    rgba(0, 0, 0, 0.06) !important;
+
+  transform: none !important;
+
+  box-sizing: border-box !important;
+
+  z-index: 50 !important;
+}
+
+/* =========================================================
+   CHAMP MESSAGE
+========================================================= */
+
+.umi-live-panel-chat .chat-compose input {
+  width: 100% !important;
+
+  min-width: 0 !important;
+
+  height: 48px !important;
+
+  margin: 0 !important;
+
+  padding:
+    0
+    15px !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   BOUTON ENVOYER
+========================================================= */
+
+
+
+
+/* =========================================================
+   AUCUNE BARRE DES TÂCHES DANS LE CHAT INTÉGRÉ
+========================================================= */
+
+.umi-live-panel-chat .chat-bottom-nav,
+.umi-live-panel-chat .commerce-bottom-nav {
+  display: none !important;
+}
+/* =========================================
+   BOUTON ENVOYER CHAT LIVE - FINAL
+========================================= */
+
+.umi-live-panel-chat .chat-compose .chat-compose-send-button {
+  position: relative !important;
+
+  width: 46px !important;
+  height: 46px !important;
+
+  min-width: 46px !important;
+  min-height: 46px !important;
+
+  max-width: 46px !important;
+  max-height: 46px !important;
+
+  flex: 0 0 46px !important;
+
+  padding: 0 !important;
+
+  /* ON LE REMONTE */
+  margin: -8px 0 0 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  align-self: center !important;
+
+  border: none !important;
+  border-radius: 50% !important;
+
+  background: #087fc1 !important;
+  color: #ffffff !important;
+
+  font-size: 20px !important;
+  line-height: 1 !important;
+
+  box-sizing: border-box !important;
+
+  transform: none !important;
+}
+/* =========================================
+   COEUR FAVORI - COMMERCE
+========================================= */
+
+.commerce-favorite-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  color: #222;
+
+  font-size: 23px;
+  line-height: 1;
+
+  cursor: pointer;
+  z-index: 10;
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.16);
+}
+
+.commerce-favorite-button.active {
+  color: red;
+}
+
+.commerce-favorite-button:active {
+  transform: scale(0.92);
+}
+

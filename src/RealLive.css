@@ -1,0 +1,569 @@
+/* Ajustements du vrai live, sans modifier les cartes vidéo. */
+.umi-real-live .umi-live-bottom-content { display: flex; flex-direction: column; gap: 8px; }
+.umi-real-featured-bar { width: 100%; }
+.umi-real-live .umi-real-machine-row {
+  display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+  padding: 8px; margin: 0 0 8px; border-radius: 14px; background: #fff; color: #172033;
+}
+.umi-real-featured-bar .umi-real-machine-row { margin: 0; animation: umiRealBarPulse 2.4s ease-in-out infinite; }
+.umi-real-live .umi-replay-product-link {
+  display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0; padding: 0;
+  border: 0; background: transparent; text-align: left; color: inherit; cursor: pointer;
+}
+.umi-real-live .umi-replay-product-link img { width: 42px; height: 42px; flex-shrink: 0; object-fit: cover; border-radius: 9px; }
+.umi-real-live .umi-replay-product-link > span { min-width: 0; }
+.umi-real-live .umi-replay-product-link strong { display: block; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.umi-real-live .umi-replay-product-link b { display: block; font-size: 11px; margin-top: 3px; }
+.umi-real-machine-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.umi-real-machine-actions button { border: 0; border-radius: 9px; min-height: 36px; padding: 6px 8px; cursor: pointer; }
+.umi-real-machine-actions .umi-replay-buy { background: #e63946; color: #fff; font-size: 11px; font-weight: 800; }
+.umi-real-machine-actions .umi-real-cart { background: #e6f1ff; color: #1167c4; font-size: 17px; }
+.umi-real-machine-actions .umi-real-favorite { background: #fff0f2; color: #b32943; font-size: 23px; line-height: 1; }
+.umi-real-machine-actions .umi-real-favorite[aria-pressed="true"] { color: #ed253d; }
+.umi-real-machine-actions button:active { transform: scale(.94); }
+.umi-real-machine-actions button:disabled { opacity: .55; cursor: wait; }
+.umi-real-cart-notice { padding: 9px 12px; margin-top: 8px; border-radius: 10px; background: #e7f8ec; color: #16552e; font-size: 13px; font-weight: 700; }
+.umi-real-live.umi-live-panel-open .umi-live-shop-panel { display: flex !important; flex-direction: column !important; min-height: 0 !important; overflow: hidden !important; }
+.umi-real-live .umi-live-shop-tabs { flex-shrink: 0 !important; }
+.umi-real-panel-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 12px; background: #fff; color: #172033; }
+.umi-real-panel-scroll > h3 { font-size: 15px; margin: 0 0 12px; }
+.umi-real-live .umi-live-machine-sheet { padding: 0; }
+.umi-real-live .umi-live-machine-sheet .product-detail-page { min-height: 0; padding-bottom: 0; }
+.umi-real-live .umi-live-panel-chat { display: flex; flex: 1; flex-direction: column; min-height: 0; overflow: hidden; }
+.umi-real-live .umi-live-panel-chat .chat-page { display: flex; flex: 1; flex-direction: column; min-height: 0; height: 100%; overflow: hidden; }
+.umi-real-live .umi-live-panel-chat .chat-messages { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.umi-real-live .umi-live-panel-chat .chat-compose { position: static; flex-shrink: 0; }
+.umi-real-live .umi-live-offer-popup {
+  top: 44% !important; left: 50% !important; right: auto !important; transform: translate(-50%, -50%) !important;
+  width: min(280px, calc(100% - 40px)) !important; max-width: 280px !important; box-sizing: border-box;
+  padding: 14px !important; margin: 0 !important; max-height: 75%; overflow-y: auto;
+}
+.umi-real-live .umi-live-offer-popup img { width: 62px !important; height: 62px !important; }
+.umi-real-live .umi-live-offer-badge { animation: umiRealOfferDance 2s ease-in-out infinite; }
+.umi-real-offer-cart-row { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 12px; }
+.umi-real-offer-cart-row button { width: 34px; height: 34px; border: 0; border-radius: 8px; background: #edf2f8; color: #172033; font-size: 21px; cursor: pointer; }
+.umi-real-offer-cart-row span { min-width: 24px; text-align: center; font-weight: 800; }
+@keyframes umiRealBarPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,.3); } 50% { box-shadow: 0 0 14px 3px rgba(255,255,255,.6); } }
+@keyframes umiRealOfferDance { 0%,100% { rotate: 0deg; } 25% { rotate: -3deg; } 75% { rotate: 3deg; } }
+@media (max-width: 360px) { .umi-real-live .umi-replay-product-link img { width: 32px; height: 32px; } .umi-real-machine-actions button { padding: 5px 6px; } }
+@media (prefers-reduced-motion: reduce) { .umi-real-featured-bar .umi-real-machine-row, .umi-real-live .umi-live-offer-badge { animation: none; } }
+/* Commentaires un peu plus bas */
+.umi-real-live .umi-live-comments {
+  bottom: 185px !important;
+  max-height: 30vh !important;
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .umi-real-live .umi-live-comments {
+    bottom: 160px !important;
+    max-height: 25vh !important;
+  }
+}
+.umi-real-live .umi-live-offer-popup {
+  width: min(320px, calc(100% - 32px)) !important;
+  max-width: 320px !important;
+  padding: 18px !important;
+}
+
+.umi-real-live .umi-live-offer-popup img {
+  width: 76px !important;
+  height: 76px !important;
+}
+.umi-real-live .umi-live-offer-popup {
+  position: fixed !important;
+
+  top: 52% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  transform: translate(-50%, -50%) !important;
+
+  width: min(320px, calc(100vw - 32px)) !important;
+  max-width: 320px !important;
+
+  height: auto !important;
+  max-height: 70dvh !important;
+  overflow-y: auto !important;
+
+  margin: 0 !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+
+  background: #fff !important;
+  border: 2px solid #e63946 !important;
+  border-radius: 20px !important;
+  color: #172033 !important;
+  text-align: center;
+
+  z-index: 10000 !important;
+}
+
+/* Photo, nom et prix disposés verticalement */
+.umi-real-live .umi-live-offer-popup > div:nth-of-type(2) {
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.umi-real-live .umi-live-offer-popup img {
+  width: 110px !important;
+  height: 110px !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+}
+
+/* Bouton d’ajout au panier */
+.umi-real-live .umi-live-offer-popup > button:last-of-type {
+  background: #e63946 !important;
+  color: #fff !important;
+}
+/* Remonter le bloc qui contient la fenêtre de l’offre */
+.umi-real-live .umi-live-overlay-top:has(.umi-live-offer-popup) {
+  z-index: 10000 !important;
+}
+
+/* Offre au-dessus des autres éléments du live */
+.umi-real-live .umi-live-offer-popup {
+  z-index: 10001 !important;
+  opacity: 1 !important;
+  background: #fff !important;
+}
+.umi-real-live .umi-live-offer-popup {
+  animation: umiOfferBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes umiOfferBlink {
+  0%, 100% {
+    border-color: #e63946;
+    box-shadow: 0 0 8px rgba(230, 57, 70, 0.3);
+  }
+
+  50% {
+    border-color: #ff9500;
+    box-shadow: 0 0 24px rgba(255, 149, 0, 0.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .umi-real-live .umi-live-offer-popup {
+    animation: none;
+  }
+}
+.umi-real-live .umi-live-offer-popup {
+  position: fixed !important;
+  top: 52% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+
+  width: min(340px, calc(100vw - 24px)) !important;
+  max-width: 340px !important;
+  height: auto !important;
+  max-height: 80dvh !important;
+  overflow-y: auto !important;
+
+  margin: 0 !important;
+  padding: 58px 18px 20px !important;
+  box-sizing: border-box;
+  border: none !important;
+  border-radius: 22px !important;
+  background: #fff !important;
+  color: #17394c !important;
+  text-align: center;
+  z-index: 10001 !important;
+
+  animation: umiOfferWindowGlow 1.5s ease-in-out infinite;
+}
+
+.umi-real-live .umi-live-overlay-top:has(.umi-live-offer-popup) {
+  z-index: 10000 !important;
+}
+
+.umi-real-live .umi-live-offer-popup .umi-real-offer-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #eef4f7 !important;
+  color: #17394c !important;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.umi-real-live .umi-live-offer-popup h3 {
+  margin: 0 0 14px;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.umi-real-live .umi-live-offer-popup img {
+  display: block;
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto 12px;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+}
+
+.umi-real-offer-name {
+  display: block;
+  font-size: 21px;
+}
+
+.umi-real-offer-original {
+  margin: 6px 0;
+  font-size: 19px;
+}
+
+.umi-real-offer-price {
+  margin: 12px 0 16px;
+  color: #df1746;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.umi-real-offer-controls {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px !important;
+}
+
+.umi-real-offer-quantity {
+  padding: 9px;
+  border: 1px solid #ccd8df;
+  border-radius: 15px;
+  background: #f5fafc;
+}
+
+.umi-real-offer-quantity > span {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.umi-real-offer-quantity > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.umi-real-offer-quantity button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: #0785b9;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.umi-real-offer-quantity button:disabled {
+  opacity: 0.4;
+}
+
+.umi-real-offer-add {
+  border: none;
+  border-radius: 15px;
+  background: #0785b9;
+  color: white;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.umi-real-offer-add:disabled {
+  opacity: 0.6;
+}
+
+@keyframes umiOfferWindowGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(7, 133, 185, 0.5),
+      0 0 28px rgba(7, 133, 185, 0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .umi-real-live .umi-live-offer-popup {
+    animation: none;
+  }
+}
+.umi-real-live .umi-live-offer-popup {
+  animation: umiOfferVisibleBlink 1.2s ease-in-out infinite !important;
+}
+
+@keyframes umiOfferVisibleBlink {
+  0%, 100% {
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(7, 133, 185, 0.25);
+  }
+
+  50% {
+    background-color: #e0f3ff;
+    box-shadow: 0 0 25px rgba(7, 133, 185, 0.85);
+  }
+}
+.umi-real-live .umi-live-offer-popup {
+  border: 2px solid #e63946 !important;
+  animation: umiOfferRedBlink 1.2s ease-in-out infinite !important;
+}
+
+@keyframes umiOfferRedBlink {
+  0%, 100% {
+    box-shadow: 0 0 3px rgba(230, 57, 70, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(230, 57, 70, 0.3),
+      0 0 25px rgba(230, 57, 70, 0.9);
+  }
+}
+.umi-real-live .umi-live-offer-popup {
+  width: min(300px, calc(100vw - 32px)) !important;
+  max-width: 300px !important;
+  padding: 48px 14px 16px !important;
+}
+
+.umi-real-live .umi-live-offer-popup img {
+  width: 125px !important;
+  height: 125px !important;
+}
+
+.umi-real-live .umi-live-offer-popup h3 {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.umi-real-offer-price {
+  font-size: 22px;
+  margin: 8px 0 12px;
+}
+.umi-real-live .umi-real-featured-bar {
+  width: 100%;
+  margin-left: 0;
+}
+
+.umi-real-live .umi-real-featured-bar .umi-real-machine-row {
+  min-height: 75px;
+padding: 16px 8px;
+  animation: umiWhiteBarBlink 1.4s ease-in-out infinite !important;
+}
+
+@keyframes umiWhiteBarBlink {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  }
+
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 28px rgba(255, 255, 255, 1);
+  }
+}
+.umi-real-live .umi-live-offer-badge {
+  transform-origin: center;
+  animation: umiOfferStrongDance 1.2s ease-in-out infinite !important;
+}
+
+@keyframes umiOfferStrongDance {
+  0%, 100% {
+    rotate: 0deg;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  25% {
+    rotate: -9deg;
+    translate: 0 -5px;
+    scale: 1.08;
+  }
+
+  50% {
+    rotate: 0deg;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  75% {
+    rotate: 9deg;
+    translate: 0 -5px;
+    scale: 1.08;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .umi-real-live .umi-live-offer-badge {
+    animation: none !important;
+  }
+}
+/* Descendre les commentaires côté présentateur */
+.umi-tiktok-live:has(.umi-presenter-tools) .umi-live-comments {
+  bottom: 110px !important;
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .umi-tiktok-live:has(.umi-presenter-tools) .umi-live-comments {
+    bottom: 85px !important;
+  }
+}
+.umi-real-live .umi-live-top-right {
+  translate: 8px 0 !important;
+}
+.umi-real-live .umi-live-top-like-count {
+  translate: -4px 0 !important;
+}
+.umi-tiktok-live:has(.umi-presenter-tools)
+  .umi-live-background-video {
+  transform: var(--umi-camera-transform, scaleX(-1)) !important;
+}
+/* Le spectateur reçoit le même champ de caméra que le présentateur. */
+.umi-real-live .umi-live-background-video {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: var(--umi-camera-transform, scaleX(-1)) !important;
+}
+
+/* Dimensionner la caméra dans son cadre, pas dans la fenêtre du navigateur. */
+/* Plein écran seulement lorsque le panneau est fermé */
+#root .umi-presenter-live .umi-live-background,
+#root .umi-real-live:not(.umi-live-panel-open) .umi-live-background {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+#root :is(.umi-presenter-live, .umi-real-live) .umi-live-background-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Le fond de galerie reste sous la caméra, sans masquer son image. */
+#root :is(.umi-presenter-live, .umi-real-live) .umi-live-gallery-background {
+  z-index: 0 !important;
+  object-fit: cover !important;
+  pointer-events: none !important;
+}
+#root :is(.umi-presenter-live, .umi-real-live) .umi-live-background-video {
+  z-index: 1 !important;
+}
+/* Descendre légèrement le panneau Machines similaires */
+#root .umi-real-live.umi-live-panel-open .umi-live-background {
+  height: 51% !important;
+  max-height: 51% !important;
+  flex: 0 0 51% !important;
+}
+
+#root .umi-real-live.umi-live-panel-open .umi-live-shop-panel {
+  height: 49% !important;
+  max-height: 49% !important;
+  flex: 0 0 49% !important;
+}
+
+
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  height: 46px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 2px !important;
+  gap: 3px !important;
+
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button span:first-child {
+  font-size: 22px !important;
+  line-height: 1 !important;
+}
+
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button span:last-child,
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button small {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+#root .umi-real-live .umi-live-machine-sheet {
+  padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)) !important;
+  box-sizing: border-box !important;
+}
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button {
+  position: static !important;
+  inset: auto !important;
+  transform: translateY(28px) !important;
+  align-self: center !important;
+
+  height: 32px !important;
+  min-height: 0 !important;
+  max-height: 32px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+}
+
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button > span,
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button > small {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button span:first-child {
+  font-size: 19px !important;
+  line-height: 20px !important;
+}
+
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button span:last-child,
+#root .umi-real-live .umi-live-machine-sheet
+nav[aria-label="Navigation principale"] button small {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  line-height: 12px !important;
+}
