@@ -57,6 +57,7 @@ workflows:
 
     environment:
       node: 24
+      java: 17
       xcode: latest
 
     scripts:
@@ -82,11 +83,38 @@ workflows:
             CODE_SIGNING_ALLOWED=NO \
             build
 
+      - name: Installer Maestro
+        script: |
+          set -e
+          curl -fsSL https://get.maestro.mobile.dev \
+            -o /tmp/install-maestro.sh
+          bash /tmp/install-maestro.sh
+
       - name: Capturer iPhone et iPad
         script: |
           set -e
+          export MAESTRO_CLI_NO_ANALYTICS=1
           mkdir -p captures
-          xcrun simctl list devices available --json > /tmp/umi-devices.json
+
+          cat > /tmp/umi-navigation.yaml <<'FLOW'
+          appId: com.askiasalembere.umi
+          ---
+          - tapOn:
+              text: "Don.t Allow|Ne pas autoriser"
+              optional: true
+          - tapOn:
+              text: "Allow|Autoriser"
+              optional: true
+          - tapOn: "Passer"
+          - extendedWaitUntil:
+              visible: "Accueil"
+              timeout: 60000
+          - waitForAnimationToEnd:
+              timeout: 10000
+          FLOW
+
+          xcrun simctl list devices available --json \
+            > /tmp/umi-devices.json
 
           python3 - <<'PY' > /tmp/umi-devices.tsv
           import json
@@ -109,16 +137,27 @@ workflows:
 
           for label, names in groups:
               chosen = next(
-                  (d for name in names for d in devices if d["name"] == name),
+                  (
+                      device
+                      for name in names
+                      for device in devices
+                      if device["name"] == name
+                  ),
                   None,
               )
+
               if chosen is None:
-                  raise SystemExit("Simulateur introuvable : " + label)
+                  raise SystemExit(
+                      "Simulateur introuvable : " + label
+                  )
+
               print(label + "\t" + chosen["udid"])
           PY
 
           while IFS=$'\t' read -r label device; do
             xcrun simctl bootstatus "$device" -b
+
+            sleep 30
 
             xcrun simctl install "$device" \
               build/simulator/Build/Products/Debug-iphonesimulator/App.app
@@ -128,10 +167,21 @@ workflows:
               --stderr="$CM_BUILD_DIR/captures/$label-erreurs.log" \
               "$device" com.askiasalembere.umi
 
-            sleep 20
+            if "$HOME/.maestro/bin/maestro" \
+              --device "$device" test \
+              /tmp/umi-navigation.yaml \
+              > "$CM_BUILD_DIR/captures/$label-navigation.log" 2>&1; then
 
-            xcrun simctl io "$device" screenshot \
-              "$CM_BUILD_DIR/captures/$label.png"
+              xcrun simctl io "$device" screenshot \
+                "$CM_BUILD_DIR/captures/$label-accueil.png"
+            else
+              xcrun simctl io "$device" screenshot \
+                "$CM_BUILD_DIR/captures/$label-echec.png"
+
+              cat "$CM_BUILD_DIR/captures/$label-navigation.log"
+              xcrun simctl shutdown "$device"
+              exit 1
+            fi
 
             xcrun simctl shutdown "$device"
           done < /tmp/umi-devices.tsv
