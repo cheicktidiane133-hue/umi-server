@@ -1668,3 +1668,43 @@
   height: 68px;
   min-height: 68px;
 }
+/* Aligner l’en-tête et la navigation avec le contenu */
+.home-page .home-header {
+  left: 0;
+  right: 0;
+  width: 100%;
+  transform: none;
+  animation: none;
+}
+
+@media (min-width: 500px) {
+  .home-page .home-header,
+  .home-page .bottom-nav {
+    left: 50%;
+    right: auto;
+    width: min(100%, 650px);
+    max-width: 650px;
+    transform: translateX(-50%);
+    animation: none;
+  }
+}
+/* Alignement de l’accueil sur iPad */
+@media (min-width: 500px) {
+  .home-page {
+    width: 100%;
+    max-width: 500px !important;
+    margin-inline: auto;
+  }
+
+  .home-page .home-header,
+  .home-page .bottom-nav {
+    position: fixed;
+    left: 50% !important;
+    right: auto !important;
+    width: 500px !important;
+    max-width: 500px !important;
+    margin: 0 !important;
+    transform: translateX(-50%) !important;
+    animation: none !important;
+  }
+}
