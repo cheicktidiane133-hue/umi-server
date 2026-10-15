@@ -23,8 +23,9 @@ const app = initializeApp(firebaseConfig);
 /* FIRESTORE — test de connexion adapté à iOS */
 export const db =
   Capacitor.getPlatform() === "ios"
-    ? initializeFirestore(app, {
+        ? initializeFirestore(app, {
         experimentalForceLongPolling: true,
+        useFetchStreams: false,
       })
     : getFirestore(app);
 
