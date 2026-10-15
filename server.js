@@ -1,3 +1,8 @@
+import { registerAgoraRoutes, getAgoraStatus } from "./agoraRoutes.js";
+import * as cheerio from "cheerio";
+import ipaddr from "ipaddr.js";
+import { lookup } from "node:dns/promises";
+import { registerAccountManagement, requireActiveAccount } from "./accountManagement.js";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -32,6 +37,8 @@ import {
 } from "livekit-server-sdk";
 console.log("🧪 TEST SERVER FRESHPAY 2026");
 dotenv.config();
+console.log(process.env.AGORA_APP_ID && process.env.AGORA_APP_CERTIFICATE
+  ? "✅ Configuration Agora chargée" : "❌ Configuration Agora incomplète");
 console.log("=== TEST PAYDUNYA ENV ===");
 console.log(
   "MASTER:",
@@ -154,11 +161,6 @@ app.post(
         user.admin === true ||
         user.role === "admin" ||
         profile.data()?.role === "admin";
-      if (!isAdmin) {
-        return res.status(403).json({
-          error: "Accès administrateur requis.",
-        });
-      }
       const { liveId } = req.params;
       if (!/^[A-Za-z0-9_-]{1,150}$/.test(liveId)) {
         return res.status(400).json({
@@ -170,9 +172,12 @@ app.post(
         .doc(liveId)
         .get();
       if (!live.exists) {
-        return res.status(404).json({
-          error: "LIVE introuvable.",
-        });
+        return res.status(404).json({ error: "LIVE introuvable." });
+      }
+      const account = await getAuth().getUser(user.uid);
+      if (account.disabled || profile.data()?.blocked || profile.data()?.deleting ||
+          (!isAdmin && !(live.data()?.liveType === "client" && live.data()?.ownerId === user.uid))) {
+        return res.status(403).json({ error: "Vous ne pouvez pas publier cet extrait." });
       }
       next();
     } catch {
@@ -252,7 +257,7 @@ app.post(
         const result = await createHighlight(
           sourceKey,
           liveId,
-          "umi"
+          latest.data()?.liveType === "client" ? "client" : "umi"
         );
         const highlightUrl =
           `${publicUrl}/${result.highlightFilePath}`;
@@ -329,6 +334,26 @@ app.use(
     limit: "15mb",
   })
 );
+// Gestion des comptes via le serveur UMI existant.
+registerAccountManagement(app, { auth: getAuth(), db: firestoreAdmin, FieldValue });
+registerAgoraRoutes(app, { auth: getAuth(), db: firestoreAdmin, FieldValue });
+app.get("/umi-live-health", (req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  res.json({ service: "umi-agora", version: "2026-10-11.2", routesReady: true,
+    agoraConfigured: /^[a-f0-9]{32}$/i.test(process.env.AGORA_APP_ID?.trim() || "") &&
+      /^[a-f0-9]{32}$/i.test(process.env.AGORA_APP_CERTIFICATE?.trim() || "") });
+});
+// Une personne bloquée ne peut plus obtenir de jeton pour diffuser un live.
+app.use("/token", (req, res, next) => {
+  if (!["admin", "client-broadcaster"].includes(req.body?.role)) return next();
+  return requireActiveAccount({ auth: getAuth(), db: firestoreAdmin })(req, res, () => {
+    if (req.body.role === "admin" && req.umiAccount.profile.role !== "admin") {
+      return res.status(403).json({ error: "Accès administrateur requis." });
+    }
+    next();
+  });
+});
+
 // ==========================================
 // ORABANK / N-GENIUS - TEST AUTHENTIFICATION
 // ==========================================
@@ -1468,6 +1493,7 @@ async function requireLiveAdmin(req, res, next) {
   } catch { return res.status(401).json({ error: "Reconnectez-vous au compte administrateur." }); }
 }
 async function inspectAdminLive(live) {
+  if (live.transport === "agora") return getAgoraStatus(live);
   if (!live.roomName) return { broadcasting: false, viewers: 0 };
   const rooms = await roomService.listRooms([live.roomName]);
   if (!rooms.length) return { broadcasting: false, viewers: 0 };
@@ -1519,7 +1545,7 @@ app.post(["/admin/stop-live", "/admin-stop-live"], requireLiveAdmin, async (req,
     const snapshot = await reference.get();
     if (!snapshot.exists) return res.status(404).json({ error: "LIVE introuvable." });
     const live = snapshot.data();
-    if (live.roomName) {
+    if (live.transport !== "agora" && live.roomName) {
       const rooms = await roomService.listRooms([live.roomName]);
       if (rooms.length) await roomService.deleteRoom(live.roomName);
     }
@@ -3224,6 +3250,416 @@ if (
     process.exit(1);
   }
 }
+// ==========================================
+// IMPORTER UNE MACHINE DEPUIS UN LIEN
+// ==========================================
+
+const importText = (value) =>
+  typeof value === "string"
+    ? value.trim().slice(0, 15000)
+    : "";
+
+const importPrice = (value) => {
+  const text = String(value ?? "")
+    .replace(/[\s\u202f\u00a0]/g, "")
+    .replace(/FCFA|CFA|XOF/gi, "")
+    .replace(",", ".");
+
+  if (!text) return "";
+
+  const number = Number(text);
+
+  return Number.isFinite(number) && number > 0
+    ? number
+    : "";
+};
+
+// Vérifie l'adresse et fixe l'IP pour la connexion.
+const readImportPage = async (input, redirects = 0) => {
+  if (redirects > 4) {
+    throw new Error("Trop de redirections.");
+  }
+
+  const url = new URL(input);
+
+  if (
+    !["https:", "http:"].includes(url.protocol) ||
+    url.username ||
+    url.password ||
+    (url.port && !["80", "443"].includes(url.port))
+  ) {
+    throw new Error("Ce lien n'est pas autorisé.");
+  }
+
+  const hostname = url.hostname.replace(/^\[|\]$/g, "");
+
+  const addresses = await lookup(hostname, {
+    all: true,
+    verbatim: true,
+  });
+
+  if (
+    !addresses.length ||
+    addresses.some(({ address }) =>
+      ipaddr.process(address).range() !== "unicast"
+    )
+  ) {
+    throw new Error("Cette adresse n'est pas accessible.");
+  }
+
+  const selected = addresses[0];
+
+  const transport = await import(
+    url.protocol === "https:"
+      ? "node:https"
+      : "node:http"
+  );
+
+  const result = await new Promise((resolve, reject) => {
+    const request = transport.request(
+      url,
+      {
+        method: "GET",
+        headers: {
+          Accept: "text/html,application/xhtml+xml",
+          "User-Agent": "UMI-Product-Importer/1.0",
+        },
+        lookup: (_host, options, callback) => {
+          if (options?.all) {
+            callback(null, [selected]);
+          } else {
+            callback(
+              null,
+              selected.address,
+              selected.family
+            );
+          }
+        },
+      },
+      (response) => {
+        const status = response.statusCode || 0;
+
+        if ([301, 302, 303, 307, 308].includes(status)) {
+          response.resume();
+
+          resolve({
+            redirect: response.headers.location,
+          });
+
+          return;
+        }
+
+        if (status < 200 || status >= 300) {
+          response.resume();
+          reject(
+            new Error(`Le site a répondu avec le code ${status}.`)
+          );
+          return;
+        }
+
+        const contentType =
+          response.headers["content-type"] || "";
+
+        if (!/text\/html|application\/xhtml/i.test(contentType)) {
+          response.resume();
+          reject(new Error("Ce lien ne contient pas une page produit."));
+          return;
+        }
+
+        const chunks = [];
+        let size = 0;
+
+        response.on("data", (chunk) => {
+          size += chunk.length;
+
+          if (size > 3 * 1024 * 1024) {
+            response.destroy(
+              new Error("La page est trop volumineuse.")
+            );
+            return;
+          }
+
+          chunks.push(chunk);
+        });
+
+        response.on("error", reject);
+
+        response.on("end", () => {
+          resolve({
+            html: Buffer.concat(chunks).toString("utf8"),
+            finalUrl: url.href,
+          });
+        });
+      }
+    );
+
+    const timer = setTimeout(() => {
+      request.destroy(
+        new Error("Le site met trop de temps à répondre.")
+      );
+    }, 12000);
+
+    request.on("close", () => clearTimeout(timer));
+    request.on("error", reject);
+    request.end();
+  });
+
+  if (result.redirect) {
+    return readImportPage(
+      new URL(result.redirect, url).href,
+      redirects + 1
+    );
+  }
+
+  if (!result.html) {
+    throw new Error("Redirection sans destination.");
+  }
+
+  return result;
+};
+
+app.post(
+  "/import-machine",
+  express.json({ limit: "16kb" }),
+  async (req, res) => {
+    // Connexion administrateur obligatoire.
+    let user;
+
+    try {
+      const token = (
+        req.headers.authorization || ""
+      ).replace(/^Bearer\s+/i, "");
+
+      if (!token) {
+        return res.status(401).json({
+          error: "Connexion requise.",
+        });
+      }
+
+      user = await getAuth().verifyIdToken(token);
+
+      const profile = await firestoreAdmin
+        .collection("users")
+        .doc(user.uid)
+        .get();
+
+      if (
+        user.admin !== true &&
+        user.role !== "admin" &&
+        profile.data()?.role !== "admin"
+      ) {
+        return res.status(403).json({
+          error: "Accès administrateur requis.",
+        });
+      }
+    } catch {
+      return res.status(401).json({
+        error: "Veuillez vous reconnecter.",
+      });
+    }
+
+    try {
+      const input = req.body?.url;
+
+      if (
+        typeof input !== "string" ||
+        input.length > 4096
+      ) {
+        return res.status(400).json({
+          error: "Veuillez fournir un lien valide.",
+        });
+      }
+
+      const source = new URL(input.trim());
+      const page = await readImportPage(source.href);
+      const $ = cheerio.load(page.html);
+
+      const meta = (key) =>
+        importText(
+          $(`meta[property="${key}"]`).attr("content") ||
+          $(`meta[name="${key}"]`).attr("content")
+        );
+
+      const absoluteUrl = (value) => {
+        if (typeof value !== "string" || !value.trim()) {
+          return "";
+        }
+
+        try {
+          const url = new URL(value, page.finalUrl);
+
+          return (
+            ["https:", "http:"].includes(url.protocol) &&
+            !url.username &&
+            !url.password
+          ) ? url.href : "";
+        } catch {
+          return "";
+        }
+      };
+
+      const products = [];
+
+      const visit = (value, depth = 0) => {
+        if (!value || depth > 12) return;
+
+        if (Array.isArray(value)) {
+          value.forEach((item) => visit(item, depth + 1));
+          return;
+        }
+
+        if (typeof value !== "object") return;
+
+        const types = [value["@type"]].flat();
+
+        if (types.includes("Product")) {
+          products.push(value);
+        }
+
+        Object.values(value).forEach((item) => {
+          if (item && typeof item === "object") {
+            visit(item, depth + 1);
+          }
+        });
+      };
+
+      $('script[type="application/ld+json"]').each(
+        (_index, element) => {
+          try {
+            visit(JSON.parse($(element).text()));
+          } catch {
+            // Ignore les données structurées invalides.
+          }
+        }
+      );
+
+      const product = products[0] || {};
+      const offer = [product.offers].flat().find(
+        (item) => item && typeof item === "object"
+      ) || {};
+
+      const currency = importText(
+        offer.priceCurrency ||
+        meta("product:price:currency")
+      ).toUpperCase();
+
+      // Aucun prix en devise étrangère n'est converti automatiquement.
+      const rawPrice =
+        offer.price ??
+        offer.lowPrice ??
+        meta("product:price:amount");
+
+      const structuredPrice =
+        ["XOF", "CFA", "FCFA"].includes(currency)
+          ? importPrice(rawPrice)
+          : "";
+
+      const sharedPriceText =
+        source.searchParams.get("pr") || "";
+
+      const sharedPrice =
+        /FCFA|CFA|XOF/i.test(sharedPriceText)
+          ? importPrice(sharedPriceText)
+          : "";
+
+      const images = [
+        ...[product.image || []].flat().map((item) =>
+          typeof item === "string"
+            ? item
+            : item?.contentUrl || item?.url
+        ),
+        meta("og:image"),
+        meta("twitter:image"),
+      ]
+        .map(absoluteUrl)
+        .filter(Boolean);
+
+      const videoCandidates = [
+        ...[product.video || []].flat().map((item) =>
+          typeof item === "string"
+            ? item
+            : item?.contentUrl
+        ),
+        meta("og:video"),
+        ...$("video[src], video source[src]")
+          .map((_index, element) => $(element).attr("src"))
+          .get(),
+      ];
+
+      // Conserve uniquement les adresses de fichiers vidéo.
+      const videos = videoCandidates
+        .map(absoluteUrl)
+        .filter((url) => {
+          if (!url) return false;
+
+          return /\.(mp4|webm|mov|m4v)$/i.test(
+            new URL(url).pathname
+          );
+        });
+
+      const name =
+        importText(product.name) ||
+        meta("og:title") ||
+        importText(source.searchParams.get("n")) ||
+        importText($("h1").first().text());
+
+      const description = importText(
+        typeof product.description === "string"
+          ? cheerio.load(product.description).text()
+          : meta("og:description") || meta("description")
+      );
+
+      const warnings = [];
+
+      if (!products.length) {
+        warnings.push(
+          "Les informations trouvées dans la page ou le lien doivent être vérifiées."
+        );
+      }
+
+      if (
+        rawPrice &&
+        !["XOF", "CFA", "FCFA"].includes(currency)
+      ) {
+        warnings.push(
+          "Le prix de la page n'a pas été importé : devise étrangère ou non précisée."
+        );
+      }
+
+      if (!images.length) {
+        warnings.push("Aucune photo accessible trouvée.");
+      }
+
+      if (!videos.length) {
+        warnings.push("Aucun fichier vidéo accessible trouvé.");
+      }
+
+      const brand = importText(
+        typeof product.brand === "string"
+          ? product.brand
+          : product.brand?.name
+      );
+
+      return res.json({
+        sourceUrl: source.href,
+        name,
+        description,
+        brand,
+        model: importText(product.model),
+        price: structuredPrice || sharedPrice,
+        images: [...new Set(images)].slice(0, 6),
+        videos: [...new Set(videos)].slice(0, 3),
+        warnings,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        error:
+          error.message ||
+          "Impossible de récupérer cette fiche.",
+      });
+    }
+  }
+);
 const server =
   app.listen(
     PORT,
