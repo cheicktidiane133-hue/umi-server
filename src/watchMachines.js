@@ -7,60 +7,59 @@ import {
 } from "firebase/firestore/lite";
 
 export function watchMachines(reference, onData, onError) {
-  let stopped = false;
-  let serverResponded = false;
-  let timer;
-  let fallbackDelivered = false;
-
-  const unsubscribe = onSnapshot(
-    reference,
-    (snapshot) => {
-      if (stopped) return;
-
-      if (!snapshot.metadata.fromCache) {
-        serverResponded = true;
-        clearTimeout(timer);
-      }
-
-      // Ne pas remplacer les données reçues par REST
-      // par une ancienne réponse provenant du cache.
-      if (fallbackDelivered && snapshot.metadata.fromCache) {
-        return;
-      }
-
-      onData(snapshot);
-    },
-    (error) => {
-      if (!stopped) onError(error);
-    }
-  );
-
-  if (Capacitor.getPlatform() === "ios") {
-    timer = setTimeout(async () => {
-      if (stopped || serverResponded) return;
-
-      try {
-        const directDb = getFirestore(reference.firestore.app);
-
-        const snapshot = await getDocs(
-          collection(directDb, reference.path)
-        );
-
-        if (!stopped && !serverResponded) {
-          fallbackDelivered = true;
-          onData(snapshot);
-        }
-      } catch (error) {
-        if (!stopped && !serverResponded) {
-          onError(error);
-        }
-      }
-    }, 8000);
+  if (Capacitor.getPlatform() !== "ios") {
+    return onSnapshot(reference, onData, onError);
   }
+
+  let stopped = false;
+  let loading = false;
+  let retryTimer;
+
+  const directDb = getFirestore(reference.firestore.app);
+  const machinesRef = collection(directDb, reference.path);
+
+  async function loadMachines() {
+    if (stopped || loading) return;
+
+    loading = true;
+
+    try {
+      const snapshot = await getDocs(machinesRef);
+
+      if (!stopped) {
+        onData(snapshot);
+      }
+    } catch (error) {
+      if (!stopped) {
+        onError(error);
+        retryTimer = setTimeout(loadMachines, 10000);
+      }
+    } finally {
+      loading = false;
+    }
+  }
+
+  function handleVisibility() {
+    if (document.visibilityState === "visible") {
+      clearTimeout(retryTimer);
+      loadMachines();
+    }
+  }
+
+  loadMachines();
+
+  document.addEventListener(
+    "visibilitychange",
+    handleVisibility
+  );
 
   return () => {
     stopped = true;
-    clearTimeout(timer);
-    unsubscribe();
+    clearTimeout(retryTimer);
+
+    document.removeEventListener(
+      "visibilitychange",
+      handleVisibility
+    );
   };
 }
