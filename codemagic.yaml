@@ -106,9 +106,12 @@ workflows:
               text: "Allow|Autoriser"
               optional: true
           - tapOn: "Passer"
-          - extendedWaitUntil:
+                    - extendedWaitUntil:
               visible: "Machines populaires"
               timeout: 60000
+          - extendedWaitUntil:
+              visible: ".*FCFA.*"
+              timeout: 120000
           - waitForAnimationToEnd:
               timeout: 10000
           FLOW
