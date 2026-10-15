@@ -1297,10 +1297,13 @@ const [
 
         (error) => {
 
-          console.error(
-            "Erreur chargement machines :",
-            error
-          );
+          console.error("Erreur chargement machines :", error);
+
+window.alert(
+  "Chargement des machines impossible\n" +
+  (error.code || "") + "\n" +
+  (error.message || String(error))
+);
 
         }
 
