@@ -799,15 +799,43 @@ useEffect(() => {
       }}
     />
   ) : (
-    <video
+        <video
       key={`video-${mediaIndex}-${homeMedia.url}`}
       className="home-video"
       src={homeMedia.url}
+      poster={
+        homeMedia.url?.startsWith(
+          "https://res.cloudinary.com/"
+        )
+          ? homeMedia.url.replace(
+              /\.(mp4|mov|webm)(\?.*)?$/i,
+              ".jpg"
+            )
+          : undefined
+      }
       autoPlay
       muted={homeVideoMuted}
       loop={homeMedias.length === 1}
       playsInline
-      preload="metadata"
+      controls
+      preload="auto"
+      onLoadedData={(event) => {
+        const video = event.currentTarget;
+
+        video.play().catch((error) => {
+          console.warn(
+            "Lecture automatique refusée :",
+            error
+          );
+        });
+      }}
+      onError={(event) => {
+        console.error(
+          "Erreur vidéo accueil :",
+          event.currentTarget.error?.code,
+          event.currentTarget.error?.message
+        );
+      }}
       onEnded={nextHomeMedia}
     />
   )}
