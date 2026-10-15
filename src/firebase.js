@@ -33,3 +33,50 @@ export const auth = getAuth(app);
 
 /* STOCKAGE */
 export const storage = getStorage(app);
+/* Diagnostic temporaire iOS */
+if (Capacitor.getPlatform() === "ios") {
+  const diagnostic = document.createElement("div");
+
+  Object.assign(diagnostic.style, {
+    position: "fixed",
+    bottom: "100px",
+    left: "10px",
+    right: "10px",
+    zIndex: "2147483647",
+    padding: "12px",
+    background: "#fff3cd",
+    color: "#000",
+    fontSize: "13px",
+    whiteSpace: "pre-wrap",
+    pointerEvents: "none",
+  });
+
+  diagnostic.textContent = "Diagnostic : connexion Firestore…";
+  document.body.appendChild(diagnostic);
+
+  const timer = setTimeout(() => {
+    diagnostic.textContent =
+      "Diagnostic : aucune réponse Firestore après 30 secondes.";
+  }, 30000);
+
+  import("firebase/firestore").then(async ({
+    collection,
+    query,
+    limit,
+    getDocsFromServer,
+  }) => {
+    try {
+      const result = await getDocsFromServer(
+        query(collection(db, "machines"), limit(1))
+      );
+
+      clearTimeout(timer);
+      diagnostic.textContent =
+        `Diagnostic : serveur accessible, ${result.size} machine reçue.`;
+    } catch (error) {
+      clearTimeout(timer);
+      diagnostic.textContent =
+        `Diagnostic : ${error.code || ""}\n${error.message}`;
+    }
+  });
+}
