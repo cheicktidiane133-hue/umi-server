@@ -7,35 +7,7 @@ import {
   doc,
 } from "firebase/firestore";
 
-function showDiagnostic(message) {
-  let panel = document.getElementById(
-    "umi-machines-diagnostic"
-  );
-
-  if (!panel) {
-    panel = document.createElement("div");
-    panel.id = "umi-machines-diagnostic";
-
-    Object.assign(panel.style, {
-      position: "fixed",
-      top: "110px",
-      left: "10px",
-      right: "10px",
-      zIndex: "2147483647",
-      padding: "12px",
-      background: "#d1ecf1",
-      color: "#000",
-      fontSize: "14px",
-      whiteSpace: "pre-wrap",
-      pointerEvents: "none",
-    });
-
-    document.body.appendChild(panel);
-  }
-
-  panel.textContent = message;
-}
-
+function showDiagnostic() {}
 // Convertir les valeurs REST au format attendu par l'application.
 function decodeValue(value, db) {
   if ("nullValue" in value) return null;
