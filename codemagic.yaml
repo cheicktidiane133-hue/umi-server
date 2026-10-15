@@ -29,11 +29,13 @@ workflows:
 
       - name: Definir le numero de build
         script: |
+          set -e
           cd ios/App
           agvtool new-version -all "$BUILD_NUMBER"
 
       - name: Compiler UMI pour Apple
         script: |
+          set -e
           xcode-project build-ipa \
             --project ios/App/App.xcodeproj \
             --scheme App
@@ -49,7 +51,7 @@ workflows:
         submit_to_app_store: false
 
   umi-captures:
-    name: UMI - Captures iPhone et iPad
+    name: UMI - Captures automatiques
     instance_type: mac_mini_m2
     max_build_duration: 30
 
@@ -69,6 +71,7 @@ workflows:
 
       - name: Compiler pour le simulateur
         script: |
+          set -e
           xcodebuild \
             -project ios/App/App.xcodeproj \
             -scheme App \
@@ -79,10 +82,60 @@ workflows:
             CODE_SIGNING_ALLOWED=NO \
             build
 
-      - name: Preparer le fichier du simulateur
+      - name: Capturer iPhone et iPad
         script: |
-          cd build/simulator/Build/Products/Debug-iphonesimulator
-          zip -r "$CM_BUILD_DIR/UMI-simulateur.zip" App.app
+          set -e
+          mkdir -p captures
+          xcrun simctl list devices available --json > /tmp/umi-devices.json
+
+          python3 - <<'PY' > /tmp/umi-devices.tsv
+          import json
+
+          with open("/tmp/umi-devices.json") as f:
+              data = json.load(f)
+
+          groups = [
+              ("iphone", ["iPhone 17 Pro", "iPhone 17"]),
+              ("ipad", ["iPad Pro 13-inch (M5)", "iPad Pro 13-inch (M4)"]),
+          ]
+
+          devices = [
+              device
+              for runtime, items in data["devices"].items()
+              if "iOS" in runtime
+              for device in items
+              if device.get("isAvailable")
+          ]
+
+          for label, names in groups:
+              chosen = next(
+                  (d for name in names for d in devices if d["name"] == name),
+                  None,
+              )
+              if chosen is None:
+                  raise SystemExit("Simulateur introuvable : " + label)
+              print(label + "\t" + chosen["udid"])
+          PY
+
+          while IFS=$'\t' read -r label device; do
+            xcrun simctl bootstatus "$device" -b
+
+            xcrun simctl install "$device" \
+              build/simulator/Build/Products/Debug-iphonesimulator/App.app
+
+            xcrun simctl launch \
+              --stdout="$CM_BUILD_DIR/captures/$label-sortie.log" \
+              --stderr="$CM_BUILD_DIR/captures/$label-erreurs.log" \
+              "$device" com.askiasalembere.umi
+
+            sleep 20
+
+            xcrun simctl io "$device" screenshot \
+              "$CM_BUILD_DIR/captures/$label.png"
+
+            xcrun simctl shutdown "$device"
+          done < /tmp/umi-devices.tsv
 
     artifacts:
-      - UMI-simulateur.zip
+      - captures/*.png
+      - captures/*.log
