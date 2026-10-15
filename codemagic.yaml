@@ -106,7 +106,7 @@ workflows:
               text: "Allow|Autoriser"
               optional: true
           - tapOn: "Passer"
-                    - extendedWaitUntil:
+          - extendedWaitUntil:
               visible: "Machines populaires"
               timeout: 60000
           - waitForAnimationToEnd:
