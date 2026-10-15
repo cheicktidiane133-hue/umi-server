@@ -1,3 +1,4 @@
+import { watchMachines } from "./watchMachines";
 import HighlightUploadStatus from "./HighlightUploadStatus";
 import DraggableMessageBubble from "./DraggableMessageBubble";
 import { lazy } from "react";
@@ -1238,7 +1239,7 @@ const [
 
 
     const unsubscribe =
-      onSnapshot(
+  watchMachines(
 
         machinesRef,
 
