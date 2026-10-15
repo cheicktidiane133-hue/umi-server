@@ -237,7 +237,7 @@ const [homeMedias, setHomeMedias] = useState([
   {
     id: "default",
     type: "video",
-    url: vid1,
+       url: "https://res.cloudinary.com/ytsurq7u/video/upload/v1791562814/sdrh2xkavcblfdnkpnlp.mp4",
     text: "",
     duration: 5,
     isLive: false,
