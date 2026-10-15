@@ -54,9 +54,36 @@ if (Capacitor.getPlatform() === "ios") {
   diagnostic.textContent = "Diagnostic : connexion Firestore…";
   document.body.appendChild(diagnostic);
 
-  const timer = setTimeout(() => {
+   const timer = setTimeout(async () => {
     diagnostic.textContent =
-      "Diagnostic : aucune réponse Firestore après 30 secondes.";
+      "Firestore sans réponse. Test réseau direct…";
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
+    try {
+      const url =
+        "https://firestore.googleapis.com/v1/projects/" +
+        firebaseConfig.projectId +
+        "/databases/(default)/documents/machines" +
+        "?pageSize=1&key=" +
+        encodeURIComponent(firebaseConfig.apiKey);
+
+      const response = await fetch(url, {
+        signal: controller.signal,
+      });
+
+      const data = await response.json();
+
+      diagnostic.textContent = response.ok
+        ? `Réseau direct OK : ${data.documents?.length || 0} machine reçue.`
+        : `Erreur HTTP ${response.status}\n${data.error?.message || ""}`;
+    } catch (error) {
+      diagnostic.textContent =
+        `Échec réseau direct : ${error.name}\n${error.message}`;
+    } finally {
+      clearTimeout(timeout);
+    }
   }, 30000);
 
   import("firebase/firestore").then(async ({
